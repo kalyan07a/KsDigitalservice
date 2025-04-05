@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - KS Digital Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Define CSS Variables (Consistent with previous pages) */
+        :root {
+            --primary-color: #007bff; /* Example Blue */
+            --primary-hover-color: #0056b3; /* Darker blue for hover */
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #343a40;
+            --text-color: #212529;
+            --border-radius: 5px;
+            --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+            --font-family: 'Lato', Arial, sans-serif; /* Use Lato */
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.7;
+            margin: 0;
+            padding: 60px 20px 40px 20px; /* Space for button and content */
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Container for the main content */
+        .container {
+            max-width: 800px;
+            margin: 40px auto 20px auto;
+            padding: 30px 40px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        h2 {
+           font-size: 1.5em;
+           padding-bottom: 8px;
+           border-bottom: 1px solid var(--medium-gray); /* Line under H2 */
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* Lists */
+        ul {
+            margin-left: 20px;
+            padding-left: 20px;
+            margin-bottom: 15px;
+            list-style-type: disc;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Strong/Bold tags */
+        strong, b {
+            font-weight: 700;
+            color: var(--dark-gray); /* Or use --primary-color if preferred */
+        }
+
+        /* Links */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        a:hover, a:focus {
+            color: var(--primary-hover-color);
+            text-decoration: underline;
+        }
+
+
+        /* Home Button Styling (Using Variables) */
+        .home-button {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none; /* Overrides default 'a' style */
+            font-weight: 700;
+            box-shadow: var(--box-shadow);
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            z-index: 10;
+        }
+
+        .home-button:hover,
+        .home-button:focus {
+            background-color: var(--primary-hover-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            outline: none;
+            text-decoration: none; /* Keep underline off on hover */
+        }
+
+         /* Basic responsiveness */
+         @media (max-width: 600px) {
+            body {
+                padding: 80px 15px 30px 15px; /* More top padding for button */
+            }
+            .container {
+                padding: 20px;
+                margin-top: 20px;
+            }
+            .home-button {
+                top: 20px;
+                left: 20px;
+                padding: 8px 15px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+             h2 {
+                font-size: 1.3em;
+            }
+             h3 {
+                font-size: 1.1em;
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+<a class="home-button" href="https://ksdigitalservice.pw">HOME</a>
+
+<main class="container">
+
+    <h1>Terms and Conditions</h1>
+
+    <section>
+        <h2>1. Introduction</h2>
+        <p>Welcome to <b>KS Digital services</b>. By using our services, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.</p>
+    </section>
+
+    <section>
+        <h2>2. Services Provided</h2>
+        <p>We provide internet access, bill payment services, and assistance with online applications. Our services are intended for personal use only.</p>
+    </section>
+
+    <section>
+        <h2>3. User Responsibilities</h2>
+        <ul>
+            <li>You must be at least 18 years old to use our services.</li>
+            <li>You are responsible for maintaining the confidentiality of your account information.</li>
+            <li>You agree to use our services only for lawful purposes.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4. Payment Processing</h2>
+        <p>All bill payments are processed through secure payment gateways. We are not responsible for any delays or issues caused by third-party payment processors.</p>
+    </section>
+
+    <section>
+        <h2>5. Data Privacy</h2>
+        <p>Your privacy is important to us. We will not share your personal information with third parties without your consent, except as required by law. Please refer to our <a href="privacy-policy.html">Privacy Policy</a> for more details.</p>
+    </section>
+
+    <section>
+        <h2>6. Service Limitations</h2>
+        <p>While we strive to provide uninterrupted service, we do not guarantee that our services will always be available. We reserve the right to suspend or terminate services at any time without notice.</p>
+    </section>
+
+    <section>
+        <h2>7. Limitation of Liability</h2>
+        <p>In no event shall <b>KS Digital services</b> be liable for any direct, indirect, incidental, or consequential damages arising from the use of our services.</p>
+    </section>
+
+    <section>
+        <h2>8. Changes to Terms</h2>
+        <p>We may update these terms and conditions from time to time. We will notify you of any changes by posting the new terms on this page. Your continued use of our services after any changes constitutes your acceptance of the new terms.</p>
+        </section>
+
+</main> </body>
+</html>

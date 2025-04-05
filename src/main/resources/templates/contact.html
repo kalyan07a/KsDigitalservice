@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - KS Digital Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Define CSS Variables (Consistent with previous page) */
+        :root {
+            --primary-color: #007bff; /* Example Blue */
+            --success-color: #28a745; /* Green for success/maps */
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #ced4da; /* Lighter border */
+            --dark-gray: #343a40;
+            --text-color: #212529;
+            --border-radius: 5px;
+            --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+            --font-family: 'Lato', Arial, sans-serif; /* Use Lato */
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px; /* Adjusted padding */
+            background-color: var(--light-gray);
+            color: var(--text-color);
+        }
+
+        /* Container for the main content */
+        .container {
+            max-width: 800px;
+            margin: 20px auto; /* Center container */
+            padding: 30px 40px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Headings */
+        h1, h2 {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            margin-top: 25px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e9ecef; /* Slightly lighter border */
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+            border-bottom: none;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+           font-size: 1.5em;
+        }
+
+        /* Paragraphs & Contact Info */
+        p {
+            margin-bottom: 12px;
+        }
+        .contact-info p { /* More spacing for contact details */
+             margin-bottom: 15px;
+        }
+        .contact-info strong {
+            display: inline-block;
+            min-width: 70px; /* Align labels slightly */
+        }
+
+        /* Links */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        a:hover, a:focus {
+            color: #0056b3; /* Darker blue on hover */
+            text-decoration: underline;
+        }
+
+        /* Map Button Styling (Custom) */
+        .map-button {
+            display: inline-block; /* Allow padding and margins */
+            background-color: var(--success-color); /* Green color */
+            color: var(--white);
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            text-decoration: none; /* Remove underline from button link */
+            font-weight: 700;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            margin-top: 10px; /* Space above button */
+            border: none; /* Remove border if any */
+            cursor: pointer;
+        }
+        .map-button i { /* Basic icon styling if needed */
+           margin-right: 5px;
+        }
+
+        .map-button:hover,
+        .map-button:focus {
+            background-color: #218838; /* Darker green */
+            color: var(--white); /* Keep text white */
+            text-decoration: none; /* No underline on hover */
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        /* Form Styling */
+        form {
+            margin-top: 30px; /* Space above form */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px; /* Space below label */
+            font-weight: 700; /* Bolder labels */
+            color: var(--dark-gray);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%; /* Full width */
+            padding: 12px; /* Comfortable padding */
+            margin-bottom: 15px; /* Space below fields */
+            border: 1px solid var(--medium-gray); /* Subtle border */
+            border-radius: var(--border-radius);
+            box-sizing: border-box; /* Include padding and border in element's total width/height */
+            font-family: inherit; /* Use body font */
+            font-size: 1rem;
+            transition: border-color var(--transition-speed);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: var(--primary-color); /* Highlight border on focus */
+            outline: none; /* Remove default outline */
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Subtle glow on focus */
+        }
+
+        textarea {
+            min-height: 120px; /* Minimum height for message area */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        /* Submit Button */
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px; /* Larger padding */
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        button[type="submit"]:hover,
+        button[type="submit"]:focus {
+            background-color: #0056b3; /* Darker blue */
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+         /* Basic responsiveness */
+         @media (max-width: 600px) {
+            body {
+                padding: 30px 15px;
+            }
+            .container {
+                padding: 20px;
+                margin: 15px auto;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+             h2 {
+                font-size: 1.3em;
+            }
+            input[type="text"],
+            input[type="email"],
+            textarea,
+            button[type="submit"],
+            .map-button {
+                 font-size: 0.95rem; /* Slightly smaller text on inputs/buttons */
+                 padding: 10px 15px;
+            }
+             button[type="submit"]{
+                 width: 100%; /* Full width button on small screens */
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+<main class="container">
+
+    <h1>Contact Us</h1>
+    <p>If you have any questions, comments, or concerns, please feel free to reach out using the information below or by filling out the contact form.</p>
+
+    <section class="contact-info">
+        <h2>Contact Information</h2>
+        <p><strong>Email:</strong> <a href="mailto:ksdigital2025@gmail.com">ksdigital2025@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:7893845696">7893845696</a></p> <p><strong>Address:</strong> 5-2-243 Tirumala Nagar, Moula ali, Hyderabad, Telangana 500040</p>
+        <a href="https://maps.app.goo.gl/33JKtBNWepyG7asq8" target="_blank" rel="noopener noreferrer" class="map-button">
+             Get Directions
+        </a>
+        </section>
+
+</main> </body>
+</html>
