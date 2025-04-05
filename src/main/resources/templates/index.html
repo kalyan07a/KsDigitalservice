@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PRINTER - Upload & Pay</title> <!-- More descriptive title -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add a modern font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <style>
+        /* --- Base Styles & Variables --- */
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Gray */
+            --success-color: #28a745; /* Green */
+            --danger-color: #dc3545; /* Red */
+            --warning-color: #ffc107; /* Yellow */
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #6c757d;
+            --text-color: #333;
+            --white: #fff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; /* Use Poppins font */
+            background-color: var(--light-gray); /* Light background */
+            color: var(--text-color);
+            display: flex;
+            justify-content: center; /* Center container horizontally */
+            align-items: flex-start; /* Align container to top */
+            min-height: 100vh; /* Ensure body takes full height */
+            padding: 30px 15px; /* Add more padding */
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        /* --- Container --- */
+        .container {
+            width: 100%;
+            max-width: 550px; /* Slightly wider */
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px; /* More internal padding */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px; /* Consistent spacing */
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px; /* Adjust spacing below H1 */
+            font-weight: 600;
+        }
+
+        h3 {
+             margin-top: 0;
+             margin-bottom: 15px;
+             color: var(--secondary-color);
+             font-weight: 500;
+             text-align: center;
+             width: 100%;
+             border-bottom: 1px solid var(--medium-gray); /* Separator line */
+             padding-bottom: 10px;
+        }
+
+        /* --- File Input --- */
+        #fileInputLabel {
+            display: block;
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            text-align: center;
+            width: 80%;
+            max-width: 250px; /* Adjust max width */
+            font-weight: 500;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+        }
+        #fileInputLabel:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+        #fileInput {
+            display: none;
+        }
+        #fileNameDisplay {
+            margin-top: 8px; /* Space above file name */
+            font-style: italic;
+            color: var(--dark-gray);
+            word-break: break-all;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        /* --- Preview Area --- */
+        .preview-container {
+            border: 1px solid var(--medium-gray); /* Softer border */
+            background-color: var(--light-gray); /* Subtle background */
+            padding: 20px;
+            border-radius: var(--border-radius);
+            width: 100%;
+            min-height: 180px; /* Slightly larger min-height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        #preview {
+            width: 100%;
+            max-height: 350px; /* Allow more height for preview */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-bottom: 10px; /* Space below preview image/canvas */
+            background-color: var(--white); /* White background for preview content */
+            border: 1px dashed var(--medium-gray); /* Dashed border inside */
+            border-radius: calc(var(--border-radius) - 4px); /* Inner radius */
+            padding: 10px; /* Padding inside the preview box */
+        }
+         #preview p { /* Style placeholder text */
+            color: var(--dark-gray);
+            font-size: 0.95em;
+         }
+        .preview-image, .pdf-preview {
+            max-width: 100%;
+            max-height: 320px; /* Adjust based on container padding */
+            object-fit: contain;
+            border-radius: calc(var(--border-radius) - 6px); /* Radius for image/canvas */
+        }
+        .page-count {
+            margin-top: 10px;
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 0.95em;
+        }
+
+        /* --- Print Type Selection --- */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch; /* Make labels take full width */
+            gap: 15px;
+            width: 100%;
+            border: 1px solid var(--medium-gray);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-sizing: border-box;
+            background-color: var(--white); /* White background */
+        }
+        .color-option {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between radio and text */
+            cursor: pointer;
+            padding: 10px; /* Add padding to labels */
+            border-radius: calc(var(--border-radius) - 4px);
+            transition: background-color var(--transition-speed);
+            border: 1px solid transparent; /* Placeholder for focus/selected state */
+        }
+        .color-option:hover {
+            background-color: var(--light-gray); /* Subtle hover */
+        }
+        .color-option input[type="radio"] {
+             margin-right: 5px; /* Space after radio button */
+             accent-color: var(--primary-color); /* Style the radio button itself */
+             transform: scale(1.1); /* Slightly larger radio */
+        }
+        .color-option input[type="radio"]:checked + span { /* Style text when selected */
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .color-label span { /* Keep color spans, but make them less intrusive */
+            font-weight: 500;
+            /* Removed individual colors for cleaner look */
+        }
+        .price-hint { /* Style for the price hint next to options */
+             margin-left: auto; /* Push price hint to the right */
+             font-size: 0.9em;
+             color: var(--dark-gray);
+             font-weight: 400;
+        }
+
+
+        /* --- Price Display --- */
+        .price-display {
+            margin-top: 0px; /* Reduced top margin as it's after a group */
+            font-weight: 600;
+            color: var(--success-color); /* Use success color for price */
+            font-size: 1.1em; /* Make price slightly larger */
+            text-align: center;
+            padding: 10px;
+            background-color: #e9f7ef; /* Light green background */
+            border-radius: var(--border-radius);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* --- Pay Button --- */
+        #pay-button {
+            background-color: var(--success-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 14px 30px; /* Larger padding */
+            font-size: 1.1em; /* Larger font */
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+            width: 80%;
+            max-width: 300px; /* Adjust max width */
+            margin-top: 10px;
+            box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4); /* Green shadow */
+        }
+        #pay-button:hover:not(:disabled) {
+            background-color: #218838; /* Darker green */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4);
+        }
+        #pay-button:disabled {
+            background-color: var(--medium-gray);
+            color: var(--dark-gray);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* --- Status Message --- */
+        #statusMessage {
+            margin-top: 10px;
+            font-weight: 500;
+            min-height: 1.5em; /* Reserve space */
+            text-align: center;
+            width: 100%;
+            padding: 8px;
+            border-radius: var(--border-radius);
+            display: none; /* Hide initially, show with content */
+        }
+        /* Dynamic classes for status */
+        .status-error {
+            color: var(--danger-color);
+            background-color: #f8d7da; /* Light red background */
+            border: 1px solid #f5c6cb; /* Red border */
+            display: block !important; /* Ensure it shows */
+        }
+        .status-success {
+             color: var(--success-color);
+             background-color: #d4edda; /* Light green background */
+             border: 1px solid #c3e6cb; /* Green border */
+             display: block !important;
+        }
+         .status-info {
+             color: #0c5460; /* Dark cyan */
+             background-color: #d1ecf1; /* Light cyan background */
+             border: 1px solid #bee5eb; /* Cyan border */
+             display: block !important;
+         }
+
+
+        /* --- Loader --- */
+        .loader {
+             border: 5px solid #f3f3f3; /* Light grey */
+             border-top: 5px solid var(--primary-color); /* Blue */
+             border-radius: 50%;
+             width: 30px; /* Larger loader */
+             height: 30px;
+             animation: spin 1.5s linear infinite;
+             display: none; /* Hidden by default */
+             margin: 15px auto; /* Centered with margin */
+        }
+        @keyframes spin {
+             0% { transform: rotate(0deg); }
+             100% { transform: rotate(360deg); }
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+            .container {
+                padding: 20px;
+                gap: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            #fileInputLabel, #pay-button {
+                width: 90%;
+                padding: 12px 15px;
+            }
+            .radio-group, .preview-container {
+                 padding: 15px;
+            }
+             .color-option {
+                 padding: 8px;
+                 gap: 8px;
+             }
+            .price-display {
+                 font-size: 1em;
+            }
+             #pay-button {
+                 font-size: 1em;
+             }
+        }
+        .home-button {
+    position: absolute; /* Position it absolutely */
+    top: 30px; /* Adjust top position */
+    left: 30px; /* Adjust left position */
+    background-color: var(--primary-color); /* Use primary color */
+    color: var(--white); /* White text */
+    padding: 10px 20px; /* Padding for the button */
+    border-radius: var(--border-radius); /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    font-weight: 500; /* Medium font weight */
+    box-shadow: var(--box-shadow); /* Add shadow for depth */
+    transition: background-color var(--transition-speed), transform var(--transition-speed); /* Smooth transitions */
+}
+
+.home-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+    </style>
+    <!-- Include pdf.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <!-- Include Razorpay Checkout library -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+<a class="home-button" href="https://ksdigitalservice.pw">HOME</a>
+    <div class="container">
+       
+        <h1>Printer Service</h1> <!-- Slightly more descriptive -->
+
+        <!-- File Input Section -->
+        <label for="fileInput" id="fileInputLabel">Select File to Upload</label>
+        <input type="file" id="fileInput" accept=".pdf, image/jpeg, image/png, image/jpg" />
+        <div id="fileNameDisplay">No file selected</div>
+        <div class="loader" id="uploadLoader"></div> <!-- Loader for upload -->
+
+        <!-- Preview Section -->
+        <div class="preview-container">
+            <h3>Preview</h3>
+            <div id="preview"><p>Select a file to see preview.</p></div>
+            <div id="pageCountDisplay" class="page-count"></div>
+        </div>
+
+        <!-- Print Options Section -->
+        <div class="radio-group">
+            <h3>Select Print Type</h3>
+            <label class="color-option">
+                <input type="radio" name="printType" value="0" required checked>
+                <span>Black and White</span>
+                <span id="bwPrice" class="price-hint"></span> <!-- Moved price hint here -->
+            </label>
+            <label class="color-option">
+                <input type="radio" name="printType" value="1" required >
+                <span class="color-label"><b>Color</b></span> <!-- Simplified color label -->
+                <span id="colorPrice" class="price-hint"></span> <!-- Moved price hint here -->
+            </label>
+        </div>
+
+        <!-- Price & Payment Section -->
+        <div id="priceDisplay" class="price-display">Select file and print type to see price.</div>
+        <div id="statusMessage"></div> <!-- Status messages will have dynamic classes -->
+        <div class="loader" id="paymentLoader"></div> <!-- Loader for Payment -->
+        <button id="pay-button" disabled>Pay Now</button>
+    </div>
+
+    <script>
+        // Global state variables (managed in browser)
+        let currentFileInfo = null; // Stores { fileName, pageCount, url, mimeType }
+        let currentPrintType = 0; // Default B&W
+
+        // DOM Element selections
+        const fileInput = document.getElementById('fileInput');
+        const fileInputLabel = document.getElementById('fileInputLabel');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const previewDiv = document.getElementById('preview');
+        const pageCountDisplay = document.getElementById('pageCountDisplay');
+        const priceDisplay = document.getElementById('priceDisplay');
+        const payButton = document.getElementById('pay-button');
+        const statusMessage = document.getElementById('statusMessage');
+        const printTypeRadios = document.querySelectorAll('input[name="printType"]');
+        const uploadLoader = document.getElementById('uploadLoader');
+        const paymentLoader = document.getElementById('paymentLoader');
+        const bwPriceHint = document.getElementById('bwPrice');
+        const colorPriceHint = document.getElementById('colorPrice');
+
+        // --- Event Listeners ---
+
+        fileInput.addEventListener('change', handleFileSelect);
+        printTypeRadios.forEach(radio => {
+            radio.addEventListener('change', handlePrintTypeChange);
+        });
+        payButton.addEventListener('click', initiatePayment);
+
+        // --- Helper Functions ---
+
+        function showLoader(loaderElement) {
+            loaderElement.style.display = 'block';
+        }
+
+        function hideLoader(loaderElement) {
+            loaderElement.style.display = 'none';
+        }
+
+        function showStatus(message, type = 'info') { // type can be 'info', 'success', 'error'
+            statusMessage.textContent = message;
+            statusMessage.className = `status-${type}`; // Set class based on type
+            statusMessage.style.display = 'block'; // Make sure it's visible
+        }
+
+        function hideStatus() {
+            statusMessage.textContent = '';
+            statusMessage.className = ''; // Remove status classes
+            statusMessage.style.display = 'none'; // Hide it
+        }
+
+        // --- Core Functions ---
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                resetUploadState();
+                return;
+            }
+
+            fileNameDisplay.textContent = `Selected: ${file.name}`;
+            hideStatus(); // Clear previous messages
+            payButton.disabled = true;
+            showLoader(uploadLoader);
+            previewDiv.innerHTML = '<p>Uploading & processing preview...</p>';
+            pageCountDisplay.textContent = '';
+            priceDisplay.textContent = '';
+            bwPriceHint.textContent = ''; // Clear hints
+            colorPriceHint.textContent = '';
+
+            // Show temporary image preview immediately (if image)
+            if (file.type.startsWith('image/')) {
+                 showTempImagePreview(file);
+            } else if (file.type === 'application/pdf') {
+                previewDiv.innerHTML = '<p>Processing PDF preview...</p>';
+            } else {
+                previewDiv.innerHTML = '<p>Processing file...</p>';
+            }
+
+            uploadFileToServer(file);
+        }
+
+        function showTempImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                 const img = document.createElement('img');
+                 img.src = e.target.result;
+                 img.className = 'preview-image';
+                 previewDiv.innerHTML = ''; // Clear loading message
+                 previewDiv.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+
+
+        function uploadFileToServer(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/print/upload', { // Use relative path
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errData => {
+                         throw new Error(errData.error || `Upload failed (HTTP ${response.status})`);
+                    }).catch(() => {
+                         // If parsing JSON fails, throw a generic error
+                         throw new Error(`Upload failed (HTTP ${response.status})`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) { // Check for application-level errors
+                    throw new Error(data.error);
+                }
+                console.log('Upload successful:', data);
+                currentFileInfo = {
+                    fileName: data.fileName,
+                    pageCount: data.pageCount,
+                    url: data.url,
+                    mimeType: file.type // Store MIME type from the file object
+                };
+                showServerPreview(currentFileInfo);
+                updatePriceDisplay();
+                checkButtonState();
+            })
+            .catch(error => {
+                console.error('Upload Error:', error);
+                showStatus(`Upload failed: ${error.message}`, 'error');
+                resetUploadState(); // Reset on failure
+            })
+            .finally(() => {
+                 hideLoader(uploadLoader);
+            });
+        }
+
+        function resetUploadState() {
+            currentFileInfo = null;
+            fileInput.value = ''; // Clear the file input
+            fileNameDisplay.textContent = 'No file selected';
+            previewDiv.innerHTML = '<p>Select a file to see preview.</p>';
+            pageCountDisplay.textContent = '';
+            priceDisplay.textContent = 'Select file and print type to see price.';
+            bwPriceHint.textContent = '';
+            colorPriceHint.textContent = '';
+            document.querySelector('input[name="printType"][value="0"]').checked = true; // Reset radio to B&W
+            currentPrintType = 0;
+            hideStatus();
+            checkButtonState();
+        }
+
+        function handlePrintTypeChange(event) {
+            currentPrintType = parseInt(event.target.value, 10);
+            console.log('Print type changed:', currentPrintType);
+            updatePriceDisplay();
+            checkButtonState(); // Although button state might not change, it's good practice
+        }
+
+        function updatePriceDisplay() {
+             // Clear previous price hints first
+            bwPriceHint.textContent = '';
+            colorPriceHint.textContent = '';
+
+            if (currentFileInfo && currentFileInfo.pageCount > 0) {
+                const bwAmount = calculatePrice(currentFileInfo.pageCount, 0);
+                const colorAmount = calculatePrice(currentFileInfo.pageCount, 1);
+
+                // Display hints next to radio buttons
+                bwPriceHint.textContent = `(Rs. ${bwAmount})`;
+                colorPriceHint.textContent = `(Rs. ${colorAmount})`;
+
+                 // Display the main price for the currently selected type
+                const selectedAmount = calculatePrice(currentFileInfo.pageCount, currentPrintType);
+                priceDisplay.textContent = `Total Price: Rs. ${selectedAmount}`;
+                priceDisplay.style.display = 'block'; // Ensure it's visible
+            } else {
+                priceDisplay.textContent = 'Select file and print type to see price.';
+                // Keep price hints empty
+            }
+        }
+
+
+        function calculatePrice(pages, printType) {
+             // Ensure this matches your backend logic exactly
+             if (pages <= 0) return 0;
+             let amount = 0;
+             if (printType === 0) { // B&W
+                 amount = (pages <= 2) ? pages * 10 : (pages - 2) * 2 + 20;
+             } else { // Color
+                 amount = (pages <= 1) ? pages * 20 : (pages - 1) * 5 + 20;
+             }
+             return amount;
+        }
+
+
+        function checkButtonState() {
+            // Enable button only if file info exists and page count is positive
+            payButton.disabled = !(currentFileInfo && currentFileInfo.pageCount > 0);
+        }
+
+        function initiatePayment() {
+            if (!currentFileInfo) {
+                showStatus('Please upload a valid file first.', 'error');
+                return;
+            }
+
+            payButton.disabled = true; // Disable during payment processing
+            showLoader(paymentLoader);
+            showStatus('Initiating payment...', 'info');
+
+            const payload = {
+                fileName: currentFileInfo.fileName,
+                pageCount: currentFileInfo.pageCount,
+                printType: currentPrintType
+            };
+
+            fetch('/print/api/payments/initiate', { // Call the backend endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                 if (!response.ok) {
+                     return response.json().then(errData => {
+                          throw new Error(errData.error || `Payment initiation failed (HTTP ${response.status})`);
+                     }).catch(() => {
+                         throw new Error(`Payment initiation failed (HTTP ${response.status})`);
+                     });
+                 }
+                 return response.json();
+             })
+            .then(orderData => {
+                console.log('Order Data Received:', orderData);
+                showStatus('Redirecting to payment gateway...', 'info');
+                openRazorpayCheckout(orderData);
+                // Don't hide loader here, Razorpay modal covers it or ondismiss handles it
+            })
+            .catch(error => {
+                console.error('Payment Initiation Error:', error);
+                showStatus(`Error: ${error.message}`, 'error');
+                payButton.disabled = false; // Re-enable button on error
+                hideLoader(paymentLoader);
+            });
+        }
+
+        function openRazorpayCheckout(orderData) {
+             const options = {
+                 key: orderData.razorpayKey,
+                 amount: orderData.amount, // Amount in paise from backend
+                 currency: orderData.currency,
+                 name: "KsDigitalServices", // Your shop name
+                 description: `Print Job: ${currentFileInfo.fileName.substring(0, 30)}${currentFileInfo.fileName.length > 30 ? '...' : ''}`, // Shorten if needed
+                 order_id: orderData.orderId,
+                 handler: function (response) {
+                     // IMPORTANT: Actual confirmation happens via backend webhook
+                     console.log("Razorpay Success Response:", response);
+                     showStatus("Payment Successful! Your print job is being processed.", 'success');
+                     hideLoader(paymentLoader); // Hide loader on success
+                     // Reset the form for the next print job
+                     resetUploadState();
+                 },
+                 prefill: {
+                     // Optional prefill
+                 },
+                 notes: {
+                     // Notes set by backend mostly
+                 },
+                 theme: {
+                     color: "#007bff" // Match primary color
+                 },
+                 modal: {
+                     ondismiss: function() {
+                         console.log('Checkout form closed');
+                         // Only show 'cancelled' if no success/error message is already shown
+                         if (!statusMessage.classList.contains('status-success') && !statusMessage.classList.contains('status-error')) {
+                             showStatus('Payment cancelled or window closed.', 'info');
+                         }
+                         payButton.disabled = false; // Re-enable button if closed without paying/error
+                         hideLoader(paymentLoader);
+                     }
+                 }
+             };
+
+             try {
+                const rzp = new Razorpay(options);
+
+                 // Event listener for payment failure
+                 rzp.on('payment.failed', function (response){
+                      console.error("Razorpay Payment Failed:", response.error);
+                      let errorMessage = `Payment Failed: ${response.error.description || 'Unknown Error'}`;
+                      if (response.error.code) errorMessage += ` (Code: ${response.error.code})`;
+                      showStatus(errorMessage, 'error');
+                      // Log metadata for debugging
+                      console.error("Failure Metadata:", response.error.metadata);
+                      payButton.disabled = false; // Re-enable button on failure
+                      hideLoader(paymentLoader);
+                 });
+
+                hideLoader(paymentLoader); // Hide loader just before opening modal
+                rzp.open();
+
+             } catch(e) {
+                 console.error("Error initializing Razorpay:", e);
+                 showStatus("Could not initialize payment gateway. Please try again.", 'error');
+                 payButton.disabled = false; // Re-enable button
+                 hideLoader(paymentLoader);
+             }
+        }
+
+
+        // --- Preview Rendering ---
+
+         function showServerPreview(fileInfo) {
+             previewDiv.innerHTML = ''; // Clear previous preview or messages
+             pageCountDisplay.textContent = `Pages: ${fileInfo.pageCount || 'N/A'}`;
+
+             if (!fileInfo.url) {
+                 previewDiv.innerHTML = '<p>Preview could not be generated (missing URL).</p>';
+                 return;
+             }
+
+             if (fileInfo.mimeType.startsWith('image/')) {
+                 const img = document.createElement('img');
+                 img.src = fileInfo.url; // Use the server URL
+                 img.className = 'preview-image';
+                 img.onerror = () => { previewDiv.innerHTML = '<p>Error loading image preview.</p>'; };
+                 previewDiv.appendChild(img);
+
+             } else if (fileInfo.mimeType === 'application/pdf') {
+                 const canvas = document.createElement('canvas');
+                 canvas.className = 'pdf-preview';
+                 previewDiv.appendChild(canvas);
+                 // Add a small message about PDF preview quality/page
+                 const pdfMsg = document.createElement('p');
+                 pdfMsg.textContent = 'Showing first page preview.';
+                 pdfMsg.style.fontSize = '0.8em';
+                 pdfMsg.style.textAlign = 'center';
+                 pdfMsg.style.marginTop = '5px';
+                 pdfMsg.style.color = 'var(--dark-gray)';
+                 previewDiv.appendChild(pdfMsg);
+                 renderPdfPreview(fileInfo.url, canvas);
+
+             } else {
+                 previewDiv.innerHTML = `<p>Preview not available for this file type (${fileInfo.mimeType}).</p>`;
+             }
+         }
+
+
+        function renderPdfPreview(pdfUrl, canvasElement) {
+             const loadingTask = pdfjsLib.getDocument({ url: pdfUrl, CMapReaderFactory: null, CMapUrl: null }); // Basic config
+             loadingTask.promise.then(pdf => {
+                 console.log('PDF loaded for preview');
+                 return pdf.getPage(1); // Get first page
+             }).then(page => {
+                 console.log('Page 1 loaded for preview');
+
+                 const containerWidth = previewDiv.clientWidth - 20; // Account for padding in #preview
+                 const desiredWidth = Math.min(containerWidth, 400); // Max width for PDF preview clarity
+                 const viewport = page.getViewport({ scale: 1 });
+                 const scale = desiredWidth / viewport.width;
+                 const scaledViewport = page.getViewport({ scale: scale });
+
+                 canvasElement.height = scaledViewport.height;
+                 canvasElement.width = scaledViewport.width;
+
+                 const renderContext = {
+                     canvasContext: canvasElement.getContext('2d'),
+                     viewport: scaledViewport
+                 };
+                 return page.render(renderContext).promise;
+
+             }).then(() => {
+                 console.log('Page 1 rendered for preview');
+             }).catch(error => {
+                 console.error('Error rendering PDF preview:', error);
+                 if (canvasElement.parentElement) { // Check if previewDiv still contains canvas
+                    canvasElement.parentElement.innerHTML = '<p>Error rendering PDF preview.</p>';
+                 }
+                 // Handle specific errors if needed (CORS, Network, PasswordProtected)
+                  if (error.name === 'PasswordException') {
+                     previewDiv.innerHTML = '<p>Cannot preview password-protected PDF.</p>';
+                 } else if (error.message && error.message.includes('NetworkError')) {
+                     previewDiv.innerHTML = '<p>Network error loading PDF preview.</p>';
+                 } else {
+                      previewDiv.innerHTML = '<p>Error loading PDF preview.</p>';
+                 }
+             });
+         }
+
+
+        // --- Initial Setup ---
+        // pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js`; // Set worker source if needed, often optional for basic use
+        updatePriceDisplay();
+        checkButtonState();
+        hideStatus(); // Ensure status is hidden initially
+
+    </script>
+</body>
+</html>
