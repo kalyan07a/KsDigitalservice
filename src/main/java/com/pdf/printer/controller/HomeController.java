@@ -29,4 +29,28 @@ public class HomeController {
     {
     	return "google0062e0de736cb797";
     }
+    
+    
+    
+    @GetMapping("/terms")
+    public String terms() {
+        return "terms"; 
+    }
+    
+    @GetMapping("/privacy")
+    public String privacy() {
+        return "privacy"; 
+    }
+    
+    @GetMapping("/cancellation")
+    public String cancellation() {
+        return "cancellation"; 
+    }
+    
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact"; 
+    }
+    
+    
 }
