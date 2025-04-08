@@ -8,14 +8,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <style>
     :root {
-        --primary-color: #007bff; /* Blue */
-        --secondary-color: #6c757d; /* Gray */
-        --success-color: #28a745; /* Green */
-        --danger-color: #dc3545; /* Red */
-        --warning-color: #ffc107; /* Yellow */
-        --info-color: #17a2b8;  /* Teal */
+        --primary-color: #007bff;
+        --secondary-color: #6c757d;
+        --success-color: #28a745;
+        --danger-color: #dc3545;
+        --warning-color: #ffc107;
+        --info-color: #17a2b8;
         --light-gray: #f8f9fa;
         --medium-gray: #e9ecef;
         --dark-gray: #6c757d;
@@ -39,186 +40,160 @@
     }
     .container {
         width: 100%;
-        max-width: 550px;
+        max-width: 550px; /* Maintain max-width */
         background-color: var(--white);
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
-        padding: 30px;
+        padding: 25px; /* Slightly reduced padding */
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 15px;
         box-sizing: border-box;
     }
-    h1 {
-        color: var(--primary-color); margin-bottom: 5px; font-weight: 600; margin-top: 0;
-    }
-    h3 {
-        margin-top: 0; margin-bottom: 15px; color: var(--secondary-color); font-weight: 500;
-        text-align: center; width: 100%; border-bottom: 1px solid var(--medium-gray); padding-bottom: 10px;
+    h1 { color: var(--primary-color); margin-bottom: 5px; font-weight: 600; margin-top: 0; }
+    h3 { /* Default heading style within options */
+        margin-top: 0; margin-bottom: 8px; /* Reduced bottom margin */
+        color: var(--secondary-color); font-weight: 500;
+        text-align: center; width: 100%;
+        border-bottom: 1px solid var(--medium-gray); padding-bottom: 6px; /* Reduced padding */
+        font-size: 0.95em; /* Slightly smaller heading */
     }
     /* --- File Input --- */
     .file-input-area {
-        display: flex; align-items: center; justify-content: center; gap: 10px;
-        width: 100%; margin-bottom: 5px; /* Reduced margin */
+        display: flex; flex-direction: column; align-items: center;
+        justify-content: center; width: 100%; margin-bottom: 15px;
     }
     #fileInputLabel {
         padding: 10px 22px; background-color: var(--primary-color); color: var(--white); border-radius: 6px;
-        cursor: pointer; text-align: center; flex-shrink: 0; font-weight: 500; font-size: 0.9em;
+        cursor: pointer; text-align: center; font-weight: 500; font-size: 0.9em;
         line-height: 1.5; transition: background-color var(--transition-speed), transform var(--transition-speed);
         box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25);
+        width: 80%; max-width: 250px; box-sizing: border-box;
     }
     #fileInputLabel:hover { background-color: #0056b3; transform: translateY(-1px); }
     #fileInput { display: none; }
-    #fileNameDisplay {
-        font-style: italic; color: var(--dark-gray); font-size: 0.9em; white-space: nowrap;
-        overflow: hidden; text-overflow: ellipsis; max-width: 250px; /* Adjusted */
-        text-align: center; /* Center if it grows */
-    }
-    /* REMOVED processFileButton styles */
 
-    /* --- Options Containers --- */
-    .options-section { /* Common style for options groups */
-        width: 100%;
-        border: 1px solid var(--medium-gray);
-        padding: 10px 15px;
-        border-radius: var(--border-radius);
-        box-sizing: border-box;
-        background-color: var(--white);
-        margin-top: 5px; /* Space above */
+    /* --- File Details & Options Container --- */
+    .file-details-container {
+        display: none; width: 100%; border: 1px solid var(--medium-gray);
+        padding: 15px 15px 10px 15px; /* Reduced padding */
+        border-radius: var(--border-radius); box-sizing: border-box;
+        background-color: #fdfdff; margin-top: 0;
+        display: flex; flex-direction: column;
+        gap: 12px; /* Reduced gap */
+    }
+    .file-details-container.visible { display: flex; }
+
+    /* File Info Bar (Name + Icon) */
+    .file-info-bar {
+        display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        padding-bottom: 8px; border-bottom: 1px dashed var(--medium-gray); margin-bottom: 5px;
+    }
+    #fileNameDisplay {
+        font-style: italic; color: var(--dark-gray); font-size: 0.9em; /* Slightly smaller */
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; text-align: left;
+    }
+    #previewIcon {
+        background: none; border: none; font-size: 1.2em; /* Slightly smaller */ color: var(--info-color);
+        cursor: pointer; padding: 3px; line-height: 1; transition: color var(--transition-speed), transform var(--transition-speed);
+        border-radius: 50%;
+    }
+    #previewIcon:hover:not(:disabled) { color: #117a8b; transform: scale(1.1); }
+    #previewIcon:disabled { color: var(--medium-gray); cursor: not-allowed; }
+
+    /* --- Options Sections --- */
+    .options-group {
+        width: 100%; display: flex; flex-direction: column;
+        gap: 5px; /* Reduced gap */
+    }
+
+    /* --- NEW: Container for Inline Radio Buttons --- */
+    .radio-options-container {
         display: flex;
-        flex-direction: column;
-        gap: 8px;
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+        justify-content: space-around; /* Distribute items */
+        gap: 10px; /* Space between wrapped items */
+        width: 100%;
     }
-    .options-section h3 {
-        margin-bottom: 10px; padding-bottom: 8px; font-size: 1.0em; border-bottom-color: var(--light-gray);
-        width: 100%; text-align: center;
-    }
-    .options-section.print-type { border-color: var(--warning-color); } /* Specific border */
-    .options-section.page-range { border-color: var(--info-color); } /* Specific border */
 
     /* --- Radio Button Options (Common) --- */
     .radio-option {
-        display: flex; align-items: center; gap: 8px; cursor: pointer;
-        padding: 7px 10px; border-radius: 6px; border: 1px solid transparent;
-        transition: background-color var(--transition-speed), border-color var(--transition-speed), opacity var(--transition-speed);
+        display: flex; align-items: center; gap: 6px; /* Reduced gap */
+        cursor: pointer; padding: 6px 8px; /* Reduced padding */
+        border-radius: 6px; border: 1px solid transparent;
+        transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        flex-grow: 1; /* Allow labels to grow */
+        flex-basis: 150px; /* Base width before wrapping, adjust as needed */
+        justify-content: center; /* Center content within the label */
+        min-width: 120px; /* Prevent excessive shrinking */
+        box-sizing: border-box;
     }
-    .radio-option:hover:not(:has(input[type="radio"]:checked)) {
-        background-color: var(--light-gray);
-    }
+    .radio-option:hover:not(:has(input[type="radio"]:checked)) { background-color: var(--light-gray); }
     .radio-option input[type="radio"] {
-        margin-right: 0; accent-color: var(--primary-color); transform: scale(0.9);
-        vertical-align: middle; cursor: pointer;
+        margin: 0; accent-color: var(--primary-color); transform: scale(0.9); cursor: pointer;
     }
-    .radio-option span:not(.price-hint) { font-size: 0.9em; vertical-align: middle; }
-    .price-hint { margin-left: auto; font-size: 0.8em; color: var(--dark-gray); font-weight: 400; vertical-align: middle; padding-left: 10px; }
+    .radio-option span:not(.price-hint) { font-size: 0.85em; /* Slightly smaller text */ }
+
+    /* --- HIDE Price Hint --- */
+    .price-hint {
+        display: none !important; /* Hide the price hint */
+    }
 
     /* Styling checked state */
-    .options-section:has(input[type="radio"]:checked) label.radio-option:not(:has(input[type="radio"]:checked)) {
-        opacity: 0.8;
-    }
-    label.radio-option:has(input[type="radio"]:checked) {
+    .options-group .radio-options-container label.radio-option:has(input[type="radio"]:checked) {
         background-color: #e7f3ff; border-color: var(--primary-color);
     }
-    label.radio-option:has(input[type="radio"]:checked) span:not(.price-hint) {
+    .options-group .radio-options-container label.radio-option:has(input[type="radio"]:checked) span:not(.price-hint) {
         color: var(--primary-color); font-weight: 600;
     }
-    label.radio-option:has(input[type="radio"]:checked) .price-hint {
-        color: var(--primary-color); font-weight: 500;
-    }
+    /* Price hint styling removed as it's hidden */
 
     /* --- Custom Page Inputs --- */
     .custom-page-inputs {
-        display: none; /* Hidden by default */
-        flex-direction: row; /* Keep horizontal for wider screens */
-        flex-wrap: wrap; /* Allow wrapping */
-        align-items: center;
-        gap: 10px; /* Spacing between elements */
-        padding: 8px 10px 8px 10px; /* Adjusted bottom padding */
-        margin-top: 5px;
-        background-color: var(--light-gray);
-        border-radius: 6px;
-        border: 1px solid var(--medium-gray);
+        display: none; flex-direction: row; flex-wrap: wrap; align-items: center;
+        gap: 8px; padding: 8px 10px; margin-top: 8px; /* Consistent margin */
+        background-color: var(--light-gray); border-radius: 6px; border: 1px solid var(--medium-gray);
     }
-    .custom-page-inputs.visible { /* Class to show */
-        display: flex;
-    }
-    .custom-page-inputs label {
-        font-size: 0.85em;
-        color: var(--secondary-color);
-        margin-right: 2px;
-        white-space: nowrap;
-        flex-shrink: 0; /* Prevent labels from shrinking */
-    }
-    .custom-page-inputs input[type="number"] {
-        width: 60px; /* Fixed width */
-        padding: 5px 8px;
-        border: 1px solid var(--medium-gray);
-        border-radius: 4px;
-        font-size: 0.9em;
-        text-align: center;
-        -moz-appearance: textfield; /* Hide spinners Firefox */
-        flex-grow: 0; /* Don't grow */
-        flex-shrink: 0;
-    }
-    /* Hide spinners Chrome, Safari, Edge, Opera */
+    .custom-page-inputs.visible { display: flex; }
+    .custom-page-inputs label { font-size: 0.8em; color: var(--secondary-color); margin-right: 2px; white-space: nowrap; flex-shrink: 0; }
+    .custom-page-inputs input[type="number"] { width: 55px; padding: 4px 6px; border: 1px solid var(--medium-gray); border-radius: 4px; font-size: 0.85em; text-align: center; -moz-appearance: textfield; flex-grow: 0; flex-shrink: 0; }
     .custom-page-inputs input[type="number"]::-webkit-outer-spin-button,
-    .custom-page-inputs input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    .custom-page-inputs input[type="number"]:disabled {
-        background-color: var(--medium-gray);
-        cursor: not-allowed;
-        opacity: 0.7;
-    }
-    /* NEW: Update Preview Button Style */
-    #updatePreviewButton {
-        padding: 5px 12px;
-        background-color: var(--info-color);
-        color: var(--white);
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: 500;
-        font-size: 0.8em; /* Slightly smaller */
-        line-height: 1.4;
-        border: none;
-        transition: background-color var(--transition-speed);
-        margin-left: auto; /* Push to the right */
-        flex-shrink: 0;
-        box-shadow: 0 1px 3px rgba(23, 162, 184, 0.25);
-    }
+    .custom-page-inputs input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .custom-page-inputs input[type="number"]:disabled { background-color: var(--medium-gray); cursor: not-allowed; opacity: 0.7; }
+    #updatePreviewButton { padding: 4px 10px; background-color: var(--info-color); color: var(--white); border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.75em; line-height: 1.4; border: none; transition: background-color var(--transition-speed); margin-left: auto; flex-shrink: 0; box-shadow: 0 1px 3px rgba(23, 162, 184, 0.25); }
     #updatePreviewButton:hover:not(:disabled) { background-color: #117a8b; }
     #updatePreviewButton:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; }
 
+    /* === Copies Input Styles === */
+     .options-group.copies-option h3 { margin-bottom: 5px; } /* Less space for copies heading */
+    .copies-input-container { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 0; padding-bottom: 5px; }
+    .copies-input-container button { padding: 4px 10px; font-size: 1.2em; font-weight: bold; cursor: pointer; border: 1px solid var(--medium-gray); background-color: var(--light-gray); color: var(--primary-color); border-radius: 50%; width: 30px; height: 30px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background-color var(--transition-speed), transform var(--transition-speed); }
+    .copies-input-container button:hover:not(:disabled) { background-color: var(--medium-gray); transform: scale(1.05); }
+    .copies-input-container button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; opacity: 0.6; }
+    .copies-input-container input[type="number"] { width: 55px; text-align: center; font-size: 0.95em; font-weight: 500; padding: 5px 8px; border: 1px solid var(--medium-gray); border-radius: 4px; -moz-appearance: textfield; }
+    .copies-input-container input[type="number"]::-webkit-outer-spin-button,
+    .copies-input-container input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
-    /* --- Preview Area --- */
-     .preview-container {
-         border: 0px solid var(--medium-gray); background-color: var(--light-gray); padding: 15px;
-         border-radius: var(--border-radius); width: 100%; display: flex; flex-direction: column;
-         align-items: center; box-sizing: border-box; margin-top: 5px;
-     }
-     .preview-container h3 {
-         font-size: 1.1em; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid var(--medium-gray);
-         width: 100%; text-align: center;
-     }
-     #preview {
-          width: 100%; max-height: 400px; overflow-y: auto; overflow-x: hidden; margin-bottom: 0;
-          background-color: var(--white); border: 1px solid var(--medium-gray);
-          border-radius: calc(var(--border-radius) - 4px); padding: 10px; box-sizing: border-box;
-          min-height: 100px; /* Ensure it has some height even when empty */
-     }
-     #preview p.placeholder { color: var(--dark-gray); font-size: 0.95em; text-align: center; margin-top: 20px; padding: 10px; }
-     #previewContext { font-size: 0.8em; text-align: center; margin-top: 0; margin-bottom: 8px; /* Above preview div */ color: var(--dark-gray); width: 100%; display: none; }
-     .pdf-page-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto 10px auto; background-color: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-     .page-count { margin-top: 10px; font-weight: 500; color: var(--text-color); font-size: 0.95em; text-align: center; width: 100%;}
+    /* --- Preview Modal Styles (No change needed here) --- */
+    .preview-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+    .preview-modal.visible { display: flex; }
+    .preview-modal-content { background-color: var(--white); margin: auto; padding: 25px; border: 1px solid var(--medium-gray); border-radius: var(--border-radius); width: 90%; max-width: 700px; max-height: 85vh; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; display: flex; flex-direction: column; box-sizing: border-box; }
+    .preview-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--medium-gray); padding-bottom: 10px; margin-bottom: 15px; }
+    .preview-modal-title { font-size: 1.1em; font-weight: 600; color: var(--primary-color); margin: 0; }
+    .preview-modal-close { color: var(--dark-gray); font-size: 1.8em; font-weight: bold; line-height: 1; cursor: pointer; padding: 0 5px; background: none; border: none; }
+    .preview-modal-close:hover, .preview-modal-close:focus { color: var(--danger-color); text-decoration: none; }
+    .preview-modal-body { overflow-y: auto; flex-grow: 1; background-color: var(--light-gray); border-radius: calc(var(--border-radius) - 4px); padding: 10px; box-sizing: border-box; min-height: 150px; }
+    #modalPreviewContent .pdf-page-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto 10px auto; background-color: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    #modalPreviewContent p.placeholder { color: var(--dark-gray); font-size: 0.95em; text-align: center; margin-top: 20px; padding: 10px; }
+    #modalPreviewContent .loader { border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 30px; height: 30px; animation: spin 1.5s linear infinite; display: block; margin: 20px auto; }
 
     /* --- Price & Payment --- */
-    .price-display { margin-top: 15px; font-weight: 600; color: var(--success-color); font-size: 1.1em; text-align: center; padding: 10px; background-color: #e9f7ef; border-radius: var(--border-radius); width: 100%; box-sizing: border-box; min-height: 1.5em; /* Prevent layout shift */ }
-    #pay-button { background-color: var(--success-color); color: var(--white); border: none; border-radius: var(--border-radius); padding: 14px 30px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed); width: 80%; max-width: 300px; margin-top: 15px; box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4); }
+    .price-display { margin-top: 15px; font-weight: 600; color: var(--success-color); font-size: 1.05em; text-align: center; padding: 8px; background-color: #e9f7ef; border-radius: var(--border-radius); width: 100%; box-sizing: border-box; min-height: 1.5em; }
+    #pay-button { background-color: var(--success-color); color: var(--white); border: none; border-radius: var(--border-radius); padding: 12px 25px; font-size: 1em; font-weight: 600; cursor: pointer; transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed); width: 80%; max-width: 300px; margin-top: 15px; box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4); }
     #pay-button:hover:not(:disabled) { background-color: #218838; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4); }
     #pay-button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; }
-    #statusMessage { margin-top: 10px; font-weight: 500; min-height: 1.5em; text-align: center; width: 100%; padding: 8px; border-radius: var(--border-radius); display: none; }
+    #statusMessage { margin-top: 10px; font-weight: 500; min-height: 1.5em; text-align: center; width: 100%; padding: 8px; border-radius: var(--border-radius); display: none; font-size: 0.9em;}
     .status-error { color: var(--danger-color); background-color: #f8d7da; border: 1px solid #f5c6cb; display: block !important; }
     .status-success { color: var(--success-color); background-color: #d4edda; border: 1px solid #c3e6cb; display: block !important; }
     .status-info { color: #0c5460; background-color: #d1ecf1; border: 1px solid #bee5eb; display: block !important; }
@@ -228,48 +203,45 @@
     /* --- Mobile Adjustments --- */
     @media (max-width: 600px) {
         body { padding: 15px 10px; }
-        .container { padding: 20px; gap: 12px; } /* Slightly reduced gap */
-        h1 { font-size: 1.6em; }
+        .container { padding: 15px; gap: 12px; } /* Further reduced padding */
+        h1 { font-size: 1.5em; }
 
-        .file-input-area { gap: 8px; padding-left: 5px; padding-right: 5px; box-sizing: border-box; margin-bottom: 8px; flex-direction: column; } /* Stack on mobile */
-        #fileInputLabel { padding: 10px 20px; font-size: 0.95em; line-height: 1.4; width: 80%; } /* Make button wider */
-        #fileNameDisplay { max-width: 90%; font-size: 0.85em; margin-top: 5px; } /* Center text */
+        .file-input-area { margin-bottom: 10px; }
+        #fileInputLabel { width: 90%; }
 
-        .options-section { padding: 8px 10px; }
-        .radio-option { padding: 6px 8px; gap: 6px; }
+        .file-details-container { padding: 10px; gap: 10px; }
+        .file-info-bar { padding-bottom: 6px; }
+        #fileNameDisplay { font-size: 0.85em; }
+        #previewIcon { font-size: 1.1em; }
 
-        /* Custom inputs on mobile - MODIFIED */
-        .custom-page-inputs {
-            /* Styles removed: flex-direction: column; align-items: stretch; */
-            /* Styles kept/inherited: flex-wrap: wrap; */
-            gap: 8px; /* Kept column gap */
-            row-gap: 10px; /* Added specific row gap for wrapping */
-        }
-        .custom-page-inputs label {
-            /* Styles removed: width: 100%; */
-            margin-right: 2px; /* Reinstated or kept from base */
-            margin-bottom: 0; /* Changed from 2px */
-            text-align: left; /* Kept */
-            white-space: nowrap; /* Ensured (inherited) */
-        }
-        .custom-page-inputs input[type="number"] {
-            /* Styles removed: width: 100%; */
-            width: 60px; /* Kept base width */
-            box-sizing: border-box; /* Kept */
-        }
-        #updatePreviewButton {
-            width: 100%;      /* Kept */
-            flex-basis: 100%; /* ADDED: Force button to take full width on its own line */
-            margin-left: 0;   /* Kept */
-            margin-top: 8px;  /* Adjusted margin-top for spacing */
-            padding: 8px 15px; /* Kept */
-            font-size: 0.9em;  /* Kept */
-        }
-        /* End of Mobile Custom Input Modifications */
+        h3 { font-size: 0.9em; margin-bottom: 6px; padding-bottom: 5px;}
 
-        #preview { max-height: 300px; } /* Further reduce preview height */
-        .price-display { font-size: 1em; }
-        #pay-button { width: 90%; padding: 12px 15px; font-size: 1em; }
+        /* Ensure radio buttons wrap effectively */
+        .radio-options-container { gap: 8px; }
+        .radio-option {
+            padding: 5px 7px;
+            gap: 5px;
+            font-size: 0.8em;
+            flex-basis: calc(50% - 10px); /* Aim for 2 columns, adjust gap calc */
+            min-width: 100px;
+        }
+
+        .custom-page-inputs { gap: 6px; row-gap: 8px; padding: 6px 8px; }
+        .custom-page-inputs label { font-size: 0.75em; }
+        .custom-page-inputs input[type="number"] { width: 50px; font-size: 0.8em; }
+        #updatePreviewButton { width: 100%; flex-basis: 100%; margin-left: 0; margin-top: 8px; padding: 6px 12px; font-size: 0.8em; }
+
+        .copies-input-container button { width: 28px; height: 28px; font-size: 1.1em; }
+        .copies-input-container input[type="number"] { width: 50px; font-size: 0.9em; }
+
+        .preview-modal-content { width: 95%; padding: 15px; max-height: 90vh; }
+        .preview-modal-header { padding-bottom: 8px; margin-bottom: 10px; }
+        .preview-modal-title { font-size: 1.0em; }
+        .preview-modal-close { font-size: 1.6em; }
+        .preview-modal-body { padding: 8px; }
+
+        .price-display { font-size: 1em; padding: 6px; }
+        #pay-button { width: 90%; padding: 10px 15px; font-size: 0.95em; margin-top: 12px; }
     }
 </style>
     <!-- PDF.js -->
@@ -284,62 +256,72 @@
     <div class="file-input-area">
         <label for="fileInput" id="fileInputLabel">Select File</label>
         <input type="file" id="fileInput" accept=".pdf, image/jpeg, image/png, image/jpg" />
-        <div id="fileNameDisplay">No file selected</div>
-        <!-- Process button removed -->
     </div>
     <div class="loader" id="uploadLoader"></div>
-    
-    
-        <!-- Preview Section -->
-    <div class="preview-container">
-        <h3>Preview</h3>
-        <p id="previewContext" class="preview-context" style="display: none;"></p>
-        <div id="preview"><p class="placeholder">Select a file to see the preview.</p></div>
-        <div id="pageCountDisplay" class="page-count"></div>
-    </div>
 
-
-
-    
-     <!-- Print Type Options Section -->
-    <div class="options-section print-type">
-        <h3>Select Print Type</h3>
-        <label class="radio-option">
-            <input type="radio" name="printType" value="1" required checked >
-            <span>Color</span>
-            <span id="colorPrice" class="price-hint"></span>
-        </label>
-        <label class="radio-option">
-            <input type="radio" name="printType" value="0" required >
-            <span>Black and White</span>
-            <span id="bwPrice" class="price-hint"></span>
-        </label>
-    </div>
-
-
-
-	<!-- Page Range Options Section -->
-    <div class="options-section page-range">
-        <h3>Select Page Range</h3>
-        <label class="radio-option">
-            <input type="radio" name="pageRangeType" value="all" required checked>
-            <span>All Pages</span>
-        </label>
-        <label class="radio-option">
-            <input type="radio" name="pageRangeType" value="custom" required>
-            <span>Custom Pages(Start & End)</span>
-        </label>
-        <!-- Custom Inputs (hidden by default) -->
-        <div class="custom-page-inputs" id="customPageInputs">
-            <label for="startPage">Start:</label>
-            <input type="number" id="startPage" name="startPage" min="1" placeholder="" disabled>
-            <label for="endPage">End:</label>
-            <input type="number" id="endPage" name="endPage" min="1" placeholder="" disabled>
-            <!-- NEW Update Preview Button -->
-            <button id="updatePreviewButton" disabled>Update Preview</button>
+    <!-- File Details & Options Container -->
+    <div class="file-details-container" id="fileDetailsContainer">
+        <!-- File Info: Name & Preview Icon -->
+        <div class="file-info-bar">
+            <span id="fileNameDisplay">No file selected</span>
+            <button id="previewIcon" title="Preview File" disabled>
+               Preview <i class="fas fa-eye"></i>
+            </button>
         </div>
-    </div>
 
+        <!-- Print Type Options -->
+        <div class="options-group print-type">
+            <h3>Select Print Type</h3>
+            <!-- Added radio-options-container -->
+            <div class="radio-options-container">
+                <label class="radio-option">
+                    <input type="radio" name="printType" value="1" required checked >
+                    <span>Color</span>
+                    <span id="colorPrice" class="price-hint"></span> <!-- Still here but hidden by CSS -->
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="printType" value="0" required >
+                    <span>Black & White</span> <!-- Shortened text -->
+                    <span id="bwPrice" class="price-hint"></span> <!-- Still here but hidden by CSS -->
+                </label>
+            </div>
+        </div>
+
+        <!-- Page Range Options -->
+        <!-- *** ADDED ID HERE *** -->
+        <div class="options-group page-range" id="pageRangeGroup">
+            <h3>Select Page Range</h3>
+            <!-- Added radio-options-container -->
+            <div class="radio-options-container">
+                <label class="radio-option">
+                    <input type="radio" name="pageRangeType" value="all" required checked>
+                    <span>All Pages</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="pageRangeType" value="custom" required>
+                    <span>Custom Pages</span> <!-- Shortened text -->
+                </label>
+            </div>
+            <!-- Custom Inputs (remain below the container) -->
+            <div class="custom-page-inputs" id="customPageInputs">
+                <label for="startPage">Start:</label>
+                <input type="number" id="startPage" name="startPage" min="1" placeholder="" disabled>
+                <label for="endPage">End:</label>
+                <input type="number" id="endPage" name="endPage" min="1" placeholder="" disabled>
+                <button id="updatePreviewButton" disabled>Update Details</button>
+            </div>
+        </div>
+
+        <!-- Number of Copies Options -->
+        <div class="options-group copies-option">
+            <h3>Number of Copies</h3>
+            <div class="copies-input-container">
+                <button id="decrementCopiesButton" aria-label="Decrease copies" disabled>-</button>
+                <input type="number" id="numberOfCopiesInput" name="numberOfCopies" value="1" min="1" required aria-label="Number of copies">
+                <button id="incrementCopiesButton" aria-label="Increase copies">+</button>
+            </div>
+        </div>
+    </div> <!-- End File Details Container -->
 
     <!-- Price & Payment Section -->
     <div id="priceDisplay" class="price-display">Select file to see options and price.</div>
@@ -349,21 +331,31 @@
 
 </div> <!-- End Container -->
 
-<script>
-    // --- Global State ---
-    let currentFileInfo = null; // Stores FINAL { fileName(Color), bwFileName, pageCount, url (B&W), c_url (Color) } from backend
-    let currentPrintType = 1; // 1=Color, 0=BW (Matches default checked radio)
-    let currentPageRangeType = 'all'; // 'all' or 'custom' (Matches default checked radio)
-    let currentFile = null; // Holds the selected file object
+<!-- Preview Modal HTML (No Changes Needed Here) -->
+<div id="previewModal" class="preview-modal">
+    <div class="preview-modal-content">
+        <div class="preview-modal-header">
+            <h4 id="previewModalTitle" class="preview-modal-title">File Preview</h4>
+            <button id="closePreviewModal" class="preview-modal-close" aria-label="Close preview">×</button>
+        </div>
+        <div id="modalPreviewBody" class="preview-modal-body">
+            <div id="modalPreviewContent"><p class="placeholder">Loading preview...</p></div>
+        </div>
+    </div>
+</div>
 
-    // --- DOM Elements ---
+<script>
+    // --- Global State & DOM Elements ---
+    let currentFileInfo = null;
+    let currentPrintType = 1;
+    let currentPageRangeType = 'all';
+    let currentFile = null;
+    let currentNumberOfCopies = 1;
+
     const fileInput = document.getElementById('fileInput');
     const fileInputLabel = document.getElementById('fileInputLabel');
+    const fileDetailsContainer = document.getElementById('fileDetailsContainer');
     const fileNameDisplay = document.getElementById('fileNameDisplay');
-    // const processFileButton = document.getElementById('processFileButton'); // Removed
-    const previewDiv = document.getElementById('preview');
-    const pageCountDisplay = document.getElementById('pageCountDisplay');
-    const previewContext = document.getElementById('previewContext');
     const priceDisplay = document.getElementById('priceDisplay');
     const payButton = document.getElementById('pay-button');
     const statusMessage = document.getElementById('statusMessage');
@@ -372,51 +364,72 @@
     const customPageInputsDiv = document.getElementById('customPageInputs');
     const startPageInput = document.getElementById('startPage');
     const endPageInput = document.getElementById('endPage');
-    const updatePreviewButton = document.getElementById('updatePreviewButton'); // New button
+    const updatePreviewButton = document.getElementById('updatePreviewButton');
     const uploadLoader = document.getElementById('uploadLoader');
     const paymentLoader = document.getElementById('paymentLoader');
-    const bwPriceHint = document.getElementById('bwPrice');
-    const colorPriceHint = document.getElementById('colorPrice');
+    const numberOfCopiesInput = document.getElementById('numberOfCopiesInput');
+    const decrementCopiesButton = document.getElementById('decrementCopiesButton');
+    const incrementCopiesButton = document.getElementById('incrementCopiesButton');
+    const previewIcon = document.getElementById('previewIcon');
+    const previewModal = document.getElementById('previewModal');
+    const modalPreviewContent = document.getElementById('modalPreviewContent');
+    const modalPreviewTitle = document.getElementById('previewModalTitle');
+    const closePreviewModal = document.getElementById('closePreviewModal');
+    // *** ADDED: Get reference to page range group ***
+    const pageRangeGroup = document.getElementById('pageRangeGroup');
 
-    // --- Event Listeners ---
+    // --- Event Listeners (Unchanged) ---
     fileInput.addEventListener('change', handleFileSelect);
-    // processFileButton removed
     printTypeRadios.forEach(radio => radio.addEventListener('change', handlePrintTypeChange));
     pageRangeRadios.forEach(radio => radio.addEventListener('change', handlePageRangeChange));
     startPageInput.addEventListener('input', handleCustomPageInputChange);
     endPageInput.addEventListener('input', handleCustomPageInputChange);
-    updatePreviewButton.addEventListener('click', handleUpdatePreviewClick); // Listener for new button
+    updatePreviewButton.addEventListener('click', handleUpdatePreviewClick);
     payButton.addEventListener('click', initiatePayment);
+    decrementCopiesButton.addEventListener('click', handleDecrementCopies);
+    incrementCopiesButton.addEventListener('click', handleIncrementCopies);
+    numberOfCopiesInput.addEventListener('input', handleCopiesInputChange);
+    numberOfCopiesInput.addEventListener('blur', handleCopiesInputBlur);
+    previewIcon.addEventListener('click', openPreviewModal);
+    closePreviewModal.addEventListener('click', closePreviewModalHandler);
+    previewModal.addEventListener('click', (event) => {
+        if (event.target === previewModal) { closePreviewModalHandler(); }
+    });
 
-    // --- Initialization ---
+    // --- Initialization (Unchanged) ---
     function initializeApp() {
         console.log('Page script loaded. Initializing...');
         fileNameDisplay.textContent = formatFileName(null);
-        // Set defaults based on HTML checked state
         currentPrintType = parseInt(document.querySelector('input[name="printType"]:checked').value, 10);
         currentPageRangeType = document.querySelector('input[name="pageRangeType"]:checked').value;
-        updateCustomInputState(); // Ensure custom inputs are initially disabled/hidden
-        resetStateAndUI(); // Call a consolidated reset function
+        currentNumberOfCopies = 1;
+        numberOfCopiesInput.value = currentNumberOfCopies;
+        updateCopiesButtonStates();
+        updateCustomInputState();
+        resetStateAndUI();
         hideStatus();
+        fileDetailsContainer.classList.remove('visible');
+        pageRangeGroup.style.display = ''; // Ensure it's visible initially if details show
+        previewIcon.disabled = true;
     }
 
-    // --- Helper Functions ---
+    // --- Helper Functions (Unchanged) ---
     function showLoader(loaderElement) { loaderElement.style.display = 'block'; }
     function hideLoader(loaderElement) { loaderElement.style.display = 'none'; }
-    function showStatus(message, type = 'info') {
+    function showStatus(message, type = 'info') { /* ... same ... */
         statusMessage.textContent = message;
-        statusMessage.className = `status-${type}`; // Reset class then add type
+        statusMessage.className = `status-${type}`;
         statusMessage.style.display = 'block';
         console.log(`Status (${type}):`, message);
     }
-    function hideStatus() {
+    function hideStatus() { /* ... same ... */
         statusMessage.textContent = '';
-        statusMessage.className = ''; // Remove all classes
+        statusMessage.className = '';
         statusMessage.style.display = 'none';
     }
-    function formatFileName(fileName) {
+    function formatFileName(fileName) { /* ... same ... */
         if (!fileName) return 'No file selected';
-        const maxLength = 30; // Allow a bit more length
+        const maxLength = 25; // Adjusted slightly if needed
         if (fileName.length > maxLength) {
              const parts = fileName.split('.');
              const ext = parts.length > 1 ? '.' + parts.pop() : '';
@@ -425,722 +438,312 @@
         }
         return fileName;
     }
-    function calculatePrice(pages, printType) {
-         if (pages <= 0 || typeof pages !== 'number') return 0; // Basic validation
-         let amount = 0;
-         if (printType === 0) { // Black & White
-            amount = (pages <= 2) ? pages * 10 : (pages - 2) * 2 + 20;
-         } else { // Color
-            amount = (pages <= 1) ? pages * 20 : (pages - 1) * 5 + 20;
-         }
-         return amount;
+
+    // --- Pricing Logic (Unchanged) ---
+    function calculateFirstCopyPrice(pages, printType) { /* ... same ... */
+        let amount = 0;
+        // For images, assume pages = 1 if currentFileInfo is image-based
+        const effectivePages = (currentFileInfo && currentFileInfo.mimeType?.startsWith('image/')) ? 1 : pages;
+        if (effectivePages <= 0 || typeof effectivePages !== 'number') return 0;
+        if (printType == 0) { amount = (effectivePages <= 2) ? effectivePages * 10 : (effectivePages - 2) * 2 + 20; }
+        else if (printType == 1) { amount = (effectivePages <= 1) ? effectivePages * 20 : (effectivePages - 1) * 5 + 20; }
+        return amount;
+    }
+    function calculateTotalPrice(pages, printType, numberOfCopies) { /* ... same ... */
+        // For images, assume pages = 1 if currentFileInfo is image-based
+        const effectivePages = (currentFileInfo && currentFileInfo.mimeType?.startsWith('image/')) ? 1 : pages;
+        if (effectivePages <= 0 || typeof effectivePages !== 'number' || numberOfCopies < 1) return 0;
+        const firstCopyPrice = calculateFirstCopyPrice(effectivePages, printType);
+        if (numberOfCopies === 1) { return firstCopyPrice; }
+        let costOfOneAdditionalCopy = 0;
+        if (printType == 0) { costOfOneAdditionalCopy = effectivePages * 2; }
+        else if (printType == 1) { costOfOneAdditionalCopy = effectivePages * 5; }
+        const totalPrice = firstCopyPrice + (costOfOneAdditionalCopy * (numberOfCopies - 1));
+        return totalPrice;
     }
 
+    // --- UI State Functions (Minor Changes) ---
     function clearPreview() {
-         previewDiv.innerHTML = '<p class="placeholder">Select a file to see the preview.</p>'; // Updated placeholder
-         pageCountDisplay.textContent = '';
-         previewContext.textContent = '';
-         previewContext.style.display = 'none';
+         modalPreviewContent.innerHTML = '<p class="placeholder">Select a file to see the preview.</p>';
     }
 
     function resetStateAndUI(keepFile = false) {
         console.log('Resetting state and UI', keepFile ? '(keeping file)' : '');
         currentFileInfo = null;
         if (!keepFile) {
-            currentFile = null;
-            fileInput.value = ''; // Clear file input selection
+            currentFile = null; fileInput.value = '';
             fileNameDisplay.textContent = formatFileName(null);
-            clearPreview();
+            fileDetailsContainer.classList.remove('visible');
+            pageRangeGroup.style.display = ''; // Ensure page range is potentially visible on reset
+            previewIcon.disabled = true;
+            clearPreview(); closePreviewModalHandler();
             priceDisplay.textContent = ' ';
+        } else {
+            previewIcon.disabled = true;
+             // Ensure page range visibility is correct for the kept file type
+            const isImage = currentFile && ['image/jpeg', 'image/png', 'image/jpg'].includes(currentFile.type);
+            pageRangeGroup.style.display = isImage ? 'none' : '';
         }
-        // Reset options to default checked values in HTML
         document.querySelector('input[name="printType"][value="1"]').checked = true;
         document.querySelector('input[name="pageRangeType"][value="all"]').checked = true;
-        currentPrintType = 1;
-        currentPageRangeType = 'all';
-
-        updateCustomInputState(); // Reset custom inputs state (hides div, disables inputs/button)
-        payButton.disabled = true; // Always disable pay button on reset
-        bwPriceHint.textContent = '';
-        colorPriceHint.textContent = '';
-        hideStatus();
-        hideLoader(uploadLoader);
-        hideLoader(paymentLoader);
+        currentPrintType = 1; currentPageRangeType = 'all'; currentNumberOfCopies = 1;
+        numberOfCopiesInput.value = currentNumberOfCopies;
+        updateCopiesButtonStates(); updateCustomInputState();
+        updatePriceDisplay(); // Update price display (will show default msg)
+        payButton.disabled = true;
+        hideStatus(); hideLoader(uploadLoader); hideLoader(paymentLoader);
     }
 
     // --- Event Handlers ---
-
     function handleFileSelect(event) {
         const file = event.target.files[0];
-        currentFile = null; // Reset current file state first
-        currentFileInfo = null;
+        currentFile = null; currentFileInfo = null;
+        fileDetailsContainer.classList.remove('visible');
+        pageRangeGroup.style.display = ''; // Reset display before potentially hiding
+        previewIcon.disabled = true;
 
         if (!file) {
-            resetStateAndUI(); // Full reset if no file selected
+            resetStateAndUI();
             return;
         }
 
         const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
         if (!allowedTypes.includes(file.type)) {
-             showStatus('Unsupported file type. Please select PDF, JPG, or PNG.', 'error');
-             resetStateAndUI(); // Full reset on bad file type
-             return;
-        }
-
-        console.log('File selected:', file.name, file.type);
-        currentFile = file; // Store the selected file object
-        fileNameDisplay.textContent = formatFileName(file.name);
-
-        // Reset options to default before automatic processing
-        document.querySelector('input[name="printType"][value="1"]').checked = true;
-        document.querySelector('input[name="pageRangeType"][value="all"]').checked = true;
-        currentPrintType = 1;
-        currentPageRangeType = 'all';
-        updateCustomInputState(); // Ensure custom inputs are hidden/disabled
-        payButton.disabled = true; // Ensure pay button is disabled
-        hideStatus(); // Clear any previous status
-
-        // --- Trigger automatic processing with default options ---
-        console.log('Triggering initial automatic processing...');
-        triggerUploadAndPreview(currentFile, currentPrintType, currentPageRangeType, null, null);
-    }
-
-    function handlePrintTypeChange(event) {
-        currentPrintType = parseInt(event.target.value, 10);
-        console.log('Print type changed:', currentPrintType === 1 ? 'Color' : 'B&W');
-        // If file info exists, update preview and price immediately
-        if (currentFileInfo) {
-             updatePreview();
-             updatePriceDisplay();
-             checkButtonState(); // Re-check pay button state
-        } else if (currentFile) {
-            // If a file is selected but not processed (e.g., error during initial load),
-            // maybe show a message? Or just let the price hints update.
-             updatePriceDisplay(); // Update hints even without full info
-             showStatus("Select file to see the full preview and price.", 'info'); // Guide user
-        }
-    }
-
-    function handlePageRangeChange(event) {
-        const previousPageRangeType = currentPageRangeType;
-        currentPageRangeType = event.target.value;
-        console.log('Page range type changed to:', currentPageRangeType);
-        updateCustomInputState();
-
-        if (currentPageRangeType === 'custom') {
-            // Switched TO custom
-            payButton.disabled = true; // Disable pay until custom range is processed
-            if (currentFileInfo) {
-                // If we already had info (from 'all' pages), clear it as it's no longer relevant
-                currentFileInfo = null;
-                clearPreview();
-                priceDisplay.textContent = 'Enter custom range and click Update Preview.';
-                showStatus('Enter custom pages and click Update Preview.', 'info');
-            } else {
-                 priceDisplay.textContent = 'Enter custom range and click Update Preview.';
-                 showStatus('Enter custom pages and click Update Preview.', 'info');
-            }
-            // Ensure button is disabled until input is valid
-             updatePreviewButton.disabled = !areCustomInputsValid();
-        } else if (currentPageRangeType === 'all' && previousPageRangeType === 'custom') {
-            // Switched FROM custom TO all
-            if (currentFile) {
-                // If a file is selected, re-process for 'all' pages
-                console.log("Switching back to 'All Pages', re-processing...");
-                triggerUploadAndPreview(currentFile, currentPrintType, 'all', null, null);
-            } else {
-                // No file selected, just reset UI elements
-                resetStateAndUI();
-            }
-        }
-    }
-
-    function updateCustomInputState() {
-        const isCustom = currentPageRangeType === 'custom';
-        customPageInputsDiv.classList.toggle('visible', isCustom);
-        startPageInput.disabled = !isCustom;
-        endPageInput.disabled = !isCustom;
-        startPageInput.required = isCustom;
-        endPageInput.required = isCustom;
-        updatePreviewButton.disabled = !isCustom || !areCustomInputsValid(); // Also disable initially or if inputs invalid
-
-        if (!isCustom) {
-            startPageInput.value = ''; // Clear values when hiding
-            endPageInput.value = '';
-            startPageInput.setCustomValidity(""); // Clear validation state
-            endPageInput.setCustomValidity("");
-        }
-    }
-
-    function areCustomInputsValid() {
-        const startVal = parseInt(startPageInput.value, 10);
-        const endVal = parseInt(endPageInput.value, 10);
-        const isValid = !isNaN(startVal) && !isNaN(endVal) && startVal >= 1 && endVal >= startVal;
-        // Perform HTML5 validation check as well
-        const inputsValidHTML = startPageInput.checkValidity() && endPageInput.checkValidity();
-        return isValid && inputsValidHTML;
-    }
-
-
-     function handleCustomPageInputChange() {
-         // Basic validation: ensure start <= end if both are entered
-         const startVal = parseInt(startPageInput.value, 10);
-         const endVal = parseInt(endPageInput.value, 10);
-
-         // Reset custom validity first
-         startPageInput.setCustomValidity("");
-         endPageInput.setCustomValidity("");
-
-         if (startPageInput.value && endPageInput.value) { // Only validate range if both have values
-             if (isNaN(startVal) || startVal < 1) {
-                 startPageInput.setCustomValidity("Start page must be 1 or greater.");
-             } else if (isNaN(endVal) || endVal < 1) {
-                 endPageInput.setCustomValidity("End page must be 1 or greater.");
-             } else if (startVal > endVal) {
-                 endPageInput.setCustomValidity("End page must be greater than or equal to start page.");
-             }
-         } else if (startPageInput.value && (isNaN(startVal) || startVal < 1)) {
-              startPageInput.setCustomValidity("Start page must be 1 or greater.");
-         } else if (endPageInput.value && (isNaN(endVal) || endVal < 1)) {
-              endPageInput.setCustomValidity("End page must be 1 or greater.");
-         }
-
-         // Don't report validity here, let the button click do that if needed
-         // Enable/disable the Update Preview button based on validity
-         updatePreviewButton.disabled = !areCustomInputsValid();
-
-         // If inputs change, require update
-         if(currentFileInfo && currentPageRangeType === 'custom' && !updatePreviewButton.disabled) {
-             payButton.disabled = true; // Disable pay until update is clicked
-             showStatus('Page range input changed. Click Update Preview.', 'info');
-         } else if (currentFileInfo && currentPageRangeType === 'custom' && updatePreviewButton.disabled) {
-             payButton.disabled = true; // Still disable pay if inputs become invalid
-             showStatus('Please enter valid start and end pages.', 'warning');
-         }
-    }
-
-    // --- Core Upload/Preview Function (Replaces handleProcessFile) ---
-    function triggerUploadAndPreview(fileToUpload, printTypeValue, rangeType, startPageValue, endPageValue) {
-        if (!fileToUpload) {
-            showStatus('No file selected for processing.', 'warning');
+            showStatus('Unsupported file type.', 'error');
+            resetStateAndUI();
             return;
         }
 
-        console.log(`triggerUploadAndPreview called. File: ${fileToUpload.name}, PrintType: ${printTypeValue}, RangeType: ${rangeType}, Start: ${startPageValue}, End: ${endPageValue}`);
+        console.log('File selected:', file.name, file.type);
+        currentFile = file;
+        fileNameDisplay.textContent = formatFileName(file.name);
 
-        // Disable buttons during processing
+        // *** MODIFICATION START: Show/hide page range based on file type ***
+        const isImage = ['image/jpeg', 'image/png', 'image/jpg'].includes(file.type);
+
+        if (isImage) {
+            pageRangeGroup.style.display = 'none'; // Hide the page range section
+            // Ensure the state reflects 'all pages' for images implicitly
+            document.querySelector('input[name="pageRangeType"][value="all"]').checked = true;
+            currentPageRangeType = 'all';
+            console.log('Image selected, hiding page range.');
+        } else { // It's a PDF
+            pageRangeGroup.style.display = ''; // Show the page range section (revert to default)
+            // Reset to 'all' by default when a new PDF is selected
+            document.querySelector('input[name="pageRangeType"][value="all"]').checked = true;
+            currentPageRangeType = 'all';
+             console.log('PDF selected, showing page range.');
+        }
+         // *** MODIFICATION END ***
+
+        // Reset other options to defaults
+        document.querySelector('input[name="printType"][value="1"]').checked = true;
+        currentPrintType = 1;
+        currentNumberOfCopies = 1;
+        numberOfCopiesInput.value = currentNumberOfCopies;
+
+        // Update UI states
+        fileDetailsContainer.classList.add('visible');
+        updateCopiesButtonStates();
+        updateCustomInputState(); // Ensure custom inputs are correctly shown/hidden based on pageRangeType
         payButton.disabled = true;
-        if (updatePreviewButton) updatePreviewButton.disabled = true; // Disable update button too
-
-        showLoader(uploadLoader);
-        clearPreview(); // Clear previous results before starting
-        priceDisplay.textContent = 'Processing file...';
         hideStatus();
-        currentFileInfo = null; // Clear previous processed info
+
+        console.log('Triggering initial automatic processing...');
+        // Server should handle images as having 1 page.
+        triggerUploadAndPreview(currentFile, currentPrintType, 'all', null, null);
+    }
+
+    function handlePrintTypeChange(event) { /* ... same logic ... */
+        currentPrintType = parseInt(event.target.value, 10);
+        console.log('Print type changed:', currentPrintType === 1 ? 'Color' : 'B&W');
+        if (currentFileInfo) { updatePriceDisplay(); checkButtonState(); }
+        else if (currentFile) { updatePriceDisplay(); showStatus("File processing...", 'info'); }
+        if (previewModal.classList.contains('visible')) { updateModalTitle(); }
+    }
+    function handlePageRangeChange(event) { /* ... same logic ... */
+        // This should only be possible for PDF files now
+        const previousPageRangeType = currentPageRangeType; currentPageRangeType = event.target.value;
+        console.log('Page range type changed to:', currentPageRangeType);
+        updateCustomInputState();
+        if (currentPageRangeType === 'custom') {
+            payButton.disabled = true; previewIcon.disabled = true;
+            if (currentFileInfo) { currentFileInfo = null; } // Force re-fetch for custom range
+            priceDisplay.textContent = 'Enter custom range and click Update Details.';
+            showStatus('Enter custom pages and click Update Details.', 'info');
+            updatePreviewButton.disabled = !areCustomInputsValid(); updatePreviewButton.textContent = "Update Details";
+        } else if (currentPageRangeType === 'all' && previousPageRangeType === 'custom') {
+            if (currentFile) { console.log("Switching back to 'All Pages', re-processing..."); triggerUploadAndPreview(currentFile, currentPrintType, 'all', null, null); }
+            else { resetStateAndUI(); }
+        } else { updatePriceDisplay(); checkButtonState(); }
+    }
+    function updateCustomInputState() { /* ... same logic ... */
+        // Also ensure parent group is visible for this to matter
+        const isCustom = currentPageRangeType === 'custom' && pageRangeGroup.style.display !== 'none';
+        customPageInputsDiv.classList.toggle('visible', isCustom);
+        startPageInput.disabled = !isCustom; endPageInput.disabled = !isCustom;
+        startPageInput.required = isCustom; endPageInput.required = isCustom;
+        updatePreviewButton.disabled = !isCustom || !areCustomInputsValid();
+        updatePreviewButton.textContent = isCustom ? "Update Details" : "Update Preview";
+        if (!isCustom) { startPageInput.value = ''; endPageInput.value = ''; startPageInput.setCustomValidity(""); endPageInput.setCustomValidity(""); }
+    }
+    function areCustomInputsValid() { /* ... same logic ... */
+        const startVal = parseInt(startPageInput.value, 10); const endVal = parseInt(endPageInput.value, 10);
+        const isValid = !isNaN(startVal) && !isNaN(endVal) && startVal >= 1 && endVal >= startVal;
+        const inputsValidHTML = startPageInput.checkValidity() && endPageInput.checkValidity();
+        return isValid && inputsValidHTML;
+    }
+    function handleCustomPageInputChange() { /* ... same logic, minor message change */
+         const startVal = parseInt(startPageInput.value, 10); const endVal = parseInt(endPageInput.value, 10);
+         startPageInput.setCustomValidity(""); endPageInput.setCustomValidity("");
+         if (startPageInput.value && endPageInput.value) { if (isNaN(startVal) || startVal < 1) startPageInput.setCustomValidity(">= 1"); else if (isNaN(endVal) || endVal < 1) endPageInput.setCustomValidity(">= 1"); else if (startVal > endVal) endPageInput.setCustomValidity("End >= Start"); }
+         else if (startPageInput.value && (isNaN(startVal) || startVal < 1)) startPageInput.setCustomValidity(">= 1"); else if (endPageInput.value && (isNaN(endVal) || endVal < 1)) endPageInput.setCustomValidity(">= 1");
+         updatePreviewButton.disabled = !areCustomInputsValid();
+         if (currentPageRangeType === 'custom') {
+            payButton.disabled = true; previewIcon.disabled = true;
+            if (!updatePreviewButton.disabled) { showStatus('Page range input changed. Click Update Details.', 'info'); priceDisplay.textContent = 'Click Update Details to see price.'; }
+            else { showStatus('Please enter valid start and end pages.', 'warning'); priceDisplay.textContent = 'Enter valid page range.'; }
+         }
+    }
+    function updateCopiesButtonStates() { /* ... same logic ... */ decrementCopiesButton.disabled = (currentNumberOfCopies <= 1); }
+    function handleDecrementCopies() { /* ... same logic ... */ if (currentNumberOfCopies > 1) { currentNumberOfCopies--; numberOfCopiesInput.value = currentNumberOfCopies; updateCopiesButtonStates(); updatePriceDisplay(); checkButtonState(); } }
+    function handleIncrementCopies() { /* ... same logic ... */ currentNumberOfCopies++; numberOfCopiesInput.value = currentNumberOfCopies; updateCopiesButtonStates(); updatePriceDisplay(); checkButtonState(); }
+    function handleCopiesInputChange() { /* ... same logic ... */ let value = parseInt(numberOfCopiesInput.value, 10); if (isNaN(value) || value < 1) { return; } if (value !== currentNumberOfCopies) { currentNumberOfCopies = value; updateCopiesButtonStates(); updatePriceDisplay(); checkButtonState(); } }
+    function handleCopiesInputBlur() { /* ... same logic ... */ let value = parseInt(numberOfCopiesInput.value, 10); if (isNaN(value) || value < 1) { value = 1; } currentNumberOfCopies = value; numberOfCopiesInput.value = currentNumberOfCopies; updateCopiesButtonStates(); updatePriceDisplay(); checkButtonState(); }
+    function handleUpdatePreviewClick() { /* ... same logic (Update Details button) ... */
+        if (!currentFile) { showStatus('Please select a file first.', 'warning'); return; } if (currentPageRangeType !== 'custom') { console.warn('Update Details clicked outside custom mode.'); return; } if (!startPageInput.reportValidity() || !endPageInput.reportValidity()) { showStatus('Please enter valid start and end pages.', 'error'); updatePreviewButton.disabled = true; return; } const startPageValue = parseInt(startPageInput.value, 10); const endPageValue = parseInt(endPageInput.value, 10); if (isNaN(startPageValue) || isNaN(endPageValue) || startPageValue < 1 || endPageValue < startPageValue) { showStatus('Invalid start/end page values.', 'error'); endPageInput.setCustomValidity("End >= Start (>= 1)."); endPageInput.reportValidity(); updatePreviewButton.disabled = true; return; } endPageInput.setCustomValidity(""); console.log('Update Details clicked, processing custom range...'); triggerUploadAndPreview(currentFile, currentPrintType, 'custom', startPageValue, endPageValue);
+    }
+
+    // --- Core Upload/Processing (Unchanged Logic - Assumes server handles image page count) ---
+    function triggerUploadAndPreview(fileToUpload, printTypeValue, rangeType, startPageValue, endPageValue) {
+        if (!fileToUpload) { showStatus('No file selected.', 'warning'); return; }
+        const effectiveRangeType = (fileToUpload.type.startsWith('image/')) ? 'all' : rangeType; // Force 'all' for images client-side too
+        console.log(`Triggering Upload/Process: File=${fileToUpload.name}, Type=${printTypeValue}, Range=${effectiveRangeType}, Start=${startPageValue}, End=${endPageValue}`);
+        payButton.disabled = true; previewIcon.disabled = true; if (updatePreviewButton) updatePreviewButton.disabled = true;
+        showLoader(uploadLoader); priceDisplay.textContent = 'Processing file...';
+        hideStatus(); currentFileInfo = null;
 
         const formData = new FormData();
         formData.append('file', fileToUpload);
-        formData.append('pageRangeType', rangeType);
-        if (rangeType === 'custom') {
+        formData.append('pageRangeType', effectiveRangeType); // Send 'all' for images
+        if (effectiveRangeType === 'custom' && startPageValue && endPageValue) {
             formData.append('startPage', startPageValue);
             formData.append('endPage', endPageValue);
         }
 
         fetch('/print/upload', { method: 'POST', body: formData })
-        .then(response => {
-            console.log('Server response status:', response.status);
-             if (!response.ok) {
-                 return response.json().then(errData => {
-                      const message = errData.error || errData.message || `Processing failed: ${response.statusText}`;
-                      throw new Error(message);
-                  }).catch((jsonError) => {
-                      console.error("Error parsing error response:", jsonError)
-                      throw new Error(`Processing failed (HTTP ${response.status} ${response.statusText})`);
-                  });
-             }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Raw data received from /print/upload:', data);
-            if (!data || typeof data !== 'object' || data.error) {
-                 const errorMsg = data?.error || "Invalid data received from server.";
-                 console.error("Backend returned an error or invalid data:", errorMsg);
-                 throw new Error(errorMsg);
-            }
-             // Validate essential fields
-             if (typeof data.pageCount !== 'number' || !data.c_url) {
-                  console.error("Essential data missing (pageCount, c_url):", data);
-                  throw new Error("Processing incomplete: Essential data missing from server.");
-             }
-             // Check B&W fields (can be null/missing if B&W failed, which is acceptable)
-             if (!data.url || !data.bwFileName) {
-                  console.warn("B&W URL or filename missing. B&W processing might have failed or is not applicable.", data);
-             }
-
-
-            // Assign to currentFileInfo
+        .then(response => { if (!response.ok) { return response.json().then(errData => { throw new Error(errData.error || `Processing failed: ${response.statusText}`); }).catch(() => { throw new Error(`Processing failed (HTTP ${response.status} ${response.statusText})`); }); } return response.json(); })
+        .then(data => { console.log('Data from /print/upload:', data); if (!data || typeof data !== 'object' || data.error) throw new Error(data?.error || "Invalid data received."); if (typeof data.pageCount !== 'number' || !data.c_url) throw new Error("Processing incomplete: Missing essential data."); if (!data.url || !data.bwFileName) console.warn("B&W processing might have failed.", data);
+            // Store the received file info, including the mimeType from the original file
             currentFileInfo = {
-                fileName: data.fileName,     // Color filename
-                bwFileName: data.bwFileName, // B&W filename (can be null)
-                pageCount: data.pageCount,   // Final page count
-                mimeType: fileToUpload.type, // Original mime type
-                url: data.url,               // B&W URL (can be null)
-                c_url: data.c_url            // Color URL (must exist)
+                fileName: data.fileName,
+                bwFileName: data.bwFileName,
+                pageCount: data.pageCount, // Server should return 1 for images
+                mimeType: fileToUpload.type, // Keep original mimeType
+                url: data.url,
+                c_url: data.c_url
             };
-            console.log('Assigned to currentFileInfo:', JSON.stringify(currentFileInfo));
-
-            // Proceed with UI updates
-            updatePreview();
-            updatePriceDisplay();
-            checkButtonState(); // This will enable Pay button if appropriate
-            showStatus('File processed successfully!', 'success');
-
+            console.log('Assigned currentFileInfo:', JSON.stringify(currentFileInfo));
+            previewIcon.disabled = false; updatePriceDisplay(); checkButtonState(); showStatus('File processed.', 'success');
         })
-        .catch(error => {
-            console.error('File Processing Error:', error);
-            showStatus(`Processing failed: ${error.message}`, 'error');
-            // Reset fully on error? Or keep file selected? Let's keep file selected.
-            resetStateAndUI(true); // Reset UI but keep file selection
-            priceDisplay.textContent = 'Processing failed. Please try again or select a different file.';
-            clearPreview(); // Ensure preview is cleared on error
-        })
-        .finally(() => {
-             console.log('Processing fetch finished.');
-             hideLoader(uploadLoader);
-             // Re-enable update button only if custom range is selected and inputs are valid
-             if (currentPageRangeType === 'custom') {
-                updatePreviewButton.disabled = !areCustomInputsValid();
-             }
-        });
+        .catch(error => { console.error('File Processing Error:', error); showStatus(`Processing failed: ${error.message}`, 'error'); resetStateAndUI(true); priceDisplay.textContent = 'Processing failed.'; })
+        .finally(() => { console.log('Processing finished.'); hideLoader(uploadLoader); if (currentPageRangeType === 'custom') { updatePreviewButton.disabled = !areCustomInputsValid(); } });
     }
 
-    // --- Handler for the "Update Preview" button ---
-    function handleUpdatePreviewClick() {
-        if (!currentFile) {
-            showStatus('Please select a file first.', 'warning');
-            return;
-        }
-        if (currentPageRangeType !== 'custom') {
-            console.warn('Update Preview clicked when not in custom mode.');
-            return; // Should not happen if button is managed correctly
-        }
-
-        // Explicitly validate inputs before sending
-        if (!startPageInput.reportValidity() || !endPageInput.reportValidity()) {
-            showStatus('Please enter valid start and end pages.', 'error');
-            updatePreviewButton.disabled = true; // Keep disabled if validation fails
-            return;
-        }
-        // Double check range logic
-        const startPageValue = parseInt(startPageInput.value, 10);
-        const endPageValue = parseInt(endPageInput.value, 10);
-        if (isNaN(startPageValue) || isNaN(endPageValue) || startPageValue < 1 || endPageValue < startPageValue) {
-            showStatus('Invalid start/end page values.', 'error');
-            endPageInput.setCustomValidity("End page must be >= start page (and >= 1).");
-            endPageInput.reportValidity();
-            updatePreviewButton.disabled = true; // Keep disabled
-            return;
-        }
-         // Clear custom validity if inputs are now ok (redundant but safe)
-         endPageInput.setCustomValidity("");
-
-        console.log('Update Preview button clicked, processing custom range...');
-        // Call the core processing function with current file, current print type, and custom range values
-        triggerUploadAndPreview(currentFile, currentPrintType, 'custom', startPageValue, endPageValue);
-    }
-
-
-    // --- Update UI Functions ---
-
-     function updatePreview() {
-         console.log('updatePreview called. currentFileInfo:', currentFileInfo ? JSON.stringify(currentFileInfo) : 'null', 'currentPrintType:', currentPrintType);
-
-        if (!currentFileInfo || !currentFileInfo.pageCount) { // Check pageCount too
-            console.log("updatePreview: No valid currentFileInfo found.");
-            clearPreview();
-            priceDisplay.textContent = 'Preview generation failed. Process the file again.'; // More specific message
-            return;
-        }
-
-        let urlToDisplay = null;
-        let contextMessage = '';
-        const totalPages = currentFileInfo.pageCount; // This is the page count FROM THE SERVER for the processed range/file
-        const pageText = totalPages > 1 ? `${totalPages} Pages` : `1 Page`;
-
-        // Determine range text based on actual processed info
-        const rangeText = currentPageRangeType === 'custom' && startPageInput.value && endPageInput.value
-                          ? `(Custom Range: ${startPageInput.value}-${endPageInput.value}, ${pageText})` // Use inputs for display context
-                          : `(${pageText})`; // For 'all' pages
-
-
-        if (currentPrintType === 1) { // Color selected
-            urlToDisplay = currentFileInfo.c_url;
-            contextMessage = `Preview: Color Version ${rangeText}`;
-            if (!urlToDisplay) {
-                 console.error("Color URL missing in processed file info even though required.");
-                 contextMessage = `Preview Error: Color Version Missing ${rangeText}`;
-            }
-        } else { // B&W selected
-            urlToDisplay = currentFileInfo.url; // Use final B&W URL
-             contextMessage = `Preview: B&W Version ${rangeText}`;
-            if (!urlToDisplay) { // If B&W URL is missing
-                 console.warn("B&W URL missing or processing failed. Displaying Color fallback.");
-                 urlToDisplay = currentFileInfo.c_url; // Fallback to color URL (should always exist if processing succeeded)
-                 contextMessage = `Preview: B&W N/A - Showing Color ${rangeText}`;
-            }
-        }
-
-        console.log(`Updating preview. Print Type: ${currentPrintType}, URL: ${urlToDisplay}`);
-
-        if (!urlToDisplay) {
-             // This case should ideally not happen if c_url is guaranteed on success
-             console.error(`Cannot display preview - final URL is missing for selected type and fallback.`);
-             previewDiv.innerHTML = `<p class="placeholder">Preview generation failed (Missing URL).</p>`;
-             previewContext.textContent = 'Preview Unavailable';
-             previewContext.style.display = 'block';
-             pageCountDisplay.textContent = `Total Processed Pages: ${totalPages || 'N/A'}`;
-             checkButtonState();
-             return;
-        }
-
-        const previewInfo = {
-             url: urlToDisplay,
-             pageCount: totalPages, // Use the actual count from the server
-             mimeType: currentFileInfo.mimeType,
-             contextMessage: contextMessage
-        };
-         console.log('updatePreview: Calling showServerPreview with info:', JSON.stringify(previewInfo));
-        showServerPreview(previewInfo);
-     }
-
+    // --- Update Price Display (Added check for image mimeType) ---
     function updatePriceDisplay() {
-        console.log('updatePriceDisplay called. currentFileInfo:', currentFileInfo ? JSON.stringify(currentFileInfo) : 'null', 'currentPrintType:', currentPrintType);
+        console.log('Updating Price Display. FileInfo:', currentFileInfo ? 'Exists' : 'null', 'PrintType:', currentPrintType, 'Copies:', currentNumberOfCopies);
 
-        bwPriceHint.textContent = '';
-        colorPriceHint.textContent = '';
+        let totalPrice = 0;
+        let priceMessage = 'Select file to see options and price.';
 
-        if (currentFileInfo && typeof currentFileInfo.pageCount === 'number' && currentFileInfo.pageCount > 0) {
-            const finalPages = currentFileInfo.pageCount; // Pages count from server
-            const bwAmount = calculatePrice(finalPages, 0);
-            const colorAmount = calculatePrice(finalPages, 1);
-             console.log(`updatePriceDisplay: finalPages=${finalPages}, bwAmount=${bwAmount}, colorAmount=${colorAmount}`);
-
+        if (currentFileInfo && typeof currentFileInfo.pageCount === 'number' && currentFileInfo.pageCount >= 0) {
+            // Use pageCount directly (should be 1 for images if server is correct)
+            const finalPages = currentFileInfo.pageCount;
             const bwUrlExists = !!currentFileInfo.url;
-            const colorUrlExists = !!currentFileInfo.c_url; // Should always be true here
-             console.log(`updatePriceDisplay: bwUrlExists=${bwUrlExists}, colorUrlExists=${colorUrlExists}`);
+            const colorUrlExists = !!currentFileInfo.c_url;
 
-            // Update price hints regardless of selection
-            if (bwUrlExists) {
-                 bwPriceHint.textContent = `(Rs. ${bwAmount})`;
-            } else {
-                 bwPriceHint.textContent = `(N/A)`;
-            }
-            if (colorUrlExists) { // Should always be true if currentFileInfo exists
-                colorPriceHint.textContent = `(Rs. ${colorAmount})`;
-            } else {
-                 colorPriceHint.textContent = `(Error)`; // Indicate an issue
-            }
-
-            // Determine the price to display based on current selection
-            const selectedAmount = calculatePrice(finalPages, currentPrintType);
+            totalPrice = calculateTotalPrice(finalPages, currentPrintType, currentNumberOfCopies);
             const requiredUrlExists = (currentPrintType === 1 && colorUrlExists) || (currentPrintType === 0 && bwUrlExists);
-             console.log(`updatePriceDisplay: selectedAmount=${selectedAmount}, requiredUrlExists=${requiredUrlExists}`);
 
-            if (requiredUrlExists) {
-                 priceDisplay.textContent = `Total Price: Rs. ${selectedAmount}`;
+            if (requiredUrlExists && totalPrice >= 0) {
+                 const copiesText = currentNumberOfCopies > 1 ? `(${currentNumberOfCopies} copies)` : `(1 copy)`;
+                 // Adjust page text for images
+                 const pageCountText = (currentFileInfo.mimeType?.startsWith('image/')) ? '1 page' : `${finalPages} pages`;
+                 priceMessage = `Total Price: Rs. ${totalPrice} ${copiesText}`;
             } else if (currentPrintType === 0 && !bwUrlExists) {
-                 // Specifically handle B&W selected but not available
-                 priceDisplay.textContent = `Price: B&W format not available (Showing Color)`; // Adjust message
-            } else {
-                 // Fallback error case (shouldn't happen often if c_url is always present)
-                 priceDisplay.textContent = `Price unavailable (Format N/A)`;
+                 priceMessage = `Price: B&W format not available`; totalPrice = 0;
+            } else if (finalPages === 0) {
+                 priceMessage = `File seems empty (0 pages).`; totalPrice = 0;
             }
-            priceDisplay.style.display = 'block';
+            else {
+                 priceMessage = `Price unavailable`; totalPrice = 0;
+            }
+        } else if (currentPageRangeType === 'custom' && !currentFileInfo && pageRangeGroup.style.display !== 'none') {
+             priceMessage = 'Enter custom range and click Update Details.';
+        } else if (!currentFile) {
+             priceMessage = 'Select file to see options and price.';
         } else {
-             // No valid file info or zero pages processed
-             console.log('updatePriceDisplay: Condition failed (no currentFileInfo or zero pages).');
-             priceDisplay.textContent = 'Select file or update range to see price.';
-             priceDisplay.style.display = 'block'; // Keep it visible
+             priceMessage = 'Processing... Price unavailable yet.';
         }
+
+        priceDisplay.textContent = priceMessage;
+        priceDisplay.style.display = 'block';
+        checkButtonState();
     }
 
-
-    function checkButtonState() {
-         let canPay = false;
-         if (currentFileInfo && typeof currentFileInfo.pageCount === 'number' && currentFileInfo.pageCount > 0) {
+    // --- Button State & Payment (Unchanged Logic) ---
+    function checkButtonState() { /* ... same logic ... */
+         let canPay = false; let calculatedTotal = 0;
+         if (currentFileInfo && typeof currentFileInfo.pageCount === 'number' && currentFileInfo.pageCount >= 0) {
              const requiredUrl = (currentPrintType === 1) ? currentFileInfo.c_url : currentFileInfo.url;
-             if (requiredUrl) {
+             calculatedTotal = calculateTotalPrice(currentFileInfo.pageCount, currentPrintType, currentNumberOfCopies);
+             // Allow payment even if pageCount is 0? Decided against it here.
+             if (requiredUrl && calculatedTotal >= 0 && currentNumberOfCopies >= 1 && currentFileInfo.pageCount > 0) {
                  canPay = true;
-             } else {
-                 console.log(`checkButtonState: Cannot pay, required URL for printType ${currentPrintType} is missing.`);
-             }
-         } else {
-              console.log(`checkButtonState: Cannot pay, currentFileInfo missing or pageCount invalid.`);
+             } else { console.log(`checkButtonState: Cannot pay. URL Missing=${!requiredUrl}, Invalid Total Price=${calculatedTotal < 0}, Invalid Copies=${currentNumberOfCopies < 1}, Page Count = ${currentFileInfo.pageCount}`); }
          }
+         else { console.log(`checkButtonState: Cannot pay, currentFileInfo missing or invalid.`); }
          payButton.disabled = !canPay;
-         console.log('Check button state. Can pay:', canPay);
+         console.log('Check button state. Can pay:', canPay, 'Total Price:', calculatedTotal);
+    }
+    function initiatePayment() { /* ... same logic ... */
+        if (!currentFileInfo || payButton.disabled) { showStatus('Cannot initiate payment. Ensure options selected & price valid.', 'warning'); return; } const finalFileNameToSend = (currentPrintType === 1) ? currentFileInfo.fileName : currentFileInfo.bwFileName; const requiredUrl = (currentPrintType === 1) ? currentFileInfo.c_url : currentFileInfo.url; if (!requiredUrl || !finalFileNameToSend) { showStatus(`Cannot proceed: Required file for ${currentPrintType === 1 ? 'Color' : 'B&W'} missing.`, 'error'); return; } if(currentNumberOfCopies < 1) { showStatus(`Cannot proceed: Copies must be >= 1.`, 'error'); handleCopiesInputBlur(); return; } if (currentFileInfo.pageCount <=0) { showStatus(`Cannot proceed: File has no content to print.`, 'error'); return;} payButton.disabled = true; showLoader(paymentLoader); showStatus('Initiating payment...', 'info');
+        // Page count for payload is always from currentFileInfo (should be 1 for images)
+        const payload = { fileName: finalFileNameToSend, pageCount: currentFileInfo.pageCount, printType: currentPrintType, numberOfCopies: currentNumberOfCopies }; console.log('Initiating payment with payload:', payload);
+        console.log('DEBUG: Sending payment initiation payload:', JSON.stringify(payload));
+
+        fetch('/printer/api/payments/initiate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }) .then(response => { if (!response.ok) { return response.json().then(errData => { throw new Error(errData.error || `Payment initiation failed (HTTP ${response.status})`); }).catch(() => { throw new Error(`Payment initiation failed (HTTP ${response.status})`); }); } return response.json(); }) .then(orderData => { console.log('Order Data Received:', orderData); if (!orderData || !orderData.razorpayKey || !orderData.amount || !orderData.orderId) { throw new Error("Invalid order data received from server."); } const displayFileNameForDesc = formatFileName(finalFileNameToSend); const copiesText = currentNumberOfCopies > 1 ? `${currentNumberOfCopies} copies` : `1 copy`; const pageText = currentFileInfo.mimeType?.startsWith('image/') ? '1 page' : `${currentFileInfo.pageCount} pages`; const description = `Print: ${displayFileNameForDesc} (${currentPrintType === 1 ? 'Color' : 'B&W'}, ${pageText}, ${copiesText})`; openRazorpayCheckout(orderData, description); }) .catch(error => { console.error('Payment Initiation Error:', error); showStatus(`Error: ${error.message}`, 'error'); checkButtonState(); hideLoader(paymentLoader); });
+    }
+    function openRazorpayCheckout(orderData, description) { /* ... same logic ... */
+         console.log("Opening Razorpay. Amount:", orderData.amount, "Description:", description); const finalFileNameToSend = (currentPrintType === 1) ? currentFileInfo.fileName : currentFileInfo.bwFileName; const options = { key: orderData.razorpayKey, amount: orderData.amount, currency: orderData.currency || "INR", name: "KsDigitalServices", description: description, order_id: orderData.orderId, handler: function (response) { console.log("Razorpay Success:", response); showStatus("Payment Successful!", 'success'); hideLoader(paymentLoader); resetStateAndUI(); }, prefill: {}, notes: { fileName: finalFileNameToSend, printType: String(currentPrintType), pageCount: String(currentFileInfo.pageCount), numberOfCopies: String(currentNumberOfCopies), timestamp: new Date().toISOString() }, theme: { color: "#007bff" }, modal: { ondismiss: function() { console.log('Razorpay checkout closed.'); if (!statusMessage.classList.contains('status-success')) { showStatus('Payment cancelled.', 'info'); } checkButtonState(); hideLoader(paymentLoader); } } }; try { const rzp = new Razorpay(options); rzp.on('payment.failed', function (response){ console.error("Razorpay Payment Failed:", response.error); let errorMsg = `Payment Failed: ${response.error.description || 'Unknown'}`; if(response.error.reason) errorMsg += ` (Reason: ${response.error.reason})`; showStatus(errorMsg, 'error'); checkButtonState(); hideLoader(paymentLoader); }); rzp.open(); } catch(e) { console.error("Error initializing Razorpay:", e); showStatus("Could not initialize payment gateway.", 'error'); checkButtonState(); hideLoader(paymentLoader); }
     }
 
-    // --- Payment Initiation (No changes needed here, relies on correct currentFileInfo) ---
-    function initiatePayment() {
-        if (!currentFileInfo || payButton.disabled) {
-            showStatus('Cannot initiate payment. Ensure file is processed and options are selected correctly.', 'warning');
-            return;
-        }
-
-        const finalFileNameToSend = (currentPrintType === 1) ? currentFileInfo.fileName : currentFileInfo.bwFileName;
-        const requiredUrl = (currentPrintType === 1) ? currentFileInfo.c_url : currentFileInfo.url;
-
-         // Double check the necessary file exists for the chosen type before payment
-         if (!requiredUrl || !finalFileNameToSend) {
-              showStatus(`Cannot proceed: Required file/preview for ${currentPrintType === 1 ? 'Color' : 'B&W'} is missing. Try processing again.`, 'error');
-              return;
-         }
-
-        payButton.disabled = true;
-        showLoader(paymentLoader);
-        showStatus('Initiating payment...', 'info');
-
-        const payload = {
-             fileName: finalFileNameToSend,
-             pageCount: currentFileInfo.pageCount,
-             printType: currentPrintType
-        };
-        console.log('Initiating payment with payload:', payload);
-
-        fetch('/print/api/payments/initiate', {
-             method: 'POST',
-             headers: { 'Content-Type': 'application/json' },
-             body: JSON.stringify(payload)
-         })
-        .then(response => {
-             if (!response.ok) {
-                 return response.json().then(errData => { throw new Error(errData.error || `Payment initiation failed (HTTP ${response.status})`); })
-                       .catch(() => { throw new Error(`Payment initiation failed (HTTP ${response.status})`); });
-             }
-             return response.json();
-         })
-        .then(orderData => {
-            console.log('Order Data Received:', orderData);
-            // Use the appropriate final filename for the description
-            const displayFileNameForDesc = formatFileName(finalFileNameToSend);
-            const description = `Print: ${displayFileNameForDesc} (${currentPrintType === 1 ? 'Color' : 'B&W'}, ${currentFileInfo.pageCount} pages)`;
-            openRazorpayCheckout(orderData, description);
-        })
-        .catch(error => {
-            console.error('Payment Initiation Error:', error);
-            showStatus(`Error: ${error.message}`, 'error');
-            checkButtonState(); // Re-enable pay button if appropriate
-            hideLoader(paymentLoader);
-        });
+    // --- Modal & Preview Rendering (Updated titles for images) ---
+    function openPreviewModal() { /* ... same logic, relies on updated updateModalTitle ... */
+        console.log('Preview icon clicked.'); if (!currentFileInfo) { showStatus('File details not yet available.', 'warning'); modalPreviewContent.innerHTML = '<p class="placeholder">File processing failed or not complete.</p>'; previewModal.classList.add('visible'); return; } let urlToDisplay = (currentPrintType === 1) ? currentFileInfo.c_url : currentFileInfo.url; const fileType = currentFileInfo.mimeType; updateModalTitle(); modalPreviewContent.innerHTML = '<p class="placeholder">Loading preview...</p>'; previewModal.classList.add('visible'); if (!urlToDisplay) { console.error("Preview URL missing for selected type."); modalPreviewContent.innerHTML = `<p class="placeholder">Preview generation failed for ${currentPrintType === 1 ? 'Color' : 'B&W'} version.</p>`; return; } renderPreviewInModal(urlToDisplay, fileType, currentFileInfo.pageCount);
     }
-
-     function openRazorpayCheckout(orderData, description) {
-         console.log("Opening Razorpay with description:", description);
-         const finalFileNameToSend = (currentPrintType === 1) ? currentFileInfo.fileName : currentFileInfo.bwFileName; // Get the correct filename again
-         const options = {
-             key: orderData.razorpayKey,
-             amount: orderData.amount,
-             currency: orderData.currency,
-             name: "KsDigitalServices",
-             description: description,
-             order_id: orderData.orderId,
-             handler: function (response) {
-                 console.log("Razorpay Success:", response);
-                 showStatus("Payment Successful! Your print job is being processed.", 'success');
-                 hideLoader(paymentLoader);
-                 resetStateAndUI(); // Reset fully after success
-             },
-             prefill: {},
-             notes: { // Notes sent to backend webhook
-                 fileName: finalFileNameToSend, // CRITICAL: Send the correct final filename
-                 printType: String(currentPrintType),
-                 pageCount: String(currentFileInfo.pageCount),
-                 timestamp: new Date().toISOString()
-             },
-             theme: { color: "#007bff" },
-             modal: {
-                 ondismiss: function() {
-                     console.log('Razorpay checkout closed.');
-                     if (!statusMessage.classList.contains('status-success')) {
-                         showStatus('Payment cancelled or window closed.', 'info');
-                     }
-                     checkButtonState(); // Re-enable pay button
-                     hideLoader(paymentLoader);
-                 }
-             }
-         };
-         try {
-            const rzp = new Razorpay(options);
-             rzp.on('payment.failed', function (response){
-                  console.error("Razorpay Payment Failed:", response.error);
-                  let errorMsg = `Payment Failed: ${response.error.description || 'Unknown Error'}`; if(response.error.reason) errorMsg += ` (Reason: ${response.error.reason})`;
-                  showStatus(errorMsg, 'error'); checkButtonState(); hideLoader(paymentLoader);
-             }); rzp.open();
-         } catch(e) {
-             console.error("Error initializing Razorpay:", e);
-             showStatus("Could not initialize payment gateway. Please try again.", 'error'); checkButtonState(); hideLoader(paymentLoader);
+    function closePreviewModalHandler() { /* ... same logic ... */ previewModal.classList.remove('visible'); }
+    function updateModalTitle() {
+         if (!currentFileInfo) {
+            modalPreviewTitle.textContent = "File Preview"; return;
          }
+         const typeText = currentPrintType === 1 ? "Color" : "B&W";
+         let detailsText = '';
+         if (currentFileInfo.mimeType?.startsWith('image/')) {
+             detailsText = "(Image)"; // Simple title for images
+         } else { // PDF
+             const pageText = currentFileInfo.pageCount > 1 ? `${currentFileInfo.pageCount} Pages` : `1 Page`;
+             const rangeText = currentPageRangeType === 'custom' && startPageInput.value && endPageInput.value ? `(Range: ${startPageInput.value}-${endPageInput.value}, ${pageText})` : `(${pageText})`;
+             detailsText = rangeText;
+         }
+         modalPreviewTitle.textContent = `Preview: ${typeText} ${detailsText}`;
     }
-
-    // --- Preview Rendering (showServerPreview, renderPdfPreview - No changes needed here) ---
-     function showServerPreview(previewInfo) {
-         console.log('showServerPreview called with:', previewInfo);
-         previewDiv.innerHTML = ''; // Clear preview div initially
-         pageCountDisplay.textContent = `Total Processed Pages: ${previewInfo.pageCount || 'N/A'}`; // Updated text
-
-         if (previewContext) {
-             previewContext.textContent = previewInfo.contextMessage || 'Preview';
-             previewContext.style.display = 'block';
-         } else {
-              console.warn("Preview context element (#previewContext) not found.");
-         }
-
-         if (!previewInfo.url) { console.error("showServerPreview: No URL provided."); previewDiv.innerHTML = '<p class="placeholder">Preview URL is missing.</p>'; previewContext.style.display = 'none'; return; }
-         if (!previewInfo.mimeType) { console.error("showServerPreview: No mimeType provided."); previewDiv.innerHTML = '<p class="placeholder">Cannot determine file type.</p>'; previewContext.style.display = 'none'; return; }
-
-         try {
-             if (previewInfo.mimeType.startsWith('image/')) {
-                 console.log('Rendering image preview for:', previewInfo.url);
-                 const img = document.createElement('img');
-                 img.className = 'pdf-page-canvas'; // Re-use class for similar layout
-                 img.style.boxShadow = 'none';
-                 img.alt = `Preview of file`;
-                 img.onerror = () => {
-                     console.error('Error loading image preview:', previewInfo.url);
-                     previewDiv.innerHTML = '<p class="placeholder">Error loading image preview.</p>';
-                     pageCountDisplay.textContent = `Total Processed Pages: ${previewInfo.pageCount || 'N/A'}`;
-                     previewContext.style.display = 'none';
-                 };
-                 img.src = previewInfo.url;
-                 previewDiv.appendChild(img);
-
-             } else if (previewInfo.mimeType === 'application/pdf') {
-                 console.log('Calling renderPdfPreview for:', previewInfo.url);
-                 renderPdfPreview(previewInfo.url, previewDiv, previewInfo.pageCount); // Pass page count for context
-
-             } else {
-                 console.warn('Preview not supported for mimeType:', previewInfo.mimeType);
-                 previewDiv.innerHTML = `<p class="placeholder">Preview not available for this file type (${previewInfo.mimeType}).</p>`;
-                 pageCountDisplay.textContent = `Total Processed Pages: ${previewInfo.pageCount || 'N/A'}`;
-                 previewContext.style.display = 'none';
-             }
-         } catch (err) {
-              console.error("Error during preview element creation/rendering:", err);
-              previewDiv.innerHTML = '<p class="placeholder">An error occurred displaying the preview.</p>';
-              pageCountDisplay.textContent = `Total Processed Pages: ${previewInfo.pageCount || 'N/A'}`;
-              previewContext.style.display = 'none';
-         }
-     }
-
-    // Multi-page PDF renderer
-    async function renderPdfPreview(pdfUrl, containerElement, expectedPageCount) { // Added expectedPageCount
-        console.log(`renderPdfPreview: Starting render for URL: ${pdfUrl}`);
-        if (!pdfUrl || typeof pdfUrl !== 'string' || !(pdfUrl.startsWith('/uploads/') || pdfUrl.startsWith('http'))) {
-            console.error(`renderPdfPreview: Invalid or missing PDF URL format: ${pdfUrl}`);
-            containerElement.innerHTML = `<p class="placeholder">Invalid URL for PDF preview.</p>`;
-            return;
-        }
-
-        containerElement.innerHTML = '<p class="placeholder">Loading PDF preview...</p>';
-        const loadingIndicator = document.createElement('div');
-        loadingIndicator.className = 'loader';
-        loadingIndicator.style.display = 'block';
-        loadingIndicator.style.margin = '20px auto';
-        containerElement.appendChild(loadingIndicator);
-
-        const containerPadding = parseFloat(window.getComputedStyle(containerElement).paddingLeft || '0') + parseFloat(window.getComputedStyle(containerElement).paddingRight || '0');
-        // Ensure clientWidth is positive, default to a reasonable minimum if not
-        const clientWidth = Math.max(containerElement.clientWidth || containerElement.offsetWidth, 100); // Use 100px minimum width
-        const availableWidth = clientWidth - containerPadding;
-        const targetWidth = Math.max(availableWidth, 150); // Ensure targetWidth is also reasonable
-
-        // Use standard CMapUrl configuration
-        const pdfjsCMapUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/cmaps/';
-        const loadingTask = pdfjsLib.getDocument({ url: pdfUrl, cMapUrl: pdfjsCMapUrl, cMapPacked: true });
-
-
-        try {
-            const pdf = await loadingTask.promise;
-             console.log(`renderPdfPreview: PDF document loaded (${pdf.numPages} pages) from ${pdfUrl}`);
-
-             // Check if the number of pages in the loaded PDF matches the count from the server
-            if (typeof expectedPageCount === 'number' && pdf.numPages !== expectedPageCount) {
-                 console.warn(`renderPdfPreview: Page count mismatch! Server said ${expectedPageCount}, PDF.js found ${pdf.numPages}. Displaying actual pages found.`);
-                 // Update the page count display if it differs significantly
-                 pageCountDisplay.textContent = `Total Processed Pages: ${pdf.numPages} (Server reported ${expectedPageCount})`;
-            }
-
-            if (pdf.numPages === 0) { throw new Error("PDF has no pages."); }
-
-            containerElement.innerHTML = ''; // Clear loading message
-
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                console.log(`renderPdfPreview: Processing page ${pageNum}...`);
-                const page = await pdf.getPage(pageNum);
-                console.log(`renderPdfPreview: Page ${pageNum} loaded`);
-
-                const dpr = window.devicePixelRatio || 1;
-                const viewport = page.getViewport({ scale: 1 });
-                const scale = targetWidth / viewport.width;
-                const scaledViewport = page.getViewport({ scale: scale * dpr });
-
-                const canvas = document.createElement('canvas');
-                canvas.className = 'pdf-page-canvas';
-                canvas.height = Math.round(scaledViewport.height);
-                canvas.width = Math.round(scaledViewport.width);
-                canvas.style.width = `${targetWidth}px`;
-                canvas.style.height = `${Math.round(targetWidth * (viewport.height / viewport.width))}px`;
-                canvas.setAttribute('aria-label', `PDF Page ${pageNum}`);
-
-                const context = canvas.getContext('2d', { alpha: false }); // Request non-alpha context for potential speedup
-                if (!context) {
-                    console.error(`renderPdfPreview: Failed to get 2D context for canvas on page ${pageNum}. Skipping.`);
-                    const errorPlaceholder = document.createElement('div');
-                    errorPlaceholder.textContent = `Error rendering page ${pageNum}`;
-                    errorPlaceholder.style.cssText = 'text-align: center; color: red; padding: 10px; border: 1px solid red; margin-bottom: 10px;';
-                    containerElement.appendChild(errorPlaceholder);
-                    continue;
-                }
-                 // Set a white background explicitly
-                 context.fillStyle = 'white';
-                 context.fillRect(0, 0, canvas.width, canvas.height);
-
-                const renderContext = { canvasContext: context, viewport: scaledViewport, enableWebGL: false, renderInteractiveForms: false, background: 'rgba(255,255,255, 1)' }; // Ensure white background
-
-                containerElement.appendChild(canvas); // Append before render starts
-
-                console.log(`renderPdfPreview: Rendering page ${pageNum} to canvas...`);
-                await page.render(renderContext).promise;
-                 page.cleanup(); // Explicitly cleanup page resources
-                console.log(`renderPdfPreview: Page ${pageNum} rendering finished.`);
-            }
-            console.log('renderPdfPreview: All pages rendered successfully.');
-
-        } catch (error) {
-             console.error(`renderPdfPreview: Error during PDF processing for URL: ${pdfUrl}`, error);
-             let errorMsg = 'Error loading PDF preview.';
-             if (error.name === 'PasswordException') { errorMsg = 'Cannot preview password-protected PDF.'; }
-             else if (error.name === 'MissingPDFException' || error.message?.includes('Missing PDF')) { errorMsg = 'PDF file not found or invalid URL.'; }
-             else if (error.name === 'InvalidPDFException' || error.message?.includes('Invalid PDF structure')) { errorMsg = 'Invalid or corrupted PDF file.'; }
-             else if (error.name === 'NetworkError' || error.message?.includes('NetworkError')) { errorMsg = 'Network error loading PDF preview.'; }
-             else if (error.message === 'PDF has no pages.') { errorMsg = 'The selected PDF file has no pages.'; }
-             else if (error.name === 'RenderingCancelledException') { errorMsg = 'Preview rendering was cancelled.'; } // Handle cancellation
-             else { errorMsg = `Error loading preview: ${error.message || error.name}`; }
-             containerElement.innerHTML = `<p class="placeholder">${errorMsg}</p>`;
-
-             // Use expected count if available and error occurred
-             if(typeof expectedPageCount === 'number') {
-                  pageCountDisplay.textContent = `Total Pages: ${expectedPageCount} (Preview failed)`;
-             } else { pageCountDisplay.textContent = 'Page Count Unknown (Preview failed)'; }
-             if (previewContext) previewContext.style.display = 'none';
-        } finally {
-             // Ensure loading task cleanup
-             if (loadingTask && loadingTask.destroy) {
-                loadingTask.destroy();
-                console.log('renderPdfPreview: PDF loading task destroyed.');
-            }
-        }
+    function renderPreviewInModal(url, mimeType, pageCount) { /* ... same logic ... */
+         console.log('renderPreviewInModal called with URL:', url, 'Type:', mimeType); const targetElement = modalPreviewContent; targetElement.innerHTML = ''; if (!url || !mimeType) { console.error("renderPreviewInModal: Missing URL or mimeType."); targetElement.innerHTML = '<p class="placeholder">Preview data is missing.</p>'; return; } try { if (mimeType.startsWith('image/')) { console.log('Rendering image preview in modal:', url); const img = document.createElement('img'); img.className = 'pdf-page-canvas'; img.style.boxShadow = 'none'; img.alt = `Preview of file`; img.onload = () => { const loader = targetElement.querySelector('.loader'); if(loader) loader.style.display='none'; }; img.onerror = () => { console.error('Error loading image preview:', url); targetElement.innerHTML = '<p class="placeholder">Error loading image preview.</p>'; }; img.src = url; targetElement.appendChild(img); } else if (mimeType === 'application/pdf') { console.log('Calling renderPdfPreview for modal:', url); renderPdfPreview(url, targetElement, pageCount); } else { console.warn('Preview not supported for mimeType:', mimeType); targetElement.innerHTML = `<p class="placeholder">Preview not available for this file type.</p>`; } } catch (err) { console.error("Error creating preview element:", err); targetElement.innerHTML = '<p class="placeholder">Error displaying preview.</p>'; }
+    }
+    async function renderPdfPreview(pdfUrl, containerElement, expectedPageCount) { /* ... same logic ... */
+        console.log(`renderPdfPreview: URL=${pdfUrl} into container:`, containerElement.id); if (!pdfUrl || typeof pdfUrl !== 'string' || !(pdfUrl.startsWith('/uploads/') || pdfUrl.startsWith('http'))) { console.error(`Invalid PDF URL: ${pdfUrl}`); containerElement.innerHTML = `<p class="placeholder">Invalid URL for PDF preview.</p>`; return; } containerElement.innerHTML = '<p class="placeholder">Loading PDF preview...</p>'; const loadingIndicator = document.createElement('div'); loadingIndicator.className = 'loader'; loadingIndicator.style.display = 'block'; loadingIndicator.style.margin = '20px auto'; containerElement.appendChild(loadingIndicator); await new Promise(resolve => requestAnimationFrame(resolve)); const containerPadding = parseFloat(window.getComputedStyle(containerElement).paddingLeft || '0') + parseFloat(window.getComputedStyle(containerElement).paddingRight || '0'); const clientWidth = Math.max(containerElement.clientWidth || containerElement.offsetWidth, 100); const availableWidth = clientWidth - containerPadding; const targetWidth = Math.max(availableWidth, 150); console.log(`PDF Preview target width: ${targetWidth}px (Container: ${clientWidth}px, Padding: ${containerPadding}px)`); const pdfjsCMapUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/cmaps/'; const loadingTask = pdfjsLib.getDocument({ url: pdfUrl, cMapUrl: pdfjsCMapUrl, cMapPacked: true }); try { const pdf = await loadingTask.promise; console.log(`PDF loaded: ${pdf.numPages} pages.`); if (typeof expectedPageCount === 'number' && pdf.numPages !== expectedPageCount) { console.warn(`Page count mismatch! Server=${expectedPageCount}, PDF.js=${pdf.numPages}.`); } if (pdf.numPages === 0) throw new Error("PDF has no pages."); containerElement.innerHTML = ''; for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) { const page = await pdf.getPage(pageNum); const dpr = window.devicePixelRatio || 1; const viewport = page.getViewport({ scale: 1 }); const scale = targetWidth / viewport.width; const scaledViewport = page.getViewport({ scale: scale * dpr }); const canvas = document.createElement('canvas'); canvas.className = 'pdf-page-canvas'; canvas.height = Math.round(scaledViewport.height); canvas.width = Math.round(scaledViewport.width); canvas.style.width = `${targetWidth}px`; canvas.style.height = `${Math.round(targetWidth * (viewport.height / viewport.width))}px`; canvas.setAttribute('aria-label', `PDF Page ${pageNum}`); const context = canvas.getContext('2d', { alpha: false }); if (!context) { console.error(`Failed to get 2D context page ${pageNum}`); continue; } context.fillStyle = 'white'; context.fillRect(0, 0, canvas.width, canvas.height); const renderContext = { canvasContext: context, viewport: scaledViewport, background: 'rgba(255,255,255, 1)' }; containerElement.appendChild(canvas); await page.render(renderContext).promise; page.cleanup(); } console.log('All pages rendered in modal.'); } catch (error) { console.error(`renderPdfPreview Error: ${error.name}`, error); let errorMsg = `Error loading preview: ${error.message || error.name}`; containerElement.innerHTML = `<p class="placeholder">${errorMsg}</p>`; } finally { if (loadingTask && loadingTask.destroy) { loadingTask.destroy(); console.log('PDF loading task destroyed.'); } const finalLoader = containerElement.querySelector('.loader'); if (finalLoader) finalLoader.style.display = 'none'; }
     }
 
     // --- Run Initialization ---
