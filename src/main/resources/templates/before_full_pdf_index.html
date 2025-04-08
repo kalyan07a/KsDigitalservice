@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PRINTER - Upload & Pay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <style>
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Gray */
+            --success-color: #28a745; /* Green */
+            --danger-color: #dc3545; /* Red */
+            --warning-color: #ffc107; /* Yellow */
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #6c757d;
+            --text-color: #333;
+            --white: #fff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 30px 15px;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            max-width: 550px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; /* Reduced gap between major elements */
+            box-sizing: border-box;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 5px; /* Reduced space below H1 */
+            font-weight: 600;
+            margin-top: 0;
+        }
+        h3 { /* General H3 styling */
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            font-weight: 500;
+            text-align: center;
+            width: 100%;
+            border-bottom: 1px solid var(--medium-gray);
+            padding-bottom: 10px;
+        }
+
+        /* --- File Input Area Styles (Desktop) --- */
+        .file-input-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 15px; /* Added some margin below */
+        }
+
+        #fileInputLabel {
+            /* CORRECTED Desktop Padding - Reasonable padding */
+            padding: 8px 18px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            flex-shrink: 0;
+            font-weight: 500;
+            font-size: 0.9em; /* Reasonable desktop font size */
+            line-height: 1.5;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25);
+        }
+        #fileInputLabel:hover { background-color: #0056b3; transform: translateY(-1px); }
+        #fileInput { display: none; }
+        #fileNameDisplay {
+            font-style: italic;
+            color: var(--dark-gray);
+            font-size: 0.9em; /* Match button font size or slightly smaller */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px; /* Max width on desktop */
+        }
+
+        /* --- Preview Area --- (NO CHANGES HERE as requested) */
+        .preview-container {
+            border: 0px solid var(--medium-gray); /* Assuming you want no border */
+            background-color: var(--light-gray);
+            padding: 15px; /* Added some padding back */
+            border-radius: var(--border-radius);
+            width: 100%;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            margin-top: 5px; /* Space above preview */
+        }
+        .preview-container h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px; /* Adjusted space */
+            padding-bottom: 5px; /* Adjusted space */
+             border-bottom: 1px solid var(--medium-gray); /* Add border back if desired */
+             width: 100%;
+             text-align: center;
+        }
+        #preview {
+             width: 100%; max-height: 350px;
+             display: flex; flex-direction: column; justify-content: center; align-items: center;
+             overflow: hidden; margin-bottom: 0; background-color: var(--white);
+             border: 1px dashed var(--medium-gray); border-radius: calc(var(--border-radius) - 4px);
+             padding: 10px; box-sizing: border-box;
+        }
+        #preview p.placeholder { color: var(--dark-gray); font-size: 0.95em; }
+        #preview p.preview-context { font-size: 0.8em; text-align: center; margin-top: 8px; color: var(--dark-gray); width: 100%; }
+        .preview-image, .pdf-preview { max-width: 100%; max-height: calc(320px - 2em); object-fit: contain; border-radius: calc(var(--border-radius) - 6px); display: block; margin: 0 auto; }
+        .page-count { margin-top: 10px; font-weight: 500; color: var(--text-color); font-size: 0.95em; text-align: center; width: 100%;}
+        /* --- End Preview Area --- */
+
+        /* --- Print Type Selection Styles --- */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 5px; /* Reduced gap */
+            width: 100%;
+            border: 1px solid var(--warning-color);
+            padding: 10px; /* Added some padding back */
+            border-radius: var(--border-radius);
+            box-sizing: border-box;
+            background-color: var(--white);
+            margin-top: 5px; /* Space above */
+        }
+        .radio-group h3 {
+             margin-bottom: 10px; /* Adjusted space */
+             padding-bottom: 8px; /* Adjusted space */
+             font-size: 1.0em;
+             border-bottom: 1px solid var(--medium-gray);
+             width: 100%;
+             text-align: center;
+        }
+        .color-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 7px 10px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed), opacity var(--transition-speed);
+        }
+        .color-option:hover:not(:has(input[type="radio"]:checked)) {
+            background-color: var(--light-gray);
+        }
+        .color-option input[type="radio"] {
+            margin-right: 0;
+            accent-color: var(--primary-color);
+            transform: scale(0.9);
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        .color-option span:not(.price-hint) {
+            font-size: 0.9em;
+            vertical-align: middle;
+        }
+        .price-hint {
+            margin-left: auto;
+            font-size: 0.8em;
+            color: var(--dark-gray);
+            font-weight: 400;
+            vertical-align: middle;
+            padding-left: 10px;
+        }
+        label.color-option:has(input[type="radio"]:checked) {
+            background-color: #e7f3ff;
+            border-color: var(--primary-color);
+        }
+        label.color-option:has(input[type="radio"]:checked) span:not(.price-hint) {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        label.color-option:has(input[type="radio"]:checked) .price-hint {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        .radio-group:has(input[type="radio"]:checked) label.color-option:not(:has(input[type="radio"]:checked)) {
+            opacity: 0.8;
+        }
+        /* --- End Print Type Selection Styles --- */
+
+        .price-display { margin-top: 15px; /* Added space above */ font-weight: 600; color: var(--success-color); font-size: 1.1em; text-align: center; padding: 10px; background-color: #e9f7ef; border-radius: var(--border-radius); width: 100%; box-sizing: border-box; }
+        #pay-button { background-color: var(--success-color); color: var(--white); border: none; border-radius: var(--border-radius); padding: 14px 30px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed); width: 80%; max-width: 300px; margin-top: 15px; /* Space above */ box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4); }
+        #pay-button:hover:not(:disabled) { background-color: #218838; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4); }
+        #pay-button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; }
+        #statusMessage { margin-top: 10px; font-weight: 500; min-height: 1.5em; text-align: center; width: 100%; padding: 8px; border-radius: var(--border-radius); display: none; }
+        .status-error { color: var(--danger-color); background-color: #f8d7da; border: 1px solid #f5c6cb; display: block !important; }
+        .status-success { color: var(--success-color); background-color: #d4edda; border: 1px solid #c3e6cb; display: block !important; }
+        .status-info { color: #0c5460; background-color: #d1ecf1; border: 1px solid #bee5eb; display: block !important; }
+        .loader { border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 30px; height: 30px; animation: spin 1.5s linear infinite; display: none; margin: 10px auto 0; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- Media Query for Mobile --- */
+        @media (max-width: 600px) {
+            body { padding: 15px 10px; }
+            .container { padding: 20px; gap: 15px; }
+            h1 { font-size: 1.6em; }
+
+            .file-input-area {
+                gap: 8px;
+                padding-left: 5px;
+                padding-right: 5px;
+                box-sizing: border-box;
+                margin-bottom: 10px; /* Adjust margin for mobile */
+            }
+
+            #fileInputLabel {
+                /* INCREASED Mobile Button Size */
+                padding: 10px 25px; /* Increased padding for better touch target */
+                font-size: 0.95em; /* Slightly larger font on mobile */
+                line-height: 1.4; /* Adjust if needed */
+            }
+
+            #fileNameDisplay {
+                /* Adjust filename display for mobile if needed */
+                max-width: 140px; /* Adjust max-width if button is larger */
+                font-size: 0.85em; /* Keep filename font reasonable */
+            }
+
+            #pay-button { width: 90%; padding: 12px 15px; font-size: 1em; }
+            .radio-group { padding: 10px; }
+            .preview-container { padding: 15px; }
+            .color-option { padding: 7px; gap: 6px; }
+            .price-display { font-size: 1em; }
+        }
+
+    </style>
+    <!-- Include pdf.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <!-- Specify worker source explicitly for compatibility -->
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js`;</script>
+    <!-- Include Razorpay Checkout library -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+<div class="container">
+    <!-- <h1>Printer Service</h1> --> <!-- Removed H1 as per implicit adjustments -->
+
+    <!-- File Input Section -->
+    <div class="file-input-area">
+        <label for="fileInput" id="fileInputLabel">Select File</label>
+        <input type="file" id="fileInput" accept=".pdf, image/jpeg, image/png, image/jpg" />
+        <div id="fileNameDisplay">No file selected</div>
+    </div>
+    <div class="loader" id="uploadLoader"></div>
+
+    <!-- Print Options Section -->
+    <div class="radio-group">
+        <h3>Select Print Type</h3>
+        <label class="color-option">
+            <input type="radio" name="printType" value="1" required checked >
+            <span>Color</span>
+            <span id="colorPrice" class="price-hint"></span>
+        </label>
+        <label class="color-option">
+            <input type="radio" name="printType" value="0" required >
+            <span>Black and White</span>
+            <span id="bwPrice" class="price-hint"></span>
+        </label>
+
+    </div>
+
+    <!-- Preview Section (Structure and size unchanged) -->
+    <div class="preview-container">
+        <h3>Preview</h3>
+        <div id="preview"><p class="placeholder">Select a file to see preview.</p></div>
+        <div id="pageCountDisplay" class="page-count"></div>
+    </div>
+
+    <!-- Price & Payment Section -->
+    <div id="priceDisplay" class="price-display">Select file and print type to see price.</div>
+    <div id="statusMessage"></div>
+    <div class="loader" id="paymentLoader"></div>
+    <button id="pay-button" disabled>Pay Now</button>
+</div>
+
+<script>
+    // --- Global State ---
+    let currentFileInfo = null; // Stores { fileName, pageCount, mimeType, url (B&W), c_url (Color) }
+    let currentPrintType = 1; // Initialize to 1 (Color)
+
+    // --- DOM Elements ---
+    const fileInput = document.getElementById('fileInput');
+    const fileInputLabel = document.getElementById('fileInputLabel');
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    const previewDiv = document.getElementById('preview');
+    const pageCountDisplay = document.getElementById('pageCountDisplay');
+    const priceDisplay = document.getElementById('priceDisplay');
+    const payButton = document.getElementById('pay-button');
+    const statusMessage = document.getElementById('statusMessage');
+    const printTypeRadios = document.querySelectorAll('input[name="printType"]');
+    const uploadLoader = document.getElementById('uploadLoader');
+    const paymentLoader = document.getElementById('paymentLoader');
+    const bwPriceHint = document.getElementById('bwPrice');
+    const colorPriceHint = document.getElementById('colorPrice');
+
+    // --- Event Listeners ---
+    fileInput.addEventListener('change', handleFileSelect);
+    printTypeRadios.forEach(radio => {
+        radio.addEventListener('change', handlePrintTypeChange);
+    });
+    payButton.addEventListener('click', initiatePayment);
+
+    // --- Helper Functions ---
+    function showLoader(loaderElement) { loaderElement.style.display = 'block'; }
+    function hideLoader(loaderElement) { loaderElement.style.display = 'none'; }
+
+    function showStatus(message, type = 'info') {
+        statusMessage.textContent = message;
+        statusMessage.className = `status-${type}`;
+        statusMessage.style.display = 'block';
+        console.log(`Status (${type}):`, message);
+    }
+
+    function hideStatus() {
+        statusMessage.textContent = '';
+        statusMessage.className = '';
+        statusMessage.style.display = 'none';
+    }
+
+    function clearPreview() {
+         previewDiv.innerHTML = '<p class="placeholder">Select a file to see preview.</p>';
+         pageCountDisplay.textContent = '';
+    }
+
+    // --- Filename Formatting Function ---
+    function formatFileName(fileName) {
+        if (!fileName) return 'No file selected';
+        const maxLength = 10;
+        const parts = fileName.split('.');
+        const ext = parts.length > 1 ? '.' + parts.pop() : '';
+        const nameWithoutExt = parts.join('.');
+
+        if (nameWithoutExt.length > maxLength) {
+            return nameWithoutExt.substring(0, maxLength) + '...' + ext;
+        } else {
+            return fileName;
+        }
+    }
+
+    // --- Core Functions ---
+
+    function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (!file) {
+            resetUploadState(true);
+            return;
+        }
+        console.log('File selected:', file.name, file.type);
+        fileNameDisplay.textContent = formatFileName(file.name);
+        resetUploadState(false); // Don't reset default radio/type yet
+        payButton.disabled = true;
+        showLoader(uploadLoader);
+        previewDiv.innerHTML = '<p class="placeholder">Uploading & processing preview...</p>';
+        uploadFileToServer(file);
+    }
+
+    function uploadFileToServer(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        console.log('Uploading file to server...');
+        fetch('/print/upload', { method: 'POST', body: formData }) // Replace with your upload endpoint
+        .then(response => {
+            console.log('Server response status:', response.status);
+            if (!response.ok) {
+                return response.json()
+                    .then(errData => { throw new Error(errData.error || `Upload failed: ${response.statusText}`); })
+                    .catch(() => { throw new Error(`Upload failed (HTTP ${response.status} ${response.statusText})`); });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Upload successful, server data:', data);
+            if (!data || typeof data !== 'object') { throw new Error("Invalid data received from server."); }
+            if (data.error) { throw new Error(data.error); }
+            if (typeof data.pageCount !== 'number' || !data.fileName) {
+                console.error("Server response missing essential fields (pageCount, fileName). Received:", data);
+            }
+
+            currentFileInfo = {
+                fileName: data.fileName || file.name,
+                pageCount: data.pageCount ?? 0,
+                mimeType: file.type,
+                url: data.url ?? null, // B&W URL
+                c_url: data.c_url ?? null // Color URL
+            };
+            console.log('Stored currentFileInfo:', currentFileInfo);
+
+            fileNameDisplay.textContent = formatFileName(currentFileInfo.fileName);
+
+            document.querySelector('input[name="printType"][value="1"]').checked = true;
+            currentPrintType = 1; // Ensure state matches default
+
+            updatePreview();
+            updatePriceDisplay();
+            checkButtonState();
+        })
+        .catch(error => {
+            console.error('Upload or Processing Error:', error);
+            showStatus(`Upload failed: ${error.message}`, 'error');
+            resetUploadState(true);
+        })
+        .finally(() => {
+             console.log('Upload fetch finished.');
+             hideLoader(uploadLoader);
+        });
+    }
+
+    function resetUploadState(clearFileNameDisplay = true) {
+        console.log('Resetting upload state. Clear filename display:', clearFileNameDisplay);
+        if (clearFileNameDisplay) {
+             fileNameDisplay.textContent = formatFileName(null);
+        }
+        currentFileInfo = null;
+        if (clearFileNameDisplay) {
+            fileInput.value = '';
+        }
+        clearPreview();
+        priceDisplay.textContent = 'Select file and print type to see price.';
+        bwPriceHint.textContent = '';
+        colorPriceHint.textContent = '';
+
+        document.querySelector('input[name="printType"][value="1"]').checked = true; // Default to Color
+        currentPrintType = 1; // Reset state to Color
+
+        hideStatus();
+        payButton.disabled = true;
+    }
+
+     function updatePreview() {
+        if (!currentFileInfo) {
+            console.log("updatePreview called but no currentFileInfo.");
+            clearPreview();
+            return;
+        }
+
+        let urlToDisplay = null;
+        let isColorPreview = false;
+        let contextMessage = '';
+
+        if (currentPrintType === 1) { // Color selected
+            if (currentFileInfo.c_url) {
+                urlToDisplay = currentFileInfo.c_url;
+                isColorPreview = true;
+                contextMessage = `Preview: Color Version (First Page)`;
+            } else {
+                console.warn("Color print type selected, but Color URL (c_url) is missing. Falling back to B&W/default URL (url).");
+                urlToDisplay = currentFileInfo.url;
+                isColorPreview = false;
+                contextMessage = urlToDisplay ? `Preview: B&W Version (Color not available)` : `Preview: Color & B&W URLs missing`;
+            }
+        } else { // B&W selected (currentPrintType === 0)
+            if (currentFileInfo.url) {
+                urlToDisplay = currentFileInfo.url;
+                isColorPreview = false;
+                contextMessage = `Preview: B&W Version (First Page)`;
+            } else {
+                 console.warn("B&W print type selected, but B&W/default URL (url) is missing.");
+                 isColorPreview = false; // Should already be false
+                 contextMessage = `Preview: B&W URL missing`;
+            }
+        }
+
+        console.log(`Updating preview. Print Type Selected: ${currentPrintType}, URL to display: ${urlToDisplay}`);
+
+        if (!urlToDisplay) {
+             const attemptedType = (currentPrintType === 1) ? 'Color (or fallback B&W)' : 'B&W';
+             console.error(`Required preview URL for ${attemptedType} is missing or invalid.`);
+             previewDiv.innerHTML = `<p class="placeholder">Preview for selected format (${attemptedType}) not available.</p>`;
+             pageCountDisplay.textContent = `Total Pages: ${currentFileInfo.pageCount || 'N/A'}`;
+             checkButtonState();
+             return;
+        }
+
+        const previewInfo = {
+             url: urlToDisplay,
+             pageCount: currentFileInfo.pageCount,
+             mimeType: currentFileInfo.mimeType,
+             contextMessage: contextMessage
+        };
+        showServerPreview(previewInfo);
+     }
+
+
+    function handlePrintTypeChange(event) {
+        const newPrintType = parseInt(event.target.value, 10);
+        if (newPrintType === currentPrintType) return;
+        currentPrintType = newPrintType;
+        console.log('Print type changed:', currentPrintType === 1 ? 'Color' : 'B&W');
+        updatePriceDisplay();
+        if (currentFileInfo) {
+             updatePreview();
+        }
+        checkButtonState();
+    }
+
+    function updatePriceDisplay() {
+        bwPriceHint.textContent = '';
+        colorPriceHint.textContent = '';
+        if (currentFileInfo && typeof currentFileInfo.pageCount === 'number' && currentFileInfo.pageCount > 0) {
+            const bwAmount = calculatePrice(currentFileInfo.pageCount, 0);
+            const colorAmount = calculatePrice(currentFileInfo.pageCount, 1);
+
+            if (currentFileInfo.url) {
+                 bwPriceHint.textContent = `(Rs. ${bwAmount})`;
+            } else {
+                 bwPriceHint.textContent = `(N/A)`;
+            }
+            if (currentFileInfo.c_url) {
+                colorPriceHint.textContent = `(Rs. ${colorAmount})`;
+            } else {
+                colorPriceHint.textContent = `(N/A)`;
+            }
+
+            const selectedAmount = calculatePrice(currentFileInfo.pageCount, currentPrintType);
+            const requiredUrlExists = (currentPrintType === 1 && currentFileInfo.c_url) || (currentPrintType === 0 && currentFileInfo.url);
+
+            if (requiredUrlExists) {
+                 priceDisplay.textContent = `Total Price: Rs. ${selectedAmount}`;
+            } else {
+                 priceDisplay.textContent = `Price unavailable (Preview missing)`;
+            }
+
+            priceDisplay.style.display = 'block';
+        } else {
+            priceDisplay.textContent = 'Select file and print type to see price.';
+        }
+    }
+
+    function calculatePrice(pages, printType) {
+         if (pages <= 0) return 0;
+         let amount = 0;
+         if (printType === 0) { // Black & White
+            amount = (pages <= 2) ? pages * 10 : (pages - 2) * 2 + 20;
+         } else { // Color
+            amount = (pages <= 1) ? pages * 20 : (pages - 1) * 5 + 20;
+         }
+         return amount;
+    }
+
+    function checkButtonState() {
+         let canPay = false;
+         if (currentFileInfo && currentFileInfo.pageCount > 0) {
+             const requiredUrl = (currentPrintType === 1) ? currentFileInfo.c_url : currentFileInfo.url;
+             if (requiredUrl) {
+                 canPay = true;
+             }
+         }
+         payButton.disabled = !canPay;
+         console.log('Check button state. Can pay:', canPay, `(Print Type: ${currentPrintType})`);
+    }
+
+    function initiatePayment() {
+        if (!currentFileInfo || payButton.disabled) {
+            showStatus('Cannot initiate payment. Please ensure a valid file is uploaded and preview is available for the selected print type.', 'warning');
+            return;
+        }
+         const requiredUrl = (currentPrintType === 1) ? currentFileInfo.c_url : currentFileInfo.url;
+         if (!requiredUrl) {
+              showStatus(`Cannot proceed: Preview URL for ${currentPrintType === 1 ? 'Color' : 'B&W'} is missing.`, 'error');
+              return;
+         }
+
+        payButton.disabled = true;
+        showLoader(paymentLoader);
+        showStatus('Initiating payment...', 'info');
+        const payload = {
+             fileName: currentFileInfo.fileName,
+             pageCount: currentFileInfo.pageCount,
+             printType: currentPrintType
+        };
+        console.log('Initiating payment with payload:', payload);
+
+        fetch('/print/api/payments/initiate', { // Replace with your payment initiation endpoint
+             method: 'POST',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify(payload)
+         })
+        .then(response => {
+             if (!response.ok) {
+                 return response.json().then(errData => { throw new Error(errData.error || `Payment initiation failed (HTTP ${response.status})`); })
+                       .catch(() => { throw new Error(`Payment initiation failed (HTTP ${response.status})`); });
+             }
+             return response.json();
+         })
+        .then(orderData => {
+            console.log('Order Data Received:', orderData);
+            const description = `Print: ${formatFileName(currentFileInfo.fileName)} (${currentPrintType === 1 ? 'Color' : 'B&W'})`;
+            openRazorpayCheckout(orderData, description);
+        })
+        .catch(error => {
+            console.error('Payment Initiation Error:', error);
+            showStatus(`Error: ${error.message}`, 'error');
+            checkButtonState();
+            hideLoader(paymentLoader);
+        });
+    }
+
+     function openRazorpayCheckout(orderData, description) {
+         console.log("Opening Razorpay with description:", description);
+         const options = {
+             key: orderData.razorpayKey, // Make sure your backend sends this
+             amount: orderData.amount,
+             currency: orderData.currency,
+             name: "KsDigitalServices", // Your business name
+             description: description,
+             order_id: orderData.orderId,
+             handler: function (response) {
+                 console.log("Razorpay Success:", response);
+                 showStatus("Payment Successful! Your print job is being processed.", 'success');
+                 hideLoader(paymentLoader);
+                 resetUploadState(true);
+                 // You might want to verify payment server-side here
+             },
+             prefill: {},
+             notes: {
+                 fileName: currentFileInfo?.fileName || 'N/A',
+                 printType: (currentPrintType === 1) ? 'Color' : 'B&W',
+                 timestamp: new Date().toISOString()
+             },
+             theme: { color: "#007bff" },
+             modal: {
+                 ondismiss: function() {
+                     console.log('Razorpay checkout closed.');
+                     if (!statusMessage.classList.contains('status-success')) {
+                         showStatus('Payment cancelled or window closed.', 'info');
+                     }
+                     checkButtonState();
+                     hideLoader(paymentLoader);
+                 }
+             }
+         };
+
+         try {
+            const rzp = new Razorpay(options);
+             rzp.on('payment.failed', function (response){
+                  console.error("Razorpay Payment Failed:", response.error);
+                  let errorMsg = `Payment Failed: ${response.error.description || 'Unknown Error'}`; if(response.error.reason) errorMsg += ` (Reason: ${response.error.reason})`;
+                  showStatus(errorMsg, 'error'); checkButtonState(); hideLoader(paymentLoader);
+             }); rzp.open();
+         } catch(e) {
+             console.error("Error initializing Razorpay:", e);
+             showStatus("Could not initialize payment gateway. Please try again.", 'error'); checkButtonState(); hideLoader(paymentLoader);
+         }
+    }
+
+    // --- Preview Rendering ---
+    function showServerPreview(previewInfo) {
+        console.log('showServerPreview called with:', previewInfo);
+        previewDiv.innerHTML = '';
+        pageCountDisplay.textContent = `Total Pages: ${previewInfo.pageCount || 'N/A'}`;
+
+        if (!previewInfo.url) { console.error("showServerPreview: No URL provided."); previewDiv.innerHTML = '<p class="placeholder">Preview URL is missing.</p>'; return; }
+        if (!previewInfo.mimeType) { console.error("showServerPreview: No mimeType provided."); previewDiv.innerHTML = '<p class="placeholder">Cannot determine file type.</p>'; return; }
+
+         const contextMsgElement = document.createElement('p');
+         contextMsgElement.className = 'preview-context';
+         contextMsgElement.textContent = previewInfo.contextMessage || 'Preview (First Page)';
+
+        try {
+            if (previewInfo.mimeType.startsWith('image/')) {
+                console.log('Rendering image preview for:', previewInfo.url);
+                const img = document.createElement('img');
+                img.className = 'preview-image';
+                img.alt = `Preview of ${formatFileName(currentFileInfo?.fileName || 'file')}`;
+                img.onerror = () => {
+                    console.error('Error loading image preview:', previewInfo.url);
+                    previewDiv.innerHTML = '<p class="placeholder">Error loading image preview.</p>';
+                    pageCountDisplay.textContent = `Total Pages: ${previewInfo.pageCount || 'N/A'}`;
+                };
+                img.onload = () => {
+                    console.log('Image loaded:', previewInfo.url);
+                    previewDiv.appendChild(contextMsgElement);
+                };
+                img.src = previewInfo.url;
+                previewDiv.appendChild(img);
+
+            } else if (previewInfo.mimeType === 'application/pdf') {
+                console.log('Rendering PDF preview for:', previewInfo.url);
+                const canvas = document.createElement('canvas');
+                canvas.className = 'pdf-preview';
+                previewDiv.appendChild(canvas);
+                previewDiv.appendChild(contextMsgElement);
+                renderPdfPreview(previewInfo.url, canvas);
+
+            } else {
+                console.warn('Preview not supported for mimeType:', previewInfo.mimeType);
+                previewDiv.innerHTML = `<p class="placeholder">Preview not available for this file type (${previewInfo.mimeType}).</p>`;
+                pageCountDisplay.textContent = `Total Pages: ${previewInfo.pageCount || 'N/A'}`;
+            }
+        } catch (err) {
+             console.error("Error during preview element creation/rendering:", err);
+             previewDiv.innerHTML = '<p class="placeholder">An error occurred displaying the preview.</p>';
+             pageCountDisplay.textContent = `Total Pages: ${previewInfo.pageCount || 'N/A'}`;
+        }
+    }
+
+    function renderPdfPreview(pdfUrl, canvasElement) {
+         console.log(`Starting PDF render for: ${pdfUrl}`);
+         const targetWidth = 300;
+         const loadingTask = pdfjsLib.getDocument({ url: pdfUrl, CMapReaderFactory: null, StandardFontDataFactory: null });
+
+        loadingTask.promise.then(pdf => {
+             console.log('PDF document loaded:', pdfUrl, pdf.numPages, 'pages');
+             if(pdf.numPages === 0) { throw new Error("PDF has no pages."); }
+             return pdf.getPage(1);
+         }).then(page => {
+             console.log('Page 1 loaded');
+             const dpr = window.devicePixelRatio || 1;
+             const viewport = page.getViewport({ scale: 1 });
+             const scale = targetWidth / viewport.width;
+             const scaledViewport = page.getViewport({ scale: scale * dpr });
+             const context = canvasElement.getContext('2d');
+             if (!context) { throw new Error("Failed to get 2D context for canvas."); }
+
+             canvasElement.height = Math.round(scaledViewport.height);
+             canvasElement.width = Math.round(scaledViewport.width);
+             canvasElement.style.width = `${targetWidth}px`;
+             canvasElement.style.height = `${Math.round(targetWidth * (viewport.height / viewport.width))}px`;
+
+             const renderContext = { canvasContext: context, viewport: scaledViewport, enableWebGL: false };
+             console.log(`Rendering page 1 to canvas (${canvasElement.width}x${canvasElement.height}px)...`);
+             return page.render(renderContext).promise;
+         }).then(() => {
+             console.log('Page 1 rendering finished successfully.');
+         }).catch(error => {
+             console.error('Error rendering PDF preview:', error.name, error.message, 'URL:', pdfUrl);
+             const previewContainer = document.getElementById('preview');
+             if (previewContainer) {
+                 let errorMsg = 'Error loading PDF preview.';
+                 if (error.name === 'PasswordException') { errorMsg = 'Cannot preview password-protected PDF.'; }
+                 else if (error.message?.includes('Missing PDF')) { errorMsg = 'PDF file not found or invalid URL.'; }
+                 else if (error.message?.includes('Invalid PDF structure')) { errorMsg = 'Invalid or corrupted PDF file.'; }
+                 else if (error.message?.includes('NetworkError')) { errorMsg = 'Network error loading PDF preview.'; }
+                 previewContainer.innerHTML = `<p class="placeholder">${errorMsg}</p>`;
+             }
+             if(currentFileInfo && currentFileInfo.pageCount) {
+                 pageCountDisplay.textContent = `Total Pages: ${currentFileInfo.pageCount}`;
+             } else { pageCountDisplay.textContent = ''; }
+         });
+     }
+
+    // --- Initial Setup ---
+    console.log('Page script loaded. Initializing...');
+    fileNameDisplay.textContent = formatFileName(null);
+    document.querySelector('input[name="printType"][value="1"]').checked = true; // Ensure initial UI matches state
+    updatePriceDisplay();
+    checkButtonState();
+    hideStatus();
+
+</script>
+</body>
+</html>
