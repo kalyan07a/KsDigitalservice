@@ -113,6 +113,17 @@
             outline: none;
         }
 
+        /* Style for the map image */
+        .map-image {
+             display: block; /* Ensure it takes its own line */
+             width: 100%; /* Make it responsive within the container */
+             max-width: 720px; /* Optional: Limit max width if needed */
+             height: auto; /* Maintain aspect ratio */
+             margin-top: 20px; /* Space between button and image */
+             border-radius: var(--border-radius); /* Consistent corners */
+             box-shadow: var(--box-shadow); /* Consistent shadow */
+        }
+
         /* Form Styling */
         form {
             margin-top: 30px; /* Space above form */
@@ -198,6 +209,9 @@
              button[type="submit"]{
                  width: 100%; /* Full width button on small screens */
              }
+            .map-image {
+                margin-top: 15px; /* Slightly less margin on small screens */
+            }
         }
 
     </style>
@@ -212,11 +226,20 @@
     <section class="contact-info">
         <h2>Contact Information</h2>
         <p><strong>Email:</strong> <a href="mailto:ksdigital2025@gmail.com">ksdigital2025@gmail.com</a></p>
-        <p><strong>Phone:</strong> <a href="tel:7893845696">7893845696</a></p> <p><strong>Address:</strong> 5-2-243 Tirumala Nagar, Moula ali, Hyderabad, Telangana 500040</p>
+        <p><strong>Phone:</strong> <a href="tel:7893845696">7893845696</a></p>
+        <p><strong>Address:</strong> 227/A Tirumala Nagar, Moula ali, Hyderabad, Telangana 500040</p>
         <a href="https://maps.app.goo.gl/33JKtBNWepyG7asq8" target="_blank" rel="noopener noreferrer" class="map-button">
              Get Directions
         </a>
+        <!-- Added Map Image Here -->
+        <img src="/maps_view.png"
+             alt="Map view of KS Digital Services location"
+             class="map-image">
         </section>
 
-</main> </body>
+    <!-- Removed the Form Section as it wasn't present in the original request -->
+    <!-- If you need the form back, let me know -->
+
+</main>
+</body>
 </html>

@@ -12,83 +12,40 @@
    <style>
         /* --- Base Styles --- */
         :root {
-            --primary-color: #007bff; /* Blue */
-            --secondary-color: #6c757d; /* Gray */
-            --success-color: #28a745; /* Green */
-            --danger-color: #dc3545; /* Red */
-            --warning-color: #ffc107; /* Yellow */
-            --info-color: #17a2b8; /* Teal */
-            --light-gray: #f8f9fa;
-            --medium-gray: #e9ecef;
-            --dark-gray: #6c757d;
-            --text-color: #333;
-            --white: #fff;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --transition-speed: 0.25s;
+            --primary-color: #007bff; --secondary-color: #6c757d; --success-color: #28a745;
+            --danger-color: #dc3545; --warning-color: #ffc107; --info-color: #17a2b8;
+            --light-gray: #f8f9fa; --medium-gray: #e9ecef; --dark-gray: #6c757d;
+            --text-color: #333; --white: #fff; --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); --transition-speed: 0.25s;
         }
         html { box-sizing: border-box; }
         *, *:before, *:after { box-sizing: inherit; }
-        body {
-            font-family: 'Poppins', sans-serif; background-color: var(--light-gray); color: var(--text-color);
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            padding: 25px 15px; line-height: 1.6; margin: 0;
-        }
-        .main-container {
-            width: 100%; max-width: 650px; background-color: var(--white); border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow); padding: 20px; display: flex; flex-direction: column;
-            align-items: center; gap: 15px; margin-bottom: 20px;
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--light-gray); color: var(--text-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 25px 15px; line-height: 1.6; margin: 0; }
+        .main-container { width: 100%; max-width: 650px; background-color: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 20px; }
         h1 { color: var(--primary-color); margin-bottom: 15px; font-weight: 600; margin-top: 0; text-align: center; font-size: 1.7em;}
         /* --- File Input Area --- */
         .file-input-area { text-align: center; width: 100%; margin-bottom: 15px; }
-        #addFileButtonLabel {
-             padding: 10px 25px; background-color: var(--primary-color); color: var(--white); border-radius: 6px;
-             cursor: pointer; font-weight: 500; font-size: 0.95em; line-height: 1.5;
-             transition: background-color var(--transition-speed), transform var(--transition-speed), opacity var(--transition-speed);
-             display: inline-block; box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25);
-        }
+        #addFileButtonLabel { padding: 10px 25px; background-color: var(--primary-color); color: var(--white); border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.95em; line-height: 1.5; transition: background-color var(--transition-speed), transform var(--transition-speed), opacity var(--transition-speed); display: inline-block; box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25); }
         #addFileButtonLabel:hover:not([style*="opacity: 0.6"]) { background-color: #0056b3; transform: translateY(-1px); }
         #fileInput { display: none; }
         #fileCounter { font-size: 0.85em; color: var(--secondary-color); margin-top: 5px; min-height: 1.2em; }
         /* --- File List Container --- */
         #fileListContainer { width: 100%; display: flex; flex-direction: column; gap: 15px; }
         /* --- Individual File Item Container --- */
-        .file-item-container {
-            width: 100%; border: 1px solid var(--medium-gray); border-radius: var(--border-radius);
-            box-sizing: border-box; background-color: #fdfdff; display: flex; flex-direction: column; gap: 10px;
-            position: relative; padding: 12px; padding-right: 40px;
-            transition: opacity var(--transition-speed), transform var(--transition-speed), background-color var(--transition-speed);
-        }
+        .file-item-container { width: 100%; border: 1px solid var(--medium-gray); border-radius: var(--border-radius); box-sizing: border-box; background-color: #fdfdff; display: flex; flex-direction: column; gap: 10px; position: relative; padding: 12px; padding-right: 40px; transition: opacity var(--transition-speed), transform var(--transition-speed), background-color var(--transition-speed); }
         .file-item-container.processing { opacity: 0.7; pointer-events: none; background-color: #f0f0f0; }
         .file-item-container.error { border-left: 4px solid var(--danger-color); background-color: #fff7f8; }
-        /* --- File Info Bar (within item) --- */
-        .file-info-bar {
-            display: flex; align-items: center; justify-content: space-between; gap: 10px;
-            padding-bottom: 8px; border-bottom: 1px dashed var(--medium-gray); margin-bottom: 5px;
-        }
-        .file-name-display {
-            font-style: italic; color: var(--dark-gray); font-size: 0.9em;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; text-align: left;
-            padding-right: 10px;
-        }
-        .preview-icon {
-            background: none; border: none; font-size: 1.1em; color: var(--info-color);
-            cursor: pointer; padding: 3px 5px; line-height: 1; transition: color var(--transition-speed), transform var(--transition-speed);
-            border-radius: 4px; display: flex; align-items: center; gap: 5px; flex-shrink: 0; white-space: nowrap;
-        }
+        /* --- File Info Bar --- */
+        .file-info-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-bottom: 8px; border-bottom: 1px dashed var(--medium-gray); margin-bottom: 5px; }
+        .file-name-display { font-style: italic; color: var(--dark-gray); font-size: 0.9em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; text-align: left; padding-right: 10px; }
+        .preview-icon { background: none; border: none; font-size: 1.1em; color: var(--info-color); cursor: pointer; padding: 3px 5px; line-height: 1; transition: color var(--transition-speed), transform var(--transition-speed); border-radius: 4px; display: flex; align-items: center; gap: 5px; flex-shrink: 0; white-space: nowrap; }
         .preview-icon span { font-size: 0.9em; font-weight: 500;}
         .preview-icon:hover:not(:disabled) { color: #117a8b; transform: scale(1.05); background-color: rgba(23, 162, 184, 0.1);}
         .preview-icon:disabled { color: var(--medium-gray); cursor: not-allowed; transform: none; background-color: transparent; opacity: 0.6;}
         /* Remove Button */
-        .remove-file-button {
-            position: absolute; top: 6px; right: 6px; background: none; border: none;
-            color: var(--secondary-color); font-size: 1.1em; cursor: pointer; padding: 2px 4px;
-            border-radius: 50%; line-height: 1; transition: background-color 0.2s, color 0.2s;
-            width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; z-index: 5;
-        }
+        .remove-file-button { position: absolute; top: 6px; right: 6px; background: none; border: none; color: var(--secondary-color); font-size: 1.1em; cursor: pointer; padding: 2px 4px; border-radius: 50%; line-height: 1; transition: background-color 0.2s, color 0.2s; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; z-index: 5; }
         .remove-file-button:hover { background-color: #f8d7da; color: var(--danger-color); }
-        /* --- Options Sections (within item) --- */
+        /* --- Options Sections --- */
         .item-options { display: none; flex-direction: column; gap: 12px; }
         .options-group { width: 100%; display: flex; flex-direction: column; gap: 6px; }
         .options-group h3 { margin: 0 0 6px 0; color: var(--secondary-color); font-weight: 500; text-align: left; font-size: 0.9em; padding-bottom: 4px; border-bottom: 1px solid var(--medium-gray); }
@@ -118,8 +75,7 @@
         .copies-input-container button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; opacity: 0.6; }
         .copies-input-container input[type="number"] { width: 50px; text-align: center; font-size: 0.95em; font-weight: 500; padding: 5px 8px; border: 1px solid var(--medium-gray); border-radius: 4px; -moz-appearance: textfield; }
         .copies-input-container input[type="number"]::-webkit-outer-spin-button, .copies-input-container input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        /* Individual Price Display */
-        .item-price-display { margin-top: 8px; font-weight: 500; color: var(--success-color); font-size: 0.9em; text-align: right; padding: 4px 6px; background-color: #e9f7ef; border-radius: 6px; min-height: 1.4em; }
+        /* Individual Price Display REMOVED */
         /* Item Status Display */
         .item-status-display { font-size: 0.8em; text-align: left; margin-top: 5px; padding: 4px 8px; border-radius: 4px; display: none; font-weight: 500; border: 1px solid transparent; }
         .item-status-display.error { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; display: block; }
@@ -181,7 +137,7 @@
             .copies-input-container { justify-content: center; }
             .copies-input-container button { width: 30px; height: 30px; font-size: 1.1em; }
             .copies-input-container input[type="number"] { width: 45px; font-size: 0.9em; }
-            .item-price-display { font-size: 0.85em; padding: 3px 5px;}
+            /* NO .item-price-display */
             #totalPriceDisplay { font-size: 1.1em; padding: 6px; }
             #pay-button { width: 90%; padding: 10px 20px; font-size: 1em; }
             #globalStatusMessage { font-size: 0.9em; }
@@ -225,7 +181,7 @@
             <span class="file-name-display">File name...</span>
             <div class="loader item-loader"></div>
             <button class="preview-icon" title="Preview File" disabled data-action="previewFile">
-                preview <i class="fas fa-eye"></i>
+                <span>Preview</span> <i class="fas fa-eye"></i>
             </button>
         </div>
          <div class="item-status-display"></div>
@@ -257,9 +213,10 @@
                     <button data-action="incrementCopies" aria-label="Increase copies">+</button>
                 </div>
             </div>
-             <div class="item-price-display">Price: -</div>
+             <!-- Individual item price display removed -->
+             <!-- <div class="item-price-display">Price: -</div> -->
         </div>
-        <button class="remove-file-button" title="Remove File" data-action="removeFile"> remove<i class="fas fa-times"></i></button>
+        <button class="remove-file-button" title="Remove File" data-action="removeFile"><i class="fas fa-times"></i></button>
     </div>
 </template>
 
@@ -275,7 +232,7 @@
     </div>
 </div>
 
-<!-- MAIN SCRIPT - NO type="module" -->
+<!-- MAIN SCRIPT - Wrapped in DOMContentLoaded -->
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -315,13 +272,12 @@
 
         // --- Event Listeners ---
         addFileButtonLabel.addEventListener('click', (e) => {
-        // Only prevent the default label action IF it's visually disabled
-        if (addFileButtonLabel.style.opacity === '0.6' || fileInput.disabled) {
-            console.log('Add file button clicked but is disabled. Preventing default.');
-            e.preventDefault(); // Prevent the label from triggering the input if disabled
-        }
-        // No need to call fileInput.click();
-    });
+            if (addFileButtonLabel.style.opacity === '0.6' || fileInput.disabled) {
+                console.log('Add file button clicked but is disabled. Preventing default.');
+                e.preventDefault();
+            }
+            // No explicit fileInput.click() needed here
+        });
         fileInput.addEventListener('change', handleFileSelect);
         fileListContainer.addEventListener('change', handleOptionChange);
         fileListContainer.addEventListener('click', handleItemAction);
@@ -394,66 +350,72 @@
             fileInput.disabled = isDisabled;
         }
 
-        // --- Pricing Logic ---
-        function calculateFirstCopyPrice(pages, printType) {
-            if (pages <= 0 || typeof pages !== 'number') return 0;
-            let amount = 0;
-            if (printType == 0) { amount = (pages <= 2) ? pages * 10 : (pages - 2) * 2 + 20; }
-            else if (printType == 1) { amount = (pages <= 1) ? pages * 20 : (pages - 1) * 5 + 20; }
-            return amount;
+        // --- NEW Pricing Logic (Aggregated) ---
+        /**
+         * Calculates the price for aggregated B&W pages based on new tiers.
+         * @param {number} totalPages - Total B&W pages * copies.
+         * @returns {number} Price in Rupees.
+         */
+        function calculateBwTieredPrice(totalPages) {
+            if (totalPages <= 0) return 0;
+            // B&W: <=2 pages -> 10 Rs/page. >2 pages -> 20 Rs (for first 2) + 3 Rs/page (for rest)
+            return (totalPages <= 2) ? totalPages * 10 : 20 + (totalPages - 2) * 3;
         }
-        function calculateTotalPriceForItem(pages, printType, numberOfCopies) {
-            if (pages < 0 || typeof pages !== 'number' || numberOfCopies < 1) return 0;
-            if (pages === 0) return 0;
-            const firstCopyPrice = calculateFirstCopyPrice(pages, printType);
-            if (numberOfCopies === 1) { return firstCopyPrice; }
-            let costOfOneAdditionalCopy = 0;
-            if (printType == 0) { costOfOneAdditionalCopy = pages * 2; }
-            else if (printType == 1) { costOfOneAdditionalCopy = pages * 5; }
-            return firstCopyPrice + (costOfOneAdditionalCopy * (numberOfCopies - 1));
+        /**
+         * Calculates the price for aggregated Color pages based on new tiers.
+         * @param {number} totalPages - Total Color pages * copies.
+         * @returns {number} Price in Rupees.
+         */
+        function calculateColorTieredPrice(totalPages) {
+             if (totalPages <= 0) return 0;
+             // Color: <=2 pages -> 15 Rs/page. >2 pages -> 30 Rs (for first 2) + 6 Rs/page (for rest)
+            return (totalPages <= 2) ? totalPages * 15 : 30 + (totalPages - 2) * 6;
         }
 
-        // --- UI Update Functions ---
-        function updateItemPriceDisplay(item) {
-            const itemElement = item.element;
-            const priceDisplayEl = itemElement?.querySelector('.item-price-display');
-            if (!priceDisplayEl) return;
-            item.price = 0;
-            if (item.status === 'processed' && item.fileInfo && typeof item.fileInfo.pageCount === 'number') {
-                const requiredUrl = (item.printType === 1) ? item.fileInfo.c_url : item.fileInfo.url;
-                const requiredFileName = (item.printType === 1) ? item.fileInfo.fileName : item.fileInfo.bwFileName;
-                if (!requiredUrl || !requiredFileName) { priceDisplayEl.textContent = `Price: N/A`; }
-                else if (item.fileInfo.pageCount < 0) { priceDisplayEl.textContent = `Price: Invalid Pages`; }
-                else {
-                    item.price = calculateTotalPriceForItem(item.fileInfo.pageCount, item.printType, item.numberOfCopies);
-                    priceDisplayEl.textContent = `Price: Rs. ${item.price}`;
+        /** Calculates the overall total price by aggregating pages based on selected print type. */
+        function calculateAggregatedTotalPrice(currentFileItems) {
+            let totalBwPageInteractions = 0;
+            let totalColorPageInteractions = 0;
+            currentFileItems.forEach(item => {
+                if (item.status === 'processed' && item.fileInfo && item.fileInfo.pageCount >= 0) {
+                    const requiredUrl = (item.printType === 1) ? item.fileInfo.c_url : item.fileInfo.url;
+                    const requiredFileName = (item.printType === 1) ? item.fileInfo.fileName : item.fileInfo.bwFileName;
+                    if (requiredUrl && requiredFileName) {
+                        const pageInteractions = item.fileInfo.pageCount * item.numberOfCopies;
+                        if (item.printType === 0) { totalBwPageInteractions += pageInteractions; }
+                        else { totalColorPageInteractions += pageInteractions; }
+                    }
                 }
-            } else if (item.status === 'processing' || item.status === 'new') { priceDisplayEl.textContent = 'Price: -'; }
-            else if (item.status === 'error') { priceDisplayEl.textContent = 'Price: Error'; }
-            else { priceDisplayEl.textContent = 'Price: -'; }
-            updateTotalPriceDisplay();
+            });
+            console.log(`Aggregated Pages -> B&W: ${totalBwPageInteractions}, Color: ${totalColorPageInteractions}`);
+            const totalBwPrice = calculateBwTieredPrice(totalBwPageInteractions);
+            const totalColorPrice = calculateColorTieredPrice(totalColorPageInteractions);
+            const finalTotal = totalBwPrice + totalColorPrice;
+            console.log(`Aggregated Price -> B&W: Rs. ${totalBwPrice}, Color: Rs. ${totalColorPrice}, Total: Rs. ${finalTotal}`);
+            return finalTotal;
         }
+
+
+        // --- Modified UI Update Functions ---
+
+        // REMOVED updateItemPriceDisplay function
 
         function updateTotalPriceDisplay() {
-            let total = 0;
-            let canPay = false;
-            let readyItemCount = 0;
-            let hasPendingOrError = false;
+            const total = calculateAggregatedTotalPrice(fileItems);
+            let canPay = false; let readyItemCount = 0; let hasPendingOrError = false;
             fileItems.forEach(item => {
-                if (item.status === 'processed' && item.price >= 0) {
-                    const requiredUrl = (item.printType === 1) ? item.fileInfo?.c_url : item.fileInfo?.url;
-                    const requiredFileName = (item.printType === 1) ? item.fileInfo?.fileName : item.fileInfo?.bwFileName;
-                    if (requiredUrl && requiredFileName && item.fileInfo?.pageCount >= 0) {
-                        total += item.price;
-                        readyItemCount++;
-                    } else { hasPendingOrError = true; }
+                if (item.status === 'processed' && item.fileInfo?.pageCount >= 0) {
+                     const requiredUrl = (item.printType === 1) ? item.fileInfo?.c_url : item.fileInfo?.url;
+                     const requiredFileName = (item.printType === 1) ? item.fileInfo?.fileName : item.fileInfo?.bwFileName;
+                     if (requiredUrl && requiredFileName) { readyItemCount++; }
+                     else { hasPendingOrError = true; }
                 } else if (item.status !== 'processed') { hasPendingOrError = true; }
             });
             const allZeroPageProcessed = fileItems.length > 0 && fileItems.every(i => i.status === 'processed' && i.fileInfo?.pageCount === 0);
-            canPay = (readyItemCount > 0 && !hasPendingOrError && fileItems.length > 0) || (total === 0 && allZeroPageProcessed);
+            canPay = (readyItemCount > 0 && !hasPendingOrError && fileItems.length > 0 && total >= 0) || (total === 0 && allZeroPageProcessed);
             if (fileItems.length === 0) { totalPriceDisplay.textContent = 'Add files to see total price.'; }
             else if (hasPendingOrError) { totalPriceDisplay.textContent = 'Processing... Total unavailable.'; }
-            else if (readyItemCount === 0) { totalPriceDisplay.textContent = 'No valid items to calculate price.'; }
+            else if (readyItemCount === 0) { totalPriceDisplay.textContent = 'No valid items for pricing.'; }
             else { totalPriceDisplay.textContent = `Total Amount: Rs. ${total}`; }
             payButton.disabled = !canPay;
         }
@@ -500,7 +462,7 @@
                 highlightSelectedRadio(itemElement, 'pageRangeType');
             } else { optionsDiv.style.display = 'none'; previewButton.disabled = true; hideItemStatus(itemElement); }
             updateCopiesButtonStates(item);
-            updateItemPriceDisplay(item);
+            updateTotalPriceDisplay(); // Update total whenever item state changes
         }
 
         function updateCustomInputState(item) {
@@ -556,126 +518,52 @@
         }
 
         // --- Event Handlers ---
-       
-            function handleFileSelect(event) {
-        // --->>> ADDED LOG 1: Check if the handler is triggered at all
-        console.log('handleFileSelect triggered.');
-        hideGlobalStatus(); // Clear previous global messages
-
-        // --->>> ADDED LOG 2: Log the event target and its files
-        console.log('Event Target:', event.target);
-        console.log('Selected files:', event.target.files);
-
-        const files = Array.from(event.target.files || []); // Use empty array if null/undefined
-
-        // --->>> ADDED LOG 3: Check how many files were detected
-        console.log(`Detected ${files.length} file(s).`);
-
-        if (!files.length) {
-             // --->>> ADDED LOG 4: Check if exiting due to no files
-             console.log('Exiting handleFileSelect because no files were found in the event.');
-             // If this log appears unexpectedly on page load, something else is triggering the event.
-             // If it appears after selecting files, the browser didn't register the selection.
-             return;
+        function handleFileSelect(event) {
+            console.log('handleFileSelect triggered.');
+            hideGlobalStatus();
+            console.log('Event Target:', event.target);
+            console.log('Selected files:', event.target.files);
+            const files = Array.from(event.target.files || []);
+            console.log(`Detected ${files.length} file(s).`);
+            if (!files.length) { console.log('Exiting handleFileSelect because no files were found in the event.'); return; }
+            const currentCount = fileItems.length; const availableSlots = MAX_FILES - currentCount;
+            if (availableSlots <= 0) { showGlobalStatus(`Cannot add more files. Maximum ${MAX_FILES} allowed.`, 'warning'); console.log('Exiting handleFileSelect because max files limit reached.'); event.target.value = null; return; }
+            if (files.length > availableSlots) { showGlobalStatus(`You can only add ${availableSlots} more file(s). Added the first ${availableSlots}.`, 'warning'); }
+            const filesToAdd = files.slice(0, availableSlots);
+            console.log(`Attempting to add ${filesToAdd.length} file(s).`);
+            filesToAdd.forEach((file, index) => {
+                console.log(`Processing file #${index + 1}: ${file.name}, Type: ${file.type}, Size: ${file.size}`);
+                const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+                if (!allowedTypes.includes(file.type)) { showGlobalStatus(`Skipped unsupported file: ${file.name} (${file.type})`, 'warning'); console.log(`Skipping file ${file.name} due to unsupported type.`); return; }
+                if (file.size > 10.5 * 1024 * 1024) { showGlobalStatus(`Skipped large file: ${file.name} (Max 10MB)`, 'warning'); console.log(`Skipping file ${file.name} due to size (${file.size}).`); return; }
+                if (file.size === 0) { showGlobalStatus(`Skipped empty file: ${file.name}`, 'warning'); console.log(`Skipping file ${file.name} because size is 0.`); return; }
+                console.log(`File ${file.name} passed validation. Creating item UI.`);
+                const newItemId = `item-${nextItemId++}`;
+                const newItem = { id: newItemId, file: file, fileInfo: null, printType: 1, pageRangeType: 'all', startPage: null, endPage: null, numberOfCopies: 1, price: 0, status: 'new', element: null };
+                try {
+                    const templateNode = fileItemTemplate.content.cloneNode(true); const itemElement = templateNode.querySelector('.file-item-container');
+                    itemElement.dataset.id = newItemId; newItem.element = itemElement;
+                    itemElement.querySelectorAll('input[type="radio"]').forEach(radio => { const originalName = radio.name; if (originalName.endsWith('_')) { radio.name = originalName + newItemId; } });
+                    itemElement.querySelector('.file-name-display').textContent = formatFileName(file.name);
+                    fileListContainer.appendChild(templateNode); fileItems.push(newItem);
+                    console.log(`Item ${newItemId} added to UI and state. Triggering upload...`);
+                    triggerUploadAndProcess(newItem);
+                } catch (domError) { console.error(`Error creating UI for item ${newItemId}:`, domError); showGlobalStatus(`Error adding file ${file.name} to the list.`, 'error'); }
+            });
+            console.log('Resetting file input value.');
+            event.target.value = null; updateFileCounter(); updateTotalPriceDisplay();
         }
-
-        const currentCount = fileItems.length;
-        const availableSlots = MAX_FILES - currentCount;
-
-        if (availableSlots <= 0) {
-             showGlobalStatus(`Cannot add more files. Maximum ${MAX_FILES} allowed.`, 'warning');
-             // --->>> ADDED LOG 5: Check if exiting due to max files reached
-             console.log('Exiting handleFileSelect because max files limit reached.');
-             // Clear input value even if max files reached, so user can select different files later if some are removed
-             event.target.value = null;
-             return;
-        }
-
-        if (files.length > availableSlots) {
-            showGlobalStatus(`You can only add ${availableSlots} more file(s). Added the first ${availableSlots}.`, 'warning');
-        }
-
-        const filesToAdd = files.slice(0, availableSlots);
-        console.log(`Attempting to add ${filesToAdd.length} file(s).`); // --->>> ADDED LOG 6
-
-        filesToAdd.forEach((file, index) => {
-            // --->>> ADDED LOG 7: Track progress inside the loop
-            console.log(`Processing file #${index + 1}: ${file.name}, Type: ${file.type}, Size: ${file.size}`);
-
-            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
-            if (!allowedTypes.includes(file.type)) {
-                showGlobalStatus(`Skipped unsupported file: ${file.name} (${file.type})`, 'warning');
-                // --->>> ADDED LOG 8: Check if skipping due to type
-                console.log(`Skipping file ${file.name} due to unsupported type.`);
-                return; // Continue to next file in forEach
-            }
-            // Increased size limit slightly for safety, ensure backend matches
-            if (file.size > 10.5 * 1024 * 1024) {
-                 showGlobalStatus(`Skipped large file: ${file.name} (Max 10MB)`, 'warning');
-                 // --->>> ADDED LOG 9: Check if skipping due to size
-                 console.log(`Skipping file ${file.name} due to size (${file.size}).`);
-                 return; // Continue to next file in forEach
-            }
-            if (file.size === 0) {
-                 showGlobalStatus(`Skipped empty file: ${file.name}`, 'warning');
-                 // --->>> ADDED LOG 10: Check if skipping due to empty
-                 console.log(`Skipping file ${file.name} because size is 0.`);
-                 return; // Continue to next file in forEach
-            }
-
-            // If we reach here, the file is valid for processing
-             console.log(`File ${file.name} passed validation. Creating item UI.`); // --->>> ADDED LOG 11
-
-            const newItemId = `item-${nextItemId++}`;
-            const newItem = {
-                id: newItemId, file: file, fileInfo: null, printType: 1, pageRangeType: 'all',
-                startPage: null, endPage: null, numberOfCopies: 1, price: 0, status: 'new', element: null
-            };
-
-            try { // Add try...catch for DOM manipulation
-                const templateNode = fileItemTemplate.content.cloneNode(true);
-                const itemElement = templateNode.querySelector('.file-item-container');
-                itemElement.dataset.id = newItemId;
-                newItem.element = itemElement;
-
-                itemElement.querySelectorAll('input[type="radio"]').forEach(radio => {
-                    const originalName = radio.name;
-                    if (originalName.endsWith('_')) { radio.name = originalName + newItemId; }
-                });
-                itemElement.querySelector('.file-name-display').textContent = formatFileName(file.name);
-
-                fileListContainer.appendChild(templateNode);
-                fileItems.push(newItem);
-
-                console.log(`Item ${newItemId} added to UI and state. Triggering upload...`); // --->>> ADDED LOG 12
-                triggerUploadAndProcess(newItem); // Start processing immediately
-
-            } catch (domError) {
-                 console.error(`Error creating UI for item ${newItemId}:`, domError);
-                 showGlobalStatus(`Error adding file ${file.name} to the list.`, 'error');
-            }
-
-        }); // End forEach
-
-        // Clear the file input value ONLY AFTER iterating through selected files
-        // This allows selecting the same file again if removed/failed
-        console.log('Resetting file input value.'); // --->>> ADDED LOG 13
-        event.target.value = null;
-        updateFileCounter();
-        updateTotalPriceDisplay(); // Update total
-    }
 
         function handleOptionChange(event) {
             const target = event.target; if (target.type !== 'radio' || !target.dataset.option) return;
             const optionType = target.dataset.option; const itemElement = target.closest('.file-item-container'); if (!itemElement) return;
             const itemId = itemElement.dataset.id; const item = findItemById(itemId); if (!item || item.status !== 'processed' || target.disabled) return;
-            let needsReprice = false; let needsStateUpdate = true;
             if (optionType === 'printType') {
-                const newType = parseInt(target.value, 10); if (item.printType !== newType) { item.printType = newType; console.log(`Item ${itemId}: Print type changed to ${item.printType === 1 ? 'Color' : 'B&W'}`); updateModalTitle(item); needsReprice = true; }
+                const newType = parseInt(target.value, 10); if (item.printType !== newType) { item.printType = newType; console.log(`Item ${itemId}: Print type changed to ${item.printType === 1 ? 'Color' : 'B&W'}`); updateModalTitle(item); }
             } else if (optionType === 'pageRangeType') {
-                const newRange = target.value; if (item.pageRangeType !== newRange) { const previousRange = item.pageRangeType; item.pageRangeType = newRange; console.log(`Item ${itemId}: Page range changed to ${item.pageRangeType}`); if (newRange === 'custom') { item.price = 0; item.status = 'processed'; showItemStatus(itemElement, "Enter custom range and click Update.", "info"); itemElement.querySelector('.preview-icon').disabled = true; updateItemPriceDisplay(item); } else if (newRange === 'all' && previousRange === 'custom') { const needsServerUpdate = !item.fileInfo || item.startPage || item.endPage; if (needsServerUpdate) { console.log(`Item ${itemId}: Switching back to 'All Pages', re-processing on server...`); item.startPage = null; item.endPage = null; triggerUploadAndProcess(item, true); } else { console.log(`Item ${itemId}: Switching back to 'All Pages', already have full file info.`); hideItemStatus(itemElement); itemElement.querySelector('.preview-icon').disabled = false; needsReprice = true; } } else { needsReprice = true; } }
+                const newRange = target.value; if (item.pageRangeType !== newRange) { const previousRange = item.pageRangeType; item.pageRangeType = newRange; console.log(`Item ${itemId}: Page range changed to ${item.pageRangeType}`); if (newRange === 'custom') { item.status = 'processed'; showItemStatus(itemElement, "Enter custom range and click Update.", "info"); itemElement.querySelector('.preview-icon').disabled = true; } else if (newRange === 'all' && previousRange === 'custom') { const needsServerUpdate = !item.fileInfo || item.startPage || item.endPage; if (needsServerUpdate) { console.log(`Item ${itemId}: Switching back to 'All Pages', re-processing on server...`); item.startPage = null; item.endPage = null; triggerUploadAndProcess(item, true); } else { console.log(`Item ${itemId}: Switching back to 'All Pages', already have full file info.`); hideItemStatus(itemElement); itemElement.querySelector('.preview-icon').disabled = false; } } }
             }
-            highlightSelectedRadio(itemElement, optionType); updateItemUIState(item); if (needsReprice) updateItemPriceDisplay(item);
+            highlightSelectedRadio(itemElement, optionType); updateItemUIState(item); updateTotalPriceDisplay(); // Update total price
         }
 
         function handleNumberInputChange(event) {
@@ -685,7 +573,7 @@
             let value = parseInt(target.value, 10);
             if (optionType === 'numberOfCopies') {
                 if (isNaN(value) || value < 1) value = 1; if (value > 99) value = 99; target.value = value;
-                if (item.numberOfCopies !== value) { item.numberOfCopies = value; console.log(`Item ${itemId}: Copies changed to ${item.numberOfCopies}`); updateCopiesButtonStates(item); updateItemPriceDisplay(item); }
+                if (item.numberOfCopies !== value) { item.numberOfCopies = value; console.log(`Item ${itemId}: Copies changed to ${item.numberOfCopies}`); updateCopiesButtonStates(item); updateTotalPriceDisplay(); } // Update total
             } else if (optionType === 'startPage' || optionType === 'endPage') {
                 const startInput = itemElement.querySelector('input[data-option="startPage"]'); const endInput = itemElement.querySelector('input[data-option="endPage"]'); const updateButton = itemElement.querySelector('.update-details-button');
                 startInput.setCustomValidity(""); endInput.setCustomValidity(""); if (!startInput.checkValidity() || !endInput.checkValidity()) { updateButton.disabled = true; return; }
@@ -694,9 +582,10 @@
                 if (!isNaN(endVal) && !isNaN(startVal) && endVal < startVal) { endInput.setCustomValidity(">= Start"); customError = true; }
                 if (!isNaN(endVal) && totalPages > 0 && endVal > totalPages) { endInput.setCustomValidity(`<= ${totalPages}`); customError = true; }
                 const hasValues = startInput.value !== '' && endInput.value !== ''; updateButton.disabled = customError || !hasValues;
-                if (!updateButton.disabled) { showItemStatus(itemElement, "Range changed. Click Update.", "info"); item.price = 0; updateItemPriceDisplay(item); itemElement.querySelector('.preview-icon').disabled = true; }
-                else if (hasValues) { showItemStatus(itemElement, "Invalid page range.", "error"); item.price = 0; updateItemPriceDisplay(item); itemElement.querySelector('.preview-icon').disabled = true; }
+                if (!updateButton.disabled) { showItemStatus(itemElement, "Range changed. Click Update.", "info"); itemElement.querySelector('.preview-icon').disabled = true; }
+                else if (hasValues) { showItemStatus(itemElement, "Invalid page range.", "error"); itemElement.querySelector('.preview-icon').disabled = true; }
                 else { hideItemStatus(itemElement); }
+                 // No price update here until 'Update' clicked
             }
         }
 
@@ -712,8 +601,8 @@
                     if (item.status === 'processed' && item.fileInfo) { openPreviewModal(item); }
                     else { console.warn(`Preview clicked but item ${itemId} not processed or fileInfo missing.`); showItemStatus(itemElement, 'Preview unavailable yet.', 'info'); }
                     break;
-                case 'decrementCopies': { const cInput = itemElement.querySelector('input[data-option="numberOfCopies"]'); let cVal = parseInt(cInput.value, 10); if (!isNaN(cVal) && cVal > 1) { cVal--; cInput.value = cVal; item.numberOfCopies = cVal; updateCopiesButtonStates(item); updateItemPriceDisplay(item); } break; }
-                case 'incrementCopies': { const cInput = itemElement.querySelector('input[data-option="numberOfCopies"]'); let cVal = parseInt(cInput.value, 10); if (isNaN(cVal)) cVal = 0; if (cVal < 99) { cVal++; cInput.value = cVal; item.numberOfCopies = cVal; updateCopiesButtonStates(item); updateItemPriceDisplay(item); } break; }
+                case 'decrementCopies': { const cInput = itemElement.querySelector('input[data-option="numberOfCopies"]'); let cVal = parseInt(cInput.value, 10); if (!isNaN(cVal) && cVal > 1) { cVal--; cInput.value = cVal; item.numberOfCopies = cVal; updateCopiesButtonStates(item); updateTotalPriceDisplay(); } break; } // Update total
+                case 'incrementCopies': { const cInput = itemElement.querySelector('input[data-option="numberOfCopies"]'); let cVal = parseInt(cInput.value, 10); if (isNaN(cVal)) cVal = 0; if (cVal < 99) { cVal++; cInput.value = cVal; item.numberOfCopies = cVal; updateCopiesButtonStates(item); updateTotalPriceDisplay(); } break; } // Update total
                 case 'updateDetails': if (item.pageRangeType === 'custom' && areCustomInputsValid(item)) { item.startPage = parseInt(itemElement.querySelector('input[data-option="startPage"]').value, 10); item.endPage = parseInt(itemElement.querySelector('input[data-option="endPage"]').value, 10); console.log(`Item ${itemId}: Updating with custom range ${item.startPage}-${item.endPage}`); triggerUploadAndProcess(item, true); button.disabled = true; button.textContent = "Updating..."; } else { showItemStatus(itemElement, "Invalid custom page range.", "error"); button.disabled = true; } break;
             }
         }
@@ -725,9 +614,9 @@
                 if (itemElement) {
                     itemElement.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
                     itemElement.style.transform = 'scale(0.9)'; itemElement.style.opacity = '0';
-                    setTimeout(() => { itemElement.remove(); updateFileCounter(); updateTotalPriceDisplay(); }, 250); // Use fixed 250ms
+                    setTimeout(() => { itemElement.remove(); updateFileCounter(); updateTotalPriceDisplay(); }, 250);
                 }
-                setTimeout(() => { fileItems.splice(itemIndex, 1); console.log(`Item ${itemId} removed from state.`); updateTotalPriceDisplay(); }, 250);
+                setTimeout(() => { const idxToRemove = fileItems.findIndex(i => i.id === itemId); if (idxToRemove > -1) { fileItems.splice(idxToRemove, 1); console.log(`Item ${itemId} removed from state.`); updateTotalPriceDisplay(); } }, 250);
                 console.log(`Item ${itemId} removal initiated.`);
             }
         }
@@ -751,7 +640,7 @@
                     currentItem.fileInfo = { originalFileName: data.originalFileName, fileName: data.fileName, bwFileName: data.bwFileName, pageCount: data.pageCount, mimeType: data.mimeType || currentItem.file.type, url: data.url, c_url: data.c_url };
                     currentItem.status = 'processed';
                     if (currentItem.pageRangeType === 'all') { currentItem.startPage = null; currentItem.endPage = null; }
-                    const updateBtn = currentItem.element?.querySelector('.update-details-button'); if (updateBtn) { updateBtn.disabled = !areCustomInputsValid(currentItem); updateBtn.textContent = "Update"; } // Reset update button state
+                    const updateBtn = currentItem.element?.querySelector('.update-details-button'); if (updateBtn) { updateBtn.disabled = !areCustomInputsValid(currentItem); updateBtn.textContent = "Update"; }
                     if (!currentItem.fileInfo.url && !currentItem.fileInfo.mimeType?.startsWith('image/')) { showItemStatus(currentItem.element, "B&W version unavailable.", "info"); } else { hideItemStatus(currentItem.element); }
                 } else { throw new Error(data.error || "Processing incomplete or failed on server."); }
             }).catch(error => {
@@ -766,20 +655,21 @@
         function initiatePayment() {
             hideGlobalStatus();
             const itemsToPay = fileItems.filter(item => {
-                if (item.status !== 'processed' || item.price < 0) return false;
+                if (item.status !== 'processed' || item.fileInfo?.pageCount < 0) return false;
                 const requiredUrl = (item.printType === 1) ? item.fileInfo?.c_url : item.fileInfo?.url;
                 const requiredFileName = (item.printType === 1) ? item.fileInfo?.fileName : item.fileInfo?.bwFileName;
-                const validPageCount = item.fileInfo?.pageCount >= 0;
-                return requiredUrl && requiredFileName && validPageCount;
+                return requiredUrl && requiredFileName;
             });
-            if (itemsToPay.length === 0) {
-                const hasPendingOrError = fileItems.some(i => i.status !== 'processed' || i.price < 0);
+            const finalTotalAmount = calculateAggregatedTotalPrice(itemsToPay); // Calculate based on filtered items
+            if (itemsToPay.length === 0 || (finalTotalAmount <= 0 && !itemsToPay.every(i => i.fileInfo?.pageCount === 0))) {
+                const hasPendingOrError = fileItems.some(i => i.status !== 'processed' || i.fileInfo?.pageCount < 0);
                 if (hasPendingOrError) { showGlobalStatus('Some files are still processing or have errors.', 'warning'); }
-                else { showGlobalStatus('No valid files ready for payment.', 'warning'); }
+                else { showGlobalStatus('No valid items ready for payment.', 'warning'); }
                 return;
             }
             payButton.disabled = true; showLoader(paymentLoader); showGlobalStatus('Initiating payment...', 'info');
-            const payloadItems = itemsToPay.map(item => ({ uniqueId: item.id, fileName: (item.printType === 1) ? item.fileInfo.fileName : item.fileInfo.bwFileName, pageCount: item.fileInfo.pageCount, printType: item.printType, numberOfCopies: item.numberOfCopies, calculatedPrice: item.price }));
+            // Payload still contains individual item details for webhook processing
+            const payloadItems = itemsToPay.map(item => ({ uniqueId: item.id, fileName: (item.printType === 1) ? item.fileInfo.fileName : item.fileInfo.bwFileName, pageCount: item.fileInfo.pageCount, printType: item.printType, numberOfCopies: item.numberOfCopies }));
             const payload = { items: payloadItems }; console.log('Initiating payment with payload:', JSON.stringify(payload));
             fetch('/print/api/payments/initiate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
             .then(response => response.json().then(data => ({ ok: response.ok, status: response.status, data })))
@@ -787,7 +677,7 @@
                 console.log('Payment Initiation Response:', data); if (!ok) { throw new Error(data.error || `Payment initiation failed (HTTP ${status})`); }
                 if (data.status === 'skipped_zero_amount') { console.log("Payment skipped by server (0 amount). Simulating success."); showGlobalStatus("Order processed (0 amount). Files are being sent.", 'success'); hideLoader(paymentLoader); fileItems.forEach(item => item.element?.remove()); fileItems = []; updateFileCounter(); updateTotalPriceDisplay(); payButton.disabled = true; return; }
                 if (!data.razorpayKey || !data.orderId || typeof data.amount !== 'number') { throw new Error("Invalid order data received from server."); }
-                const totalRupees = data.totalAmountRupees !== undefined ? data.totalAmountRupees : (data.amount / 100); const description = `Print Order: ${itemsToPay.length} file(s) - Total Rs. ${totalRupees}`;
+                const description = `Print Order: ${itemsToPay.length} file(s) - Total Rs. ${finalTotalAmount}`; // Use frontend calculated total for description
                 openRazorpayCheckout(data, description);
             }).catch(error => {
                 console.error('Payment Initiation Error:', error); showGlobalStatus(`Error: ${error.message}`, 'error'); updateTotalPriceDisplay(); hideLoader(paymentLoader);
@@ -796,26 +686,14 @@
 
         function openRazorpayCheckout(orderData, description) {
             console.log("Opening Razorpay. Amount:", orderData.amount, "Description:", description);
-
-            // Crucial Check: Ensure Razorpay object exists before using it
-            if (typeof Razorpay === 'undefined') {
-                 console.error("Razorpay checkout.js script not loaded or failed to initialize.");
-                 showGlobalStatus("Error: Payment gateway script failed to load. Please refresh.", 'error');
-                 hideLoader(paymentLoader);
-                 updateTotalPriceDisplay(); // Re-enable pay button if possible
-                 return;
-            }
-
+            if (typeof Razorpay === 'undefined') { console.error("Razorpay checkout.js script not loaded."); showGlobalStatus("Error: Payment gateway script failed to load.", 'error'); hideLoader(paymentLoader); updateTotalPriceDisplay(); return; }
             const options = {
                 key: orderData.razorpayKey, amount: orderData.amount, currency: orderData.currency || "INR", name: "KsDigitalServices", description: description, order_id: orderData.orderId,
                 handler: function (response) { console.log("Razorpay Success:", response); showGlobalStatus("Payment Successful! Files are being sent.", 'success'); hideLoader(paymentLoader); fileItems.forEach(item => item.element?.remove()); fileItems = []; updateFileCounter(); updateTotalPriceDisplay(); payButton.disabled = true; },
                 prefill: {}, notes: { order_timestamp: new Date().toISOString() }, theme: { color: getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() || "#007bff" },
                 modal: { ondismiss: function() { console.log('Razorpay checkout closed.'); if (!globalStatusMessage.classList.contains('status-success')) { showGlobalStatus('Payment cancelled or closed.', 'info'); updateTotalPriceDisplay(); } hideLoader(paymentLoader); } }
             };
-            try {
-                const rzp = new Razorpay(options); // Instantiate Razorpay
-                rzp.on('payment.failed', function (response) { console.error("Razorpay Payment Failed:", response.error); let errorMsg = `Payment Failed: ${response.error.description || 'Unknown error'}`; if (response.error.reason) errorMsg += ` (Reason: ${response.error.reason})`; showGlobalStatus(errorMsg, 'error'); updateTotalPriceDisplay(); hideLoader(paymentLoader); });
-                rzp.open(); // Open the checkout modal
+            try { const rzp = new Razorpay(options); rzp.on('payment.failed', function (response) { console.error("Razorpay Payment Failed:", response.error); let errorMsg = `Payment Failed: ${response.error.description || 'Unknown error'}`; if (response.error.reason) errorMsg += ` (Reason: ${response.error.reason})`; showGlobalStatus(errorMsg, 'error'); updateTotalPriceDisplay(); hideLoader(paymentLoader); }); rzp.open();
             } catch (e) { console.error("Error initializing Razorpay:", e); showGlobalStatus("Could not initialize payment gateway.", 'error'); updateTotalPriceDisplay(); hideLoader(paymentLoader); }
         }
 
