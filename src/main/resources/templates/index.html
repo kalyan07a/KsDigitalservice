@@ -1,337 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>PRINTER - Upload & Pay</title>
+    <title>Printer - Add Files & Pay</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" th:href="@{/favicon.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <style>
-    :root {
-        --primary-color: #007bff;
-        --secondary-color: #6c757d;
-        --success-color: #28a745;
-        --danger-color: #dc3545;
-        --warning-color: #ffc107;
-        --info-color: #17a2b8;
-        --light-gray: #f8f9fa;
-        --medium-gray: #e9ecef;
-        --dark-gray: #6c757d;
-        --text-color: #333;
-        --white: #fff;
-        --border-radius: 8px;
-        --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        --transition-speed: 0.3s;
-    }
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: var(--light-gray);
-        color: var(--text-color);
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: 100vh;
-        padding: 30px 15px;
-        box-sizing: border-box;
-        line-height: 1.6;
-    }
-    .container {
-        width: 100%;
-        max-width: 550px; /* Maintain max-width */
-        background-color: var(--white);
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-        padding: 25px; /* Slightly reduced padding */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        box-sizing: border-box;
-    }
-    h1 { color: var(--primary-color); margin-bottom: 5px; font-weight: 600; margin-top: 0; }
-    h3 { /* Default heading style within options */
-        margin-top: 0; margin-bottom: 8px; /* Reduced bottom margin */
-        color: var(--secondary-color); font-weight: 500;
-        text-align: center; width: 100%;
-        border-bottom: 1px solid var(--medium-gray); padding-bottom: 6px; /* Reduced padding */
-        font-size: 0.95em; /* Slightly smaller heading */
-    }
-    /* --- File Input --- */
-    .file-input-area {
-        display: flex; flex-direction: column; align-items: center;
-        justify-content: center; width: 100%; margin-bottom: 15px;
-    }
-    #fileInputLabel {
-        padding: 10px 22px; background-color: var(--primary-color); color: var(--white); border-radius: 6px;
-        cursor: pointer; text-align: center; font-weight: 500; font-size: 0.9em;
-        line-height: 1.5; transition: background-color var(--transition-speed), transform var(--transition-speed);
-        box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25);
-        width: 80%; max-width: 250px; box-sizing: border-box;
-    }
-    #fileInputLabel:hover { background-color: #0056b3; transform: translateY(-1px); }
-    #fileInput { display: none; }
-
-    /* --- File Details & Options Container --- */
-    .file-details-container {
-        display: none; width: 100%; border: 1px solid var(--medium-gray);
-        padding: 15px 15px 10px 15px; /* Reduced padding */
-        border-radius: var(--border-radius); box-sizing: border-box;
-        background-color: #fdfdff; margin-top: 0;
-        display: flex; flex-direction: column;
-        gap: 12px; /* Reduced gap */
-    }
-    .file-details-container.visible { display: flex; }
-
-    /* File Info Bar (Name + Icon) */
-    .file-info-bar {
-        display: flex; align-items: center; justify-content: space-between; gap: 10px;
-        padding-bottom: 8px; border-bottom: 1px dashed var(--medium-gray); margin-bottom: 5px;
-    }
-    #fileNameDisplay {
-        font-style: italic; color: var(--dark-gray); font-size: 0.9em; /* Slightly smaller */
-        white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; text-align: left;
-    }
-    #previewIcon {
-        background: none; border: none; font-size: 1.2em; /* Slightly smaller */ color: var(--info-color);
-        cursor: pointer; padding: 3px; line-height: 1; transition: color var(--transition-speed), transform var(--transition-speed);
-        border-radius: 50%;
-    }
-    #previewIcon:hover:not(:disabled) { color: #117a8b; transform: scale(1.1); }
-    #previewIcon:disabled { color: var(--medium-gray); cursor: not-allowed; }
-
-    /* --- Options Sections --- */
-    .options-group {
-        width: 100%; display: flex; flex-direction: column;
-        gap: 5px; /* Reduced gap */
-    }
-
-    /* --- NEW: Container for Inline Radio Buttons --- */
-    .radio-options-container {
-        display: flex;
-        flex-wrap: wrap; /* Allow wrapping on small screens */
-        justify-content: space-around; /* Distribute items */
-        gap: 10px; /* Space between wrapped items */
-        width: 100%;
-    }
-
-    /* --- Radio Button Options (Common) --- */
-    .radio-option {
-        display: flex; align-items: center; gap: 6px; /* Reduced gap */
-        cursor: pointer; padding: 6px 8px; /* Reduced padding */
-        border-radius: 6px; border: 1px solid transparent;
-        transition: background-color var(--transition-speed), border-color var(--transition-speed);
-        flex-grow: 1; /* Allow labels to grow */
-        flex-basis: 150px; /* Base width before wrapping, adjust as needed */
-        justify-content: center; /* Center content within the label */
-        min-width: 120px; /* Prevent excessive shrinking */
-        box-sizing: border-box;
-    }
-    .radio-option:hover:not(:has(input[type="radio"]:checked)) { background-color: var(--light-gray); }
-    .radio-option input[type="radio"] {
-        margin: 0; accent-color: var(--primary-color); transform: scale(0.9); cursor: pointer;
-    }
-    .radio-option span:not(.price-hint) { font-size: 0.85em; /* Slightly smaller text */ }
-
-    /* --- HIDE Price Hint --- */
-    .price-hint {
-        display: none !important; /* Hide the price hint */
-    }
-
-    /* Styling checked state */
-    .options-group .radio-options-container label.radio-option:has(input[type="radio"]:checked) {
-        background-color: #e7f3ff; border-color: var(--primary-color);
-    }
-    .options-group .radio-options-container label.radio-option:has(input[type="radio"]:checked) span:not(.price-hint) {
-        color: var(--primary-color); font-weight: 600;
-    }
-    /* Price hint styling removed as it's hidden */
-
-    /* --- Custom Page Inputs --- */
-    .custom-page-inputs {
-        display: none; flex-direction: row; flex-wrap: wrap; align-items: center;
-        gap: 8px; padding: 8px 10px; margin-top: 8px; /* Consistent margin */
-        background-color: var(--light-gray); border-radius: 6px; border: 1px solid var(--medium-gray);
-    }
-    .custom-page-inputs.visible { display: flex; }
-    .custom-page-inputs label { font-size: 0.8em; color: var(--secondary-color); margin-right: 2px; white-space: nowrap; flex-shrink: 0; }
-    .custom-page-inputs input[type="number"] { width: 55px; padding: 4px 6px; border: 1px solid var(--medium-gray); border-radius: 4px; font-size: 0.85em; text-align: center; -moz-appearance: textfield; flex-grow: 0; flex-shrink: 0; }
-    .custom-page-inputs input[type="number"]::-webkit-outer-spin-button,
-    .custom-page-inputs input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-    .custom-page-inputs input[type="number"]:disabled { background-color: var(--medium-gray); cursor: not-allowed; opacity: 0.7; }
-    #updatePreviewButton { padding: 4px 10px; background-color: var(--info-color); color: var(--white); border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.75em; line-height: 1.4; border: none; transition: background-color var(--transition-speed); margin-left: auto; flex-shrink: 0; box-shadow: 0 1px 3px rgba(23, 162, 184, 0.25); }
-    #updatePreviewButton:hover:not(:disabled) { background-color: #117a8b; }
-    #updatePreviewButton:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; }
-
-    /* === Copies Input Styles === */
-     .options-group.copies-option h3 { margin-bottom: 5px; } /* Less space for copies heading */
-    .copies-input-container { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 0; padding-bottom: 5px; }
-    .copies-input-container button { padding: 4px 10px; font-size: 1.2em; font-weight: bold; cursor: pointer; border: 1px solid var(--medium-gray); background-color: var(--light-gray); color: var(--primary-color); border-radius: 50%; width: 30px; height: 30px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background-color var(--transition-speed), transform var(--transition-speed); }
-    .copies-input-container button:hover:not(:disabled) { background-color: var(--medium-gray); transform: scale(1.05); }
-    .copies-input-container button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; opacity: 0.6; }
-    .copies-input-container input[type="number"] { width: 55px; text-align: center; font-size: 0.95em; font-weight: 500; padding: 5px 8px; border: 1px solid var(--medium-gray); border-radius: 4px; -moz-appearance: textfield; }
-    .copies-input-container input[type="number"]::-webkit-outer-spin-button,
-    .copies-input-container input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-
-    /* --- Preview Modal Styles (No change needed here) --- */
-    .preview-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
-    .preview-modal.visible { display: flex; }
-    .preview-modal-content { background-color: var(--white); margin: auto; padding: 25px; border: 1px solid var(--medium-gray); border-radius: var(--border-radius); width: 90%; max-width: 700px; max-height: 85vh; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; display: flex; flex-direction: column; box-sizing: border-box; }
-    .preview-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--medium-gray); padding-bottom: 10px; margin-bottom: 15px; }
-    .preview-modal-title { font-size: 1.1em; font-weight: 600; color: var(--primary-color); margin: 0; }
-    .preview-modal-close { color: var(--dark-gray); font-size: 1.8em; font-weight: bold; line-height: 1; cursor: pointer; padding: 0 5px; background: none; border: none; }
-    .preview-modal-close:hover, .preview-modal-close:focus { color: var(--danger-color); text-decoration: none; }
-    .preview-modal-body { overflow-y: auto; flex-grow: 1; background-color: var(--light-gray); border-radius: calc(var(--border-radius) - 4px); padding: 10px; box-sizing: border-box; min-height: 150px; }
-    #modalPreviewContent .pdf-page-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto 10px auto; background-color: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    #modalPreviewContent p.placeholder { color: var(--dark-gray); font-size: 0.95em; text-align: center; margin-top: 20px; padding: 10px; }
-    #modalPreviewContent .loader { border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 30px; height: 30px; animation: spin 1.5s linear infinite; display: block; margin: 20px auto; }
-
-    /* --- Price & Payment --- */
-    .price-display { margin-top: 15px; font-weight: 600; color: var(--success-color); font-size: 1.05em; text-align: center; padding: 8px; background-color: #e9f7ef; border-radius: var(--border-radius); width: 100%; box-sizing: border-box; min-height: 1.5em; }
-    #pay-button { background-color: var(--success-color); color: var(--white); border: none; border-radius: var(--border-radius); padding: 12px 25px; font-size: 1em; font-weight: 600; cursor: pointer; transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed); width: 80%; max-width: 300px; margin-top: 15px; box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4); }
-    #pay-button:hover:not(:disabled) { background-color: #218838; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4); }
-    #pay-button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; }
-    #statusMessage { margin-top: 10px; font-weight: 500; min-height: 1.5em; text-align: center; width: 100%; padding: 8px; border-radius: var(--border-radius); display: none; font-size: 0.9em;}
-    .status-error { color: var(--danger-color); background-color: #f8d7da; border: 1px solid #f5c6cb; display: block !important; }
-    .status-success { color: var(--success-color); background-color: #d4edda; border: 1px solid #c3e6cb; display: block !important; }
-    .status-info { color: #0c5460; background-color: #d1ecf1; border: 1px solid #bee5eb; display: block !important; }
-    .loader { border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 30px; height: 30px; animation: spin 1.5s linear infinite; display: none; margin: 10px auto 0; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-    /* --- Mobile Adjustments --- */
-    @media (max-width: 600px) {
-        body { padding: 15px 10px; }
-        .container { padding: 15px; gap: 12px; } /* Further reduced padding */
-        h1 { font-size: 1.5em; }
-
-        .file-input-area { margin-bottom: 10px; }
-        #fileInputLabel { width: 90%; }
-
-        .file-details-container { padding: 10px; gap: 10px; }
-        .file-info-bar { padding-bottom: 6px; }
-        #fileNameDisplay { font-size: 0.85em; }
-        #previewIcon { font-size: 1.1em; }
-
-        h3 { font-size: 0.9em; margin-bottom: 6px; padding-bottom: 5px;}
-
-        /* Ensure radio buttons wrap effectively */
-        .radio-options-container { gap: 8px; }
-        .radio-option {
-            padding: 5px 7px;
-            gap: 5px;
-            font-size: 0.8em;
-            flex-basis: calc(50% - 10px); /* Aim for 2 columns, adjust gap calc */
-            min-width: 100px;
+        /* --- Base Styles --- */
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Gray */
+            --success-color: #28a745; /* Green */
+            --danger-color: #dc3545; /* Red */
+            --warning-color: #ffc107; /* Yellow */
+            --info-color: #17a2b8; /* Teal */
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #6c757d;
+            --text-color: #333;
+            --white: #fff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition-speed: 0.25s;
         }
+        html { box-sizing: border-box; }
+        *, *:before, *:after { box-sizing: inherit; }
+        body {
+            font-family: 'Poppins', sans-serif; background-color: var(--light-gray); color: var(--text-color);
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            padding: 25px 15px; line-height: 1.6; margin: 0;
+        }
+        .main-container {
+            width: 100%; max-width: 650px; background-color: var(--white); border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow); padding: 20px; display: flex; flex-direction: column;
+            align-items: center; gap: 15px; margin-bottom: 20px;
+        }
+        h1 { color: var(--primary-color); margin-bottom: 15px; font-weight: 600; margin-top: 0; text-align: center; font-size: 1.7em;}
+        /* --- File Input Area --- */
+        .file-input-area { text-align: center; width: 100%; margin-bottom: 15px; }
+        #addFileButtonLabel {
+             padding: 10px 25px; background-color: var(--primary-color); color: var(--white); border-radius: 6px;
+             cursor: pointer; font-weight: 500; font-size: 0.95em; line-height: 1.5;
+             transition: background-color var(--transition-speed), transform var(--transition-speed), opacity var(--transition-speed);
+             display: inline-block; box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25);
+        }
+        #addFileButtonLabel:hover:not([style*="opacity: 0.6"]) { background-color: #0056b3; transform: translateY(-1px); }
+        #fileInput { display: none; }
+        #fileCounter { font-size: 0.85em; color: var(--secondary-color); margin-top: 5px; min-height: 1.2em; }
+        /* --- File List Container --- */
+        #fileListContainer { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+        /* --- Individual File Item Container --- */
+        .file-item-container {
+            width: 100%; border: 1px solid var(--medium-gray); border-radius: var(--border-radius);
+            box-sizing: border-box; background-color: #fdfdff; display: flex; flex-direction: column; gap: 10px;
+            position: relative; padding: 12px; padding-right: 40px;
+            transition: opacity var(--transition-speed), transform var(--transition-speed), background-color var(--transition-speed);
+        }
+        .file-item-container.processing { opacity: 0.7; pointer-events: none; background-color: #f0f0f0; }
+        .file-item-container.error { border-left: 4px solid var(--danger-color); background-color: #fff7f8; }
+        /* --- File Info Bar (within item) --- */
+        .file-info-bar {
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            padding-bottom: 8px; border-bottom: 1px dashed var(--medium-gray); margin-bottom: 5px;
+        }
+        .file-name-display {
+            font-style: italic; color: var(--dark-gray); font-size: 0.9em;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; text-align: left;
+            padding-right: 10px;
+        }
+        .preview-icon {
+            background: none; border: none; font-size: 1.1em; color: var(--info-color);
+            cursor: pointer; padding: 3px 5px; line-height: 1; transition: color var(--transition-speed), transform var(--transition-speed);
+            border-radius: 4px; display: flex; align-items: center; gap: 5px; flex-shrink: 0; white-space: nowrap;
+        }
+        .preview-icon span { font-size: 0.9em; font-weight: 500;}
+        .preview-icon:hover:not(:disabled) { color: #117a8b; transform: scale(1.05); background-color: rgba(23, 162, 184, 0.1);}
+        .preview-icon:disabled { color: var(--medium-gray); cursor: not-allowed; transform: none; background-color: transparent; opacity: 0.6;}
+        /* Remove Button */
+        .remove-file-button {
+            position: absolute; top: 6px; right: 6px; background: none; border: none;
+            color: var(--secondary-color); font-size: 1.1em; cursor: pointer; padding: 2px 4px;
+            border-radius: 50%; line-height: 1; transition: background-color 0.2s, color 0.2s;
+            width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; z-index: 5;
+        }
+        .remove-file-button:hover { background-color: #f8d7da; color: var(--danger-color); }
+        /* --- Options Sections (within item) --- */
+        .item-options { display: none; flex-direction: column; gap: 12px; }
+        .options-group { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+        .options-group h3 { margin: 0 0 6px 0; color: var(--secondary-color); font-weight: 500; text-align: left; font-size: 0.9em; padding-bottom: 4px; border-bottom: 1px solid var(--medium-gray); }
+        /* Radio Buttons Container */
+        .radio-options-container { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+        .radio-option { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--medium-gray); transition: background-color var(--transition-speed), border-color var(--transition-speed); flex-grow: 1; justify-content: center; background-color: var(--white); min-width: 100px; box-sizing: border-box; position: relative; }
+        .radio-option:hover:not(.selected) { background-color: var(--light-gray); }
+        .radio-option input[type="radio"] { margin: 0; accent-color: var(--primary-color); transform: scale(0.9); cursor: pointer; }
+        .radio-option input[type="radio"]:disabled { cursor: not-allowed; }
+        .radio-option span { font-size: 0.85em; }
+        .radio-option.selected { background-color: #e7f3ff; border-color: var(--primary-color); }
+        .radio-option.selected span { color: var(--primary-color); font-weight: 600; }
+        /* Custom Page Inputs */
+        .custom-page-inputs { display: none; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 10px; margin-top: 8px; background-color: #f0f8ff; border-radius: 6px; border: 1px solid var(--primary-color); }
+        .custom-page-inputs.visible { display: flex; }
+        .custom-page-inputs label { font-size: 0.8em; color: var(--secondary-color); margin-right: 2px; white-space: nowrap; flex-shrink: 0; }
+        .custom-page-inputs input[type="number"] { width: 55px; padding: 4px 6px; border: 1px solid var(--medium-gray); border-radius: 4px; font-size: 0.85em; text-align: center; -moz-appearance: textfield; flex-grow: 0; flex-shrink: 0; }
+        .custom-page-inputs input[type="number"]::-webkit-outer-spin-button, .custom-page-inputs input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .custom-page-inputs input[type="number"]:disabled { background-color: var(--medium-gray); cursor: not-allowed; opacity: 0.7; }
+        .update-details-button { padding: 5px 12px; background-color: var(--info-color); color: var(--white); border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.8em; line-height: 1.4; border: none; transition: background-color var(--transition-speed); margin-left: auto; flex-shrink: 0; box-shadow: 0 1px 3px rgba(23, 162, 184, 0.25); }
+        .update-details-button:hover:not(:disabled) { background-color: #117a8b; }
+        .update-details-button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; opacity: 0.7; }
+        /* Copies Input */
+        .copies-input-container { display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-top: 0; }
+        .copies-input-container button { padding: 4px 10px; font-size: 1.2em; font-weight: bold; cursor: pointer; border: 1px solid var(--medium-gray); background-color: var(--light-gray); color: var(--primary-color); border-radius: 50%; width: 28px; height: 28px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background-color var(--transition-speed), transform var(--transition-speed); }
+        .copies-input-container button:hover:not(:disabled) { background-color: var(--medium-gray); transform: scale(1.05); }
+        .copies-input-container button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; opacity: 0.6; }
+        .copies-input-container input[type="number"] { width: 50px; text-align: center; font-size: 0.95em; font-weight: 500; padding: 5px 8px; border: 1px solid var(--medium-gray); border-radius: 4px; -moz-appearance: textfield; }
+        .copies-input-container input[type="number"]::-webkit-outer-spin-button, .copies-input-container input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        /* Individual Price Display */
+        .item-price-display { margin-top: 8px; font-weight: 500; color: var(--success-color); font-size: 0.9em; text-align: right; padding: 4px 6px; background-color: #e9f7ef; border-radius: 6px; min-height: 1.4em; }
+        /* Item Status Display */
+        .item-status-display { font-size: 0.8em; text-align: left; margin-top: 5px; padding: 4px 8px; border-radius: 4px; display: none; font-weight: 500; border: 1px solid transparent; }
+        .item-status-display.error { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; display: block; }
+        .item-status-display.info { background-color: #d1ecf1; color: #0c5460; border-color: #bee5eb; display: block; }
+        .item-status-display.success { background-color: #d4edda; color: #155724; border-color: #c3e6cb; display: block; }
+        /* Loader */
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-color); border-radius: 50%; width: 20px; height: 20px; animation: spin 1.5s linear infinite; display: none; flex-shrink: 0; }
+        .item-loader { margin-left: auto; margin-right: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        /* --- Total Price & Payment Footer --- */
+        .payment-footer { width: 100%; max-width: 650px; background-color: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 15px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 0; border-top: 3px solid var(--primary-color); }
+        #totalPriceDisplay { font-weight: 600; color: var(--primary-color); font-size: 1.2em; text-align: center; width: 100%; padding: 8px; background-color: #e7f3ff; border-radius: var(--border-radius); min-height: 1.5em; }
+        #pay-button { background-color: var(--success-color); color: var(--white); border: none; border-radius: var(--border-radius); padding: 12px 30px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed), opacity var(--transition-speed); width: 80%; max-width: 300px; margin-top: 5px; box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; }
+        #pay-button:hover:not(:disabled) { background-color: #218838; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4); }
+        #pay-button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; opacity: 0.7;}
+        /* Global Status */
+        #globalStatusMessage { margin-top: 5px; font-weight: 500; min-height: 1.5em; text-align: center; width: 100%; padding: 8px; border-radius: var(--border-radius); display: none; font-size: 0.95em; border: 1px solid transparent; }
+        #globalStatusMessage.status-error { color: var(--danger-color); background-color: #f8d7da; border-color: #f5c6cb; display: block !important; }
+        #globalStatusMessage.status-success { color: var(--success-color); background-color: #d4edda; border-color: #c3e6cb; display: block !important; }
+        #globalStatusMessage.status-info { color: #0c5460; background-color: #d1ecf1; border-color: #bee5eb; display: block !important; }
+        #globalStatusMessage.status-warning { color: #856404; background-color: #fff3cd; border-color: #ffeeba; display: block !important;}
+        #paymentLoader { margin: 5px auto 0; width: 25px; height: 25px; }
+        /* --- Preview Modal Styles --- */
+        .preview-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+        .preview-modal.visible { display: flex; }
+        .preview-modal-content { background-color: var(--white); margin: auto; padding: 20px; border: 1px solid var(--medium-gray); border-radius: var(--border-radius); width: 90%; max-width: 700px; max-height: 85vh; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; display: flex; flex-direction: column; box-sizing: border-box; }
+        .preview-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--medium-gray); padding-bottom: 10px; margin-bottom: 15px; flex-shrink: 0; }
+        .preview-modal-title { font-size: 1.1em; font-weight: 600; color: var(--primary-color); margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 10px; }
+        .preview-modal-close { color: var(--dark-gray); font-size: 1.8em; font-weight: bold; line-height: 1; cursor: pointer; padding: 0 5px; background: none; border: none; flex-shrink: 0; }
+        .preview-modal-close:hover, .preview-modal-close:focus { color: var(--danger-color); text-decoration: none; }
+        .preview-modal-body { overflow-y: auto; flex-grow: 1; background-color: var(--light-gray); border-radius: calc(var(--border-radius) - 4px); padding: 10px; box-sizing: border-box; min-height: 200px; }
+        #modalPreviewContent .pdf-page-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto 10px auto; background-color: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid var(--medium-gray); }
+        #modalPreviewContent img.pdf-page-canvas { border: none; box-shadow: none; }
+        #modalPreviewContent p.placeholder { color: var(--dark-gray); font-size: 0.95em; text-align: center; margin-top: 20px; padding: 10px; }
+        #modalPreviewContent .loader { border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 30px; height: 30px; animation: spin 1.5s linear infinite; display: block; margin: 20px auto; }
+        /* --- Mobile Adjustments --- */
+        @media (max-width: 600px) {
+            body { padding: 15px 10px; }
+            .main-container, .payment-footer { padding: 15px; gap: 12px; max-width: 100%; }
+            h1 { font-size: 1.4em; margin-bottom: 10px;}
+            #addFileButtonLabel { width: 100%; font-size: 0.9em; padding: 10px 15px; }
+            .file-item-container { padding: 10px; padding-right: 35px; gap: 10px; }
+            .file-info-bar { padding-bottom: 6px; flex-wrap: wrap; }
+            .file-name-display { font-size: 0.85em; flex-basis: 100%; order: 1; }
+            .item-loader { order: 2; margin-left: 0; margin-right: auto; }
+            .preview-icon { order: 3; font-size: 1.2em; padding: 5px; gap: 0; }
+            .preview-icon span { display: none; }
+            .remove-file-button { top: 5px; right: 5px; width: 22px; height: 22px; font-size: 1.1em; }
+            .item-options { gap: 15px; }
+            .options-group { gap: 8px; }
+            .options-group h3 { font-size: 0.85em; margin-bottom: 5px; padding-bottom: 3px;}
+            .radio-options-container { gap: 6px; }
+            .radio-option { padding: 4px 8px; gap: 4px; flex-basis: calc(50% - 4px); }
+            .radio-option span { font-size: 0.8em; }
+            .custom-page-inputs { gap: 6px; row-gap: 8px; padding: 6px 8px; }
+            .custom-page-inputs label { font-size: 0.75em; }
+            .custom-page-inputs input[type="number"] { width: 45px; font-size: 0.8em; }
+            .update-details-button { width: 100%; flex-basis: 100%; margin-left: 0; margin-top: 8px; padding: 6px 10px; font-size: 0.75em; }
+            .copies-input-container { justify-content: center; }
+            .copies-input-container button { width: 30px; height: 30px; font-size: 1.1em; }
+            .copies-input-container input[type="number"] { width: 45px; font-size: 0.9em; }
+            .item-price-display { font-size: 0.85em; padding: 3px 5px;}
+            #totalPriceDisplay { font-size: 1.1em; padding: 6px; }
+            #pay-button { width: 90%; padding: 10px 20px; font-size: 1em; }
+            #globalStatusMessage { font-size: 0.9em; }
+            .preview-modal-content { width: 95%; padding: 15px; max-height: 90vh; }
+            .preview-modal-header { padding-bottom: 8px; margin-bottom: 10px; }
+            .preview-modal-title { font-size: 1.0em; }
+            .preview-modal-close { font-size: 1.6em; }
+            .preview-modal-body { padding: 8px; }
+        }
+   </style>
+    <!-- PDF.js Script Tags - Non-module version -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
 
-        .custom-page-inputs { gap: 6px; row-gap: 8px; padding: 6px 8px; }
-        .custom-page-inputs label { font-size: 0.75em; }
-        .custom-page-inputs input[type="number"] { width: 50px; font-size: 0.8em; }
-        #updatePreviewButton { width: 100%; flex-basis: 100%; margin-left: 0; margin-top: 8px; padding: 6px 12px; font-size: 0.8em; }
-
-        .copies-input-container button { width: 28px; height: 28px; font-size: 1.1em; }
-        .copies-input-container input[type="number"] { width: 50px; font-size: 0.9em; }
-
-        .preview-modal-content { width: 95%; padding: 15px; max-height: 90vh; }
-        .preview-modal-header { padding-bottom: 8px; margin-bottom: 10px; }
-        .preview-modal-title { font-size: 1.0em; }
-        .preview-modal-close { font-size: 1.6em; }
-        .preview-modal-body { padding: 8px; }
-
-        .price-display { font-size: 1em; padding: 6px; }
-        #pay-button { width: 90%; padding: 10px 15px; font-size: 0.95em; margin-top: 12px; }
-    }
-</style>
-    <!-- PDF.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js`;</script>
     <!-- Razorpay -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 </head>
 <body>
-<div class="container">
-    <!-- File Input Section -->
-    <div class="file-input-area">
-        <label for="fileInput" id="fileInputLabel">Select File</label>
-        <input type="file" id="fileInput" accept=".pdf, image/jpeg, image/png, image/jpg" />
-    </div>
-    <div class="loader" id="uploadLoader"></div>
 
-    <!-- File Details & Options Container -->
-    <div class="file-details-container" id="fileDetailsContainer">
-        <!-- File Info: Name & Preview Icon -->
+<div class="main-container">
+    <h1>Printer Service</h1>
+    <div class="file-input-area">
+        <label for="fileInput" id="addFileButtonLabel"><i class="fas fa-plus"></i> Add File(s)</label>
+        <input type="file" id="fileInput" accept=".pdf, image/jpeg, image/png, image/jpg" multiple />
+        <div id="fileCounter">Max 5 files allowed. (PDF, JPG, PNG, JPEG)</div>
+    </div>
+    <div id="fileListContainer"></div>
+</div>
+
+<div class="payment-footer">
+    <div id="totalPriceDisplay">Add files to see total price.</div>
+    <div id="globalStatusMessage"></div>
+    <div class="loader" id="paymentLoader"></div>
+    <button id="pay-button" disabled><i class="fas fa-credit-card"></i> Pay Now</button>
+</div>
+
+<template id="fileItemTemplate">
+    <div class="file-item-container" data-id="">
         <div class="file-info-bar">
-            <span id="fileNameDisplay">No file selected</span>
-            <button id="previewIcon" title="Preview File" disabled>
-               Preview <i class="fas fa-eye"></i>
+            <span class="file-name-display">File name...</span>
+            <div class="loader item-loader"></div>
+            <button class="preview-icon" title="Preview File" disabled data-action="previewFile">
+                preview <i class="fas fa-eye"></i>
             </button>
         </div>
-
-        <!-- Print Type Options -->
-        <div class="options-group print-type">
-            <h3>Select Print Type</h3>
-            <!-- Added radio-options-container -->
-            <div class="radio-options-container">
-                <label class="radio-option">
-                    <input type="radio" name="printType" value="1" required checked >
-                    <span>Color</span>
-                    <span id="colorPrice" class="price-hint"></span> <!-- Still here but hidden by CSS -->
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="printType" value="0" required >
-                    <span>Black & White</span> <!-- Shortened text -->
-                    <span id="bwPrice" class="price-hint"></span> <!-- Still here but hidden by CSS -->
-                </label>
+         <div class="item-status-display"></div>
+        <div class="item-options">
+            <div class="options-group print-type">
+                <h3>Print Type</h3>
+                <div class="radio-options-container">
+                    <label class="radio-option selected"><input type="radio" name="printType_" value="1" required checked data-option="printType"><span>Color</span></label>
+                    <label class="radio-option"><input type="radio" name="printType_" value="0" required data-option="printType"><span>B&W</span></label>
+                </div>
             </div>
+            <div class="options-group page-range">
+                <h3>Page Range</h3>
+                <div class="radio-options-container">
+                    <label class="radio-option selected"><input type="radio" name="pageRangeType_" value="all" required checked data-option="pageRangeType"><span>All Pages</span></label>
+                    <label class="radio-option"><input type="radio" name="pageRangeType_" value="custom" required data-option="pageRangeType"><span>Custom</span></label>
+                </div>
+                <div class="custom-page-inputs">
+                    <label>Start:</label><input type="number" name="startPage_" min="1" placeholder="1" disabled data-option="startPage">
+                    <label>End:</label><input type="number" name="endPage_" min="1" placeholder="N" disabled data-option="endPage">
+                    <button class="update-details-button" disabled data-action="updateDetails">Update</button>
+                </div>
+            </div>
+            <div class="options-group copies-option">
+                <h3>Copies</h3>
+                <div class="copies-input-container">
+                    <button data-action="decrementCopies" aria-label="Decrease copies" disabled>-</button>
+                    <input type="number" name="numberOfCopies_" value="1" min="1" max="99" required data-option="numberOfCopies" aria-label="Number of copies">
+                    <button data-action="incrementCopies" aria-label="Increase copies">+</button>
+                </div>
+            </div>
+             <div class="item-price-display">Price: -</div>
         </div>
+        <button class="remove-file-button" title="Remove File" data-action="removeFile"> remove<i class="fas fa-times"></i></button>
+    </div>
+</template>
 
-        <!-- Page Range Options -->
-        <!-- *** ADDED ID HERE *** -->
-        <div class="options-group page-range" id="pageRangeGroup">
-            <h3>Select Page Range</h3>
-            <!-- Added radio-options-container -->
-            <div class="radio-options-container">
-                <label class="radio-option">
-                    <input type="radio" name="pageRangeType" value="all" required checked>
-                    <span>All Pages</span>
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="pageRangeType" value="custom" required>
-                    <span>Custom Pages</span> <!-- Shortened text -->
-                </label>
-            </div>
-            <!-- Custom Inputs (remain below the container) -->
-            <div class="custom-page-inputs" id="customPageInputs">
-                <label for="startPage">Start:</label>
-                <input type="number" id="startPage" name="startPage" min="1" placeholder="" disabled>
-                <label for="endPage">End:</label>
-                <input type="number" id="endPage" name="endPage" min="1" placeholder="" disabled>
-                <button id="updatePreviewButton" disabled>Update Details</button>
-            </div>
-        </div>
-
-        <!-- Number of Copies Options -->
-        <div class="options-group copies-option">
-            <h3>Number of Copies</h3>
-            <div class="copies-input-container">
-                <button id="decrementCopiesButton" aria-label="Decrease copies" disabled>-</button>
-                <input type="number" id="numberOfCopiesInput" name="numberOfCopies" value="1" min="1" required aria-label="Number of copies">
-                <button id="incrementCopiesButton" aria-label="Increase copies">+</button>
-            </div>
-        </div>
-    </div> <!-- End File Details Container -->
-
-    <!-- Price & Payment Section -->
-    <div id="priceDisplay" class="price-display">Select file to see options and price.</div>
-    <div id="statusMessage"></div>
-    <div class="loader" id="paymentLoader"></div>
-    <button id="pay-button" disabled>Pay Now</button>
-
-</div> <!-- End Container -->
-
-<!-- Preview Modal HTML (No Changes Needed Here) -->
 <div id="previewModal" class="preview-modal">
     <div class="preview-modal-content">
         <div class="preview-modal-header">
@@ -344,411 +275,613 @@
     </div>
 </div>
 
+<!-- MAIN SCRIPT - NO type="module" -->
 <script>
-    // --- Global State & DOM Elements ---
-    let currentFileInfo = null;
-    let currentPrintType = 1;
-    let currentPageRangeType = 'all';
-    let currentFile = null;
-    let currentNumberOfCopies = 1;
+    document.addEventListener('DOMContentLoaded', (event) => {
 
-    const fileInput = document.getElementById('fileInput');
-    const fileInputLabel = document.getElementById('fileInputLabel');
-    const fileDetailsContainer = document.getElementById('fileDetailsContainer');
-    const fileNameDisplay = document.getElementById('fileNameDisplay');
-    const priceDisplay = document.getElementById('priceDisplay');
-    const payButton = document.getElementById('pay-button');
-    const statusMessage = document.getElementById('statusMessage');
-    const printTypeRadios = document.querySelectorAll('input[name="printType"]');
-    const pageRangeRadios = document.querySelectorAll('input[name="pageRangeType"]');
-    const customPageInputsDiv = document.getElementById('customPageInputs');
-    const startPageInput = document.getElementById('startPage');
-    const endPageInput = document.getElementById('endPage');
-    const updatePreviewButton = document.getElementById('updatePreviewButton');
-    const uploadLoader = document.getElementById('uploadLoader');
-    const paymentLoader = document.getElementById('paymentLoader');
-    const numberOfCopiesInput = document.getElementById('numberOfCopiesInput');
-    const decrementCopiesButton = document.getElementById('decrementCopiesButton');
-    const incrementCopiesButton = document.getElementById('incrementCopiesButton');
-    const previewIcon = document.getElementById('previewIcon');
-    const previewModal = document.getElementById('previewModal');
-    const modalPreviewContent = document.getElementById('modalPreviewContent');
-    const modalPreviewTitle = document.getElementById('previewModalTitle');
-    const closePreviewModal = document.getElementById('closePreviewModal');
-    // *** ADDED: Get reference to page range group ***
-    const pageRangeGroup = document.getElementById('pageRangeGroup');
+        // --- PDF.js Setup (Non-Module) ---
+        if (typeof pdfjsLib === 'undefined') {
+            console.error("PDF.js library not loaded!");
+            alert("Error: Could not load PDF viewer library. PDF previews may not work.");
+        } else {
+            try {
+                 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`;
+                 console.log("PDF.js worker configured (non-module).");
+             } catch (pdfError) {
+                 console.error("Error setting PDF.js worker source:", pdfError);
+                 alert("Error initializing PDF viewer library.");
+             }
+        }
 
-    // --- Event Listeners (Unchanged) ---
-    fileInput.addEventListener('change', handleFileSelect);
-    printTypeRadios.forEach(radio => radio.addEventListener('change', handlePrintTypeChange));
-    pageRangeRadios.forEach(radio => radio.addEventListener('change', handlePageRangeChange));
-    startPageInput.addEventListener('input', handleCustomPageInputChange);
-    endPageInput.addEventListener('input', handleCustomPageInputChange);
-    updatePreviewButton.addEventListener('click', handleUpdatePreviewClick);
-    payButton.addEventListener('click', initiatePayment);
-    decrementCopiesButton.addEventListener('click', handleDecrementCopies);
-    incrementCopiesButton.addEventListener('click', handleIncrementCopies);
-    numberOfCopiesInput.addEventListener('input', handleCopiesInputChange);
-    numberOfCopiesInput.addEventListener('blur', handleCopiesInputBlur);
-    previewIcon.addEventListener('click', openPreviewModal);
-    closePreviewModal.addEventListener('click', closePreviewModalHandler);
-    previewModal.addEventListener('click', (event) => {
-        if (event.target === previewModal) { closePreviewModalHandler(); }
+        // --- Global State & Config ---
+        const MAX_FILES = 5;
+        let fileItems = [];
+        let nextItemId = 0;
+
+        // --- DOM Elements ---
+        const fileInput = document.getElementById('fileInput');
+        const addFileButtonLabel = document.getElementById('addFileButtonLabel');
+        const fileListContainer = document.getElementById('fileListContainer');
+        const fileItemTemplate = document.getElementById('fileItemTemplate');
+        const fileCounter = document.getElementById('fileCounter');
+        const totalPriceDisplay = document.getElementById('totalPriceDisplay');
+        const payButton = document.getElementById('pay-button');
+        const globalStatusMessage = document.getElementById('globalStatusMessage');
+        const paymentLoader = document.getElementById('paymentLoader');
+        const previewModal = document.getElementById('previewModal');
+        const modalPreviewContent = document.getElementById('modalPreviewContent');
+        const modalPreviewTitle = document.getElementById('previewModalTitle');
+        const closePreviewModal = document.getElementById('closePreviewModal');
+
+        // --- Event Listeners ---
+        addFileButtonLabel.addEventListener('click', (e) => {
+        // Only prevent the default label action IF it's visually disabled
+        if (addFileButtonLabel.style.opacity === '0.6' || fileInput.disabled) {
+            console.log('Add file button clicked but is disabled. Preventing default.');
+            e.preventDefault(); // Prevent the label from triggering the input if disabled
+        }
+        // No need to call fileInput.click();
     });
+        fileInput.addEventListener('change', handleFileSelect);
+        fileListContainer.addEventListener('change', handleOptionChange);
+        fileListContainer.addEventListener('click', handleItemAction);
+        fileListContainer.addEventListener('input', handleNumberInputChange);
+        payButton.addEventListener('click', initiatePayment);
+        closePreviewModal.addEventListener('click', closePreviewModalHandler);
+        previewModal.addEventListener('click', (event) => {
+            if (event.target === previewModal) { closePreviewModalHandler(); }
+        });
 
-    // --- Initialization (Unchanged) ---
-    function initializeApp() {
-        console.log('Page script loaded. Initializing...');
-        fileNameDisplay.textContent = formatFileName(null);
-        currentPrintType = parseInt(document.querySelector('input[name="printType"]:checked').value, 10);
-        currentPageRangeType = document.querySelector('input[name="pageRangeType"]:checked').value;
-        currentNumberOfCopies = 1;
-        numberOfCopiesInput.value = currentNumberOfCopies;
-        updateCopiesButtonStates();
-        updateCustomInputState();
-        resetStateAndUI();
-        hideStatus();
-        fileDetailsContainer.classList.remove('visible');
-        pageRangeGroup.style.display = ''; // Ensure it's visible initially if details show
-        previewIcon.disabled = true;
-    }
-
-    // --- Helper Functions (Unchanged) ---
-    function showLoader(loaderElement) { loaderElement.style.display = 'block'; }
-    function hideLoader(loaderElement) { loaderElement.style.display = 'none'; }
-    function showStatus(message, type = 'info') { /* ... same ... */
-        statusMessage.textContent = message;
-        statusMessage.className = `status-${type}`;
-        statusMessage.style.display = 'block';
-        console.log(`Status (${type}):`, message);
-    }
-    function hideStatus() { /* ... same ... */
-        statusMessage.textContent = '';
-        statusMessage.className = '';
-        statusMessage.style.display = 'none';
-    }
-    function formatFileName(fileName) { /* ... same ... */
-        if (!fileName) return 'No file selected';
-        const maxLength = 25; // Adjusted slightly if needed
-        if (fileName.length > maxLength) {
-             const parts = fileName.split('.');
-             const ext = parts.length > 1 ? '.' + parts.pop() : '';
-             const nameWithoutExt = parts.join('.');
-             return nameWithoutExt.substring(0, maxLength - 3 - ext.length) + '...' + ext;
-        }
-        return fileName;
-    }
-
-    // --- Pricing Logic (Unchanged) ---
-    function calculateFirstCopyPrice(pages, printType) { /* ... same ... */
-        let amount = 0;
-        // For images, assume pages = 1 if currentFileInfo is image-based
-        const effectivePages = (currentFileInfo && currentFileInfo.mimeType?.startsWith('image/')) ? 1 : pages;
-        if (effectivePages <= 0 || typeof effectivePages !== 'number') return 0;
-        if (printType == 0) { amount = (effectivePages <= 2) ? effectivePages * 10 : (effectivePages - 2) * 2 + 20; }
-        else if (printType == 1) { amount = (effectivePages <= 1) ? effectivePages * 20 : (effectivePages - 1) * 5 + 20; }
-        return amount;
-    }
-    function calculateTotalPrice(pages, printType, numberOfCopies) { /* ... same ... */
-        // For images, assume pages = 1 if currentFileInfo is image-based
-        const effectivePages = (currentFileInfo && currentFileInfo.mimeType?.startsWith('image/')) ? 1 : pages;
-        if (effectivePages <= 0 || typeof effectivePages !== 'number' || numberOfCopies < 1) return 0;
-        const firstCopyPrice = calculateFirstCopyPrice(effectivePages, printType);
-        if (numberOfCopies === 1) { return firstCopyPrice; }
-        let costOfOneAdditionalCopy = 0;
-        if (printType == 0) { costOfOneAdditionalCopy = effectivePages * 2; }
-        else if (printType == 1) { costOfOneAdditionalCopy = effectivePages * 5; }
-        const totalPrice = firstCopyPrice + (costOfOneAdditionalCopy * (numberOfCopies - 1));
-        return totalPrice;
-    }
-
-    // --- UI State Functions (Minor Changes) ---
-    function clearPreview() {
-         modalPreviewContent.innerHTML = '<p class="placeholder">Select a file to see the preview.</p>';
-    }
-
-    function resetStateAndUI(keepFile = false) {
-        console.log('Resetting state and UI', keepFile ? '(keeping file)' : '');
-        currentFileInfo = null;
-        if (!keepFile) {
-            currentFile = null; fileInput.value = '';
-            fileNameDisplay.textContent = formatFileName(null);
-            fileDetailsContainer.classList.remove('visible');
-            pageRangeGroup.style.display = ''; // Ensure page range is potentially visible on reset
-            previewIcon.disabled = true;
-            clearPreview(); closePreviewModalHandler();
-            priceDisplay.textContent = ' ';
-        } else {
-            previewIcon.disabled = true;
-             // Ensure page range visibility is correct for the kept file type
-            const isImage = currentFile && ['image/jpeg', 'image/png', 'image/jpg'].includes(currentFile.type);
-            pageRangeGroup.style.display = isImage ? 'none' : '';
-        }
-        document.querySelector('input[name="printType"][value="1"]').checked = true;
-        document.querySelector('input[name="pageRangeType"][value="all"]').checked = true;
-        currentPrintType = 1; currentPageRangeType = 'all'; currentNumberOfCopies = 1;
-        numberOfCopiesInput.value = currentNumberOfCopies;
-        updateCopiesButtonStates(); updateCustomInputState();
-        updatePriceDisplay(); // Update price display (will show default msg)
-        payButton.disabled = true;
-        hideStatus(); hideLoader(uploadLoader); hideLoader(paymentLoader);
-    }
-
-    // --- Event Handlers ---
-    function handleFileSelect(event) {
-        const file = event.target.files[0];
-        currentFile = null; currentFileInfo = null;
-        fileDetailsContainer.classList.remove('visible');
-        pageRangeGroup.style.display = ''; // Reset display before potentially hiding
-        previewIcon.disabled = true;
-
-        if (!file) {
-            resetStateAndUI();
-            return;
+        // --- Initialization ---
+        function initializeApp() {
+            console.log('App Initializing...');
+            updateFileCounter();
+            updateTotalPriceDisplay();
+            hideGlobalStatus();
         }
 
-        const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
-        if (!allowedTypes.includes(file.type)) {
-            showStatus('Unsupported file type.', 'error');
-            resetStateAndUI();
-            return;
+        // --- Helper Functions ---
+        function showLoader(loaderElement) { if(loaderElement) loaderElement.style.display = 'block'; }
+        function hideLoader(loaderElement) { if(loaderElement) loaderElement.style.display = 'none'; }
+        function showGlobalStatus(message, type = 'info') {
+            globalStatusMessage.textContent = message;
+            globalStatusMessage.className = ''; // Clear previous
+            globalStatusMessage.classList.add(`status-${type}`);
+            globalStatusMessage.style.display = 'block';
+            console.log(`Global Status (${type}):`, message);
+        }
+        function hideGlobalStatus() {
+            globalStatusMessage.textContent = '';
+            globalStatusMessage.className = '';
+            globalStatusMessage.style.display = 'none';
+        }
+        function showItemStatus(itemElement, message, type = 'info') {
+            const statusEl = itemElement?.querySelector('.item-status-display');
+            if (statusEl) {
+                statusEl.textContent = message;
+                statusEl.className = 'item-status-display'; // Reset
+                statusEl.classList.add(type);
+                statusEl.style.display = 'block';
+                console.log(`Item Status (ID: ${itemElement.dataset.id}, Type: ${type}):`, message);
+            }
+        }
+        function hideItemStatus(itemElement) {
+            const statusEl = itemElement?.querySelector('.item-status-display');
+            if (statusEl) {
+                statusEl.textContent = '';
+                statusEl.className = 'item-status-display';
+                statusEl.style.display = 'none';
+            }
+        }
+        function formatFileName(fileName, maxLength = 30) {
+            if (!fileName) return 'Processing...';
+            if (fileName.length > maxLength) {
+                const parts = fileName.split('.');
+                const ext = parts.length > 1 ? '.' + parts.pop() : '';
+                const nameWithoutExt = parts.join('.');
+                return nameWithoutExt.substring(0, maxLength - 3 - ext.length) + '...' + ext;
+            }
+            return fileName;
+        }
+        function findItemById(id) { return fileItems.find(item => item.id === id); }
+        function getItemElementById(id) { return fileListContainer.querySelector(`.file-item-container[data-id="${id}"]`); }
+        function updateFileCounter() {
+            const count = fileItems.length;
+            fileCounter.textContent = `${count} / ${MAX_FILES} files selected.`;
+            const isDisabled = count >= MAX_FILES;
+            addFileButtonLabel.style.opacity = isDisabled ? '0.6' : '1';
+            addFileButtonLabel.style.cursor = isDisabled ? 'not-allowed' : 'pointer';
+            fileInput.disabled = isDisabled;
         }
 
-        console.log('File selected:', file.name, file.type);
-        currentFile = file;
-        fileNameDisplay.textContent = formatFileName(file.name);
-
-        // *** MODIFICATION START: Show/hide page range based on file type ***
-        const isImage = ['image/jpeg', 'image/png', 'image/jpg'].includes(file.type);
-
-        if (isImage) {
-            pageRangeGroup.style.display = 'none'; // Hide the page range section
-            // Ensure the state reflects 'all pages' for images implicitly
-            document.querySelector('input[name="pageRangeType"][value="all"]').checked = true;
-            currentPageRangeType = 'all';
-            console.log('Image selected, hiding page range.');
-        } else { // It's a PDF
-            pageRangeGroup.style.display = ''; // Show the page range section (revert to default)
-            // Reset to 'all' by default when a new PDF is selected
-            document.querySelector('input[name="pageRangeType"][value="all"]').checked = true;
-            currentPageRangeType = 'all';
-             console.log('PDF selected, showing page range.');
+        // --- Pricing Logic ---
+        function calculateFirstCopyPrice(pages, printType) {
+            if (pages <= 0 || typeof pages !== 'number') return 0;
+            let amount = 0;
+            if (printType == 0) { amount = (pages <= 2) ? pages * 10 : (pages - 2) * 2 + 20; }
+            else if (printType == 1) { amount = (pages <= 1) ? pages * 20 : (pages - 1) * 5 + 20; }
+            return amount;
         }
-         // *** MODIFICATION END ***
-
-        // Reset other options to defaults
-        document.querySelector('input[name="printType"][value="1"]').checked = true;
-        currentPrintType = 1;
-        currentNumberOfCopies = 1;
-        numberOfCopiesInput.value = currentNumberOfCopies;
-
-        // Update UI states
-        fileDetailsContainer.classList.add('visible');
-        updateCopiesButtonStates();
-        updateCustomInputState(); // Ensure custom inputs are correctly shown/hidden based on pageRangeType
-        payButton.disabled = true;
-        hideStatus();
-
-        console.log('Triggering initial automatic processing...');
-        // Server should handle images as having 1 page.
-        triggerUploadAndPreview(currentFile, currentPrintType, 'all', null, null);
-    }
-
-    function handlePrintTypeChange(event) { /* ... same logic ... */
-        currentPrintType = parseInt(event.target.value, 10);
-        console.log('Print type changed:', currentPrintType === 1 ? 'Color' : 'B&W');
-        if (currentFileInfo) { updatePriceDisplay(); checkButtonState(); }
-        else if (currentFile) { updatePriceDisplay(); showStatus("File processing...", 'info'); }
-        if (previewModal.classList.contains('visible')) { updateModalTitle(); }
-    }
-    function handlePageRangeChange(event) { /* ... same logic ... */
-        // This should only be possible for PDF files now
-        const previousPageRangeType = currentPageRangeType; currentPageRangeType = event.target.value;
-        console.log('Page range type changed to:', currentPageRangeType);
-        updateCustomInputState();
-        if (currentPageRangeType === 'custom') {
-            payButton.disabled = true; previewIcon.disabled = true;
-            if (currentFileInfo) { currentFileInfo = null; } // Force re-fetch for custom range
-            priceDisplay.textContent = 'Enter custom range and click Update Details.';
-            showStatus('Enter custom pages and click Update Details.', 'info');
-            updatePreviewButton.disabled = !areCustomInputsValid(); updatePreviewButton.textContent = "Update Details";
-        } else if (currentPageRangeType === 'all' && previousPageRangeType === 'custom') {
-            if (currentFile) { console.log("Switching back to 'All Pages', re-processing..."); triggerUploadAndPreview(currentFile, currentPrintType, 'all', null, null); }
-            else { resetStateAndUI(); }
-        } else { updatePriceDisplay(); checkButtonState(); }
-    }
-    function updateCustomInputState() { /* ... same logic ... */
-        // Also ensure parent group is visible for this to matter
-        const isCustom = currentPageRangeType === 'custom' && pageRangeGroup.style.display !== 'none';
-        customPageInputsDiv.classList.toggle('visible', isCustom);
-        startPageInput.disabled = !isCustom; endPageInput.disabled = !isCustom;
-        startPageInput.required = isCustom; endPageInput.required = isCustom;
-        updatePreviewButton.disabled = !isCustom || !areCustomInputsValid();
-        updatePreviewButton.textContent = isCustom ? "Update Details" : "Update Preview";
-        if (!isCustom) { startPageInput.value = ''; endPageInput.value = ''; startPageInput.setCustomValidity(""); endPageInput.setCustomValidity(""); }
-    }
-    function areCustomInputsValid() { /* ... same logic ... */
-        const startVal = parseInt(startPageInput.value, 10); const endVal = parseInt(endPageInput.value, 10);
-        const isValid = !isNaN(startVal) && !isNaN(endVal) && startVal >= 1 && endVal >= startVal;
-        const inputsValidHTML = startPageInput.checkValidity() && endPageInput.checkValidity();
-        return isValid && inputsValidHTML;
-    }
-    function handleCustomPageInputChange() { /* ... same logic, minor message change */
-         const startVal = parseInt(startPageInput.value, 10); const endVal = parseInt(endPageInput.value, 10);
-         startPageInput.setCustomValidity(""); endPageInput.setCustomValidity("");
-         if (startPageInput.value && endPageInput.value) { if (isNaN(startVal) || startVal < 1) startPageInput.setCustomValidity(">= 1"); else if (isNaN(endVal) || endVal < 1) endPageInput.setCustomValidity(">= 1"); else if (startVal > endVal) endPageInput.setCustomValidity("End >= Start"); }
-         else if (startPageInput.value && (isNaN(startVal) || startVal < 1)) startPageInput.setCustomValidity(">= 1"); else if (endPageInput.value && (isNaN(endVal) || endVal < 1)) endPageInput.setCustomValidity(">= 1");
-         updatePreviewButton.disabled = !areCustomInputsValid();
-         if (currentPageRangeType === 'custom') {
-            payButton.disabled = true; previewIcon.disabled = true;
-            if (!updatePreviewButton.disabled) { showStatus('Page range input changed. Click Update Details.', 'info'); priceDisplay.textContent = 'Click Update Details to see price.'; }
-            else { showStatus('Please enter valid start and end pages.', 'warning'); priceDisplay.textContent = 'Enter valid page range.'; }
-         }
-    }
-    function updateCopiesButtonStates() { /* ... same logic ... */ decrementCopiesButton.disabled = (currentNumberOfCopies <= 1); }
-    function handleDecrementCopies() { /* ... same logic ... */ if (currentNumberOfCopies > 1) { currentNumberOfCopies--; numberOfCopiesInput.value = currentNumberOfCopies; updateCopiesButtonStates(); updatePriceDisplay(); checkButtonState(); } }
-    function handleIncrementCopies() { /* ... same logic ... */ currentNumberOfCopies++; numberOfCopiesInput.value = currentNumberOfCopies; updateCopiesButtonStates(); updatePriceDisplay(); checkButtonState(); }
-    function handleCopiesInputChange() { /* ... same logic ... */ let value = parseInt(numberOfCopiesInput.value, 10); if (isNaN(value) || value < 1) { return; } if (value !== currentNumberOfCopies) { currentNumberOfCopies = value; updateCopiesButtonStates(); updatePriceDisplay(); checkButtonState(); } }
-    function handleCopiesInputBlur() { /* ... same logic ... */ let value = parseInt(numberOfCopiesInput.value, 10); if (isNaN(value) || value < 1) { value = 1; } currentNumberOfCopies = value; numberOfCopiesInput.value = currentNumberOfCopies; updateCopiesButtonStates(); updatePriceDisplay(); checkButtonState(); }
-    function handleUpdatePreviewClick() { /* ... same logic (Update Details button) ... */
-        if (!currentFile) { showStatus('Please select a file first.', 'warning'); return; } if (currentPageRangeType !== 'custom') { console.warn('Update Details clicked outside custom mode.'); return; } if (!startPageInput.reportValidity() || !endPageInput.reportValidity()) { showStatus('Please enter valid start and end pages.', 'error'); updatePreviewButton.disabled = true; return; } const startPageValue = parseInt(startPageInput.value, 10); const endPageValue = parseInt(endPageInput.value, 10); if (isNaN(startPageValue) || isNaN(endPageValue) || startPageValue < 1 || endPageValue < startPageValue) { showStatus('Invalid start/end page values.', 'error'); endPageInput.setCustomValidity("End >= Start (>= 1)."); endPageInput.reportValidity(); updatePreviewButton.disabled = true; return; } endPageInput.setCustomValidity(""); console.log('Update Details clicked, processing custom range...'); triggerUploadAndPreview(currentFile, currentPrintType, 'custom', startPageValue, endPageValue);
-    }
-
-    // --- Core Upload/Processing (Unchanged Logic - Assumes server handles image page count) ---
-    function triggerUploadAndPreview(fileToUpload, printTypeValue, rangeType, startPageValue, endPageValue) {
-        if (!fileToUpload) { showStatus('No file selected.', 'warning'); return; }
-        const effectiveRangeType = (fileToUpload.type.startsWith('image/')) ? 'all' : rangeType; // Force 'all' for images client-side too
-        console.log(`Triggering Upload/Process: File=${fileToUpload.name}, Type=${printTypeValue}, Range=${effectiveRangeType}, Start=${startPageValue}, End=${endPageValue}`);
-        payButton.disabled = true; previewIcon.disabled = true; if (updatePreviewButton) updatePreviewButton.disabled = true;
-        showLoader(uploadLoader); priceDisplay.textContent = 'Processing file...';
-        hideStatus(); currentFileInfo = null;
-
-        const formData = new FormData();
-        formData.append('file', fileToUpload);
-        formData.append('pageRangeType', effectiveRangeType); // Send 'all' for images
-        if (effectiveRangeType === 'custom' && startPageValue && endPageValue) {
-            formData.append('startPage', startPageValue);
-            formData.append('endPage', endPageValue);
+        function calculateTotalPriceForItem(pages, printType, numberOfCopies) {
+            if (pages < 0 || typeof pages !== 'number' || numberOfCopies < 1) return 0;
+            if (pages === 0) return 0;
+            const firstCopyPrice = calculateFirstCopyPrice(pages, printType);
+            if (numberOfCopies === 1) { return firstCopyPrice; }
+            let costOfOneAdditionalCopy = 0;
+            if (printType == 0) { costOfOneAdditionalCopy = pages * 2; }
+            else if (printType == 1) { costOfOneAdditionalCopy = pages * 5; }
+            return firstCopyPrice + (costOfOneAdditionalCopy * (numberOfCopies - 1));
         }
 
-        fetch('/print/upload', { method: 'POST', body: formData })
-        .then(response => { if (!response.ok) { return response.json().then(errData => { throw new Error(errData.error || `Processing failed: ${response.statusText}`); }).catch(() => { throw new Error(`Processing failed (HTTP ${response.status} ${response.statusText})`); }); } return response.json(); })
-        .then(data => { console.log('Data from /print/upload:', data); if (!data || typeof data !== 'object' || data.error) throw new Error(data?.error || "Invalid data received."); if (typeof data.pageCount !== 'number' || !data.c_url) throw new Error("Processing incomplete: Missing essential data."); if (!data.url || !data.bwFileName) console.warn("B&W processing might have failed.", data);
-            // Store the received file info, including the mimeType from the original file
-            currentFileInfo = {
-                fileName: data.fileName,
-                bwFileName: data.bwFileName,
-                pageCount: data.pageCount, // Server should return 1 for images
-                mimeType: fileToUpload.type, // Keep original mimeType
-                url: data.url,
-                c_url: data.c_url
+        // --- UI Update Functions ---
+        function updateItemPriceDisplay(item) {
+            const itemElement = item.element;
+            const priceDisplayEl = itemElement?.querySelector('.item-price-display');
+            if (!priceDisplayEl) return;
+            item.price = 0;
+            if (item.status === 'processed' && item.fileInfo && typeof item.fileInfo.pageCount === 'number') {
+                const requiredUrl = (item.printType === 1) ? item.fileInfo.c_url : item.fileInfo.url;
+                const requiredFileName = (item.printType === 1) ? item.fileInfo.fileName : item.fileInfo.bwFileName;
+                if (!requiredUrl || !requiredFileName) { priceDisplayEl.textContent = `Price: N/A`; }
+                else if (item.fileInfo.pageCount < 0) { priceDisplayEl.textContent = `Price: Invalid Pages`; }
+                else {
+                    item.price = calculateTotalPriceForItem(item.fileInfo.pageCount, item.printType, item.numberOfCopies);
+                    priceDisplayEl.textContent = `Price: Rs. ${item.price}`;
+                }
+            } else if (item.status === 'processing' || item.status === 'new') { priceDisplayEl.textContent = 'Price: -'; }
+            else if (item.status === 'error') { priceDisplayEl.textContent = 'Price: Error'; }
+            else { priceDisplayEl.textContent = 'Price: -'; }
+            updateTotalPriceDisplay();
+        }
+
+        function updateTotalPriceDisplay() {
+            let total = 0;
+            let canPay = false;
+            let readyItemCount = 0;
+            let hasPendingOrError = false;
+            fileItems.forEach(item => {
+                if (item.status === 'processed' && item.price >= 0) {
+                    const requiredUrl = (item.printType === 1) ? item.fileInfo?.c_url : item.fileInfo?.url;
+                    const requiredFileName = (item.printType === 1) ? item.fileInfo?.fileName : item.fileInfo?.bwFileName;
+                    if (requiredUrl && requiredFileName && item.fileInfo?.pageCount >= 0) {
+                        total += item.price;
+                        readyItemCount++;
+                    } else { hasPendingOrError = true; }
+                } else if (item.status !== 'processed') { hasPendingOrError = true; }
+            });
+            const allZeroPageProcessed = fileItems.length > 0 && fileItems.every(i => i.status === 'processed' && i.fileInfo?.pageCount === 0);
+            canPay = (readyItemCount > 0 && !hasPendingOrError && fileItems.length > 0) || (total === 0 && allZeroPageProcessed);
+            if (fileItems.length === 0) { totalPriceDisplay.textContent = 'Add files to see total price.'; }
+            else if (hasPendingOrError) { totalPriceDisplay.textContent = 'Processing... Total unavailable.'; }
+            else if (readyItemCount === 0) { totalPriceDisplay.textContent = 'No valid items to calculate price.'; }
+            else { totalPriceDisplay.textContent = `Total Amount: Rs. ${total}`; }
+            payButton.disabled = !canPay;
+        }
+
+        function updateItemUIState(item) {
+            const itemElement = item.element; if (!itemElement) return;
+            const optionsDiv = itemElement.querySelector('.item-options');
+            const previewButton = itemElement.querySelector('.preview-icon');
+            const itemLoader = itemElement.querySelector('.item-loader');
+            const fileNameEl = itemElement.querySelector('.file-name-display');
+            fileNameEl.textContent = formatFileName(item.fileInfo?.originalFileName || item.file?.name || 'Unknown File');
+            itemElement.classList.remove('processing', 'error');
+            hideLoader(itemLoader);
+            if (item.status === 'processing') {
+                itemElement.classList.add('processing'); showLoader(itemLoader);
+                optionsDiv.style.display = 'none'; previewButton.disabled = true; hideItemStatus(itemElement);
+            } else if (item.status === 'error') {
+                itemElement.classList.add('error'); optionsDiv.style.display = 'none'; previewButton.disabled = true;
+            } else if (item.status === 'processed') {
+                optionsDiv.style.display = 'flex'; previewButton.disabled = false; hideItemStatus(itemElement);
+                const isImage = item.fileInfo?.mimeType?.startsWith('image/');
+                const pageRangeGroup = itemElement.querySelector('.page-range');
+                if (isImage) {
+                    pageRangeGroup.style.display = 'none'; item.pageRangeType = 'all';
+                    const allRadio = itemElement.querySelector('input[data-option="pageRangeType"][value="all"]');
+                    if (allRadio) allRadio.checked = true;
+                } else { pageRangeGroup.style.display = ''; updateCustomInputState(item); }
+                const bwRadioLabel = itemElement.querySelector('label.radio-option:has(input[value="0"][data-option="printType"])');
+                const bwRadioInput = bwRadioLabel?.querySelector('input');
+                if (bwRadioInput && bwRadioLabel) {
+                    const bwAvailable = !!item.fileInfo?.url && !!item.fileInfo?.bwFileName;
+                    bwRadioInput.disabled = !bwAvailable;
+                    bwRadioLabel.style.opacity = bwAvailable ? '1' : '0.5';
+                    bwRadioLabel.style.cursor = bwAvailable ? 'pointer' : 'not-allowed';
+                    bwRadioLabel.title = bwAvailable ? '' : 'B&W version not available';
+                    if (!bwAvailable && item.printType === 0) {
+                        item.printType = 1;
+                        const colorRadio = itemElement.querySelector('input[data-option="printType"][value="1"]');
+                        if (colorRadio) colorRadio.checked = true;
+                        showItemStatus(itemElement, "B&W unavailable, switched to Color.", "info");
+                    }
+                }
+                highlightSelectedRadio(itemElement, 'printType');
+                highlightSelectedRadio(itemElement, 'pageRangeType');
+            } else { optionsDiv.style.display = 'none'; previewButton.disabled = true; hideItemStatus(itemElement); }
+            updateCopiesButtonStates(item);
+            updateItemPriceDisplay(item);
+        }
+
+        function updateCustomInputState(item) {
+            const itemElement = item.element;
+            const pageRangeGroup = itemElement.querySelector('.page-range');
+            if (!itemElement || !pageRangeGroup || pageRangeGroup.style.display === 'none') return;
+            const customPageDiv = itemElement.querySelector('.custom-page-inputs');
+            const startInput = itemElement.querySelector('input[data-option="startPage"]');
+            const endInput = itemElement.querySelector('input[data-option="endPage"]');
+            const updateButton = itemElement.querySelector('.update-details-button');
+            const isCustom = item.pageRangeType === 'custom';
+            customPageDiv.classList.toggle('visible', isCustom);
+            startInput.disabled = !isCustom; endInput.disabled = !isCustom;
+            startInput.required = isCustom; endInput.required = isCustom;
+            const totalPages = item.fileInfo?.pageCount;
+            if (totalPages > 0) {
+                startInput.placeholder = '1'; startInput.max = totalPages;
+                endInput.placeholder = totalPages; endInput.max = totalPages;
+            } else { startInput.placeholder = ''; startInput.max = null; endInput.placeholder = ''; endInput.max = null; }
+            if (!isCustom) { startInput.value = ''; endInput.value = ''; startInput.setCustomValidity(''); endInput.setCustomValidity(''); }
+            updateButton.disabled = !isCustom || !areCustomInputsValid(item);
+        }
+
+        function areCustomInputsValid(item) {
+            const itemElement = item.element;
+            const startInput = itemElement.querySelector('input[data-option="startPage"]');
+            const endInput = itemElement.querySelector('input[data-option="endPage"]');
+            if (!startInput || !endInput) return false;
+            const startVal = parseInt(startInput.value, 10); const endVal = parseInt(endInput.value, 10);
+            const totalPages = item.fileInfo?.pageCount;
+            const basicValid = !isNaN(startVal) && !isNaN(endVal) && startVal >= 1 && endVal >= startVal;
+            const withinBounds = (totalPages !== null && totalPages > 0) ? (endVal <= totalPages) : true;
+            const inputsValidHTML = startInput.checkValidity() && endInput.checkValidity();
+            return basicValid && withinBounds && inputsValidHTML;
+        }
+
+        function updateCopiesButtonStates(item) {
+            const itemElement = item.element;
+            const decrementBtn = itemElement.querySelector('button[data-action="decrementCopies"]');
+            const countInput = itemElement.querySelector('input[data-option="numberOfCopies"]');
+            if (decrementBtn && countInput) {
+                const value = parseInt(countInput.value, 10);
+                decrementBtn.disabled = isNaN(value) || value <= 1;
+            }
+        }
+
+        function highlightSelectedRadio(itemElement, groupName) {
+            const radios = itemElement.querySelectorAll(`input[data-option="${groupName}"]`);
+            radios.forEach(radio => {
+                const label = radio.closest('label.radio-option');
+                if (label) { label.classList.toggle('selected', radio.checked); }
+            });
+        }
+
+        // --- Event Handlers ---
+       
+            function handleFileSelect(event) {
+        // --->>> ADDED LOG 1: Check if the handler is triggered at all
+        console.log('handleFileSelect triggered.');
+        hideGlobalStatus(); // Clear previous global messages
+
+        // --->>> ADDED LOG 2: Log the event target and its files
+        console.log('Event Target:', event.target);
+        console.log('Selected files:', event.target.files);
+
+        const files = Array.from(event.target.files || []); // Use empty array if null/undefined
+
+        // --->>> ADDED LOG 3: Check how many files were detected
+        console.log(`Detected ${files.length} file(s).`);
+
+        if (!files.length) {
+             // --->>> ADDED LOG 4: Check if exiting due to no files
+             console.log('Exiting handleFileSelect because no files were found in the event.');
+             // If this log appears unexpectedly on page load, something else is triggering the event.
+             // If it appears after selecting files, the browser didn't register the selection.
+             return;
+        }
+
+        const currentCount = fileItems.length;
+        const availableSlots = MAX_FILES - currentCount;
+
+        if (availableSlots <= 0) {
+             showGlobalStatus(`Cannot add more files. Maximum ${MAX_FILES} allowed.`, 'warning');
+             // --->>> ADDED LOG 5: Check if exiting due to max files reached
+             console.log('Exiting handleFileSelect because max files limit reached.');
+             // Clear input value even if max files reached, so user can select different files later if some are removed
+             event.target.value = null;
+             return;
+        }
+
+        if (files.length > availableSlots) {
+            showGlobalStatus(`You can only add ${availableSlots} more file(s). Added the first ${availableSlots}.`, 'warning');
+        }
+
+        const filesToAdd = files.slice(0, availableSlots);
+        console.log(`Attempting to add ${filesToAdd.length} file(s).`); // --->>> ADDED LOG 6
+
+        filesToAdd.forEach((file, index) => {
+            // --->>> ADDED LOG 7: Track progress inside the loop
+            console.log(`Processing file #${index + 1}: ${file.name}, Type: ${file.type}, Size: ${file.size}`);
+
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+            if (!allowedTypes.includes(file.type)) {
+                showGlobalStatus(`Skipped unsupported file: ${file.name} (${file.type})`, 'warning');
+                // --->>> ADDED LOG 8: Check if skipping due to type
+                console.log(`Skipping file ${file.name} due to unsupported type.`);
+                return; // Continue to next file in forEach
+            }
+            // Increased size limit slightly for safety, ensure backend matches
+            if (file.size > 10.5 * 1024 * 1024) {
+                 showGlobalStatus(`Skipped large file: ${file.name} (Max 10MB)`, 'warning');
+                 // --->>> ADDED LOG 9: Check if skipping due to size
+                 console.log(`Skipping file ${file.name} due to size (${file.size}).`);
+                 return; // Continue to next file in forEach
+            }
+            if (file.size === 0) {
+                 showGlobalStatus(`Skipped empty file: ${file.name}`, 'warning');
+                 // --->>> ADDED LOG 10: Check if skipping due to empty
+                 console.log(`Skipping file ${file.name} because size is 0.`);
+                 return; // Continue to next file in forEach
+            }
+
+            // If we reach here, the file is valid for processing
+             console.log(`File ${file.name} passed validation. Creating item UI.`); // --->>> ADDED LOG 11
+
+            const newItemId = `item-${nextItemId++}`;
+            const newItem = {
+                id: newItemId, file: file, fileInfo: null, printType: 1, pageRangeType: 'all',
+                startPage: null, endPage: null, numberOfCopies: 1, price: 0, status: 'new', element: null
             };
-            console.log('Assigned currentFileInfo:', JSON.stringify(currentFileInfo));
-            previewIcon.disabled = false; updatePriceDisplay(); checkButtonState(); showStatus('File processed.', 'success');
-        })
-        .catch(error => { console.error('File Processing Error:', error); showStatus(`Processing failed: ${error.message}`, 'error'); resetStateAndUI(true); priceDisplay.textContent = 'Processing failed.'; })
-        .finally(() => { console.log('Processing finished.'); hideLoader(uploadLoader); if (currentPageRangeType === 'custom') { updatePreviewButton.disabled = !areCustomInputsValid(); } });
+
+            try { // Add try...catch for DOM manipulation
+                const templateNode = fileItemTemplate.content.cloneNode(true);
+                const itemElement = templateNode.querySelector('.file-item-container');
+                itemElement.dataset.id = newItemId;
+                newItem.element = itemElement;
+
+                itemElement.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    const originalName = radio.name;
+                    if (originalName.endsWith('_')) { radio.name = originalName + newItemId; }
+                });
+                itemElement.querySelector('.file-name-display').textContent = formatFileName(file.name);
+
+                fileListContainer.appendChild(templateNode);
+                fileItems.push(newItem);
+
+                console.log(`Item ${newItemId} added to UI and state. Triggering upload...`); // --->>> ADDED LOG 12
+                triggerUploadAndProcess(newItem); // Start processing immediately
+
+            } catch (domError) {
+                 console.error(`Error creating UI for item ${newItemId}:`, domError);
+                 showGlobalStatus(`Error adding file ${file.name} to the list.`, 'error');
+            }
+
+        }); // End forEach
+
+        // Clear the file input value ONLY AFTER iterating through selected files
+        // This allows selecting the same file again if removed/failed
+        console.log('Resetting file input value.'); // --->>> ADDED LOG 13
+        event.target.value = null;
+        updateFileCounter();
+        updateTotalPriceDisplay(); // Update total
     }
 
-    // --- Update Price Display (Added check for image mimeType) ---
-    function updatePriceDisplay() {
-        console.log('Updating Price Display. FileInfo:', currentFileInfo ? 'Exists' : 'null', 'PrintType:', currentPrintType, 'Copies:', currentNumberOfCopies);
-
-        let totalPrice = 0;
-        let priceMessage = 'Select file to see options and price.';
-
-        if (currentFileInfo && typeof currentFileInfo.pageCount === 'number' && currentFileInfo.pageCount >= 0) {
-            // Use pageCount directly (should be 1 for images if server is correct)
-            const finalPages = currentFileInfo.pageCount;
-            const bwUrlExists = !!currentFileInfo.url;
-            const colorUrlExists = !!currentFileInfo.c_url;
-
-            totalPrice = calculateTotalPrice(finalPages, currentPrintType, currentNumberOfCopies);
-            const requiredUrlExists = (currentPrintType === 1 && colorUrlExists) || (currentPrintType === 0 && bwUrlExists);
-
-            if (requiredUrlExists && totalPrice >= 0) {
-                 const copiesText = currentNumberOfCopies > 1 ? `(${currentNumberOfCopies} copies)` : `(1 copy)`;
-                 // Adjust page text for images
-                 const pageCountText = (currentFileInfo.mimeType?.startsWith('image/')) ? '1 page' : `${finalPages} pages`;
-                 priceMessage = `Total Price: Rs. ${totalPrice} ${copiesText}`;
-            } else if (currentPrintType === 0 && !bwUrlExists) {
-                 priceMessage = `Price: B&W format not available`; totalPrice = 0;
-            } else if (finalPages === 0) {
-                 priceMessage = `File seems empty (0 pages).`; totalPrice = 0;
+        function handleOptionChange(event) {
+            const target = event.target; if (target.type !== 'radio' || !target.dataset.option) return;
+            const optionType = target.dataset.option; const itemElement = target.closest('.file-item-container'); if (!itemElement) return;
+            const itemId = itemElement.dataset.id; const item = findItemById(itemId); if (!item || item.status !== 'processed' || target.disabled) return;
+            let needsReprice = false; let needsStateUpdate = true;
+            if (optionType === 'printType') {
+                const newType = parseInt(target.value, 10); if (item.printType !== newType) { item.printType = newType; console.log(`Item ${itemId}: Print type changed to ${item.printType === 1 ? 'Color' : 'B&W'}`); updateModalTitle(item); needsReprice = true; }
+            } else if (optionType === 'pageRangeType') {
+                const newRange = target.value; if (item.pageRangeType !== newRange) { const previousRange = item.pageRangeType; item.pageRangeType = newRange; console.log(`Item ${itemId}: Page range changed to ${item.pageRangeType}`); if (newRange === 'custom') { item.price = 0; item.status = 'processed'; showItemStatus(itemElement, "Enter custom range and click Update.", "info"); itemElement.querySelector('.preview-icon').disabled = true; updateItemPriceDisplay(item); } else if (newRange === 'all' && previousRange === 'custom') { const needsServerUpdate = !item.fileInfo || item.startPage || item.endPage; if (needsServerUpdate) { console.log(`Item ${itemId}: Switching back to 'All Pages', re-processing on server...`); item.startPage = null; item.endPage = null; triggerUploadAndProcess(item, true); } else { console.log(`Item ${itemId}: Switching back to 'All Pages', already have full file info.`); hideItemStatus(itemElement); itemElement.querySelector('.preview-icon').disabled = false; needsReprice = true; } } else { needsReprice = true; } }
             }
-            else {
-                 priceMessage = `Price unavailable`; totalPrice = 0;
-            }
-        } else if (currentPageRangeType === 'custom' && !currentFileInfo && pageRangeGroup.style.display !== 'none') {
-             priceMessage = 'Enter custom range and click Update Details.';
-        } else if (!currentFile) {
-             priceMessage = 'Select file to see options and price.';
-        } else {
-             priceMessage = 'Processing... Price unavailable yet.';
+            highlightSelectedRadio(itemElement, optionType); updateItemUIState(item); if (needsReprice) updateItemPriceDisplay(item);
         }
 
-        priceDisplay.textContent = priceMessage;
-        priceDisplay.style.display = 'block';
-        checkButtonState();
-    }
+        function handleNumberInputChange(event) {
+            const target = event.target; if (target.type !== 'number' || !target.dataset.option) return;
+            const optionType = target.dataset.option; const itemElement = target.closest('.file-item-container'); if (!itemElement) return;
+            const itemId = itemElement.dataset.id; const item = findItemById(itemId); if (!item || item.status !== 'processed') return;
+            let value = parseInt(target.value, 10);
+            if (optionType === 'numberOfCopies') {
+                if (isNaN(value) || value < 1) value = 1; if (value > 99) value = 99; target.value = value;
+                if (item.numberOfCopies !== value) { item.numberOfCopies = value; console.log(`Item ${itemId}: Copies changed to ${item.numberOfCopies}`); updateCopiesButtonStates(item); updateItemPriceDisplay(item); }
+            } else if (optionType === 'startPage' || optionType === 'endPage') {
+                const startInput = itemElement.querySelector('input[data-option="startPage"]'); const endInput = itemElement.querySelector('input[data-option="endPage"]'); const updateButton = itemElement.querySelector('.update-details-button');
+                startInput.setCustomValidity(""); endInput.setCustomValidity(""); if (!startInput.checkValidity() || !endInput.checkValidity()) { updateButton.disabled = true; return; }
+                const startVal = parseInt(startInput.value, 10); const endVal = parseInt(endInput.value, 10); const totalPages = item.fileInfo?.pageCount; let customError = false;
+                if (!isNaN(startVal) && startVal < 1) { startInput.setCustomValidity(">= 1"); customError = true; }
+                if (!isNaN(endVal) && !isNaN(startVal) && endVal < startVal) { endInput.setCustomValidity(">= Start"); customError = true; }
+                if (!isNaN(endVal) && totalPages > 0 && endVal > totalPages) { endInput.setCustomValidity(`<= ${totalPages}`); customError = true; }
+                const hasValues = startInput.value !== '' && endInput.value !== ''; updateButton.disabled = customError || !hasValues;
+                if (!updateButton.disabled) { showItemStatus(itemElement, "Range changed. Click Update.", "info"); item.price = 0; updateItemPriceDisplay(item); itemElement.querySelector('.preview-icon').disabled = true; }
+                else if (hasValues) { showItemStatus(itemElement, "Invalid page range.", "error"); item.price = 0; updateItemPriceDisplay(item); itemElement.querySelector('.preview-icon').disabled = true; }
+                else { hideItemStatus(itemElement); }
+            }
+        }
 
-    // --- Button State & Payment (Unchanged Logic) ---
-    function checkButtonState() { /* ... same logic ... */
-         let canPay = false; let calculatedTotal = 0;
-         if (currentFileInfo && typeof currentFileInfo.pageCount === 'number' && currentFileInfo.pageCount >= 0) {
-             const requiredUrl = (currentPrintType === 1) ? currentFileInfo.c_url : currentFileInfo.url;
-             calculatedTotal = calculateTotalPrice(currentFileInfo.pageCount, currentPrintType, currentNumberOfCopies);
-             // Allow payment even if pageCount is 0? Decided against it here.
-             if (requiredUrl && calculatedTotal >= 0 && currentNumberOfCopies >= 1 && currentFileInfo.pageCount > 0) {
-                 canPay = true;
-             } else { console.log(`checkButtonState: Cannot pay. URL Missing=${!requiredUrl}, Invalid Total Price=${calculatedTotal < 0}, Invalid Copies=${currentNumberOfCopies < 1}, Page Count = ${currentFileInfo.pageCount}`); }
-         }
-         else { console.log(`checkButtonState: Cannot pay, currentFileInfo missing or invalid.`); }
-         payButton.disabled = !canPay;
-         console.log('Check button state. Can pay:', canPay, 'Total Price:', calculatedTotal);
-    }
-    function initiatePayment() { /* ... same logic ... */
-        if (!currentFileInfo || payButton.disabled) { showStatus('Cannot initiate payment. Ensure options selected & price valid.', 'warning'); return; } const finalFileNameToSend = (currentPrintType === 1) ? currentFileInfo.fileName : currentFileInfo.bwFileName; const requiredUrl = (currentPrintType === 1) ? currentFileInfo.c_url : currentFileInfo.url; if (!requiredUrl || !finalFileNameToSend) { showStatus(`Cannot proceed: Required file for ${currentPrintType === 1 ? 'Color' : 'B&W'} missing.`, 'error'); return; } if(currentNumberOfCopies < 1) { showStatus(`Cannot proceed: Copies must be >= 1.`, 'error'); handleCopiesInputBlur(); return; } if (currentFileInfo.pageCount <=0) { showStatus(`Cannot proceed: File has no content to print.`, 'error'); return;} payButton.disabled = true; showLoader(paymentLoader); showStatus('Initiating payment...', 'info');
-        // Page count for payload is always from currentFileInfo (should be 1 for images)
-        const payload = { fileName: finalFileNameToSend, pageCount: currentFileInfo.pageCount, printType: currentPrintType, numberOfCopies: currentNumberOfCopies }; console.log('Initiating payment with payload:', payload);
-        console.log('DEBUG: Sending payment initiation payload:', JSON.stringify(payload));
+        function handleItemAction(event) {
+            const button = event.target.closest('button[data-action]'); if (!button) return;
+            const action = button.dataset.action; const itemElement = button.closest('.file-item-container'); if (!itemElement) return;
+            const itemId = itemElement.dataset.id; const item = findItemById(itemId); if (!item) return;
+            console.log(`Action '${action}' triggered for item ${itemId}`);
+            switch (action) {
+                case 'removeFile': removeItem(itemId); break;
+                case 'previewFile':
+                    console.log(`Preview action triggered for item:`, item.fileInfo ? JSON.stringify(item.fileInfo) : 'null');
+                    if (item.status === 'processed' && item.fileInfo) { openPreviewModal(item); }
+                    else { console.warn(`Preview clicked but item ${itemId} not processed or fileInfo missing.`); showItemStatus(itemElement, 'Preview unavailable yet.', 'info'); }
+                    break;
+                case 'decrementCopies': { const cInput = itemElement.querySelector('input[data-option="numberOfCopies"]'); let cVal = parseInt(cInput.value, 10); if (!isNaN(cVal) && cVal > 1) { cVal--; cInput.value = cVal; item.numberOfCopies = cVal; updateCopiesButtonStates(item); updateItemPriceDisplay(item); } break; }
+                case 'incrementCopies': { const cInput = itemElement.querySelector('input[data-option="numberOfCopies"]'); let cVal = parseInt(cInput.value, 10); if (isNaN(cVal)) cVal = 0; if (cVal < 99) { cVal++; cInput.value = cVal; item.numberOfCopies = cVal; updateCopiesButtonStates(item); updateItemPriceDisplay(item); } break; }
+                case 'updateDetails': if (item.pageRangeType === 'custom' && areCustomInputsValid(item)) { item.startPage = parseInt(itemElement.querySelector('input[data-option="startPage"]').value, 10); item.endPage = parseInt(itemElement.querySelector('input[data-option="endPage"]').value, 10); console.log(`Item ${itemId}: Updating with custom range ${item.startPage}-${item.endPage}`); triggerUploadAndProcess(item, true); button.disabled = true; button.textContent = "Updating..."; } else { showItemStatus(itemElement, "Invalid custom page range.", "error"); button.disabled = true; } break;
+            }
+        }
 
-        fetch('/printer/api/payments/initiate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }) .then(response => { if (!response.ok) { return response.json().then(errData => { throw new Error(errData.error || `Payment initiation failed (HTTP ${response.status})`); }).catch(() => { throw new Error(`Payment initiation failed (HTTP ${response.status})`); }); } return response.json(); }) .then(orderData => { console.log('Order Data Received:', orderData); if (!orderData || !orderData.razorpayKey || !orderData.amount || !orderData.orderId) { throw new Error("Invalid order data received from server."); } const displayFileNameForDesc = formatFileName(finalFileNameToSend); const copiesText = currentNumberOfCopies > 1 ? `${currentNumberOfCopies} copies` : `1 copy`; const pageText = currentFileInfo.mimeType?.startsWith('image/') ? '1 page' : `${currentFileInfo.pageCount} pages`; const description = `Print: ${displayFileNameForDesc} (${currentPrintType === 1 ? 'Color' : 'B&W'}, ${pageText}, ${copiesText})`; openRazorpayCheckout(orderData, description); }) .catch(error => { console.error('Payment Initiation Error:', error); showStatus(`Error: ${error.message}`, 'error'); checkButtonState(); hideLoader(paymentLoader); });
-    }
-    function openRazorpayCheckout(orderData, description) { /* ... same logic ... */
-         console.log("Opening Razorpay. Amount:", orderData.amount, "Description:", description); const finalFileNameToSend = (currentPrintType === 1) ? currentFileInfo.fileName : currentFileInfo.bwFileName; const options = { key: orderData.razorpayKey, amount: orderData.amount, currency: orderData.currency || "INR", name: "KsDigitalServices", description: description, order_id: orderData.orderId, handler: function (response) { console.log("Razorpay Success:", response); showStatus("Payment Successful!", 'success'); hideLoader(paymentLoader); resetStateAndUI(); }, prefill: {}, notes: { fileName: finalFileNameToSend, printType: String(currentPrintType), pageCount: String(currentFileInfo.pageCount), numberOfCopies: String(currentNumberOfCopies), timestamp: new Date().toISOString() }, theme: { color: "#007bff" }, modal: { ondismiss: function() { console.log('Razorpay checkout closed.'); if (!statusMessage.classList.contains('status-success')) { showStatus('Payment cancelled.', 'info'); } checkButtonState(); hideLoader(paymentLoader); } } }; try { const rzp = new Razorpay(options); rzp.on('payment.failed', function (response){ console.error("Razorpay Payment Failed:", response.error); let errorMsg = `Payment Failed: ${response.error.description || 'Unknown'}`; if(response.error.reason) errorMsg += ` (Reason: ${response.error.reason})`; showStatus(errorMsg, 'error'); checkButtonState(); hideLoader(paymentLoader); }); rzp.open(); } catch(e) { console.error("Error initializing Razorpay:", e); showStatus("Could not initialize payment gateway.", 'error'); checkButtonState(); hideLoader(paymentLoader); }
-    }
+        function removeItem(itemId) {
+            const itemIndex = fileItems.findIndex(item => item.id === itemId);
+            if (itemIndex > -1) {
+                const itemElement = fileItems[itemIndex].element;
+                if (itemElement) {
+                    itemElement.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+                    itemElement.style.transform = 'scale(0.9)'; itemElement.style.opacity = '0';
+                    setTimeout(() => { itemElement.remove(); updateFileCounter(); updateTotalPriceDisplay(); }, 250); // Use fixed 250ms
+                }
+                setTimeout(() => { fileItems.splice(itemIndex, 1); console.log(`Item ${itemId} removed from state.`); updateTotalPriceDisplay(); }, 250);
+                console.log(`Item ${itemId} removal initiated.`);
+            }
+        }
 
-    // --- Modal & Preview Rendering (Updated titles for images) ---
-    function openPreviewModal() { /* ... same logic, relies on updated updateModalTitle ... */
-        console.log('Preview icon clicked.'); if (!currentFileInfo) { showStatus('File details not yet available.', 'warning'); modalPreviewContent.innerHTML = '<p class="placeholder">File processing failed or not complete.</p>'; previewModal.classList.add('visible'); return; } let urlToDisplay = (currentPrintType === 1) ? currentFileInfo.c_url : currentFileInfo.url; const fileType = currentFileInfo.mimeType; updateModalTitle(); modalPreviewContent.innerHTML = '<p class="placeholder">Loading preview...</p>'; previewModal.classList.add('visible'); if (!urlToDisplay) { console.error("Preview URL missing for selected type."); modalPreviewContent.innerHTML = `<p class="placeholder">Preview generation failed for ${currentPrintType === 1 ? 'Color' : 'B&W'} version.</p>`; return; } renderPreviewInModal(urlToDisplay, fileType, currentFileInfo.pageCount);
-    }
-    function closePreviewModalHandler() { /* ... same logic ... */ previewModal.classList.remove('visible'); }
-    function updateModalTitle() {
-         if (!currentFileInfo) {
-            modalPreviewTitle.textContent = "File Preview"; return;
-         }
-         const typeText = currentPrintType === 1 ? "Color" : "B&W";
-         let detailsText = '';
-         if (currentFileInfo.mimeType?.startsWith('image/')) {
-             detailsText = "(Image)"; // Simple title for images
-         } else { // PDF
-             const pageText = currentFileInfo.pageCount > 1 ? `${currentFileInfo.pageCount} Pages` : `1 Page`;
-             const rangeText = currentPageRangeType === 'custom' && startPageInput.value && endPageInput.value ? `(Range: ${startPageInput.value}-${endPageInput.value}, ${pageText})` : `(${pageText})`;
-             detailsText = rangeText;
-         }
-         modalPreviewTitle.textContent = `Preview: ${typeText} ${detailsText}`;
-    }
-    function renderPreviewInModal(url, mimeType, pageCount) { /* ... same logic ... */
-         console.log('renderPreviewInModal called with URL:', url, 'Type:', mimeType); const targetElement = modalPreviewContent; targetElement.innerHTML = ''; if (!url || !mimeType) { console.error("renderPreviewInModal: Missing URL or mimeType."); targetElement.innerHTML = '<p class="placeholder">Preview data is missing.</p>'; return; } try { if (mimeType.startsWith('image/')) { console.log('Rendering image preview in modal:', url); const img = document.createElement('img'); img.className = 'pdf-page-canvas'; img.style.boxShadow = 'none'; img.alt = `Preview of file`; img.onload = () => { const loader = targetElement.querySelector('.loader'); if(loader) loader.style.display='none'; }; img.onerror = () => { console.error('Error loading image preview:', url); targetElement.innerHTML = '<p class="placeholder">Error loading image preview.</p>'; }; img.src = url; targetElement.appendChild(img); } else if (mimeType === 'application/pdf') { console.log('Calling renderPdfPreview for modal:', url); renderPdfPreview(url, targetElement, pageCount); } else { console.warn('Preview not supported for mimeType:', mimeType); targetElement.innerHTML = `<p class="placeholder">Preview not available for this file type.</p>`; } } catch (err) { console.error("Error creating preview element:", err); targetElement.innerHTML = '<p class="placeholder">Error displaying preview.</p>'; }
-    }
-    async function renderPdfPreview(pdfUrl, containerElement, expectedPageCount) { /* ... same logic ... */
-        console.log(`renderPdfPreview: URL=${pdfUrl} into container:`, containerElement.id); if (!pdfUrl || typeof pdfUrl !== 'string' || !(pdfUrl.startsWith('/uploads/') || pdfUrl.startsWith('http'))) { console.error(`Invalid PDF URL: ${pdfUrl}`); containerElement.innerHTML = `<p class="placeholder">Invalid URL for PDF preview.</p>`; return; } containerElement.innerHTML = '<p class="placeholder">Loading PDF preview...</p>'; const loadingIndicator = document.createElement('div'); loadingIndicator.className = 'loader'; loadingIndicator.style.display = 'block'; loadingIndicator.style.margin = '20px auto'; containerElement.appendChild(loadingIndicator); await new Promise(resolve => requestAnimationFrame(resolve)); const containerPadding = parseFloat(window.getComputedStyle(containerElement).paddingLeft || '0') + parseFloat(window.getComputedStyle(containerElement).paddingRight || '0'); const clientWidth = Math.max(containerElement.clientWidth || containerElement.offsetWidth, 100); const availableWidth = clientWidth - containerPadding; const targetWidth = Math.max(availableWidth, 150); console.log(`PDF Preview target width: ${targetWidth}px (Container: ${clientWidth}px, Padding: ${containerPadding}px)`); const pdfjsCMapUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/cmaps/'; const loadingTask = pdfjsLib.getDocument({ url: pdfUrl, cMapUrl: pdfjsCMapUrl, cMapPacked: true }); try { const pdf = await loadingTask.promise; console.log(`PDF loaded: ${pdf.numPages} pages.`); if (typeof expectedPageCount === 'number' && pdf.numPages !== expectedPageCount) { console.warn(`Page count mismatch! Server=${expectedPageCount}, PDF.js=${pdf.numPages}.`); } if (pdf.numPages === 0) throw new Error("PDF has no pages."); containerElement.innerHTML = ''; for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) { const page = await pdf.getPage(pageNum); const dpr = window.devicePixelRatio || 1; const viewport = page.getViewport({ scale: 1 }); const scale = targetWidth / viewport.width; const scaledViewport = page.getViewport({ scale: scale * dpr }); const canvas = document.createElement('canvas'); canvas.className = 'pdf-page-canvas'; canvas.height = Math.round(scaledViewport.height); canvas.width = Math.round(scaledViewport.width); canvas.style.width = `${targetWidth}px`; canvas.style.height = `${Math.round(targetWidth * (viewport.height / viewport.width))}px`; canvas.setAttribute('aria-label', `PDF Page ${pageNum}`); const context = canvas.getContext('2d', { alpha: false }); if (!context) { console.error(`Failed to get 2D context page ${pageNum}`); continue; } context.fillStyle = 'white'; context.fillRect(0, 0, canvas.width, canvas.height); const renderContext = { canvasContext: context, viewport: scaledViewport, background: 'rgba(255,255,255, 1)' }; containerElement.appendChild(canvas); await page.render(renderContext).promise; page.cleanup(); } console.log('All pages rendered in modal.'); } catch (error) { console.error(`renderPdfPreview Error: ${error.name}`, error); let errorMsg = `Error loading preview: ${error.message || error.name}`; containerElement.innerHTML = `<p class="placeholder">${errorMsg}</p>`; } finally { if (loadingTask && loadingTask.destroy) { loadingTask.destroy(); console.log('PDF loading task destroyed.'); } const finalLoader = containerElement.querySelector('.loader'); if (finalLoader) finalLoader.style.display = 'none'; }
-    }
+        // --- Core Upload/Processing ---
+        function triggerUploadAndProcess(item, forceReprocess = false) {
+            if (!item || !item.file) return;
+            if (item.status !== 'new' && !forceReprocess) return;
+            console.log(`Processing item ${item.id}: File=${item.file.name}, Range=${item.pageRangeType}, Start=${item.startPage}, End=${item.endPage}`);
+            item.status = 'processing'; updateItemUIState(item);
+            const formData = new FormData(); formData.append('file', item.file); formData.append('uniqueId', item.id); formData.append('pageRangeType', item.pageRangeType);
+            if (item.pageRangeType === 'custom' && item.startPage && item.endPage) { formData.append('startPage', item.startPage); formData.append('endPage', item.endPage); }
+            fetch('/print/upload', { method: 'POST', body: formData })
+            .then(response => response.json().then(data => ({ ok: response.ok, status: response.status, data })))
+            .then(({ ok, status, data }) => {
+                console.log(`Response for item ${item.id} (Status ${status}):`, data);
+                if (data.uniqueId !== item.id) { console.warn(`Received response for wrong uniqueId! Expected ${item.id}, got ${data.uniqueId}. Ignoring.`); return; }
+                const currentItem = findItemById(data.uniqueId); if (!currentItem) return;
+                if (!ok || data.status === 'error') { throw new Error(data.error || `Processing failed (HTTP ${status})`); }
+                if (data.status === 'processed' && data.pageCount >= 0 && data.c_url) {
+                    currentItem.fileInfo = { originalFileName: data.originalFileName, fileName: data.fileName, bwFileName: data.bwFileName, pageCount: data.pageCount, mimeType: data.mimeType || currentItem.file.type, url: data.url, c_url: data.c_url };
+                    currentItem.status = 'processed';
+                    if (currentItem.pageRangeType === 'all') { currentItem.startPage = null; currentItem.endPage = null; }
+                    const updateBtn = currentItem.element?.querySelector('.update-details-button'); if (updateBtn) { updateBtn.disabled = !areCustomInputsValid(currentItem); updateBtn.textContent = "Update"; } // Reset update button state
+                    if (!currentItem.fileInfo.url && !currentItem.fileInfo.mimeType?.startsWith('image/')) { showItemStatus(currentItem.element, "B&W version unavailable.", "info"); } else { hideItemStatus(currentItem.element); }
+                } else { throw new Error(data.error || "Processing incomplete or failed on server."); }
+            }).catch(error => {
+                console.error(`File Processing Error for item ${item.id}:`, error); const currentItem = findItemById(item.id);
+                if (currentItem) { currentItem.status = 'error'; currentItem.price = 0; showItemStatus(currentItem.element, `Error: ${error.message}`, 'error'); }
+            }).finally(() => {
+                const currentItem = findItemById(item.id); if (currentItem) { console.log(`Processing finished for item ${currentItem.id}. Final status: ${currentItem.status}`); updateItemUIState(currentItem); }
+            });
+        }
 
-    // --- Run Initialization ---
-    initializeApp();
+        // --- Payment Initiation ---
+        function initiatePayment() {
+            hideGlobalStatus();
+            const itemsToPay = fileItems.filter(item => {
+                if (item.status !== 'processed' || item.price < 0) return false;
+                const requiredUrl = (item.printType === 1) ? item.fileInfo?.c_url : item.fileInfo?.url;
+                const requiredFileName = (item.printType === 1) ? item.fileInfo?.fileName : item.fileInfo?.bwFileName;
+                const validPageCount = item.fileInfo?.pageCount >= 0;
+                return requiredUrl && requiredFileName && validPageCount;
+            });
+            if (itemsToPay.length === 0) {
+                const hasPendingOrError = fileItems.some(i => i.status !== 'processed' || i.price < 0);
+                if (hasPendingOrError) { showGlobalStatus('Some files are still processing or have errors.', 'warning'); }
+                else { showGlobalStatus('No valid files ready for payment.', 'warning'); }
+                return;
+            }
+            payButton.disabled = true; showLoader(paymentLoader); showGlobalStatus('Initiating payment...', 'info');
+            const payloadItems = itemsToPay.map(item => ({ uniqueId: item.id, fileName: (item.printType === 1) ? item.fileInfo.fileName : item.fileInfo.bwFileName, pageCount: item.fileInfo.pageCount, printType: item.printType, numberOfCopies: item.numberOfCopies, calculatedPrice: item.price }));
+            const payload = { items: payloadItems }; console.log('Initiating payment with payload:', JSON.stringify(payload));
+            fetch('/print/api/payments/initiate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+            .then(response => response.json().then(data => ({ ok: response.ok, status: response.status, data })))
+            .then(({ ok, status, data }) => {
+                console.log('Payment Initiation Response:', data); if (!ok) { throw new Error(data.error || `Payment initiation failed (HTTP ${status})`); }
+                if (data.status === 'skipped_zero_amount') { console.log("Payment skipped by server (0 amount). Simulating success."); showGlobalStatus("Order processed (0 amount). Files are being sent.", 'success'); hideLoader(paymentLoader); fileItems.forEach(item => item.element?.remove()); fileItems = []; updateFileCounter(); updateTotalPriceDisplay(); payButton.disabled = true; return; }
+                if (!data.razorpayKey || !data.orderId || typeof data.amount !== 'number') { throw new Error("Invalid order data received from server."); }
+                const totalRupees = data.totalAmountRupees !== undefined ? data.totalAmountRupees : (data.amount / 100); const description = `Print Order: ${itemsToPay.length} file(s) - Total Rs. ${totalRupees}`;
+                openRazorpayCheckout(data, description);
+            }).catch(error => {
+                console.error('Payment Initiation Error:', error); showGlobalStatus(`Error: ${error.message}`, 'error'); updateTotalPriceDisplay(); hideLoader(paymentLoader);
+            });
+        }
 
+        function openRazorpayCheckout(orderData, description) {
+            console.log("Opening Razorpay. Amount:", orderData.amount, "Description:", description);
+
+            // Crucial Check: Ensure Razorpay object exists before using it
+            if (typeof Razorpay === 'undefined') {
+                 console.error("Razorpay checkout.js script not loaded or failed to initialize.");
+                 showGlobalStatus("Error: Payment gateway script failed to load. Please refresh.", 'error');
+                 hideLoader(paymentLoader);
+                 updateTotalPriceDisplay(); // Re-enable pay button if possible
+                 return;
+            }
+
+            const options = {
+                key: orderData.razorpayKey, amount: orderData.amount, currency: orderData.currency || "INR", name: "KsDigitalServices", description: description, order_id: orderData.orderId,
+                handler: function (response) { console.log("Razorpay Success:", response); showGlobalStatus("Payment Successful! Files are being sent.", 'success'); hideLoader(paymentLoader); fileItems.forEach(item => item.element?.remove()); fileItems = []; updateFileCounter(); updateTotalPriceDisplay(); payButton.disabled = true; },
+                prefill: {}, notes: { order_timestamp: new Date().toISOString() }, theme: { color: getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() || "#007bff" },
+                modal: { ondismiss: function() { console.log('Razorpay checkout closed.'); if (!globalStatusMessage.classList.contains('status-success')) { showGlobalStatus('Payment cancelled or closed.', 'info'); updateTotalPriceDisplay(); } hideLoader(paymentLoader); } }
+            };
+            try {
+                const rzp = new Razorpay(options); // Instantiate Razorpay
+                rzp.on('payment.failed', function (response) { console.error("Razorpay Payment Failed:", response.error); let errorMsg = `Payment Failed: ${response.error.description || 'Unknown error'}`; if (response.error.reason) errorMsg += ` (Reason: ${response.error.reason})`; showGlobalStatus(errorMsg, 'error'); updateTotalPriceDisplay(); hideLoader(paymentLoader); });
+                rzp.open(); // Open the checkout modal
+            } catch (e) { console.error("Error initializing Razorpay:", e); showGlobalStatus("Could not initialize payment gateway.", 'error'); updateTotalPriceDisplay(); hideLoader(paymentLoader); }
+        }
+
+        // --- Modal & Preview Rendering ---
+        function openPreviewModal(item) {
+            console.log(`Attempting to open preview modal for item ${item.id}. Status: ${item.status}`);
+            console.log(`File Info:`, item.fileInfo ? JSON.stringify(item.fileInfo) : 'null'); console.log(`Selected printType: ${item.printType}`);
+            if (!item || item.status !== 'processed' || !item.fileInfo) { modalPreviewTitle.textContent = "Preview Unavailable"; modalPreviewContent.innerHTML = '<p class="placeholder">File processing failed or is not complete.</p>'; previewModal.classList.add('visible'); return; }
+            let urlToDisplay = (item.printType === 1) ? item.fileInfo.c_url : item.fileInfo.url; const fileType = item.fileInfo.mimeType;
+            console.log(`Using preview URL: ${urlToDisplay} (Type: ${fileType})`); updateModalTitle(item);
+            modalPreviewContent.innerHTML = '<p class="placeholder">Loading preview...</p>'; previewModal.classList.add('visible');
+            if (!urlToDisplay) { console.error("Preview URL missing for selected type."); modalPreviewContent.innerHTML = `<p class="placeholder">Preview unavailable for the selected ${item.printType === 1 ? 'Color' : 'B&W'} version.</p>`; return; }
+            renderPreviewInModal(urlToDisplay, fileType, item.fileInfo.pageCount);
+        }
+        function closePreviewModalHandler() { previewModal.classList.remove('visible'); modalPreviewContent.innerHTML = ''; }
+        function updateModalTitle(item = null) {
+            if (!item || !item.fileInfo) { modalPreviewTitle.textContent = "File Preview"; return; }
+            const typeText = item.printType === 1 ? "Color" : "B&W"; const nameText = formatFileName(item.fileInfo.originalFileName || item.fileInfo.fileName, 25); let detailsText = '';
+            if (item.fileInfo.mimeType?.startsWith('image/')) { detailsText = "(Image)"; }
+            else { const pageText = item.fileInfo.pageCount > 1 ? `${item.fileInfo.pageCount} Pgs` : `1 Pg`; const rangeInfo = (item.pageRangeType === 'custom' && item.startPage && item.endPage) ? `(Range: ${item.startPage}-${item.endPage}, ${pageText})` : `(${pageText})`; detailsText = rangeInfo; }
+            modalPreviewTitle.textContent = `Preview: ${nameText} - ${typeText} ${detailsText}`;
+        }
+        async function renderPreviewInModal(url, mimeType, pageCount) {
+            if (!url || !mimeType) { modalPreviewContent.innerHTML = '<p class="placeholder">Preview data is missing.</p>'; return; }
+            modalPreviewContent.innerHTML = ''; const loadingIndicator = document.createElement('div'); loadingIndicator.className = 'loader'; loadingIndicator.style.display = 'block'; loadingIndicator.style.margin = '20px auto'; modalPreviewContent.appendChild(loadingIndicator);
+            try {
+                if (mimeType.startsWith('image/')) {
+                    const img = document.createElement('img'); img.className = 'pdf-page-canvas'; img.style.boxShadow = 'none'; img.alt = `Preview`;
+                    img.onload = () => hideLoader(loadingIndicator); img.onerror = () => { modalPreviewContent.innerHTML = '<p class="placeholder">Error loading image preview.</p>'; };
+                    img.src = url; modalPreviewContent.appendChild(img); hideLoader(loadingIndicator);
+                } else if (mimeType === 'application/pdf') {
+                    if (typeof pdfjsLib === 'undefined' || !pdfjsLib.getDocument) { throw new Error("PDF.js library failed to load properly."); }
+                    await renderPdfPreview(url, modalPreviewContent, pageCount);
+                } else { throw new Error(`Preview not available for this file type (${mimeType}).`); }
+            } catch (err) { console.error("Error creating preview element:", err); modalPreviewContent.innerHTML = `<p class="placeholder">Error displaying preview: ${err.message}</p>`; hideLoader(loadingIndicator); }
+        }
+        async function renderPdfPreview(pdfUrl, containerElement, expectedPageCount) {
+            if (typeof pdfjsLib === 'undefined' || !pdfjsLib.getDocument) throw new Error("PDF.js library not available.");
+            console.log(`renderPdfPreview: URL=${pdfUrl}`);
+            const loadingTask = pdfjsLib.getDocument({ url: pdfUrl });
+            const loader = containerElement.querySelector('.loader'); if(loader) loader.style.display = 'block';
+            try {
+                const pdf = await loadingTask.promise; if (pdf.numPages === 0) throw new Error("PDF has no pages.");
+                containerElement.innerHTML = '';
+                await new Promise(resolve => requestAnimationFrame(resolve));
+                const containerPadding = parseFloat(window.getComputedStyle(containerElement).paddingLeft || '0') + parseFloat(window.getComputedStyle(containerElement).paddingRight || '0');
+                const availableWidth = Math.max(containerElement.clientWidth - containerPadding, 150);
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum); const viewport = page.getViewport({ scale: 1 });
+                    const scale = availableWidth / viewport.width; const scaledViewport = page.getViewport({ scale: scale });
+                    const canvas = document.createElement('canvas'); canvas.className = 'pdf-page-canvas'; const context = canvas.getContext('2d');
+                    canvas.height = Math.round(scaledViewport.height); canvas.width = Math.round(scaledViewport.width);
+                    canvas.style.width = `${Math.round(scaledViewport.width)}px`; canvas.style.height = `${Math.round(scaledViewport.height)}px`;
+                    containerElement.appendChild(canvas); const renderContext = { canvasContext: context, viewport: scaledViewport };
+                    await page.render(renderContext).promise; page.cleanup();
+                }
+                console.log('All PDF pages rendered in modal.');
+            } catch (error) { console.error(`renderPdfPreview Error: ${error.name}`, error); containerElement.innerHTML = `<p class="placeholder">Error loading PDF preview: ${error.message || error.name}</p>`;
+            } finally { if (loadingTask && loadingTask.destroy) { loadingTask.destroy(); } const finalLoader = containerElement.querySelector('.loader'); if (finalLoader) finalLoader.remove(); }
+        }
+
+        // --- Run Initialization ---
+        initializeApp();
+
+    }); // <-- End of DOMContentLoaded listener
 </script>
+
 </body>
 </html>
