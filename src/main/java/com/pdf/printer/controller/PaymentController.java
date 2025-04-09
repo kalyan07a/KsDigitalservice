@@ -1,13 +1,13 @@
 package com.pdf.printer.controller;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import com.pdf.printer.dto.FileOrderItem;
+import com.pdf.printer.dto.PaymentInitiationRequest;
+import com.pdf.printer.service.RazorpayService;
+import com.razorpay.RazorpayException;
+import com.razorpay.Utils;
 
+import jakarta.mail.MessagingException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,35 +15,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import com.pdf.printer.dto.PaymentInitiationRequest;
-import com.pdf.printer.service.RazorpayService;
-import com.razorpay.RazorpayException;
-import com.razorpay.Utils;
 
-import jakarta.activation.DataHandler;
-import jakarta.activation.DataSource;
-import jakarta.activation.FileDataSource;
-import jakarta.mail.Authenticator;
-import jakarta.mail.BodyPart;
-import jakarta.mail.Message;
-import jakarta.mail.MessagingException;
-import jakarta.mail.Multipart;
-import jakarta.mail.PasswordAuthentication;
-import jakarta.mail.Session;
-import jakarta.mail.Transport;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
-import jakarta.mail.internet.MimeMultipart;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Controller
-@RequestMapping("/printer")
+@RequestMapping("/print")
 public class PaymentController {
 
     private static final Logger log = LoggerFactory.getLogger(PaymentController.class);
@@ -51,109 +41,136 @@ public class PaymentController {
     @Value("${file.upload-dir}")
     private String uploadDir;
 
-    @Value("${username}")
+    @Value("${spring.mail.username}")
     private String mailUsername;
-
-    @Value("${password}")
-    private String mailPassword;
 
     @Value("${p-email}")
     private String printerEmail;
 
-    @Value("${razorpay.api.key}") // Needed for frontend response
+    @Value("${razorpay.api.key}")
     private String razorpayApiKey;
 
-    @Value("${razorpay.webhook.secret}") // Needed for webhook verification
+    @Value("${razorpay.webhook.secret}")
     private String razorpayWebhookSecret;
 
-    private final RazorpayService razorpayService; // Use final for constructor injection
+    private final RazorpayService razorpayService;
+    private final JavaMailSender mailSender;
 
-    // --- Constructor Injection ---
-    @Autowired // Optional in newer Spring, but good practice
-    public PaymentController(RazorpayService razorpayService) {
+    @Autowired
+    public PaymentController(RazorpayService razorpayService, JavaMailSender mailSender) {
         this.razorpayService = razorpayService;
-        log.info("PaymentController created and RazorpayService injected.");
+        this.mailSender = mailSender;
+        log.info("PaymentController created and services injected.");
     }
 
     @PostMapping("/api/payments/initiate")
+    @ResponseBody
     public ResponseEntity<Map<String, Object>> initiatePayment(@RequestBody PaymentInitiationRequest request) {
         Map<String, Object> response = new HashMap<>();
-        try {
-            log.info("DEBUG: Received PaymentInitiationRequest: {}", request);
+        log.info("Received payment initiation request for {} items.", request.getItems() != null ? request.getItems().size() : 0);
+        log.debug("Payment initiation payload: {}", request);
 
-            // Validate input from request
-            if (request.getFileName() == null || request.getFileName().isBlank()) {
-                log.error("Missing filename in payment request.");
-                response.put("error", "Missing filename for payment initiation.");
+        if (request.getItems() == null || request.getItems().isEmpty()) {
+            log.warn("Payment initiation request received with no items.");
+            response.put("error", "No items provided for payment.");
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        int totalAmountInRupees = 0;
+        List<FileOrderItem> validItems = new ArrayList<>();
+        JSONArray itemsJsonArray = new JSONArray();
+
+        for (FileOrderItem item : request.getItems()) {
+            // Backend validation of item data from request
+            if (item.getFileName() == null || item.getFileName().isBlank() || item.getPageCount() <= 0 || item.getNumberOfCopies() <= 0 || (item.getPrintType() != 0 && item.getPrintType() != 1)) {
+                log.error("Invalid item data received in payment request: {}", item);
+                response.put("error", "Invalid data for item ID: " + item.getUniqueId() + ". File details might be incorrect.");
                 return ResponseEntity.badRequest().body(response);
             }
-            if (request.getPageCount() <= 0) {
-                log.error("Invalid page count in payment request: {}", request.getPageCount());
-                response.put("error", "Invalid page count.");
-                return ResponseEntity.badRequest().body(response);
-            }
-             if (request.getNumberOfCopies() <= 0) {
-                log.error("Invalid number of copies in payment request: {}", request.getNumberOfCopies());
-                response.put("error", "Invalid number of copies.");
-                return ResponseEntity.badRequest().body(response);
-            }
-             if (request.getPrintType() != 0 && request.getPrintType() != 1) {
-                 log.error("Invalid print type in payment request: {}", request.getPrintType());
-                 response.put("error", "Invalid print type.");
+
+            // Security: Recalculate price on the backend
+            int itemPrice = calculateAmount(item.getPageCount(), item.getPrintType(), item.getNumberOfCopies());
+            if (itemPrice <= 0 && item.getPageCount() > 0) { // Allow 0 price only if page count is 0
+                 log.error("Invalid calculated amount ({}) for item with pages>0: {}", itemPrice, item);
+                 response.put("error", "Failed to calculate a valid price for item ID: " + item.getUniqueId());
                  return ResponseEntity.badRequest().body(response);
+            }
+
+            item.setCalculatedPrice(itemPrice); // Store backend calculated price
+            totalAmountInRupees += itemPrice;
+            validItems.add(item);
+
+             JSONObject itemJson = new JSONObject();
+             itemJson.put("fName", item.getFileName());
+             itemJson.put("pCount", item.getPageCount());
+             itemJson.put("pType", item.getPrintType());
+             itemJson.put("copies", item.getNumberOfCopies());
+             itemsJsonArray.put(itemJson);
+        }
+
+        // Allow order creation even if total is 0? Might be valid if only 0-page files.
+        // Let's allow it for now, Razorpay might reject if amount is too low.
+        if (totalAmountInRupees < 0) { // Only check for negative
+             log.error("Total calculated amount is negative ({})! Cannot create order.", totalAmountInRupees);
+             response.put("error", "Total calculated amount is invalid.");
+             return ResponseEntity.badRequest().body(response);
+        }
+
+        log.info("Total calculated amount for {} valid items: Rs. {}", validItems.size(), totalAmountInRupees);
+
+        try {
+            String currency = "INR";
+            String receiptId = "receipt_" + System.currentTimeMillis() + "_" + UUID.randomUUID().toString().substring(0,4); // More unique receipt
+
+            JSONObject notes = new JSONObject();
+            notes.put("item_count", validItems.size());
+             String itemsJsonString = itemsJsonArray.toString();
+             if (itemsJsonString.length() > 1800) { // Adjust limit based on testing/Razorpay docs
+                 log.warn("Items JSON string length ({}) is large and might exceed Razorpay notes limit. Storing truncated or placeholder.", itemsJsonString.length());
+                 // Option: Truncate smartly, or store a reference, or just note count.
+                 // For now, just add count and maybe first item name
+                 notes.put("items_truncated", "Data exceeds notes limit. See receipt " + receiptId);
+             } else {
+                  notes.put("items", itemsJsonString);
              }
 
+            // Handle 0 amount case - Razorpay requires minimum 1 INR (100 paise)
+            if (totalAmountInRupees == 0) {
+                log.info("Total amount is 0. Skipping Razorpay order creation. Returning success-like response.");
+                // Simulate a successful payment flow without actually charging
+                response.put("orderId", "ORDER_SKIPPED_ZERO_AMOUNT_" + receiptId);
+                response.put("amount", 0); // 0 paise
+                response.put("currency", currency);
+                response.put("razorpayKey", razorpayApiKey); // Still needed for consistency? Maybe not.
+                response.put("status", "skipped_zero_amount"); // Custom status
+                response.put("totalAmountRupees", 0);
 
-            int pages = request.getPageCount();
-            int printType = request.getPrintType();
-            int copies = request.getNumberOfCopies(); // Use the correct getter
-            log.info("DEBUG: Values received - pages: {}, printType: {}, copies: {}", pages, printType, copies);
+                // Directly trigger post-payment actions for zero amount order
+                 handlePostPaymentActions(validItems, "SKIPPED_" + receiptId);
 
-            // Calculate amount using the backend logic
-            int amountInRupees = calculateAmount(pages, printType, copies);
-            log.info("DEBUG: Calculated amount (Rupees): {}", amountInRupees);
-
-            if (amountInRupees <= 0) {
-                log.error("Invalid amount calculation (pages={}, type={}, copies={}) resulted in amount={}", pages, printType, copies, amountInRupees);
-                response.put("error", "Invalid calculated amount (pages=" + pages + ").");
-                return ResponseEntity.badRequest().body(response);
+                return ResponseEntity.ok(response);
             }
 
-            String currency = "INR";
-            String receiptId = "receipt_" + System.currentTimeMillis();
 
-            // Create notes for Razorpay order
-            JSONObject notes = new JSONObject();
-            notes.put("fileName", request.getFileName()); // Final filename (color or bw)
-            notes.put("printType", String.valueOf(printType));
-            notes.put("numberOfCopies", String.valueOf(copies)); // Add copies to notes
-            notes.put("pageCount", String.valueOf(pages)); // Add page count to notes
-
-            // Call the injected RazorpayService
-            String orderJsonString = this.razorpayService.createOrder(amountInRupees, currency, receiptId, notes);
-            log.info("Razorpay Order Created Raw: {}", orderJsonString);
+            String orderJsonString = razorpayService.createOrder(totalAmountInRupees, currency, receiptId, notes);
+            log.debug("Razorpay Order Created Raw: {}", orderJsonString); // Debug level
 
             JSONObject orderJson = new JSONObject(orderJsonString);
             String orderId = orderJson.getString("id");
-            int orderAmountPaise = orderJson.getInt("amount"); // Amount from Razorpay response (in paise)
+            int orderAmountPaise = orderJson.getInt("amount");
 
-            // Prepare response for the frontend
             response.put("orderId", orderId);
-            response.put("amount", orderAmountPaise); // Send amount in paise, as expected by Razorpay Checkout
+            response.put("amount", orderAmountPaise);
             response.put("currency", currency);
-            response.put("razorpayKey", razorpayApiKey); // Your public Key ID
+            response.put("razorpayKey", razorpayApiKey);
             response.put("status", "created");
+            response.put("totalAmountRupees", totalAmountInRupees);
 
             return ResponseEntity.ok(response);
 
         } catch (RazorpayException e) {
             log.error("RazorpayException during payment initiation: {}", e.getMessage(), e);
-            String errorMessage = e.getMessage() != null ? e.getMessage() : "Payment gateway error";
-            if (e.getMessage() != null && e.getMessage().toLowerCase().contains("authentication failed")) {
-                errorMessage = "Razorpay Authentication Failed. Please check server configuration.";
-                 log.error("!!! Razorpay Authentication Failed - Verify Key ID and Key Secret in configuration !!!");
-            }
-            response.put("error", "Payment Error: " + errorMessage);
+            response.put("error", "Payment Error: " + (e.getMessage() != null ? e.getMessage() : "Gateway error"));
             return ResponseEntity.internalServerError().body(response);
         } catch (Exception e) {
             log.error("Unexpected error during payment initiation processing", e);
@@ -162,11 +179,10 @@ public class PaymentController {
         }
     }
 
-    // --- Webhook Endpoint ---
     @PostMapping("/api/payments/webhook")
     public ResponseEntity<String> handleRazorpayWebhook(@RequestBody String payload, @RequestHeader("X-Razorpay-Signature") String signature) {
         log.info("Received Razorpay Webhook Request");
-        log.debug("Webhook Payload: {}", payload); // Log payload only if needed for debugging sensitive data
+        log.debug("Webhook Payload: {}", payload);
         log.debug("Webhook Signature: {}", signature);
 
         if (razorpayWebhookSecret == null || razorpayWebhookSecret.isBlank()) {
@@ -180,60 +196,85 @@ public class PaymentController {
                 log.warn("Invalid Razorpay webhook signature received.");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid signature");
             }
-
             log.info("Webhook signature verified successfully.");
+
             JSONObject payloadJson = new JSONObject(payload);
-            String event = payloadJson.getString("event");
+            String event = payloadJson.optString("event");
             log.info("Webhook event type: {}", event);
 
-            // Process only successful payment events
             if ("payment.captured".equals(event)) {
-                JSONObject paymentEntity = payloadJson.getJSONObject("payload").getJSONObject("payment").getJSONObject("entity");
-                String orderId = paymentEntity.getString("order_id");
-                String paymentId = paymentEntity.getString("id");
-                JSONObject notes = paymentEntity.optJSONObject("notes");
+                JSONObject paymentPayload = payloadJson.optJSONObject("payload");
+                if (paymentPayload == null) { log.error("Webhook Error: Missing 'payload' object."); return ResponseEntity.badRequest().body("Missing payload"); }
+                JSONObject payment = paymentPayload.optJSONObject("payment");
+                if (payment == null) { log.error("Webhook Error: Missing 'payment' object in payload."); return ResponseEntity.badRequest().body("Missing payment payload"); }
+                 JSONObject entity = payment.optJSONObject("entity");
+                if (entity == null) { log.error("Webhook Error: Missing 'entity' object in payment payload."); return ResponseEntity.badRequest().body("Missing payment entity"); }
 
-                if (notes == null) {
-                    log.error("Webhook Error: Missing 'notes' in payment entity for order_id: {}", orderId);
-                    // Depending on policy, might still return OK to Razorpay, but log error
-                    return ResponseEntity.badRequest().body("Missing payment notes");
+
+                String orderId = entity.optString("order_id");
+                String paymentId = entity.optString("id");
+                JSONObject notes = entity.optJSONObject("notes");
+
+                log.info("Processing 'payment.captured' for Order ID: {}, Payment ID: {}", orderId, paymentId);
+
+                // Check if notes exist and contain items or the truncated flag
+                if (notes == null || (!notes.has("items") && !notes.has("items_truncated"))) {
+                    log.error("Webhook Error: Missing 'notes' or expected keys ('items'/'items_truncated') in notes for order_id: {}", orderId);
+                     // Critical data missing, cannot process reliably.
+                     // Acknowledge receipt but indicate failure to process items.
+                     return ResponseEntity.ok("Webhook processed (acknowledged), but required item data missing in notes.");
                 }
 
-                // Extract necessary details from notes
-                String fileNameToSend = notes.optString("fileName", null);
-                int printType = notes.optInt("printType", -1); // Default to -1 if missing/invalid
-                int copies = notes.optInt("numberOfCopies", -1); // Default to -1
-                int pages = notes.optInt("pageCount", -1); // Default to -1
+                List<FileOrderItem> itemsToProcess = new ArrayList<>();
+                // Try parsing 'items' string first
+                if (notes.has("items")) {
+                     try {
+                        String itemsJsonString = notes.getString("items");
+                        JSONArray itemsJsonArray = new JSONArray(itemsJsonString);
+                        for (int i = 0; i < itemsJsonArray.length(); i++) {
+                            JSONObject itemJson = itemsJsonArray.getJSONObject(i);
+                            FileOrderItem item = new FileOrderItem();
+                            item.setFileName(itemJson.optString("fName", null));
+                            item.setPageCount(itemJson.optInt("pCount", -1));
+                            item.setPrintType(itemJson.optInt("pType", -1));
+                            item.setNumberOfCopies(itemJson.optInt("copies", -1));
 
-                log.info("Processing 'payment.captured' webhook for Order ID: {}, Payment ID: {}, File: {}, Type: {}, Copies: {}, Pages: {}",
-                         orderId, paymentId, fileNameToSend, printType, copies, pages);
-
-                if (fileNameToSend == null || printType == -1 || copies == -1 || pages == -1) {
-                     log.error("Webhook Error: Missing essential data (fileName, printType, numberOfCopies, pageCount) in notes for order_id: {}", orderId);
-                     return ResponseEntity.badRequest().body("Incomplete payment notes");
+                            if (item.getFileName() == null || item.getPageCount() == -1 || item.getPrintType() == -1 || item.getNumberOfCopies() == -1) {
+                                log.error("Webhook Error: Incomplete item data parsed from notes for order_id: {}, item index: {}, data: {}", orderId, i, itemJson);
+                                continue;
+                            }
+                            itemsToProcess.add(item);
+                        }
+                        log.info("Successfully parsed {} items from 'items' note for order ID: {}", itemsToProcess.size(), orderId);
+                     } catch (Exception e) {
+                         log.error("Webhook Error: Failed to parse 'items' JSON string from notes for order_id: {}. Attempting fallback if possible.", orderId, e);
+                         // If parsing fails, maybe try fallback if notes.has("items_truncated")? Or just fail here.
+                         return ResponseEntity.badRequest().body("Error parsing payment notes (items)");
+                     }
+                } else if (notes.has("items_truncated")) {
+                     // Item data was too large for notes. Need alternative mechanism.
+                     log.error("Webhook Error: Item data was truncated in notes for order_id: {}. Cannot process automatically. Manual intervention required.", orderId);
+                     // You MUST have another way to retrieve order details here, e.g., querying your DB using orderId or receiptId.
+                     // Since that's not implemented here, we have to acknowledge and report the issue.
+                     return ResponseEntity.ok("Webhook processed (acknowledged), but item data was truncated. Manual processing needed.");
                 }
 
-                // Perform Post-Payment Actions (Email, File Deletion)
-                try {
-                    sendEmailWithAttachment(fileNameToSend, printType, copies, pages);
-                    // Consider what exactly to delete. Just the sent file is simplest.
-                    // If you need to delete the original or other generated files,
-                    // you might need more info stored in the notes during order creation.
-                    deleteFile(fileNameToSend);
 
-                    log.info("Successfully processed webhook and post-payment actions for Order ID: {}", orderId);
-                    // Return OK to Razorpay to acknowledge receipt
-                    return ResponseEntity.ok("Webhook processed successfully");
-
-                } catch (MessagingException | IOException e) {
-                    log.error("Webhook Processing Error: Failed during post-payment actions (email/delete) for Order ID: {}", orderId, e);
-                    // Return an error, Razorpay might retry
-                    return ResponseEntity.internalServerError().body("Error during post-payment processing");
+                if (itemsToProcess.isEmpty()) {
+                     log.warn("Webhook Warning: No valid items found to process after parsing notes for order_id: {}", orderId);
+                     return ResponseEntity.ok("Webhook processed, but no valid items found in notes.");
                 }
+
+                // Perform Post-Payment Actions
+                handlePostPaymentActions(itemsToProcess, orderId);
+
+                return ResponseEntity.ok("Webhook processed successfully.");
+
             } else {
                 log.info("Ignoring non-'payment.captured' webhook event: {}", event);
                 return ResponseEntity.ok("Event received but not processed: " + event);
             }
+
         } catch (RazorpayException e) {
             log.error("RazorpayException during webhook signature verification: {}", e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Webhook signature verification failed");
@@ -243,116 +284,140 @@ public class PaymentController {
         }
     }
 
-    // --- Helper Method: Calculate Amount (Same as frontend logic) ---
+   // Extracted post-payment logic to a separate method
+    private void handlePostPaymentActions(List<FileOrderItem> itemsToProcess, String orderReference) {
+         int successCount = 0;
+         int failureCount = 0;
+         log.info("Starting post-payment actions for {} items. Reference: {}", itemsToProcess.size(), orderReference);
+
+         for (FileOrderItem item : itemsToProcess) {
+             try {
+                 log.info("Processing item: File='{}', Type={}, Copies={}, Pages={}",
+                          item.getFileName(), item.getPrintType(), item.getNumberOfCopies(), item.getPageCount());
+
+                 // Send Email
+                 sendEmailWithAttachment(item.getFileName(), item.getPrintType(), item.getNumberOfCopies(), item.getPageCount());
+
+                 // Delete File
+                 deleteFile(item.getFileName());
+
+                 successCount++;
+                 log.info("Successfully processed post-payment actions for file: {}", item.getFileName());
+
+             } catch (MessagingException | IOException e) {
+                 failureCount++;
+                 log.error("Post-Payment Action Error: Failed (email/delete) for file: {} (Reference: {}). Error: {}",
+                           item.getFileName(), orderReference, e.getMessage());
+                 // Consider queuing for retry or notifying admin
+             }
+         } // End loop
+
+         log.info("Post-payment actions complete for Reference: {}. Success: {}, Failures: {}",
+                  orderReference, successCount, failureCount);
+    }
+
+
     private int calculateAmount(int pages, int printType, int numberOfCopies) {
-        log.info("Calculating amount for pages={}, printType={}, copies={}", pages, printType, numberOfCopies);
-        if (pages <= 0 || numberOfCopies < 1 || (printType != 0 && printType != 1)) {
+        if (pages < 0 || numberOfCopies < 1 || (printType != 0 && printType != 1)) { // Allow pages = 0
             log.warn("Invalid input for amount calculation: pages={}, printType={}, copies={}", pages, printType, numberOfCopies);
-            return 0;
+            return -1; // Indicate error
+        }
+        if (pages == 0) {
+             return 0; // 0 pages cost 0
         }
 
         int firstCopyPrice;
-        if (printType == 0) { // Black and White - First Copy
+        if (printType == 0) {
             firstCopyPrice = (pages <= 2) ? pages * 10 : (pages - 2) * 2 + 20;
-        } else { // Color - First Copy (printType == 1)
+        } else {
             firstCopyPrice = (pages <= 1) ? pages * 20 : (pages - 1) * 5 + 20;
         }
-        log.debug("Calculated first copy price: {}", firstCopyPrice);
 
         if (numberOfCopies == 1) {
-            log.info("Total amount for 1 copy: {}", firstCopyPrice);
             return firstCopyPrice;
         }
 
         int additionalCopyCost;
-        if (printType == 0) { // Black and White - Additional Copy Cost
+        if (printType == 0) {
             additionalCopyCost = pages * 2;
-        } else { // Color - Additional Copy Cost
+        } else {
             additionalCopyCost = pages * 5;
         }
-        log.debug("Calculated additional copy cost per copy: {}", additionalCopyCost);
 
         int totalAmount = firstCopyPrice + (additionalCopyCost * (numberOfCopies - 1));
-        log.info("Calculated total amount: {} for {} copies", totalAmount, numberOfCopies);
         return totalAmount;
     }
 
-    // --- Helper Method: Send Email ---
     private void sendEmailWithAttachment(String fileName, int printType, int copies, int pages) throws MessagingException {
-         log.info("Preparing to send email for file: {}, printType: {}, copies: {}, pages: {}", fileName, printType, copies, pages);
-         final String username = mailUsername;
-         final String password = mailPassword; // Use App Password for Gmail
+        Path filePath = Paths.get(uploadDir).resolve(fileName); // Resolve against upload dir
+        log.info("Preparing email for: File='{}', Path='{}', Type={}, Copies={}, Pages={}",
+                 fileName, filePath, printType, copies, pages);
 
-         // Basic validation
-         if (username == null || username.isBlank() || password == null || password.isBlank() || printerEmail == null || printerEmail.isBlank()) {
-             log.error("Email credentials or recipient email not configured. Cannot send email.");
-             throw new MessagingException("Email configuration missing.");
+        if (!Files.exists(filePath)) {
+            log.error("File not found for email attachment: {}", filePath);
+            throw new MessagingException("Attachment file not found: " + fileName);
+        }
+
+         if (mailUsername == null || mailUsername.isBlank() || printerEmail == null || printerEmail.isBlank()) {
+             log.error("Email 'from' address or 'to' address not configured. Cannot send email.");
+             throw new MessagingException("Email configuration missing (sender or recipient).");
          }
 
-         Properties props = new Properties();
-         props.put("mail.smtp.host", "smtp.gmail.com"); // Gmail host
-         props.put("mail.smtp.port", "587"); // TLS Port
-         props.put("mail.smtp.auth", "true");
-         props.put("mail.smtp.starttls.enable", "true"); // Use STARTTLS
+        MimeMessage message = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8"); // Multipart
 
-         Session session = Session.getInstance(props, new Authenticator() {
-             protected PasswordAuthentication getPasswordAuthentication() {
-                 return new PasswordAuthentication(username, password);
-             }
-         });
+            helper.setFrom(mailUsername);
+            helper.setTo(printerEmail);
 
-         try {
-             Message message = new MimeMessage(session);
-             message.setFrom(new InternetAddress(username));
-             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(printerEmail)); // Send to printer
+            String typeStr = (printType == 0) ? "B&W" : "Color";
+            String subject = String.format("Print Request: %s - %d Pages - %d Copies - %s",
+                                           typeStr, pages, copies, fileName);
+            helper.setSubject(subject);
 
-             // Construct Subject
-             String typeStr = (printType == 0) ? "B&W" : "Color";
-             String subject = String.format("Print Request: %s - %d Pages - %d Copies - %s",
-                                            typeStr, pages, copies, fileName);
-             message.setSubject(subject);
+            String emailBody = String.format(
+                "Print Request Details:\n\n" +
+                "File: %s\n" +
+                "Type: %s\n" +
+                "Pages: %d\n" +
+                "Copies: %d\n\n" +
+                "Please find the file attached.",
+                fileName, typeStr, pages, copies
+            );
+            helper.setText(emailBody);
 
-             // Create body part for text
-             BodyPart textBodyPart = new MimeBodyPart();
-             String emailBody = String.format(
-                 "Print Request Details:\n\nFile: %s\nType: %s\nPages: %d\nCopies: %d\nPlease find the file attached.",
-                 fileName, typeStr, pages, copies
-             );
-             textBodyPart.setText(emailBody);
+            helper.addAttachment(fileName, filePath.toFile());
 
-             // Create body part for attachment
-             BodyPart attachmentBodyPart = new MimeBodyPart();
-             Path filePath = Paths.get(uploadDir, fileName);
-             if (!Files.exists(filePath)) {
-                 log.error("File not found for email attachment: {}", filePath);
-                 throw new MessagingException("Attachment file not found: " + fileName);
-             }
-             DataSource source = new FileDataSource(filePath.toString());
-             attachmentBodyPart.setDataHandler(new DataHandler(source));
-             attachmentBodyPart.setFileName(fileName); // Set the filename for the attachment
+            log.info("Sending email to {} with subject: {}", printerEmail, subject);
+            mailSender.send(message);
+            log.info("Email sent successfully for file: {}", fileName);
 
-             // Combine parts into multipart
-             Multipart multipart = new MimeMultipart();
-             multipart.addBodyPart(textBodyPart);
-             multipart.addBodyPart(attachmentBodyPart);
+        } catch (MessagingException e) {
+            log.error("Failed to prepare or send email for file: {}", fileName, e);
+            throw e;
+        } catch (Exception e) {
+             log.error("Unexpected error during email sending for file: {}", fileName, e);
+             throw new MessagingException("Unexpected error sending email: " + e.getMessage(), e);
+        }
+    }
 
-             // Set the multipart content to the message
-             message.setContent(multipart);
-
-             log.info("Sending email to {} with subject: {}", printerEmail, subject);
-             Transport.send(message);
-             log.info("Email sent successfully for file: {}", fileName);
-
-         } catch (MessagingException e) {
-             log.error("Failed to send email for file: {}", fileName, e);
-             throw e; // Re-throw to indicate failure in webhook processing
-         }
-     }
-
-
-    // --- Helper Method: Delete File ---
     private void deleteFile(String fileName) throws IOException {
-        Path path = Paths.get(uploadDir, fileName);
+        if (fileName == null || fileName.isBlank()) {
+            log.warn("Attempted to delete file with null or empty name. Skipping.");
+            return;
+        }
+        if (fileName.contains("..") || fileName.contains("/") || fileName.contains("\\")) {
+            log.error("Potential path traversal detected in filename for deletion: '{}'. Skipping deletion.", fileName);
+            throw new IOException("Invalid filename for deletion: " + fileName);
+        }
+
+        Path path = Paths.get(uploadDir).resolve(fileName).normalize();
+
+         if (!path.startsWith(Paths.get(uploadDir).normalize())) {
+             log.error("Resolved path '{}' is outside the upload directory '{}'. Deletion aborted.", path, uploadDir);
+             throw new IOException("Attempt to delete file outside designated directory.");
+         }
+
         try {
             if (Files.exists(path)) {
                 Files.delete(path);
@@ -362,7 +427,15 @@ public class PaymentController {
             }
         } catch (IOException e) {
             log.error("Failed to delete file: {}", path, e);
-            throw e; // Re-throw to indicate failure
+            throw e;
         }
     }
+
+    // --- Static Page Mappings (if needed) ---
+     @GetMapping("/terms") public String terms() { return "terms"; }
+     @GetMapping("/privacy") public String privacy() { return "privacy"; }
+     @GetMapping("/cancellation") public String cancellation() { return "cancellation"; }
+     @GetMapping("/contact") public String contact() { return "contact"; }
+     @GetMapping("/google0062e0de736cb797.html") public String owner() { return "google0062e0de736cb797"; }
+
 }
