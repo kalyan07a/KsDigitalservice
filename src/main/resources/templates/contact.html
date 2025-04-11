@@ -113,18 +113,19 @@
             outline: none;
         }
 
-        /* Style for the map image */
-        .map-image {
+        /* Style for the map iframe (reusing map-image class) */
+        .map-image { /* Applied this class to the iframe */
              display: block; /* Ensure it takes its own line */
              width: 100%; /* Make it responsive within the container */
              max-width: 720px; /* Optional: Limit max width if needed */
-             height: auto; /* Maintain aspect ratio */
-             margin-top: 20px; /* Space between button and image */
+             /* height: auto; /* Height is controlled by iframe attribute, this might not apply */
+             margin-top: 20px; /* Space between button and map */
              border-radius: var(--border-radius); /* Consistent corners */
              box-shadow: var(--box-shadow); /* Consistent shadow */
+             border: none; /* Remove default iframe border if style="border:0;" isn't enough */
         }
 
-        /* Form Styling */
+        /* Form Styling - Kept in case needed later */
         form {
             margin-top: 30px; /* Space above form */
         }
@@ -209,8 +210,9 @@
              button[type="submit"]{
                  width: 100%; /* Full width button on small screens */
              }
-            .map-image {
+            .map-image { /* Style for iframe */
                 margin-top: 15px; /* Slightly less margin on small screens */
+                height: 350px; /* Adjust height for smaller screens if needed */
             }
         }
 
@@ -232,14 +234,21 @@
         <a href="https://maps.app.goo.gl/33JKtBNWepyG7asq8" target="_blank" rel="noopener noreferrer" class="map-button">
              Get Directions
         </a>
-        <!-- Added Map Image Here -->
-        <img src="/maps_view.png"
-             alt="Map view of KS Digital Services location"
-             class="map-image">
-        </section>
 
-    <!-- Removed the Form Section as it wasn't present in the original request -->
-    <!-- If you need the form back, let me know -->
+        <!-- Replaced the img tag with the iframe below -->
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3806.1535559265153!2d78.564504!3d17.452362999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDI3JzA4LjUiTiA3OMKwMzMnNTIuMiJF!5e0!3m2!1sen!2sin!4v1744383382263!5m2!1sen!2sin"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="map-image"> <!-- Added class for styling -->
+        </iframe>
+    </section>
+
+    <!-- Form section is still omitted as per original request -->
 
 </main>
 </body>
