@@ -16,6 +16,10 @@ public class HomeController {
     public String homePage() {
         return "home"; // Renders src/main/resources/templates/index.html
     }
+    @GetMapping("/speak")
+    public String speak() {
+        return "payment_notification"; 
+    }
 
     // API endpoint called by the "Print" tab/button's JavaScript
     // This could be in another @Controller class if you prefer

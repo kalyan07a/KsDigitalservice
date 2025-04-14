@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment Received</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        	const socket = new WebSocket('wss://' + window.location.host + '/payment-websocket');
+
+            socket.onmessage = function(event) {
+                var amount = event.data;
+                // Display the amount
+                document.getElementById('amount').textContent = '₹ ' + amount;
+                // Speak the amount
+                var msg = new SpeechSynthesisUtterance('Payment received: ' + amount + ' rupees');
+                window.speechSynthesis.speak(msg);
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>Payment Received</h1>
+    <div id="amount" style="font-size: 24px;"></div>
+</body>
+</html>
