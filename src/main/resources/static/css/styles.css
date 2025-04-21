@@ -1,0 +1,377 @@
+
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #6c757d;
+            --text-color: #333;
+            --white: #fff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-gray);
+            padding: 20px;
+        }
+
+        .main-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Steps Modal Styles */
+        .steps-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .steps-modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .steps-list {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .btn-ok {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* --- Base Styles --- */
+        :root {
+            /* Keep original colors, but Bootstrap primary will be used by buttons unless overridden */
+            --primary-color: #007bff; --secondary-color: #6c757d; --success-color: #28a745;
+            --danger-color: #dc3545; --warning-color: #ffc107; --info-color: #17a2b8;
+            --light-gray: #f8f9fa; --medium-gray: #e9ecef; --dark-gray: #6c757d;
+            --text-color: #333; --white: #fff; --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); --transition-speed: 0.25s;
+        }
+        html { box-sizing: border-box; }
+        *, *:before, *:after { box-sizing: inherit; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--light-gray); color: var(--text-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 25px 15px; line-height: 1.6; margin: 0; }
+        .main-container { width: 100%; max-width: 650px; background-color: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 20px; }
+        h1 { color: var(--primary-color); margin-bottom: 15px; font-weight: 600; margin-top: 0; text-align: center; font-size: 1.7em;}
+
+        /* --- File Input Area --- */
+        .file-input-area { text-align: center; width: 100%; margin-bottom: 15px; }
+        #addFileButtonLabel { padding: 10px 25px; background-color: var(--primary-color); color: var(--white); border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.95em; line-height: 1.5; transition: background-color var(--transition-speed), transform var(--transition-speed), opacity var(--transition-speed); display: inline-block; box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25); }
+        #addFileButtonLabel:hover:not([style*="opacity: 0.6"]) { background-color: #0056b3; transform: translateY(-1px); }
+        #fileInput { display: none; }
+        #fileCounter { font-size: 0.85em; color: var(--secondary-color); margin-top: 5px; min-height: 1.2em; }
+
+        /* --- File List Container --- */
+        #fileListContainer { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+
+        /* --- Individual File Item Container --- */
+        .file-item-container { width: 100%; border: 1px solid var(--medium-gray); border-radius: var(--border-radius); box-sizing: border-box; background-color: #fdfdff; display: flex; flex-direction: column; gap: 10px; position: relative; padding: 12px; padding-right: 40px; /* Adjusted for remove button */ transition: opacity var(--transition-speed), transform var(--transition-speed), background-color var(--transition-speed); }
+        .file-item-container.processing { opacity: 0.7; pointer-events: none; background-color: #f0f0f0; }
+        .file-item-container.error { border-left: 4px solid var(--danger-color); background-color: #fff7f8; }
+
+        /* --- File Info Bar --- */
+        .file-info-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-bottom: 8px; border-bottom: 1px dashed var(--medium-gray); margin-bottom: 5px; }
+        .file-name-display { font-style: italic; color: var(--dark-gray); font-size: 0.9em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; text-align: left; padding-right: 10px; }
+        .preview-icon { background: none; border: none; font-size: 1.1em; color: var(--info-color); cursor: pointer; padding: 3px 5px; line-height: 1; transition: color var(--transition-speed), transform var(--transition-speed); border-radius: 4px; display: flex; align-items: center; gap: 5px; flex-shrink: 0; white-space: nowrap; }
+        .preview-icon span { font-size: 0.9em; font-weight: 500;}
+        .preview-icon:hover:not(:disabled) { color: #117a8b; transform: scale(1.05); background-color: rgba(23, 162, 184, 0.1);}
+        .preview-icon:disabled { color: var(--medium-gray); cursor: not-allowed; transform: none; background-color: transparent; opacity: 0.6;}
+
+        /* Remove Button */
+.remove-file-button { 
+    position: absolute; 
+    top: 6px; 
+    right: 6px; 
+    background: red; /* Set background color to red */
+    border: none; 
+    color: var(--white); /* Change icon color to white for contrast */
+    font-size: 1.1em; 
+    cursor: pointer; 
+    padding: 2px 4px; 
+    border-radius: 50%; 
+    line-height: 1; 
+    transition: background-color 0.2s, color 0.2s; 
+    width: 26px; 
+    height: 26px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 5; 
+}
+
+/* Remove hover effect */
+.remove-file-button:hover { 
+    /* No hover effect */
+}
+        /* --- Options Sections --- */
+        .item-options { display: none; flex-direction: column; gap: 12px; }
+        .options-group { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+        .options-group h3 { margin: 0 0 6px 0; color: var(--secondary-color); font-weight: 500; text-align: left; font-size: 0.9em; padding-bottom: 4px; border-bottom: 1px solid var(--medium-gray); }
+
+        /* Radio Buttons Container */
+        .radio-options-container { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+        .radio-option { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--medium-gray); transition: background-color var(--transition-speed), border-color var(--transition-speed); flex-grow: 1; justify-content: center; background-color: var(--white); min-width: 100px; box-sizing: border-box; position: relative; }
+        .radio-option:hover:not(.selected) { background-color: var(--light-gray); }
+        .radio-option input[type="radio"] { margin: 0; accent-color: var(--primary-color); transform: scale(0.9); cursor: pointer; }
+        .radio-option input[type="radio"]:disabled { cursor: not-allowed; }
+        .radio-option span { font-size: 0.85em; }
+        .radio-option.selected { background-color: #e7f3ff; border-color: var(--primary-color); }
+        .radio-option.selected span { color: var(--primary-color); font-weight: 600; }
+
+        /* Custom Page Inputs */
+        .custom-page-inputs { display: none; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 10px; margin-top: 8px; background-color: #f0f8ff; border-radius: 6px; border: 1px solid var(--primary-color); }
+        .custom-page-inputs.visible { display: flex; }
+        .custom-page-inputs label { font-size: 0.8em; color: var(--secondary-color); margin-right: 2px; white-space: nowrap; flex-shrink: 0; }
+        .custom-page-inputs input[type="number"] { width: 55px; padding: 4px 6px; border: 1px solid var(--medium-gray); border-radius: 4px; font-size: 0.85em; text-align: center; -moz-appearance: textfield; flex-grow: 0; flex-shrink: 0; }
+        .custom-page-inputs input[type="number"]::-webkit-outer-spin-button, .custom-page-inputs input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .custom-page-inputs input[type="number"]:disabled { background-color: var(--medium-gray); cursor: not-allowed; opacity: 0.7; }
+        .update-details-button { padding: 5px 12px; background-color: var(--info-color); color: var(--white); border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.8em; line-height: 1.4; border: none; transition: background-color var(--transition-speed); margin-left: auto; flex-shrink: 0; box-shadow: 0 1px 3px rgba(23, 162, 184, 0.25); }
+        .update-details-button:hover:not(:disabled) { background-color: #117a8b; }
+        .update-details-button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; opacity: 0.7; }
+
+        /* Copies Input */
+        .copies-input-container { display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-top: 0; }
+        .copies-input-container button { padding: 4px 10px; font-size: 1.2em; font-weight: bold; cursor: pointer; border: 1px solid var(--medium-gray); background-color: var(--light-gray); color: var(--primary-color); border-radius: 50%; width: 28px; height: 28px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background-color var(--transition-speed), transform var(--transition-speed); }
+        .copies-input-container button:hover:not(:disabled) { background-color: var(--medium-gray); transform: scale(1.05); }
+        .copies-input-container button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; opacity: 0.6; }
+        .copies-input-container input[type="number"] { width: 50px; text-align: center; font-size: 0.95em; font-weight: 500; padding: 5px 8px; border: 1px solid var(--medium-gray); border-radius: 4px; -moz-appearance: textfield; }
+        .copies-input-container input[type="number"]::-webkit-outer-spin-button, .copies-input-container input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+        /* Item Status Display */
+        .item-status-display { font-size: 0.8em; text-align: left; margin-top: 5px; padding: 4px 8px; border-radius: 4px; display: none; font-weight: 500; border: 1px solid transparent; }
+        .item-status-display.error { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; display: block; }
+        .item-status-display.info { background-color: #d1ecf1; color: #0c5460; border-color: #bee5eb; display: block; }
+        .item-status-display.success { background-color: #d4edda; color: #155724; border-color: #c3e6cb; display: block; }
+
+        /* Loader */
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-color); border-radius: 50%; width: 20px; height: 20px; animation: spin 1.5s linear infinite; display: none; flex-shrink: 0; }
+        .item-loader { margin-left: auto; margin-right: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- Total Price & Payment Footer --- */
+        .payment-footer { width: 100%; max-width: 650px; background-color: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 15px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 0; border-top: 3px solid var(--primary-color); }
+        #totalPriceDisplay { font-weight: 600; color: var(--primary-color); font-size: 1.2em; text-align: center; width: 100%; padding: 8px; background-color: #e7f3ff; border-radius: var(--border-radius); min-height: 1.5em; }
+        #pay-button { background-color: var(--success-color); color: var(--white); border: none; border-radius: var(--border-radius); padding: 12px 30px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed), opacity var(--transition-speed); width: 80%; max-width: 300px; margin-top: 5px; box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; }
+        #pay-button:hover:not(:disabled) { background-color: #218838; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4); }
+        #pay-button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; opacity: 0.7;}
+
+        /* Global Status */
+        #globalStatusMessage { margin-top: 5px; font-weight: 500; min-height: 1.5em; text-align: center; width: 100%; padding: 8px; border-radius: var(--border-radius); display: none; font-size: 0.95em; border: 1px solid transparent; }
+        #globalStatusMessage.status-error { color: var(--danger-color); background-color: #f8d7da; border-color: #f5c6cb; display: block !important; }
+        #globalStatusMessage.status-success { color: var(--success-color); background-color: #d4edda; border-color: #c3e6cb; display: block !important; }
+        #globalStatusMessage.status-info { color: #0c5460; background-color: #d1ecf1; border-color: #bee5eb; display: block !important; }
+        #globalStatusMessage.status-warning { color: #856404; background-color: #fff3cd; border-color: #ffeeba; display: block !important;}
+        #paymentLoader { margin: 5px auto 0; width: 25px; height: 25px; }
+
+        /* --- Preview Modal Styles --- */
+        .preview-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+        .preview-modal.visible { display: flex; }
+        .preview-modal-content { background-color: var(--white); margin: auto; padding: 20px; border: 1px solid var(--medium-gray); border-radius: var(--border-radius); width: 90%; max-width: 700px; max-height: 85vh; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; display: flex; flex-direction: column; box-sizing: border-box; }
+        .preview-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--medium-gray); padding-bottom: 10px; margin-bottom: 15px; flex-shrink: 0; }
+        .preview-modal-title { font-size: 1.1em; font-weight: 600; color: var(--primary-color); margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 10px; }
+        .preview-modal-close { color: var(--dark-gray); font-size: 1.8em; font-weight: bold; line-height: 1; cursor: pointer; padding: 0 5px; background: none; border: none; flex-shrink: 0; }
+        .preview-modal-close:hover, .preview-modal-close:focus { color: var(--danger-color); text-decoration: none; }
+        .preview-modal-body { overflow-y: auto; flex-grow: 1; background-color: var(--light-gray); border-radius: calc(var(--border-radius) - 4px); padding: 10px; box-sizing: border-box; min-height: 200px; }
+        #modalPreviewContent .pdf-page-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto 10px auto; background-color: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid var(--medium-gray); }
+        #modalPreviewContent img.pdf-page-canvas { border: none; box-shadow: none; }
+        #modalPreviewContent p.placeholder { color: var(--dark-gray); font-size: 0.95em; text-align: center; margin-top: 20px; padding: 10px; }
+        #modalPreviewContent .loader { border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 30px; height: 30px; animation: spin 1.5s linear infinite; display: block; margin: 20px auto; }
+
+        /* --- ADDED CSS FOR FOOTER BUTTONS (from home.html) --- */
+        .btn-outline-primary {
+            border-color: #0d6efd; /* Match home.html primary blue */
+            color: #0d6efd;
+            /* Adjust margins slightly if needed within this page context */
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+        .footer-links-container { /* Added a specific class for easier targeting */
+            text-align: center;
+            margin-top: 2rem; /* Add space above buttons */
+            margin-bottom: 1.5rem; /* Add space below buttons */
+            width: 100%; /* Ensure it takes width */
+            max-width: 650px; /* Match container width above */
+            padding-left: 15px; /* Align with containers */
+            padding-right: 15px;
+        }
+        .footer-links-container .btn {
+             margin-left: 0.25rem; /* Bootstrap mx-2 is 0.5rem, slightly less */
+             margin-right: 0.25rem;
+             font-size: 0.9em; /* Slightly smaller buttons if needed */
+             padding: 0.375rem 0.75rem;
+        }
+
+        /* --- Mobile Adjustments --- */
+        @media (max-width: 600px) {
+            body { padding: 15px 10px; }
+            .main-container, .payment-footer, .footer-links-container { /* Apply max-width to footer links too */
+                 padding: 15px; gap: 12px; max-width: 100%;
+                 margin-left: auto; margin-right: auto; /* Center containers */
+            }
+            h1 { font-size: 1.4em; margin-bottom: 10px;}
+            #addFileButtonLabel { width: 100%; font-size: 0.9em; padding: 10px 15px; }
+            .file-item-container { padding: 10px; padding-right: 35px; gap: 10px; }
+            .file-info-bar { padding-bottom: 6px; flex-wrap: wrap; }
+            .file-name-display { font-size: 0.85em; flex-basis: 100%; order: 1; }
+            .item-loader { order: 2; margin-left: 0; margin-right: auto; }
+            .preview-icon { order: 3; font-size: 1.2em; padding: 5px; gap: 0; }
+            .preview-icon span { display: none; }
+            .remove-file-button { top: 5px; right: 5px; width: 22px; height: 22px; font-size: 1.1em; }
+            .item-options { gap: 15px; }
+            .options-group { gap: 8px; }
+            .options-group h3 { font-size: 0.85em; margin-bottom: 5px; padding-bottom: 3px;}
+            .radio-options-container { gap: 6px; }
+            .radio-option { padding: 4px 8px; gap: 4px; flex-basis: calc(50% - 4px); }
+            .radio-option span { font-size: 0.8em; }
+            .custom-page-inputs { gap: 6px; row-gap: 8px; padding: 6px 8px; }
+            .custom-page-inputs label { font-size: 0.75em; }
+            .custom-page-inputs input[type="number"] { width: 45px; font-size: 0.8em; }
+            .update-details-button { width: 100%; flex-basis: 100%; margin-left: 0; margin-top: 8px; padding: 6px 10px; font-size: 0.75em; }
+            .copies-input-container { justify-content: center; }
+            .copies-input-container button { width: 30px; height: 30px; font-size: 1.1em; }
+            .copies-input-container input[type="number"] { width: 45px; font-size: 0.9em; }
+            #totalPriceDisplay { font-size: 1.1em; padding: 6px; }
+            #pay-button { width: 90%; padding: 10px 20px; font-size: 1em; }
+            #globalStatusMessage { font-size: 0.9em; }
+            .preview-modal-content { width: 95%; padding: 15px; max-height: 90vh; }
+            .preview-modal-header { padding-bottom: 8px; margin-bottom: 10px; }
+            .preview-modal-title { font-size: 1.0em; }
+            .preview-modal-close { font-size: 1.6em; }
+            .preview-modal-body { padding: 8px; }
+
+            /* Stack footer buttons on small screens */
+            .footer-links-container .btn {
+                display: block;
+                width: 90%; /* Make buttons wide */
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0.5rem; /* Space between stacked buttons */
+                margin-top: 0.5rem;
+            }
+        }
+ /* Steps Modal Styles */
+    .steps-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1001;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .steps-modal-content {
+        background-color: white;
+        padding: 25px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .steps-modal h2 {
+        color: #007bff;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+        text-align: center;
+    }
+
+    .steps-list {
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .steps-list li {
+        margin-bottom: 10px;
+        font-size: 1em;
+        line-height: 1.4;
+    }
+
+    .btn-ok {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        font-size: 1em;
+        transition: background-color 0.3s;
+    }
+
+    .btn-ok:hover {
+        background-color: #0056b3;
+    }
+
+    @media (max-width: 600px) {
+        .steps-modal-content {
+            padding: 15px;
+        }
+        
+        .steps-modal h2 {
+            font-size: 1.2em;
+        }
+        
+        .steps-list li {
+            font-size: 0.9em;
+        }
+    }
+.footer {
+            background-color: #343a40;
+            color: #adb5bd;
+            padding: 30px 0;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            border-top: 3px solid #0d6efd;
+        }
+
+        .footer a {
+            color: #f8f9fa;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #0d6efd;
+            text-decoration: underline;
+        }
+.container {
+            text-align: center;
+        }
+        .home-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+   
