@@ -1,0 +1,1140 @@
+2025-04-22 00:28:07 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer line: 78 - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/pavan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/pavan/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-04-22 00:28:07 [main] INFO  c.p.printer.PrinterApplicationTests line: 53 - Starting PrinterApplicationTests using Java 17.0.14 with PID 81275 (started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 00:28:07 [main] DEBUG c.p.printer.PrinterApplicationTests line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 00:28:07 [main] INFO  c.p.printer.PrinterApplicationTests line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 00:28:08 [main] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 00:28:08 [main] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 00:28:08 [main] INFO  c.p.p.service.FileStorageService line: 62 - Created upload directory: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 00:28:08 [main] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 00:28:08 [main] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 00:28:08 [main] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 00:28:08 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 00:28:08 [main] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 00:28:09 [main] INFO  c.p.printer.PrinterApplicationTests line: 59 - Started PrinterApplicationTests in 1.828 seconds (process running for 2.736)
+2025-04-22 00:59:59 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90213 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 00:59:59 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 00:59:59 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 00:59:59 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-22 00:59:59 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-22 01:00:00 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:00:00 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:00:00 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:00:00 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:00:01 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:00:01 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 1113 ms
+2025-04-22 01:00:01 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:00:01 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:00:01 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:00:01 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:00:01 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:00:01 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:00:01 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:00:01 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:00:01 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:00:01 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:00:01 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:00:01 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 2.202 seconds (process running for 2.663)
+2025-04-22 01:00:07 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 01:00:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 01:00:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 2 ms
+2025-04-22 01:00:55 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:00:55 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:01:05 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:01:05 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:01:05 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:01:05 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-22 01:01:05 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-22 01:01:06 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:01:06 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:01:06 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:01:06 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:01:06 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:01:06 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 1046 ms
+2025-04-22 01:01:06 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:01:06 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:01:06 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:01:06 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:01:06 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:01:06 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:01:07 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:01:07 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:01:07 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:01:07 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:01:07 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:01:07 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 2.238 seconds (process running for 2.737)
+2025-04-22 01:01:28 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 01:01:28 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 01:01:28 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 1 ms
+2025-04-22 01:02:06 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 30 class path changes (0 additions, 16 deletions, 14 modifications)
+2025-04-22 01:02:06 [Thread-5] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:02:06 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:02:06 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:02:06 [Thread-5] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:02:06 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:02:06 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:02:06 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:02:07 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:02:07 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:02:07 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:02:07 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:02:07 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:02:07 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 440 ms
+2025-04-22 01:02:07 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:02:07 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:02:07 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:02:07 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:02:07 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.894 seconds (process running for 63.166)
+2025-04-22 01:02:07 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:02:09 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 13 class path changes (13 additions, 0 deletions, 0 modifications)
+2025-04-22 01:02:09 [Thread-7] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:02:09 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:02:09 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:02:09 [Thread-7] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:02:09 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:02:09 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:02:09 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:02:09 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:02:09 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:02:09 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:02:09 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:02:09 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:02:09 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 196 ms
+2025-04-22 01:02:09 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:02:09 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:02:09 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:02:09 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:02:09 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:02:09 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:02:09 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:02:09 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:02:09 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:02:09 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:02:09 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:02:09 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.366 seconds (process running for 64.963)
+2025-04-22 01:02:09 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:02:10 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer line: 78 - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/pavan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/pavan/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-04-22 01:02:10 [main] INFO  c.p.printer.PrinterApplicationTests line: 53 - Starting PrinterApplicationTests using Java 17.0.14 with PID 91195 (started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:02:10 [main] DEBUG c.p.printer.PrinterApplicationTests line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:02:10 [main] INFO  c.p.printer.PrinterApplicationTests line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:02:10 [main] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:02:10 [main] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:02:10 [main] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:02:10 [main] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:02:10 [main] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:02:10 [main] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:02:11 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:02:11 [main] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:02:11 [main] INFO  c.p.printer.PrinterApplicationTests line: 59 - Started PrinterApplicationTests in 1.63 seconds (process running for 2.65)
+2025-04-22 01:03:07 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 01:03:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 01:03:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 2 ms
+2025-04-22 01:04:21 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 27 class path changes (0 additions, 13 deletions, 14 modifications)
+2025-04-22 01:04:21 [Thread-11] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:04:21 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:04:21 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:04:21 [Thread-11] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:04:21 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:04:21 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:04:21 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:04:21 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:04:21 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:04:21 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:04:21 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:04:21 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:04:21 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 309 ms
+2025-04-22 01:04:21 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:04:21 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:04:22 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:04:22 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:04:22 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.498 seconds (process running for 197.437)
+2025-04-22 01:04:22 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:04:23 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 13 class path changes (13 additions, 0 deletions, 0 modifications)
+2025-04-22 01:04:23 [Thread-15] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:04:23 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:04:23 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:04:23 [Thread-15] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:04:23 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:04:23 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:04:23 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:04:23 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:04:23 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:04:23 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:04:23 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:04:23 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:04:23 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 138 ms
+2025-04-22 01:04:23 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:04:23 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:04:23 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:04:23 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:04:23 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:04:23 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:04:23 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:04:23 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:04:23 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:04:23 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:04:23 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:04:23 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.251 seconds (process running for 199.113)
+2025-04-22 01:04:23 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:04:24 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer line: 78 - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/pavan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/pavan/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-04-22 01:04:24 [main] INFO  c.p.printer.PrinterApplicationTests line: 53 - Starting PrinterApplicationTests using Java 17.0.14 with PID 92171 (started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:04:24 [main] DEBUG c.p.printer.PrinterApplicationTests line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:04:24 [main] INFO  c.p.printer.PrinterApplicationTests line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:04:24 [main] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:04:24 [main] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:04:24 [main] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:04:24 [main] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:04:25 [main] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:04:25 [main] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:04:25 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:04:25 [main] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:04:25 [main] INFO  c.p.printer.PrinterApplicationTests line: 59 - Started PrinterApplicationTests in 1.609 seconds (process running for 2.543)
+2025-04-22 01:06:21 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 4 class path changes (3 additions, 0 deletions, 1 modification)
+2025-04-22 01:06:21 [Thread-19] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:06:21 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:06:21 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:06:21 [Thread-19] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:06:21 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:06:21 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:06:21 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:06:21 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:06:21 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:06:21 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:06:21 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:06:21 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:06:21 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 188 ms
+2025-04-22 01:06:21 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:06:21 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:06:21 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:06:21 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:06:21 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:06:21 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:06:21 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:06:21 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:06:21 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:06:21 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:06:21 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:06:21 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.331 seconds (process running for 317.008)
+2025-04-22 01:06:21 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:08:06 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 30 class path changes (0 additions, 16 deletions, 14 modifications)
+2025-04-22 01:08:06 [Thread-23] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:08:06 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:08:06 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:08:06 [Thread-23] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:08:06 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:08:06 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:08:06 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:08:06 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:08:06 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:08:06 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:08:06 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:08:06 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:08:06 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 173 ms
+2025-04-22 01:08:06 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:08:06 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:08:06 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:08:06 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:08:06 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.392 seconds (process running for 422.189)
+2025-04-22 01:08:06 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:08:08 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 13 class path changes (13 additions, 0 deletions, 0 modifications)
+2025-04-22 01:08:08 [Thread-27] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:08:08 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:08:08 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:08:08 [Thread-27] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:08:08 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:08:08 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:08:08 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:08:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:08:08 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:08:08 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:08:08 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:08:08 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:08:08 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 124 ms
+2025-04-22 01:08:08 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:08:08 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:08:08 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:08:08 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:08:08 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:08:08 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:08:08 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:08:08 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:08:08 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:08:08 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:08:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:08:08 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.221 seconds (process running for 424.235)
+2025-04-22 01:08:08 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:08:09 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer line: 78 - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/pavan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/pavan/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-04-22 01:08:09 [main] INFO  c.p.printer.PrinterApplicationTests line: 53 - Starting PrinterApplicationTests using Java 17.0.14 with PID 93572 (started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:08:09 [main] DEBUG c.p.printer.PrinterApplicationTests line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:08:09 [main] INFO  c.p.printer.PrinterApplicationTests line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:08:09 [main] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:08:09 [main] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:08:09 [main] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:08:09 [main] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:08:10 [main] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:08:10 [main] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:08:10 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:08:10 [main] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:08:10 [main] INFO  c.p.printer.PrinterApplicationTests line: 59 - Started PrinterApplicationTests in 1.436 seconds (process running for 2.367)
+2025-04-22 01:10:06 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 27 class path changes (0 additions, 13 deletions, 14 modifications)
+2025-04-22 01:10:06 [Thread-31] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:10:06 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:10:06 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:10:06 [Thread-31] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:10:06 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:10:06 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:10:06 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:10:06 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:10:06 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:10:06 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:10:06 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:10:07 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:10:07 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 160 ms
+2025-04-22 01:10:07 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:10:07 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:10:07 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:10:07 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:10:07 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.303 seconds (process running for 542.514)
+2025-04-22 01:10:07 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:10:08 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 13 class path changes (13 additions, 0 deletions, 0 modifications)
+2025-04-22 01:10:08 [Thread-35] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:10:08 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:10:08 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:10:08 [Thread-35] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:10:08 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:10:08 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:10:08 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:10:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:10:08 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:10:08 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:10:08 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:10:08 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:10:08 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 125 ms
+2025-04-22 01:10:08 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:10:08 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:10:08 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:10:08 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:10:08 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:10:08 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:10:08 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:10:08 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:10:08 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:10:08 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:10:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:10:08 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.226 seconds (process running for 544.161)
+2025-04-22 01:10:08 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:10:09 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer line: 78 - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/pavan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/pavan/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-04-22 01:10:09 [main] INFO  c.p.printer.PrinterApplicationTests line: 53 - Starting PrinterApplicationTests using Java 17.0.14 with PID 94404 (started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:10:09 [main] DEBUG c.p.printer.PrinterApplicationTests line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:10:09 [main] INFO  c.p.printer.PrinterApplicationTests line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:10:09 [main] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:10:09 [main] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:10:09 [main] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:10:09 [main] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:10:09 [main] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:10:10 [main] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:10:10 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:10:10 [main] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:10:10 [main] INFO  c.p.printer.PrinterApplicationTests line: 59 - Started PrinterApplicationTests in 1.477 seconds (process running for 2.355)
+2025-04-22 01:10:35 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 01:10:35 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 01:10:35 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 1 ms
+2025-04-22 01:16:38 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 4 class path changes (3 additions, 0 deletions, 1 modification)
+2025-04-22 01:16:38 [Thread-39] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:16:38 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:16:38 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:16:38 [Thread-39] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:16:38 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:16:38 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:16:38 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:16:38 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:16:38 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:16:38 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:16:38 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:16:38 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:16:38 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 185 ms
+2025-04-22 01:16:38 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:16:38 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:16:38 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:16:38 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:16:38 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:16:38 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:16:38 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:16:38 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:16:38 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:16:38 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:16:38 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:16:38 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.314 seconds (process running for 934.348)
+2025-04-22 01:16:38 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:24:14 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-04-22 01:24:14 [Thread-43] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:24:14 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:24:14 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:24:14 [Thread-43] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:24:14 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 90733 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:24:14 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:24:14 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:24:14 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:24:14 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:24:14 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:24:14 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:24:14 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:24:14 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 121 ms
+2025-04-22 01:24:14 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:24:14 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:24:14 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:24:14 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:24:14 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:24:14 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:24:14 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:24:14 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:24:14 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:24:14 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:24:14 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:24:14 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.221 seconds (process running for 1389.756)
+2025-04-22 01:24:14 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:24:39 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 01:24:39 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 01:24:39 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 1 ms
+2025-04-22 01:26:44 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:26:44 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:26:55 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 99266 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:26:55 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:26:55 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:26:55 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-22 01:26:55 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-22 01:26:56 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:26:56 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:26:56 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:26:56 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:26:56 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:26:56 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 964 ms
+2025-04-22 01:26:56 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:26:56 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:26:56 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:26:56 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:26:56 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:26:56 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:26:56 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:26:56 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:26:56 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:26:56 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:26:56 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:26:56 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 2.06 seconds (process running for 2.508)
+2025-04-22 01:27:01 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 01:27:01 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 01:27:01 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 1 ms
+2025-04-22 01:27:15 [http-nio-8080-exec-5] INFO  c.p.p.c.FileUploadController line: 65 - Received upload request for uniqueId 'item-0': File='paytm.jpeg', Size=95860, Type=image/jpeg, Range='all', Start=null, End=null
+2025-04-22 01:27:15 [http-nio-8080-exec-5] INFO  c.p.p.service.FileStorageService line: 120 - Storing original file from 'paytm.jpeg' (image/jpeg) as: orig_5f6898a2_paytm.jpeg
+2025-04-22 01:27:15 [http-nio-8080-exec-5] DEBUG c.p.p.service.FileStorageService line: 123 - Successfully copied input stream to /home/pavan/Music/git/ePrinter/uploads/orig_5f6898a2_paytm.jpeg
+2025-04-22 01:27:15 [http-nio-8080-exec-5] INFO  c.p.p.service.FileStorageService line: 150 - Image 'orig_5f6898a2_paytm.jpeg' detected, page count set to 1
+2025-04-22 01:27:15 [http-nio-8080-exec-5] INFO  c.p.p.service.FileStorageService line: 208 - Attempting to generate final B&W file 'bw_5f6898a2_paytm.jpeg' from source '/home/pavan/Music/git/ePrinter/uploads/orig_5f6898a2_paytm.jpeg'
+2025-04-22 01:27:15 [http-nio-8080-exec-5] DEBUG c.p.p.service.FileStorageService line: 289 - Converting Image to B&W: /home/pavan/Music/git/ePrinter/uploads/orig_5f6898a2_paytm.jpeg -> /home/pavan/Music/git/ePrinter/uploads/bw_5f6898a2_paytm.jpeg
+2025-04-22 01:27:15 [http-nio-8080-exec-5] INFO  c.p.p.service.FileStorageService line: 297 - Executing command: ImageMagick Image BW conversion convert /home/pavan/Music/git/ePrinter/uploads/orig_5f6898a2_paytm.jpeg -colorspace Gray -strip /home/pavan/Music/git/ePrinter/uploads/bw_5f6898a2_paytm.jpeg
+2025-04-22 01:27:15 [http-nio-8080-exec-5] ERROR c.p.p.service.FileStorageService line: 342 - !!! ImageMagick Image BW conversion execution failed: Command ('convert') not found or not executable in PATH. Ensure Ghostscript/ImageMagick are installed and accessible. !!!
+2025-04-22 01:27:15 [http-nio-8080-exec-5] ERROR c.p.p.service.FileStorageService line: 235 - Failed to generate final B&W file 'bw_5f6898a2_paytm.jpeg' from '/home/pavan/Music/git/ePrinter/uploads/orig_5f6898a2_paytm.jpeg'
+java.io.IOException: Cannot run program "convert": error=2, No such file or directory
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1143)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1073)
+	at com.pdf.printer.service.FileStorageService.executeProcess(FileStorageService.java:301)
+	at com.pdf.printer.service.FileStorageService.convertImageToBW(FileStorageService.java:293)
+	at com.pdf.printer.service.FileStorageService.storeFile(FileStorageService.java:216)
+	at com.pdf.printer.controller.FileUploadController.uploadAndProcessFile(FileUploadController.java:69)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.base/java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:314)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:244)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1110)
+	... 55 common frames omitted
+2025-04-22 01:27:15 [http-nio-8080-exec-5] INFO  c.p.p.service.FileStorageService line: 242 - Returning FileInfo for input 'paytm.jpeg': B&W='null', Color='orig_5f6898a2_paytm.jpeg', B&W URL='null', Color URL='/uploads/orig_5f6898a2_paytm.jpeg', Pages=1, MimeType='image/jpeg'
+2025-04-22 01:27:15 [http-nio-8080-exec-5] INFO  c.p.p.c.FileUploadController line: 70 - File processing complete for uniqueId 'item-0'. Result: FileInfo{b_fileName='null', c_fileName='orig_5f6898a2_paytm.jpeg', url='null', c_url='/uploads/orig_5f6898a2_paytm.jpeg', pageCount=1, originalFileName='paytm.jpeg', mimeType='image/jpeg'}
+2025-04-22 01:27:27 [http-nio-8080-exec-6] INFO  c.p.p.c.FileUploadController line: 65 - Received upload request for uniqueId 'item-1': File='IMG_20250120_123145.jpg', Size=5997719, Type=image/jpeg, Range='all', Start=null, End=null
+2025-04-22 01:27:27 [http-nio-8080-exec-6] INFO  c.p.p.service.FileStorageService line: 120 - Storing original file from 'IMG_20250120_123145.jpg' (image/jpeg) as: orig_8bde0395_IMG_20250120_123145.jpg
+2025-04-22 01:27:27 [http-nio-8080-exec-6] DEBUG c.p.p.service.FileStorageService line: 123 - Successfully copied input stream to /home/pavan/Music/git/ePrinter/uploads/orig_8bde0395_IMG_20250120_123145.jpg
+2025-04-22 01:27:27 [http-nio-8080-exec-6] INFO  c.p.p.service.FileStorageService line: 150 - Image 'orig_8bde0395_IMG_20250120_123145.jpg' detected, page count set to 1
+2025-04-22 01:27:27 [http-nio-8080-exec-6] INFO  c.p.p.service.FileStorageService line: 208 - Attempting to generate final B&W file 'bw_8bde0395_IMG_20250120_123145.jpg' from source '/home/pavan/Music/git/ePrinter/uploads/orig_8bde0395_IMG_20250120_123145.jpg'
+2025-04-22 01:27:27 [http-nio-8080-exec-6] DEBUG c.p.p.service.FileStorageService line: 289 - Converting Image to B&W: /home/pavan/Music/git/ePrinter/uploads/orig_8bde0395_IMG_20250120_123145.jpg -> /home/pavan/Music/git/ePrinter/uploads/bw_8bde0395_IMG_20250120_123145.jpg
+2025-04-22 01:27:27 [http-nio-8080-exec-6] INFO  c.p.p.service.FileStorageService line: 297 - Executing command: ImageMagick Image BW conversion convert /home/pavan/Music/git/ePrinter/uploads/orig_8bde0395_IMG_20250120_123145.jpg -colorspace Gray -strip /home/pavan/Music/git/ePrinter/uploads/bw_8bde0395_IMG_20250120_123145.jpg
+2025-04-22 01:27:27 [http-nio-8080-exec-6] ERROR c.p.p.service.FileStorageService line: 342 - !!! ImageMagick Image BW conversion execution failed: Command ('convert') not found or not executable in PATH. Ensure Ghostscript/ImageMagick are installed and accessible. !!!
+2025-04-22 01:27:27 [http-nio-8080-exec-6] ERROR c.p.p.service.FileStorageService line: 235 - Failed to generate final B&W file 'bw_8bde0395_IMG_20250120_123145.jpg' from '/home/pavan/Music/git/ePrinter/uploads/orig_8bde0395_IMG_20250120_123145.jpg'
+java.io.IOException: Cannot run program "convert": error=2, No such file or directory
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1143)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1073)
+	at com.pdf.printer.service.FileStorageService.executeProcess(FileStorageService.java:301)
+	at com.pdf.printer.service.FileStorageService.convertImageToBW(FileStorageService.java:293)
+	at com.pdf.printer.service.FileStorageService.storeFile(FileStorageService.java:216)
+	at com.pdf.printer.controller.FileUploadController.uploadAndProcessFile(FileUploadController.java:69)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.base/java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:314)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:244)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1110)
+	... 55 common frames omitted
+2025-04-22 01:27:27 [http-nio-8080-exec-6] INFO  c.p.p.service.FileStorageService line: 242 - Returning FileInfo for input 'IMG_20250120_123145.jpg': B&W='null', Color='orig_8bde0395_IMG_20250120_123145.jpg', B&W URL='null', Color URL='/uploads/orig_8bde0395_IMG_20250120_123145.jpg', Pages=1, MimeType='image/jpeg'
+2025-04-22 01:27:27 [http-nio-8080-exec-6] INFO  c.p.p.c.FileUploadController line: 70 - File processing complete for uniqueId 'item-1'. Result: FileInfo{b_fileName='null', c_fileName='orig_8bde0395_IMG_20250120_123145.jpg', url='null', c_url='/uploads/orig_8bde0395_IMG_20250120_123145.jpg', pageCount=1, originalFileName='IMG_20250120_123145.jpg', mimeType='image/jpeg'}
+2025-04-22 01:27:47 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 30 class path changes (0 additions, 16 deletions, 14 modifications)
+2025-04-22 01:27:47 [Thread-5] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:27:47 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:27:47 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:27:47 [Thread-5] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:27:47 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 99266 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:27:47 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:27:47 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:27:48 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:27:48 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:27:48 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:27:48 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:27:48 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:27:48 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 628 ms
+2025-04-22 01:27:48 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:27:48 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:27:48 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:27:48 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:27:48 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext line: 635 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'paymentController' defined in file [/home/pavan/Music/git/ePrinter/target/classes/com/pdf/printer/controller/PaymentController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.pdf.printer.service.RazorpayService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-04-22 01:27:48 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Stopping service [Tomcat]
+2025-04-22 01:27:48 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger line: 82 - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-04-22 01:27:48 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter line: 40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.pdf.printer.controller.PaymentController required a bean of type 'com.pdf.printer.service.RazorpayService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.pdf.printer.service.RazorpayService' in your configuration.
+
+2025-04-22 01:27:49 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 99266 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:27:49 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:27:49 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:27:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:27:49 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:27:49 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:27:49 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:27:49 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:27:49 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 252 ms
+2025-04-22 01:27:49 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer line: 78 - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/pavan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/pavan/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-04-22 01:27:49 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:27:49 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:27:49 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:27:49 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:27:49 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:27:49 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:27:49 [main] INFO  c.p.printer.PrinterApplicationTests line: 53 - Starting PrinterApplicationTests using Java 17.0.14 with PID 99752 (started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:27:49 [main] DEBUG c.p.printer.PrinterApplicationTests line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:27:49 [main] INFO  c.p.printer.PrinterApplicationTests line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:27:50 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:27:50 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:27:50 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:27:50 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:27:50 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:27:50 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.566 seconds (process running for 55.864)
+2025-04-22 01:27:50 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:27:50 [main] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:27:50 [main] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:27:50 [main] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:27:50 [main] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:27:50 [main] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:27:50 [main] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:27:51 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:27:51 [main] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:27:51 [main] INFO  c.p.printer.PrinterApplicationTests line: 59 - Started PrinterApplicationTests in 1.903 seconds (process running for 2.853)
+2025-04-22 01:36:30 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 4 class path changes (3 additions, 0 deletions, 1 modification)
+2025-04-22 01:36:30 [Thread-7] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:36:30 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:36:30 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:36:30 [Thread-7] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:36:30 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 99266 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:36:30 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:36:30 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:36:30 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:36:30 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:36:30 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:36:30 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:36:30 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:36:30 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 160 ms
+2025-04-22 01:36:30 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:36:30 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:36:30 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:36:30 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:36:30 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:36:30 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:36:30 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:36:30 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:36:30 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:36:30 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:36:30 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:36:30 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.314 seconds (process running for 576.572)
+2025-04-22 01:36:30 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 01:37:30 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:37:30 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:37:40 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 102704 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:37:40 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:37:40 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:37:40 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-22 01:37:40 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-22 01:37:41 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:37:41 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:37:41 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:37:41 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:37:41 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:37:41 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 1008 ms
+2025-04-22 01:37:41 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:37:41 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:37:41 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:37:41 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:37:41 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:37:41 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:37:41 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:37:42 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:37:42 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:37:42 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:37:42 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:37:42 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 2.19 seconds (process running for 2.654)
+2025-04-22 01:37:56 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 01:37:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 01:37:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 2 ms
+2025-04-22 01:37:56 [http-nio-8080-exec-3] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /js/script.js
+2025-04-22 01:37:56 [http-nio-8080-exec-2] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /css/styles.css
+2025-04-22 01:37:56 [http-nio-8080-exec-3] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /js/script.js.
+2025-04-22 01:37:56 [http-nio-8080-exec-2] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /css/styles.css.
+2025-04-22 01:37:57 [http-nio-8080-exec-4] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /js/script.js
+2025-04-22 01:37:57 [http-nio-8080-exec-4] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /js/script.js.
+2025-04-22 01:37:57 [http-nio-8080-exec-5] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /favicon.png
+2025-04-22 01:37:57 [http-nio-8080-exec-5] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /favicon.png.
+2025-04-22 01:38:38 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 01:38:38 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 01:38:48 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 103209 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 01:38:48 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 01:38:48 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 01:38:48 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-22 01:38:48 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-22 01:38:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 01:38:49 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:38:49 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 01:38:49 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 01:38:49 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 01:38:49 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 1001 ms
+2025-04-22 01:38:49 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:38:49 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:38:49 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 01:38:49 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 01:38:49 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 01:38:49 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 01:38:49 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 01:38:49 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 01:38:49 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 01:38:49 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 01:38:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 01:38:49 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 2.125 seconds (process running for 2.614)
+2025-04-22 01:38:53 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 01:38:53 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 01:38:53 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 1 ms
+2025-04-22 01:38:54 [http-nio-8080-exec-3] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /js/script.js
+2025-04-22 01:38:54 [http-nio-8080-exec-2] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /css/styles.css
+2025-04-22 01:38:54 [http-nio-8080-exec-3] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /js/script.js.
+2025-04-22 01:38:54 [http-nio-8080-exec-2] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /css/styles.css.
+2025-04-22 01:38:54 [http-nio-8080-exec-4] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /js/script.js
+2025-04-22 01:38:54 [http-nio-8080-exec-4] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /js/script.js.
+2025-04-22 01:38:56 [http-nio-8080-exec-6] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /css/styles.css
+2025-04-22 01:38:56 [http-nio-8080-exec-7] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /js/script.js
+2025-04-22 01:38:56 [http-nio-8080-exec-7] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /js/script.js.
+2025-04-22 01:38:56 [http-nio-8080-exec-6] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /css/styles.css.
+2025-04-22 01:38:56 [http-nio-8080-exec-8] WARN  o.s.web.servlet.PageNotFound line: 1301 - No mapping for GET /js/script.js
+2025-04-22 01:38:56 [http-nio-8080-exec-8] WARN  o.s.web.servlet.PageNotFound line: 459 - No endpoint GET /js/script.js.
+2025-04-22 02:01:55 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 02:01:56 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 02:02:06 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 109330 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 02:02:06 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 02:02:06 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 02:02:06 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-22 02:02:06 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-22 02:02:07 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 02:02:07 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:07 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 02:02:07 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 02:02:07 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 02:02:07 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 1032 ms
+2025-04-22 02:02:07 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:02:07 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:02:07 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:02:07 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 02:02:07 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 02:02:07 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 02:02:08 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 02:02:08 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 02:02:08 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 02:02:08 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 02:02:08 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 2.146 seconds (process running for 2.575)
+2025-04-22 02:02:12 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 02:02:12 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 02:02:12 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 1 ms
+2025-04-22 02:02:26 [http-nio-8080-exec-3] INFO  c.p.p.c.FileUploadController line: 65 - Received upload request for uniqueId 'item-0': File='paytm.jpeg', Size=95860, Type=image/jpeg, Range='all', Start=null, End=null
+2025-04-22 02:02:26 [http-nio-8080-exec-3] INFO  c.p.p.service.FileStorageService line: 120 - Storing original file from 'paytm.jpeg' (image/jpeg) as: orig_b250deae_paytm.jpeg
+2025-04-22 02:02:26 [http-nio-8080-exec-3] DEBUG c.p.p.service.FileStorageService line: 123 - Successfully copied input stream to /home/pavan/Music/git/ePrinter/uploads/orig_b250deae_paytm.jpeg
+2025-04-22 02:02:26 [http-nio-8080-exec-3] INFO  c.p.p.service.FileStorageService line: 150 - Image 'orig_b250deae_paytm.jpeg' detected, page count set to 1
+2025-04-22 02:02:26 [http-nio-8080-exec-3] INFO  c.p.p.service.FileStorageService line: 208 - Attempting to generate final B&W file 'bw_b250deae_paytm.jpeg' from source '/home/pavan/Music/git/ePrinter/uploads/orig_b250deae_paytm.jpeg'
+2025-04-22 02:02:26 [http-nio-8080-exec-3] DEBUG c.p.p.service.FileStorageService line: 289 - Converting Image to B&W: /home/pavan/Music/git/ePrinter/uploads/orig_b250deae_paytm.jpeg -> /home/pavan/Music/git/ePrinter/uploads/bw_b250deae_paytm.jpeg
+2025-04-22 02:02:26 [http-nio-8080-exec-3] INFO  c.p.p.service.FileStorageService line: 297 - Executing command: ImageMagick Image BW conversion convert /home/pavan/Music/git/ePrinter/uploads/orig_b250deae_paytm.jpeg -colorspace Gray -strip /home/pavan/Music/git/ePrinter/uploads/bw_b250deae_paytm.jpeg
+2025-04-22 02:02:26 [http-nio-8080-exec-3] ERROR c.p.p.service.FileStorageService line: 342 - !!! ImageMagick Image BW conversion execution failed: Command ('convert') not found or not executable in PATH. Ensure Ghostscript/ImageMagick are installed and accessible. !!!
+2025-04-22 02:02:26 [http-nio-8080-exec-3] ERROR c.p.p.service.FileStorageService line: 235 - Failed to generate final B&W file 'bw_b250deae_paytm.jpeg' from '/home/pavan/Music/git/ePrinter/uploads/orig_b250deae_paytm.jpeg'
+java.io.IOException: Cannot run program "convert": error=2, No such file or directory
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1143)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1073)
+	at com.pdf.printer.service.FileStorageService.executeProcess(FileStorageService.java:301)
+	at com.pdf.printer.service.FileStorageService.convertImageToBW(FileStorageService.java:293)
+	at com.pdf.printer.service.FileStorageService.storeFile(FileStorageService.java:216)
+	at com.pdf.printer.controller.FileUploadController.uploadAndProcessFile(FileUploadController.java:69)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.base/java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:314)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:244)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1110)
+	... 55 common frames omitted
+2025-04-22 02:02:26 [http-nio-8080-exec-3] INFO  c.p.p.service.FileStorageService line: 242 - Returning FileInfo for input 'paytm.jpeg': B&W='null', Color='orig_b250deae_paytm.jpeg', B&W URL='null', Color URL='/uploads/orig_b250deae_paytm.jpeg', Pages=1, MimeType='image/jpeg'
+2025-04-22 02:02:26 [http-nio-8080-exec-3] INFO  c.p.p.c.FileUploadController line: 70 - File processing complete for uniqueId 'item-0'. Result: FileInfo{b_fileName='null', c_fileName='orig_b250deae_paytm.jpeg', url='null', c_url='/uploads/orig_b250deae_paytm.jpeg', pageCount=1, originalFileName='paytm.jpeg', mimeType='image/jpeg'}
+2025-04-22 02:02:33 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 30 class path changes (0 additions, 16 deletions, 14 modifications)
+2025-04-22 02:02:33 [Thread-5] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 02:02:33 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:33 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 02:02:33 [Thread-5] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:33 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 109330 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 02:02:33 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 02:02:33 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 02:02:34 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 02:02:34 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:34 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 02:02:34 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 02:02:34 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 02:02:34 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 297 ms
+2025-04-22 02:02:34 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 02:02:34 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 02:02:34 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:34 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 02:02:34 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.5 seconds (process running for 28.536)
+2025-04-22 02:02:34 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 02:02:35 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 13 class path changes (13 additions, 0 deletions, 0 modifications)
+2025-04-22 02:02:35 [Thread-7] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 02:02:35 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:35 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 02:02:35 [Thread-7] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:35 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 109330 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 02:02:35 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 02:02:35 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 02:02:35 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 02:02:35 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:35 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 02:02:35 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 02:02:35 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 02:02:35 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 195 ms
+2025-04-22 02:02:35 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:02:36 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:02:36 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:02:36 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 02:02:36 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 02:02:36 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 02:02:36 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 02:02:36 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 02:02:36 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 02:02:36 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:02:36 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 02:02:36 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.36 seconds (process running for 30.325)
+2025-04-22 02:02:36 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 02:02:36 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer line: 78 - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/pavan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/pavan/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-04-22 02:02:36 [main] INFO  c.p.printer.PrinterApplicationTests line: 53 - Starting PrinterApplicationTests using Java 17.0.14 with PID 109748 (started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 02:02:36 [main] DEBUG c.p.printer.PrinterApplicationTests line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 02:02:36 [main] INFO  c.p.printer.PrinterApplicationTests line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 02:02:37 [main] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:02:37 [main] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:02:37 [main] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:02:37 [main] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 02:02:37 [main] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 02:02:37 [main] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 02:02:37 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 02:02:37 [main] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 02:02:37 [main] INFO  c.p.printer.PrinterApplicationTests line: 59 - Started PrinterApplicationTests in 1.718 seconds (process running for 2.606)
+2025-04-22 02:04:07 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 27 class path changes (0 additions, 13 deletions, 14 modifications)
+2025-04-22 02:04:08 [Thread-11] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 02:04:08 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:04:08 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 02:04:08 [Thread-11] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:04:08 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 109330 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 02:04:08 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 02:04:08 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 02:04:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 02:04:08 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:04:08 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 02:04:08 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 02:04:08 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 02:04:08 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 294 ms
+2025-04-22 02:04:08 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext line: 635 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'fileUploadController' defined in file [/home/pavan/Music/git/ePrinter/target/classes/com/pdf/printer/controller/FileUploadController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.pdf.printer.service.FileStorageService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-04-22 02:04:08 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Stopping service [Tomcat]
+2025-04-22 02:04:08 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger line: 82 - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-04-22 02:04:08 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter line: 40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.pdf.printer.controller.FileUploadController required a bean of type 'com.pdf.printer.service.FileStorageService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.pdf.printer.service.FileStorageService' in your configuration.
+
+2025-04-22 02:04:09 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 109330 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 02:04:09 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 02:04:09 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 02:04:10 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 02:04:10 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:04:10 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 02:04:10 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 02:04:10 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 02:04:10 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 191 ms
+2025-04-22 02:04:10 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:04:10 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:04:10 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:04:10 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 02:04:10 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 02:04:10 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 02:04:10 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 02:04:10 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 02:04:10 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 02:04:10 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 02:04:10 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 02:04:10 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.322 seconds (process running for 124.389)
+2025-04-22 02:04:10 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 02:04:10 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer line: 78 - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/pavan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/pavan/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-04-22 02:04:10 [main] INFO  c.p.printer.PrinterApplicationTests line: 53 - Starting PrinterApplicationTests using Java 17.0.14 with PID 110432 (started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 02:04:10 [main] DEBUG c.p.printer.PrinterApplicationTests line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 02:04:10 [main] INFO  c.p.printer.PrinterApplicationTests line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 02:04:11 [main] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:04:11 [main] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:04:11 [main] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 02:04:11 [main] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 02:04:11 [main] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 02:04:11 [main] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 02:04:11 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 02:04:11 [main] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 02:04:11 [main] INFO  c.p.printer.PrinterApplicationTests line: 59 - Started PrinterApplicationTests in 1.584 seconds (process running for 2.486)
+2025-04-22 13:46:56 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 13:46:56 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 13:51:46 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 136215 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 13:51:46 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 13:51:46 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 13:51:46 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-22 13:51:46 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor line: 252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-22 13:51:47 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 13:51:47 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:51:47 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 13:51:47 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 13:51:47 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 13:51:47 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 1077 ms
+2025-04-22 13:51:47 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 13:51:47 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 13:51:47 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 13:51:47 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 13:51:47 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 13:51:47 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 13:51:48 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 13:51:48 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 13:51:48 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 13:51:48 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:51:48 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 13:51:48 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 2.381 seconds (process running for 2.893)
+2025-04-22 13:51:55 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22 13:51:55 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 532 - Initializing Servlet 'dispatcherServlet'
+2025-04-22 13:51:55 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet line: 554 - Completed initialization in 1 ms
+2025-04-22 13:52:48 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 30 class path changes (0 additions, 16 deletions, 14 modifications)
+2025-04-22 13:52:48 [Thread-5] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 13:52:48 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:52:48 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 13:52:48 [Thread-5] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:52:48 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 136215 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 13:52:48 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 13:52:48 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 13:52:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 13:52:49 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:52:49 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 13:52:49 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 13:52:49 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 13:52:49 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 450 ms
+2025-04-22 13:52:49 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 13:52:49 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 13:52:49 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:52:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 13:52:49 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.743 seconds (process running for 64.165)
+2025-04-22 13:52:49 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 13:52:51 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener line: 211 - Restarting due to 13 class path changes (13 additions, 0 deletions, 0 modifications)
+2025-04-22 13:52:51 [Thread-7] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 54 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22 13:52:51 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:52:51 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown line: 76 - Graceful shutdown complete
+2025-04-22 13:52:51 [Thread-7] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:52:51 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 53 - Starting PrinterApplication using Java 17.0.10 with PID 136215 (/home/pavan/Music/git/ePrinter/target/classes started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 13:52:51 [restartedMain] DEBUG com.pdf.printer.PrinterApplication line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 13:52:51 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 13:52:51 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 111 - Tomcat initialized with port 8080 (http)
+2025-04-22 13:52:51 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:52:51 [restartedMain] INFO  o.a.catalina.core.StandardService line: 173 - Starting service [Tomcat]
+2025-04-22 13:52:51 [restartedMain] INFO  o.a.catalina.core.StandardEngine line: 173 - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22 13:52:51 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] line: 173 - Initializing Spring embedded WebApplicationContext
+2025-04-22 13:52:51 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext line: 301 - Root WebApplicationContext: initialization completed in 295 ms
+2025-04-22 13:52:51 [restartedMain] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 13:52:51 [restartedMain] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 13:52:51 [restartedMain] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 13:52:51 [restartedMain] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 13:52:51 [restartedMain] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 13:52:51 [restartedMain] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 13:52:51 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 13:52:51 [restartedMain] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 13:52:51 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer line: 59 - LiveReload server is running on port 35729
+2025-04-22 13:52:52 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol line: 173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-22 13:52:52 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer line: 243 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-22 13:52:52 [restartedMain] INFO  com.pdf.printer.PrinterApplication line: 59 - Started PrinterApplication in 0.494 seconds (process running for 66.488)
+2025-04-22 13:52:52 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener line: 63 - Condition evaluation unchanged
+2025-04-22 13:52:52 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer line: 78 - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/pavan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/pavan/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-04-22 13:52:52 [main] INFO  c.p.printer.PrinterApplicationTests line: 53 - Starting PrinterApplicationTests using Java 17.0.14 with PID 137239 (started by pavan in /home/pavan/Music/git/ePrinter)
+2025-04-22 13:52:52 [main] DEBUG c.p.printer.PrinterApplicationTests line: 54 - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22 13:52:52 [main] INFO  c.p.printer.PrinterApplicationTests line: 652 - No active profile set, falling back to 1 default profile: "default"
+2025-04-22 13:52:53 [main] INFO  c.p.p.service.FileStorageService line: 46 - Attempting to initialize file storage at resolved path: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 13:52:53 [main] INFO  c.p.p.service.FileStorageService line: 58 - File storage location configured to: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 13:52:53 [main] INFO  c.p.p.service.FileStorageService line: 68 - Upload directory already exists: /home/pavan/Music/git/ePrinter/uploads
+2025-04-22 13:52:53 [main] INFO  c.p.p.service.FileStorageService line: 75 - Write permission confirmed for upload directory.
+2025-04-22 13:52:53 [main] INFO  c.p.printer.service.RazorpayService line: 34 - RazorpayClient Initialized successfully with Key ID ending in: ...gM0w
+2025-04-22 13:52:53 [main] INFO  c.p.p.controller.PaymentController line: 89 - PaymentController created and services injected.
+2025-04-22 13:52:53 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping line: 59 - Adding welcome page template: index
+2025-04-22 13:52:54 [main] INFO  c.p.p.c.FileUploadController line: 107 - Configuring resource handler for '/uploads/**' mapping to 'file:///home/pavan/Music/git/ePrinter/./uploads/'
+2025-04-22 13:52:54 [main] INFO  c.p.printer.PrinterApplicationTests line: 59 - Started PrinterApplicationTests in 1.767 seconds (process running for 3.029)

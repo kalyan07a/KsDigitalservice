@@ -1,4 +1,5 @@
 
+// Show modal on page load
         document.addEventListener('DOMContentLoaded', function() {
             const stepsModal = document.getElementById('stepsModal');
             const closeBtn = document.getElementById('closeStepsModal');
@@ -1015,6 +1016,8 @@ function openRazorpayCheckout(orderData, description) {
             }
         }
 
+
+        // --- Run Initialization ---
         initializeApp();
 
-    }); 
+    }); // <-- End of DOMContentLoaded listener
