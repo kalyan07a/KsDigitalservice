@@ -3,7 +3,9 @@ package com.pdf.printer.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HomeController {
@@ -15,10 +17,14 @@ public class HomeController {
 		return "home";
 	}
 
-	@GetMapping("/print")
-	public String print() {
-		return "index";
-	}
+	
+	  @GetMapping("/print")
+	  public String print() 
+	  {
+		  return "index"; 
+	  }
+	 
+	
 
 	@GetMapping("/terms")
 	public String terms() {

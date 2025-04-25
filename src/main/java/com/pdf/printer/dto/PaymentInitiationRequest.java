@@ -8,4 +8,6 @@ import java.util.List;
 @NoArgsConstructor
 public class PaymentInitiationRequest {
     private List<FileOrderItem> items;
+
+	
 }

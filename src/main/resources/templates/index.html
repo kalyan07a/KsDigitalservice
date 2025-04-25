@@ -416,6 +416,8 @@
     <div class="container">
         <h1>PRINTER SERVICE</h1>
     </div>
+    <p style="display: none;"><span th:text="${id}"></span></p>
+    
     <div class="file-input-area">
         <label for="fileInput" id="addFileButtonLabel"><i class="fas fa-plus"></i> Add File(s)</label>
         <input type="file" id="fileInput" accept=".pdf, image/jpeg, image/png, image/jpg" multiple />
@@ -548,6 +550,7 @@
         const modalPreviewContent = document.getElementById('modalPreviewContent');
         const modalPreviewTitle = document.getElementById('previewModalTitle');
         const closePreviewModal = document.getElementById('closePreviewModal');
+        const printerId = document.querySelector('p span').textContent.trim();
 
         // --- Event Listeners ---
         addFileButtonLabel.addEventListener('click', (e) => {
@@ -1161,7 +1164,8 @@
                  fileName: (item.printType === 1) ? item.fileInfo.fileName : item.fileInfo.bwFileName,
                  pageCount: item.fileInfo.pageCount,
                  printType: item.printType, // Send selected print type
-                 numberOfCopies: item.numberOfCopies
+                 numberOfCopies: item.numberOfCopies,
+                 printerId: printerId
             }));
             const payload = { items: payloadItems }; console.log('Initiating payment with payload:', JSON.stringify(payload));
             fetch('/print/api/payments/initiate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
