@@ -280,9 +280,9 @@
             let html = `
                 <div class="user-info">
                     <div>
-                        <h2>👤 ${name}</h2>
+                        <h2> ${name}</h2>
                         <div class="phone-display">
-                            <span>📱</span>
+                            <span></span>
                             <p>+91 ${phone}</p>
                         </div>
                     </div>
@@ -291,13 +291,13 @@
                 <div class="summary-card">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div>
-                            <h3 style="color: var(--text); margin: 0;">📊 Payment Summary</h3>
+                            <h3 style="color: var(--text); margin: 0;"> Payment Summary</h3>
                             <p style="color: #666; margin: 0.5rem 0 0 0;">Total transactions: ${payments.length}</p>
                         </div>
                         <div style="text-align: right;">
                             <h2 style="color: var(--success); margin: 0;">Total Amount</h2>
                             <p style="font-size: 1.5rem; font-weight: 600; color: var(--text); margin: 0.5rem 0 0 0;">
-                                ₹${parseFloat(totalPayment).toFixed(2)}
+                                ${parseFloat(totalPayment).toFixed(2)}
                             </p>
                         </div>
                     </div>
@@ -305,7 +305,7 @@
 
                 <div class="table-container">
                     <h3 style="color: var(--text); margin-bottom: 1rem;">
-                        📋 Current Month Transaction Details
+                         Current Month Transaction Details
                     </h3>
                     <table>
                         <thead>
@@ -324,7 +324,7 @@
                         <td>${formatDate(payment.paymentDate)}</td>
                         <td>${formatTime(payment.paymentTime)}</td>
                         <td><code>${payment.paymentId}</code></td>
-                        <td>₹${parseFloat(payment.amount).toFixed(2)}</td>
+                        <td>${parseFloat(payment.amount).toFixed(2)}</td>
                     </tr>`;
             });
 

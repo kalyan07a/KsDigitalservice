@@ -15,7 +15,8 @@ public interface PaymentDetailRepository extends JpaRepository<PaymentDetail, Lo
 
     Optional<PaymentDetail> findByPaymentId(String paymentId);
     
-    @Query("SELECT p FROM PaymentDetail p WHERE MONTH(p.paymentDate) = MONTH(CURRENT_DATE) AND YEAR(p.paymentDate) = YEAR(CURRENT_DATE) AND p.phoneNumber = ?1")
+    //@Query("SELECT p FROM PaymentDetail p WHERE MONTH(p.paymentDate) = MONTH(CURRENT_DATE) AND YEAR(p.paymentDate) = YEAR(CURRENT_DATE) AND p.phoneNumber = ?1")
+    @Query("SELECT p FROM PaymentDetail p WHERE MONTH(p.paymentDate) = MONTH(CURRENT_DATE) AND YEAR(p.paymentDate) = YEAR(CURRENT_DATE) AND p.phoneNumber = ?1 ORDER BY p.paymentDate DESC")  
     List<PaymentDetail> findByPhoneNumber(String phoneNumber);
     
     
