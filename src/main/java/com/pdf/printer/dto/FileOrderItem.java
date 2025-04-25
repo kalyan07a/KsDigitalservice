@@ -14,4 +14,5 @@ public class FileOrderItem {
     private int printType; // 0 for B&W, 1 for Color
     private int numberOfCopies;
     private int calculatedPrice; // Price for this item (recalculated on backend)
+    private int printerId;
 }

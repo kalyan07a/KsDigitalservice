@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Dashboard</title>
+    <style>
+        :root {
+            --primary: #4a90e2;
+            --secondary: #f8f9fa;
+            --success: #28a745;
+            --text: #2c3e50;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            background: #357abd;
+            transform: translateY(-1px);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--secondary);
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .error {
+            color: #dc3545;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #fff5f5;
+            border-radius: 8px;
+            border: 1px solid #ffd6d6;
+        }
+
+        .user-info {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .summary-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .user-info div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .user-info h2 {
+            margin: 0;
+            color: var(--text);
+            font-size: 1.5rem;
+        }
+
+        .user-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .phone-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+
+            .user-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: var(--text); margin-bottom: 2rem;">Payment Dashboard</h1>
+        
+        <div class="input-group">
+            <input type="text" id="phoneNumber" placeholder="Enter 10-digit phone number" maxlength="10"
+                   pattern="\d{10}" inputmode="numeric">
+            <button onclick="fetchDetails()">
+                <span class="button-text">Search</span>
+            </button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function fetchDetails() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const loading = document.getElementById('loading');
+            const resultsDiv = document.getElementById('results');
+            
+            if (!phoneNumber || phoneNumber.length !== 10 || !/^\d+$/.test(phoneNumber)) {
+                showError('Please enter a valid 10-digit phone number');
+                return;
+            }
+
+            loading.style.display = 'block';
+            resultsDiv.innerHTML = '';
+
+            fetch('/fetchDetails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `phoneNumber=${encodeURIComponent(phoneNumber)}`
+            })
+            .then(response => {
+                loading.style.display = 'none';
+                if (!response.ok) throw new Error('Server Error');
+                return response.json();
+            })
+            .then(data => {
+                if (data.payments && data.totalPayment !== undefined) {
+                    displayResults(
+                        data.payments, 
+                        data.totalPayment,
+                        data.name || 'Not Available',
+                        data.phone
+                    );
+                } else {
+                    showError('Invalid response format from server');
+                }
+            })
+            .catch(error => {
+                loading.style.display = 'none';
+                showError(error.message || 'Error fetching details');
+            });
+        }
+
+        function displayResults(payments, totalPayment, name, phone) {
+            const resultsDiv = document.getElementById('results');
+            
+            if (payments.length === 0) {
+                resultsDiv.innerHTML = '<div class="error">No payments found for this phone number</div>';
+                return;
+            }
+
+            let html = `
+                <div class="user-info">
+                    <div>
+                        <h2>👤 ${name}</h2>
+                        <div class="phone-display">
+                            <span>📱</span>
+                            <p>+91 ${phone}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3 style="color: var(--text); margin: 0;">📊 Payment Summary</h3>
+                            <p style="color: #666; margin: 0.5rem 0 0 0;">Total transactions: ${payments.length}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <h2 style="color: var(--success); margin: 0;">Total Amount</h2>
+                            <p style="font-size: 1.5rem; font-weight: 600; color: var(--text); margin: 0.5rem 0 0 0;">
+                                ₹${parseFloat(totalPayment).toFixed(2)}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h3 style="color: var(--text); margin-bottom: 1rem;">
+                        📋 Current Month Transaction Details
+                    </h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Payment ID</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+            payments.forEach(payment => {
+                html += `
+                    <tr>
+                        <td>${formatDate(payment.paymentDate)}</td>
+                        <td>${formatTime(payment.paymentTime)}</td>
+                        <td><code>${payment.paymentId}</code></td>
+                        <td>₹${parseFloat(payment.amount).toFixed(2)}</td>
+                    </tr>`;
+            });
+
+            html += `</tbody></table></div>`;
+            resultsDiv.innerHTML = html;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-IN', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            });
+        }
+
+        function formatTime(timeString) {
+            const [hours, minutes] = timeString.split(':');
+            return `${hours.padStart(2, '0')}:${minutes}`;
+        }
+
+        function showError(message) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `<div class="error">${message}</div>`;
+        }
+    </script>
+</body>
+</html>

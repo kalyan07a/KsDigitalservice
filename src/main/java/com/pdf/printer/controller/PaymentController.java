@@ -1,9 +1,17 @@
 package com.pdf.printer.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,9 +35,12 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pdf.printer.config.PaymentWebSocketHandler; // Import the WebSocket handler
 import com.pdf.printer.dto.FileOrderItem;
 import com.pdf.printer.dto.PaymentInitiationRequest;
+import com.pdf.printer.service.PaymentService;
 import com.pdf.printer.service.RazorpayService;
 import com.razorpay.RazorpayException;
 import com.razorpay.Utils;
@@ -41,6 +52,7 @@ import jakarta.mail.internet.MimeMessage;
 @RequestMapping("/print")
 public class PaymentController {
 
+	 
     private static final Logger log = LoggerFactory.getLogger(PaymentController.class);
 
 
@@ -79,13 +91,17 @@ public class PaymentController {
 
     private final RazorpayService razorpayService;
     private final JavaMailSender mailSender;
+    private final PaymentService paymentService;
+    private final PaymentWebSocketHandler paymentWebSocketHandler;
     
 
     @Autowired
     public PaymentController(RazorpayService razorpayService, JavaMailSender mailSender,
-            PaymentWebSocketHandler paymentWebSocketHandler) {
+            PaymentWebSocketHandler paymentWebSocketHandler,PaymentService paymentService) {
         this.razorpayService = razorpayService;
         this.mailSender = mailSender;
+        this.paymentWebSocketHandler=paymentWebSocketHandler;
+        this.paymentService = paymentService;
         log.info("PaymentController created and services injected.");
     }
 
@@ -116,15 +132,18 @@ public class PaymentController {
                 return ResponseEntity.badRequest().body(response);
             }
             validItems.add(item);
+            
 
             JSONObject itemJson = new JSONObject();
             itemJson.put("fName", item.getFileName());
             itemJson.put("pCount", item.getPageCount());
             itemJson.put("pType", item.getPrintType());
             itemJson.put("copies", item.getNumberOfCopies());
+            itemJson.put("printerId", item.getPrinterId());
             itemsJsonArray.put(itemJson);
         }
-
+        
+        	log.info("valid items are "+validItems);
         // 2. Calculate Total Amount using NEW Aggregated Logic
         int totalAmountInRupees = calculateAggregatedAmount(validItems);
 
@@ -165,6 +184,7 @@ public class PaymentController {
             } else {
                 notes.put("items", itemsJsonString);
             }
+            log.info("before creating order"+itemsJsonString);
 
             String orderJsonString = razorpayService.createOrder(totalAmountInRupees, currency, receiptId, notes);
             log.debug("Razorpay Order Created Raw: {}", orderJsonString);
@@ -177,9 +197,9 @@ public class PaymentController {
             response.put("amount", orderAmountPaise);
             response.put("currency", currency);
             response.put("razorpayKey", razorpayApiKey);
-            response.put("status", "created");
+            response.put("status", "created");//bug
             response.put("totalAmountRupees", totalAmountInRupees); // Send back calculated total
-//testing
+//bypass payment
             //handlePostPaymentActions(validItems,"test_124");
             return ResponseEntity.ok(response);
 
@@ -250,6 +270,9 @@ public class PaymentController {
             @RequestHeader("X-Razorpay-Signature") String signature) {
         log.info("Received Razorpay Webhook Request");
         log.debug("Webhook Payload: {}", payload);
+        String jsonStr = payload;
+
+        ObjectMapper mapper = new ObjectMapper();
         log.debug("Webhook Signature: {}", signature);
         if (razorpayWebhookSecret == null || razorpayWebhookSecret.isBlank()) {
             log.error("Razorpay Webhook Secret is not configured.");
@@ -266,17 +289,21 @@ public class PaymentController {
             String event = payloadJson.optString("event");
             log.info("Webhook event type: {}", event);
             if ("payment.captured".equals(event)) {
+            	log.info("inside captured");
                 JSONObject paymentPayload = payloadJson.optJSONObject("payload");
+                log.info("after paymentPayload conversion"+paymentPayload);
                 if (paymentPayload == null) {
                     log.error("Webhook Error: Missing 'payload' object.");
                     return ResponseEntity.badRequest().body("Missing payload");
                 }
                 JSONObject payment = paymentPayload.optJSONObject("payment");
+                log.info("payment object"+payment);
                 if (payment == null) {
                     log.error("Webhook Error: Missing 'payment' object in payload.");
                     return ResponseEntity.badRequest().body("Missing payment payload");
                 }
                 JSONObject entity = payment.optJSONObject("entity");
+                log.info("entity object"+entity);
                 if (entity == null) {
                     log.error("Webhook Error: Missing 'entity' object in payment payload.");
                     return ResponseEntity.badRequest().body("Missing payment entity");
@@ -284,6 +311,10 @@ public class PaymentController {
                 String orderId = entity.optString("order_id");
                 String paymentId = entity.optString("id");
                 JSONObject notes = entity.optJSONObject("notes");
+                
+                
+                
+                
                 log.info("Processing 'payment.captured' for Order ID: {}, Payment ID: {}", orderId, paymentId);
                 if (notes == null || (!notes.has("items") && !notes.has("items_truncated"))) {
                     log.error(
@@ -311,6 +342,7 @@ public class PaymentController {
                                         orderId, i, itemJson);
                                 continue;
                             }
+                            item.setPrinterId(itemJson.optInt("printerId", -1));
                             itemsToProcess.add(item);
                         }
                         log.info("Successfully parsed {} items from 'items' note for order ID: {}",
@@ -333,7 +365,70 @@ public class PaymentController {
                     return ResponseEntity.ok("Webhook processed, but no valid items found in notes.");
                 }
                 handlePostPaymentActions(itemsToProcess, orderId);
+                //saving in db
                 
+                log.info("before amount calculating");
+                String amount = entity.optString("amount");
+                log.info("after amount calculating");
+                BigDecimal bigDecimalAmount = new BigDecimal(amount);
+                bigDecimalAmount = bigDecimalAmount.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+                log.info("before time");
+                
+
+                String order_timestamp="" ;
+                
+                try {
+                    JsonNode rootNode = mapper.readTree(jsonStr);
+                    log.info("json is "+rootNode);
+                    // Navigate through the nested JSON structure
+                    JsonNode payload1 = rootNode.path("payload");
+                    log.info("payload1 is "+payload1);
+                    JsonNode payment1 = payload1.path("payment");
+                    log.info("payment1 is "+payment1);
+                    JsonNode entity1 = payment1.path("entity");
+                    log.info("entity1 is "+entity1);
+                    JsonNode notes1 = entity1.path("notes");
+                    log.info("notes1 is "+notes1);
+                    order_timestamp = notes1.path("order_timestamp").asText();
+
+                   log.info("order_timestamp: " + order_timestamp);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                
+                
+                
+                
+                
+                log.info("Parsing order_timestamp: {}", order_timestamp);
+                LocalDate date;
+                LocalTime time;
+                if (order_timestamp == null || order_timestamp.isEmpty()) {
+                    log.error("Invalid/missing order_timestamp");
+                    throw new IllegalArgumentException("Timestamp is required");
+                }
+
+                try {
+                    // Parse the timestamp as UTC
+                    DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+                    ZonedDateTime utcZdt = ZonedDateTime.parse(order_timestamp, formatter);
+
+                    // Convert to IST timezone
+                    ZonedDateTime istZdt = utcZdt.withZoneSameInstant(ZoneId.of("Asia/Kolkata"));
+
+                    // Extract date/time in IST
+                     date = istZdt.toLocalDate();
+                     time = istZdt.toLocalTime();
+
+                    log.info("Parsed date (IST): {}, time (IST): {}", date, time);
+                } catch (DateTimeParseException e) {
+                    log.error("Failed to parse timestamp: {}", order_timestamp, e);
+                    throw new RuntimeException("Invalid timestamp format", e);
+                }
+                String phone = Printer.getPhoneById(String.valueOf(itemsToProcess.get(0).getPrinterId()));
+                 paymentService.recordPayment(paymentId,date,time,bigDecimalAmount,phone);
+                 
                 
                 return ResponseEntity.ok("Webhook processed successfully.");
             } else {
@@ -411,6 +506,8 @@ public class PaymentController {
      */
     private void sendBulkEmailWithAttachments(List<FileOrderItem> items, String orderReference) throws MessagingException {
         // Ensure email configuration is present
+    	String printerEmail = Printer.getEmailById(String.valueOf(items.get(0).getPrinterId()));
+    	log.info("printer email is"+ printerEmail);
         if (mailUsername == null || mailUsername.isBlank() || printerEmail == null || printerEmail.isBlank()) {
             log.error("Email 'from' address or 'to' address not configured for order reference: {}", orderReference);
             throw new MessagingException("Email configuration missing (sender or recipient).");
