@@ -16,6 +16,10 @@ public class HomeController {
 	public String homePage() {
 		return "home";
 	}
+	@GetMapping("/myDashboard")
+	public String dashboard() {
+		return "customerDashboard";
+	}
 
 	
 	  @GetMapping("/print")
