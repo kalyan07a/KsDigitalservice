@@ -16,6 +16,15 @@ public class HomeController {
 	public String homePage() {
 		return "home";
 	}
+	
+	@GetMapping("/print/{id}")
+    public String getItem(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
+        model.addAttribute("name", Printer.getNameById(String.valueOf(id)));
+        return "index"; 
+    } 
+	
+	
 	@GetMapping("/myDashboard")
 	public String dashboard() {
 		return "customerDashboard";
