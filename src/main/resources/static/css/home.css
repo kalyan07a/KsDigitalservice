@@ -1,0 +1,100 @@
+
+    :root {
+        --primary-blue: #2563eb;
+        --soft-blue: #3b82f6;
+        --light-bg: #f8fafc;
+        --dark-text: #1e293b;
+        --medium-text: #64748b;
+        --border-color: #e2e8f0;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        color: var(--dark-text);
+        background-color: var(--light-bg);
+    }
+
+	.span {
+	color: #2563eb;
+	}
+    .header {
+        color: black;
+        border-radius: 1rem;
+        padding: 2rem 1.5rem;
+        margin: 1rem 0;
+    }
+
+
+    .service-card {
+        border: none;
+        border-radius: 0.75rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background: white;
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background: #0d9488;
+       background-image: linear-gradient(to right, #b7f7d4, #b7f7d4);
+    }
+
+
+    .announcement-bar {
+        background: #f0f4ff;
+        color: var(--primary-blue);
+        border: 2px solid var(--primary-blue);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin: 2rem 0;
+    }
+
+   .btn-primary {
+        background: #0d9488;
+    }
+	.btn-primary:hover {
+        background: #0f766e;
+    }
+    .footer {
+        background: var(--dark-text);
+        color: white;
+        padding: 2rem 0;
+        margin-top: 4rem;
+    }
+
+    .footer a {
+        color: #94a3b8;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        color: var(--primary-blue);
+    }
+
+    .contact-badge {
+        background: #e2e8f0;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .service-list li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .service-list li:last-child {
+        border-bottom: none;
+    }
+    .btn-directions {
+        background-color: #22c55e; /* Fresh green color */
+        color: white;
+        border: none;
+    }
+    
+   

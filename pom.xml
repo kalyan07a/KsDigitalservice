@@ -15,12 +15,11 @@
 	<name>printer</name>
 	<description>Multi-file print service</description>
 	<!-- Removed unnecessary url, licenses, developers, scm tags for brevity -->
-
+	<packaging>war</packaging>
 	<properties>
 		<java.version>17</java.version>
 		<!-- Define consistent library versions -->
-		<pdfbox.version>3.0.2</pdfbox.version> <!-- Consistent PDFBox 3 version -->
-		<razorpay.version>1.4.6</razorpay.version> <!-- Latest stable Razorpay -->
+		
 		<json.version>20240303</json.version> <!-- Latest stable org.json -->
 	</properties>
 
@@ -41,6 +40,11 @@
         <artifactId>mysql-connector-j</artifactId>
         <scope>runtime</scope>
     </dependency>
+    <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <scope>provided</scope>
+</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -90,7 +94,7 @@
 		<dependency>
 			<groupId>com.razorpay</groupId>
 			<artifactId>razorpay-java</artifactId>
-			<version>1.4.4</version>
+			<version>1.4.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
@@ -102,11 +106,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<version>3.4.4</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -132,33 +132,13 @@
 			<!-- Version managed by parent -->
 		</dependency>
 
-		<!-- PDF Processing -->
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<!-- Version managed by BOM, but added explicitly to fix build error -->
-			<version>${pdfbox.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.twilio.sdk</groupId>
 			<artifactId>twilio</artifactId>
 			<version>8.24.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>fontbox</artifactId>
-			<!-- Version managed by BOM, but added explicitly to fix build error -->
-			<version>${pdfbox.version}</version>
-		</dependency>
 
-		<!-- Razorpay -->
-		<dependency>
-			<groupId>com.razorpay</groupId>
-			<artifactId>razorpay-java</artifactId>
-			<version>${razorpay.version}</version>
-		</dependency>
-
-		<!-- JSON -->
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>

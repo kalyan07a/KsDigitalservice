@@ -1,355 +1,240 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Payment Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Payment Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
+        /* CSS Styles remain exactly the same as the previous version */
         :root {
-            --primary: #4a90e2;
-            --secondary: #f8f9fa;
-            --success: #28a745;
-            --text: #2c3e50;
+            --primary: #4a90e2; /* Primary blue */
+            --primary-dark: #357abd; /* Darker blue for hover */
+            --secondary: #f8f9fa; /* Light grey background */
+            --success: #28a745; /* Green for success/totals */
+            --danger: #dc3545; /* Red for errors */
+            --text: #2c3e50; /* Dark grey text */
+            --text-light: #5a6a7a; /* Lighter grey text */
+            --border-color: #dee2e6; /* Border color */
+            --background: #ffffff; /* White background for container */
+            --table-header-bg: #f1f3f5; /* Light grey for table header */
+            --table-row-hover: #e9ecef; /* Lighter grey for table row hover */
+            --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
-
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            padding: 2rem;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .input-group {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        input {
-            flex: 1;
-            padding: 0.8rem 1.2rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-        }
-
-        button {
-            padding: 0.8rem 2rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        button:hover {
-            background: #357abd;
-            transform: translateY(-1px);
-        }
-
-        .table-container {
-            overflow-x: auto;
-            margin-top: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            min-width: 600px;
-        }
-
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        th {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
-        }
-
-        tr:nth-child(even) {
-            background-color: var(--secondary);
-        }
-
-        tr:hover {
-            background-color: #f1f5f9;
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .spinner {
-            width: 3rem;
-            height: 3rem;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .error {
-            color: #dc3545;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: #fff5f5;
-            border-radius: 8px;
-            border: 1px solid #ffd6d6;
-        }
-
-        .user-info {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .summary-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            border-radius: 10px;
-        }
-
-        .user-info div {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .user-info h2 {
-            margin: 0;
-            color: var(--text);
-            font-size: 1.5rem;
-        }
-
-        .user-info p {
-            margin: 0;
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .phone-display {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-            
-            .container {
-                padding: 1rem;
-            }
-            
-            .input-group {
-                flex-direction: column;
-            }
-            
-            button {
-                width: 100%;
-            }
-
-            .user-info {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; }
+        body { font-family: var(--font-family-base); color: var(--text); background: linear-gradient(135deg, #eef2f7 0%, #d5dde8 100%); padding: 2rem; min-height: 100vh; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; background: var(--background); padding: 2.5rem; border-radius: 12px; box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08); overflow: hidden; }
+        h1 { color: var(--text); font-weight: 700; margin-bottom: 2.5rem; text-align: center; font-size: 2rem; }
+        .search-box-container { display: flex; justify-content: center; margin-bottom: 1rem; }
+        #phoneNumber { padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: inherit; transition: border-color 0.3s ease, box-shadow 0.3s ease; background-color: #fff; max-width: 350px; width: 100%; }
+        #phoneNumber:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25); }
+        .filter-group { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+        select#filterType { padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: inherit; min-width: 180px; cursor: pointer; background-color: #fff; }
+        select#filterType:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25); }
+        .date-input-group { display: flex; gap: 0.5rem; align-items: center; }
+        .date-input-group span { color: var(--text-light); }
+        .date-input-group input[type="date"] { padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: inherit; min-width: 150px; background-color: #fff; }
+         .date-input-group input[type="date"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25); }
+        .search-button-container { display: flex; justify-content: center; margin-top: 1.5rem; }
+        button { padding: 0.75rem 1.5rem; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; font-family: inherit; transition: background-color 0.3s ease, transform 0.1s ease; text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.5rem; }
+        button:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        button:active { transform: translateY(0px); }
+        .button-text { display: inline-block; }
+        #results { margin-top: 2.5rem; }
+        .user-info { background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid var(--border-color); }
+        .user-info h2 { margin: 0 0 0.5rem 0; font-weight: 600; color: var(--text); }
+        .phone-display { display: flex; align-items: center; gap: 0.5rem; color: var(--text-light); font-size: 1rem; }
+        .phone-display p { margin: 0; }
+         .phone-display i { font-size: 0.9em; }
+        .summary-card { background-color: #eaf3fe; padding: 1.5rem 2rem; border-radius: 8px; margin-bottom: 2.5rem; border: 1px solid #cce0f5; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .summary-card h3 { color: var(--text); margin: 0 0 0.25rem 0; font-weight: 600; }
+        .summary-card p { margin: 0; color: var(--text-light); }
+        .summary-card .total-amount-section h2 { color: var(--text); margin: 0 0 0.25rem 0; font-size: 0.9rem; text-transform: uppercase; font-weight: 500; text-align: right; }
+        .summary-card .total-amount-section p { font-size: 2rem; font-weight: 700; color: var(--success); margin: 0; line-height: 1; text-align: right; }
+        .table-container { overflow-x: auto; margin-top: 1.5rem; background-color: var(--background); border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .table-container h3 { padding: 1rem 1.5rem 0.5rem; margin: 0; font-weight: 600; border-bottom: 1px solid var(--border-color); }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; }
+        thead { background-color: var(--table-header-bg); position: sticky; top: 0; z-index: 1; }
+        th, td { padding: 1rem 1.5rem; vertical-align: middle; }
+        th { font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.85rem; border-bottom: 2px solid var(--border-color); }
+        tbody tr { border-bottom: 1px solid var(--border-color); transition: background-color 0.2s ease; }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:nth-child(even) { background-color: #f8f9fa; }
+        tbody tr:hover { background-color: var(--table-row-hover); }
+        td { color: var(--text); }
+        td code { background-color: #e9ecef; padding: 0.2em 0.5em; border-radius: 4px; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; color: var(--text-light); }
+        .loading { display: none; text-align: center; padding: 3rem 0; }
+        .spinner { border: 4px solid rgba(0, 0, 0, 0.1); width: 36px; height: 36px; border-radius: 50%; border-left-color: var(--primary); animation: spin 1s ease infinite; display: inline-block; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 1rem 1.5rem; border-radius: 8px; margin-top: 1.5rem; text-align: center; }
+        @media (max-width: 768px) { body { padding: 1rem; } .container { padding: 1.5rem; } h1 { font-size: 1.75rem; } .filter-group select#filterType, .filter-group .date-input-group input[type="date"] { width: 90%; max-width: 350px; margin-left: auto; margin-right: auto; } .date-input-group { flex-direction: column; width: 90%; max-width: 350px; margin-left: auto; margin-right: auto; gap: 0.5rem; } .date-input-group input[type="date"] { width: 100%; min-width: 0; } .date-input-group span { text-align: center; margin: 0.25rem 0; } .summary-card { flex-direction: column; align-items: flex-start; padding: 1.5rem; } .summary-card .total-amount-section { width: 100%; text-align: left; margin-top: 1rem; } .summary-card .total-amount-section h2, .summary-card .total-amount-section p { text-align: left; } th, td { padding: 0.75rem 1rem; } }
+        @media (max-width: 480px) { html { font-size: 15px; } .container { padding: 1rem; } #phoneNumber { max-width: 90%; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 style="color: var(--text); margin-bottom: 2rem;">Payment Dashboard</h1>
-        
-        <div class="input-group">
+        <h1>Payment Dashboard</h1>
+
+        <div class="search-box-container">
             <input type="text" id="phoneNumber" placeholder="Enter 10-digit phone number" maxlength="10"
                    pattern="\d{10}" inputmode="numeric">
-            <button onclick="fetchDetails()">
-                <span class="button-text">Search</span>
-            </button>
         </div>
+
+        <div class="filter-group">
+            <select id="filterType" onchange="toggleDateFilters()">
+            	<option value="DAY" selected>Today</option>
+                <option value="MONTH">Current Month</option>
+                <option value="CUSTOM">Custom Date Range</option>
+            </select>
+
+            <div id="customDateFilter" class="date-input-group" style="display: none;">
+                <input type="date" id="startDate">
+                <span>to</span>
+                <input type="date" id="endDate">
+            </div>
+        </div>
+
+        <div class="search-button-container">
+             <button onclick="fetchDetails()">
+                 <i class="fas fa-search"></i>
+                 <span class="button-text">Search</span>
+             </button>
+        </div>
+
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
         </div>
 
-        <div id="results"></div>
+        <div id="results">
+             </div>
     </div>
 
     <script>
-        function fetchDetails() {
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const loading = document.getElementById('loading');
-            const resultsDiv = document.getElementById('results');
-            
-            if (!phoneNumber || phoneNumber.length !== 10 || !/^\d+$/.test(phoneNumber)) {
-                showError('Please enter a valid 10-digit phone number');
-                return;
-            }
+        // toggleDateFilters, resize listener, fetchDetails functions remain the same
 
-            loading.style.display = 'block';
-            resultsDiv.innerHTML = '';
-
-            fetch('/fetchDetails', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `phoneNumber=${encodeURIComponent(phoneNumber)}`
-            })
-            .then(response => {
-                loading.style.display = 'none';
-                if (!response.ok) throw new Error('Server Error');
-                return response.json();
-            })
-            .then(data => {
-                if (data.payments && data.totalPayment !== undefined) {
-                    displayResults(
-                        data.payments, 
-                        data.totalPayment,
-                        data.name || 'Not Available',
-                        data.phone
-                    );
+        function toggleDateFilters() {
+            const filterType = document.getElementById('filterType').value;
+            const customFilter = document.getElementById('customDateFilter');
+            if (filterType === 'CUSTOM') {
+                if (window.innerWidth <= 768) {
+                    customFilter.style.display = 'flex'; customFilter.style.flexDirection = 'column';
                 } else {
-                    showError('Invalid response format from server');
+                    customFilter.style.display = 'flex'; customFilter.style.flexDirection = 'row';
                 }
-            })
-            .catch(error => {
-                loading.style.display = 'none';
-                showError(error.message || 'Error fetching details');
-            });
+            } else { customFilter.style.display = 'none'; }
+        }
+        window.addEventListener('resize', () => { /* ... same as before ... */
+             const filterType = document.getElementById('filterType').value; const customFilter = document.getElementById('customDateFilter');
+             if (filterType === 'CUSTOM' && customFilter.style.display !== 'none') { if (window.innerWidth <= 768) { customFilter.style.flexDirection = 'column'; } else { customFilter.style.flexDirection = 'row'; } } });
+        function fetchDetails() { /* ... same as before ... */
+            const phoneNumber = document.getElementById('phoneNumber').value; const filterType = document.getElementById('filterType').value; const startDate = document.getElementById('startDate').value; const endDate = document.getElementById('endDate').value;
+            if (!phoneNumber || phoneNumber.length !== 10 || !/^\d+$/.test(phoneNumber)) { showError('Please enter a valid 10-digit phone number'); return; }
+            if (filterType === 'CUSTOM') { if (!startDate || !endDate) { showError('Please select both start and end dates for custom range'); return; } if (new Date(startDate) > new Date(endDate)) { showError('Start date cannot be after end date'); return; } }
+            const loading = document.getElementById('loading'); const resultsDiv = document.getElementById('results'); loading.style.display = 'block'; resultsDiv.innerHTML = '';
+            const body = new URLSearchParams({ phoneNumber, filterType, ...(filterType === 'CUSTOM' && { startDate, endDate }) });
+            fetch('/fetchDetails', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body })
+            .then(response => { loading.style.display = 'none'; if (!response.ok) { return response.text().then(text => { try { const errData = JSON.parse(text); throw new Error(errData.message || text || 'Server Error: ' + response.status); } catch (e) { throw new Error(text || 'Server Error: ' + response.status); } }); } return response.json(); })
+            .then(data => { if (data && data.payments && typeof data.totalPayment !== 'undefined') { displayResults( data.payments, data.totalPayment, data.name || 'N/A', data.phone || phoneNumber, filterType, data.startDate || startDate, data.endDate || endDate ); } else { console.error("Invalid data format received:", data); showError('Received invalid data format from the server.'); } })
+            .catch(error => { loading.style.display = 'none'; console.error("Fetch Error:", error); showError(error.message || 'An error occurred while fetching details. Please try again.'); });
         }
 
-        function displayResults(payments, totalPayment, name, phone) {
+        // ****** MODIFIED displayResults function ******
+        function displayResults(payments, totalPayment, name, phone, filterType, startDate, endDate) {
             const resultsDiv = document.getElementById('results');
-            
-            if (payments.length === 0) {
-                resultsDiv.innerHTML = '<div class="error">No payments found for this phone number</div>';
+            resultsDiv.innerHTML = '';
+
+            const userInfoHtml = `
+                <div class="user-info">
+                     <div>
+                         <h2>${name}</h2>
+                         <div class="phone-display">
+                              <i class="fas fa-phone"></i>
+                              <p>+91 ${phone}</p>
+                         </div>
+                     </div>
+                </div>`;
+
+            if (!payments || payments.length === 0) {
+                resultsDiv.innerHTML = userInfoHtml +
+                    '<div class="error">No payments found for the selected criteria.</div>';
                 return;
             }
 
-            let html = `
-                <div class="user-info">
-                    <div>
-                        <h2> ${name}</h2>
-                        <div class="phone-display">
-                            <span></span>
-                            <p>+91 ${phone}</p>
-                        </div>
-                    </div>
-                </div>
+            let heading = '';
+            switch(filterType) {
+                case 'DAY': heading = "Today's Transaction Details"; break;
+                case 'CUSTOM':
+                    const formattedStart = startDate ? formatDisplayDate(startDate) : 'N/A';
+                    const formattedEnd = endDate ? formatDisplayDate(endDate) : 'N/A';
+                    heading = `Transactions from ${formattedStart} to ${formattedEnd}`;
+                    break;
+                default: // MONTH
+                    heading = "Current Month Transaction Details";
+            }
 
-                <div class="summary-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <h3 style="color: var(--text); margin: 0;"> Payment Summary</h3>
-                            <p style="color: #666; margin: 0.5rem 0 0 0;">Total transactions: ${payments.length}</p>
-                        </div>
-                        <div style="text-align: right;">
-                            <h2 style="color: var(--success); margin: 0;">Total Amount</h2>
-                            <p style="font-size: 1.5rem; font-weight: 600; color: var(--text); margin: 0.5rem 0 0 0;">
-                                ${parseFloat(totalPayment).toFixed(2)}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <h3 style="color: var(--text); margin-bottom: 1rem;">
-                         Current Month Transaction Details
-                    </h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Payment ID</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
-
+            let tableRows = '';
             payments.forEach(payment => {
-                html += `
+                const paymentDate = payment.paymentDate ? formatDisplayDate(payment.paymentDate) : 'N/A';
+                const paymentTime = payment.paymentTime ? formatTime(payment.paymentTime) : 'N/A';
+                const paymentId = payment.paymentId || 'N/A';
+                // !! Use HTML entity for Rupee symbol !!
+                const amount = (typeof payment.amount === 'number') ? `&#8377;${payment.amount.toFixed(2)}` : 'N/A';
+
+                tableRows += `
                     <tr>
-                        <td>${formatDate(payment.paymentDate)}</td>
-                        <td>${formatTime(payment.paymentTime)}</td>
-                        <td><code>${payment.paymentId}</code></td>
-                        <td>${parseFloat(payment.amount).toFixed(2)}</td>
+                        <td>${paymentDate}</td>
+                        <td>${paymentTime}</td>
+                        <td><code>${paymentId}</code></td>
+                        <td>${amount}</td>
                     </tr>`;
             });
 
-            html += `</tbody></table></div>`;
+            const html = `
+                ${userInfoHtml}
+                <div class="summary-card">
+                     <div>
+                         <h3>Payment Summary</h3>
+                         <p>Total transactions: ${payments.length}</p>
+                     </div>
+                     <div class="total-amount-section">
+                         <h2>Total Amount</h2>
+                         <p>&#8377;${parseFloat(totalPayment).toFixed(2)}</p>
+                     </div>
+                </div>
+                <div class="table-container">
+                     <h3>${heading}</h3>
+                     <table>
+                         <thead>
+                             <tr>
+                                 <th>Date</th>
+                                 <th>Time</th>
+                                 <th>Payment ID</th>
+                                 <th>Amount</th>
+                             </tr>
+                         </thead>
+                         <tbody>${tableRows}</tbody>
+                     </table>
+                </div>`;
             resultsDiv.innerHTML = html;
         }
 
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-IN', {
-                day: '2-digit',
-                month: 'short',
-                year: 'numeric'
-            });
-        }
+        // formatDisplayDate, formatTime, showError functions remain the same
+        function formatDisplayDate(dateString) { /* ... same as before ... */ if (!dateString) return 'N/A'; try { const date = new Date(dateString); if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) { date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); } if (isNaN(date.getTime())) return 'Invalid Date'; return date.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }); } catch (e) { return dateString; } }
+        function formatTime(timeString) { /* ... same as before ... */ if (!timeString || !timeString.includes(':')) return 'N/A'; try { const parts = timeString.split(':'); return `${parts[0].padStart(2, '0')}:${parts[1].padStart(2, '0')}`; } catch (e) { return timeString; } }
+        function showError(message) { /* ... same as before ... */ const resultsDiv = document.getElementById('results'); const loading = document.getElementById('loading'); loading.style.display = 'none'; resultsDiv.innerHTML = `<div class="error">${message}</div>`; }
 
-        function formatTime(timeString) {
-            const [hours, minutes] = timeString.split(':');
-            return `${hours.padStart(2, '0')}:${minutes}`;
-        }
+        // Initialize date filter visibility on load
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleDateFilters();
+        });
 
-        function showError(message) {
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = `<div class="error">${message}</div>`;
-        }
     </script>
+    <script src="js/disable-right-click.js"></script>
 </body>
 </html>

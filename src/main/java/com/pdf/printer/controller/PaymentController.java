@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pdf.printer.config.PaymentWebSocketHandler; // Import the WebSocket handler
+import com.pdf.printer.controller.Printer.PrinterDetails;
 import com.pdf.printer.dto.FileOrderItem;
 import com.pdf.printer.dto.PaymentInitiationRequest;
 import com.pdf.printer.service.PaymentService;
@@ -55,33 +56,12 @@ public class PaymentController {
 	 
     private static final Logger log = LoggerFactory.getLogger(PaymentController.class);
 
-
-	@Value("${b_min_pages}")
-	private int b_min_pages;
-	
-	@Value("${b_cost_min_pages}")
-	private int b_cost_min_pages;
-	
-	@Value("${b_cost_remaining}")
-	private int b_cost_remaining;
-	
-	@Value("${c_min_pages}")
-	private int c_min_pages;
-	
-	@Value("${c_cost_min_pages}")
-	private int c_cost_min_pages;
-	
-	@Value("${c_cost_remaining}")
-	private int c_cost_remaining;
     
     @Value("${file.upload-dir}")
     private String uploadDir;
 
     @Value("${spring.mail.username}")
     private String mailUsername;
-
-    @Value("${p-email}")
-    private String printerEmail;
 
     @Value("${razorpay.api.key}")
     private String razorpayApiKey;
@@ -121,7 +101,8 @@ public class PaymentController {
 
         List<FileOrderItem> validItems = new ArrayList<>();
         JSONArray itemsJsonArray = new JSONArray();
-
+        
+        int printerId=0;
         // 1. Validate Items
         for (FileOrderItem item : request.getItems()) {
             if (item.getFileName() == null || item.getFileName().isBlank() || item.getPageCount() < 0
@@ -133,7 +114,7 @@ public class PaymentController {
             }
             validItems.add(item);
             
-
+            printerId=item.getPrinterId();
             JSONObject itemJson = new JSONObject();
             itemJson.put("fName", item.getFileName());
             itemJson.put("pCount", item.getPageCount());
@@ -145,7 +126,7 @@ public class PaymentController {
         
         	log.info("valid items are "+validItems);
         // 2. Calculate Total Amount using NEW Aggregated Logic
-        int totalAmountInRupees = calculateAggregatedAmount(validItems);
+        int totalAmountInRupees = calculateAggregatedAmount(validItems,printerId);
 
         if (totalAmountInRupees < 0) {
             log.error("Total calculated amount is negative ({})! Cannot create order.", totalAmountInRupees);
@@ -215,7 +196,7 @@ public class PaymentController {
     }
 
     // --- NEW Helper Method: Calculate Aggregated Amount ---
-    private int calculateAggregatedAmount(List<FileOrderItem> items) {
+    private int calculateAggregatedAmount(List<FileOrderItem> items , int printerId) {
         long totalBwPageInteractions = 0;
         long totalColorPageInteractions = 0;
 
@@ -235,8 +216,8 @@ public class PaymentController {
         log.debug("Aggregated Page Interactions -> B&W: {}, Color: {}", totalBwPageInteractions,
                 totalColorPageInteractions);
 
-        int totalBwPrice = calculateBwTieredPrice(totalBwPageInteractions);
-        int totalColorPrice = calculateColorTieredPrice(totalColorPageInteractions);
+        int totalBwPrice = calculateBwTieredPrice(totalBwPageInteractions,printerId);
+        int totalColorPrice = calculateColorTieredPrice(totalColorPageInteractions,printerId);
 
         int finalTotal = totalBwPrice + totalColorPrice;
         log.info("Calculated Aggregated Price -> B&W: Rs. {}, Color: Rs. {}, Final Total: Rs. {}", totalBwPrice,
@@ -244,25 +225,49 @@ public class PaymentController {
         return finalTotal;
     }
 
-    // --- NEW Tiered Pricing Methods ---
+ // --- Pricing Logic ---
     /**
-     * B&W: <=5 pages -> 10 Rs/page. >5 pages -> 50 Rs (for first 5) + 5 Rs/page (for rest)
+     * B&W: <=2 pages -> 10 Rs/page. >2 pages -> 20 Rs (for first 2 pages) + 5 Rs/page (for rest)
      * 
      */
-    private int calculateBwTieredPrice(long totalPages) {
-        if (totalPages <= 0)
-            return 0;
-        return (totalPages <= b_min_pages) ? (int) totalPages * b_cost_min_pages : b_min_pages*b_cost_min_pages + (int) (totalPages - b_min_pages) * b_cost_remaining;
-    }
+    private int calculateBwTieredPrice(long totalPages,int printerId) {
+    	String id=String.valueOf(printerId);
+    	Printer.PrinterDetails details = Printer.getDetailsById(id);
+       int range1=details.getRange1();
+   	   int range2=details.getRange2();
+   	   int b_cost_range1=details.getB_cost_range1();
+   	   int b_cost_range2=details.getB_cost_range2();
+   	   int b_cost_range3= details.getB_cost_range3();
+   	   
+    	if (totalPages <= 0) return 0;
+        if(totalPages <= range1)
+        	return (int)(totalPages * b_cost_range1);
+        if(totalPages <=range2)
+        	return (int)(totalPages * b_cost_range2);
+        else
+        	return (int)(totalPages * b_cost_range3);
+        }
 
     /**
-     * Color: <=3 pages -> 15 Rs/page. >3 pages -> 45 Rs (for first 3) + 8 Rs/page (for rest)
+     * Color: <=2 pages -> 15 Rs/page. >2 pages -> 30 Rs (for first 2) + 9 Rs/page (for rest)
      */
-    private int calculateColorTieredPrice(long totalPages) {
-        if (totalPages <= 0)
-            return 0;
-        return (totalPages <= c_min_pages) ? (int) totalPages * c_cost_min_pages : c_min_pages*c_cost_min_pages + (int) (totalPages - c_min_pages) * c_cost_remaining;
-    }
+    private int calculateColorTieredPrice(long totalPages,int printerId) {
+    	String id=String.valueOf(printerId);
+    	Printer.PrinterDetails details = Printer.getDetailsById(id);
+       int range1=details.getRange1();
+       int range2=details.getRange2();
+ 	   int c_cost_range1=details.getC_cost_range1();
+ 	   int c_cost_range2=details.getC_cost_range2();
+ 	   int c_cost_range3=details.getC_cost_range3();
+ 	
+ 	   if (totalPages <= 0) return 0;
+ 	   if(totalPages <=range1)
+     	return (int)totalPages*c_cost_range1;
+ 	   if(totalPages <=range2)
+     	return (int)(totalPages *c_cost_range2);
+ 	   else
+     	return (int)(totalPages * c_cost_range3);
+     }
 
     // --- Webhook Endpoint (No changes needed in logic here) ---
     @PostMapping("/api/payments/webhook")
