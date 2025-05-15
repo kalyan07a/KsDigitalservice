@@ -1,270 +1,248 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - KS Digital Service</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
     <style>
-    /* Home Logo Button */
-.home-logo-button {
-    position: absolute;
-    top: 25px; /* Adjust vertical position */
-    left: 30px; /* Adjust horizontal position */
-    z-index: 1031; /* High z-index to stay on top */
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-    backdrop-filter: blur(5px); /* Optional: blur background */
-    -webkit-backdrop-filter: blur(5px); /* Safari */
-    color: var(--primary-color);
-    padding: 8px 18px;
-    border-radius: 50px; /* Pill shape */
-    text-decoration: none;
-    font-family: var(--heading-font); /* Use heading font */
-    font-weight: 600;
-    font-size: 0.95rem;
-    display: inline-flex; /* Align icon and text */
-    align-items: center;
-    gap: 8px; /* Space between icon and text */
-    box-shadow: var(--button-shadow); /* Use existing shadow */
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05); /* Subtle border */
-}
-
-.home-logo-button i {
-    font-size: 1.1em; /* Icon size relative to font */
-}
-
-.home-logo-button:hover {
-    background-color: var(--white); /* Solid white on hover */
-    color: var(--primary-color);
-    transform: translateY(-3px) scale(1.03); /* Lift effect */
-    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08); /* Enhanced shadow */
-    text-decoration: none;
-}
-
-/* Responsive adjustments for home button */
-@media (max-width: 767.98px) {
-    .home-logo-button {
-        top: 20px;
-        left: 20px;
-        padding: 6px 14px;
-        font-size: 0.9rem;
-    }
-}
-@media (max-width: 575.98px) {
-    .home-logo-button {
-        top: 15px;
-        left: 15px;
-        padding: 5px 12px;
-        font-size: 0.85rem;
-    }
-     /* Optional: Hide text on very small screens if needed */
-    /* .home-logo-button span { display: none; } */
-    /* .home-logo-button i { margin-right: 0; } */
-}
-
-/* Add some top padding to body/content wrapper IF needed to prevent overlap */
-/* E.g., body { padding-top: 80px; } */
-/* Or adjust .page-header margin-top */
-/* .page-header { margin-top: 80px; } */
-/* Test visually first, only add if overlap occurs */
-        :root { /* ... All CSS variables from index.html ... */
-            --primary-color: #4a90e2; --secondary-color: #50e3c2; --accent-color: #f5a623; --light-bg: #f8f9fa; --white: #ffffff; --dark-text: #343a40; --medium-text: #555; --light-text: #777; --success-color: #28a745; --danger-color: #e63946; --footer-bg: #2c3e50; --footer-text: #bdc3c7; --footer-link: #ecf0f1; --cat-general: #4a90e2; --cat-licenses: #e63946; --cat-webservices: #50e3c2; --cat-exams: #9b59b6; --cat-other: #f39c12; --card-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); --card-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); --button-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08); --heading-font: 'Poppins', sans-serif; --body-font: 'Poppins', sans-serif;
+        :root {
+            --primary-color: #2563eb;
+            --text-dark: #1e293b;
+            --text-medium: #64748b;
+            --border-color: #e2e8f0;
         }
-        body { background: linear-gradient(135deg, #f4f7f9 0%, #e8eff5 100%); padding: 0; font-family: var(--body-font); color: var(--dark-text); line-height: 1.7; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
-        .content-wrapper { flex-grow: 1; }
-        .page-header { text-align: center; margin-bottom: 50px; padding-bottom: 25px; border-bottom: 1px solid #e0e0e0; margin-top: 30px; }
-        .title-container { position: relative; width: 100%; margin-bottom: 20px; }
-        .phone-number-header { position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 0.95rem; color: var(--dark-text); white-space: nowrap; background-color: #e9f5ff; padding: 8px 15px; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.05); z-index: 10; }
-        .phone-number-header:hover { background-color: #d0eaff; color: var(--primary-color); transform: translateY(-50%) scale(1.03); box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
-        .phone-number-header a { text-decoration: none; color: inherit; display: flex; align-items: center; }
-        .phone-number-header i { font-size: 1.2rem; color: #25D366; margin-right: 8px; }
-        .page-title { margin-bottom: 0; color: var(--dark-text); font-family: var(--heading-font); font-weight: 300; font-size: 2.8rem; letter-spacing: -1px; }
-        .page-title span { font-weight: 700; color: var(--primary-color); }
-        .subtitle-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; width: 100%; margin-top: 15px; }
-        .page-subtitle { font-size: 1.15rem; color: var(--light-text); font-weight: 400; margin: 0; flex-grow: 1; text-align: center; }
-        .directions-container { font-size: 0.9rem; white-space: nowrap; margin: 0; text-align: right; }
-        .btn-directions { background-color: var(--success-color); border: none; color: var(--white); font-weight: 600; padding: 10px 20px; transition: all 0.3s ease; font-size: 0.95rem; border-radius: 50px; box-shadow: var(--button-shadow); }
-        .btn-directions:hover { background-color: #218838; border-color: #1e7e34; transform: translateY(-3px) scale(1.03); box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08); }
-        .btn-directions i { margin-right: 6px; }
-        /* Content Area Specific Styles */
-        .policy-content { padding-top: 30px; padding-bottom: 40px; }
-        .policy-content h2 { font-size: 1.6rem; font-weight: 600; color: var(--dark-text); margin-top: 30px; margin-bottom: 15px; font-family: var(--heading-font); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; display: inline-block; }
-        .policy-content h3 { font-size: 1.3rem; font-weight: 600; color: var(--dark-text); margin-top: 25px; margin-bottom: 10px; font-family: var(--heading-font); }
-        .policy-content p { color: var(--medium-text); margin-bottom: 1rem; }
-        .policy-content ul { list-style: none; /* Use icons instead */ padding-left: 5px; margin-bottom: 1rem; color: var(--medium-text); }
-        .policy-content li { margin-bottom: 0.8rem; position: relative; padding-left: 25px; }
-        .policy-content li::before { content: '\F285'; /* Bootstrap Icons check */ font-family: 'bootstrap-icons'; position: absolute; left: 0; top: 5px; color: var(--primary-color); font-size: 0.9rem; }
-        .policy-content b, .policy-content strong { color: var(--dark-text); font-weight: 600; } /* Style bold text */
-        .policy-content li strong { /* Style for bold text within list items */ font-weight: 600; color: var(--dark-text); }
 
-        /* Footer Links Section */
-        .footer-links { text-align: center; margin: 60px 0 40px; padding-top: 40px; border-top: 1px solid #dee2e6; max-width: 1000px; margin-left: auto; margin-right: auto; }
-        .footer-links .btn { margin: 8px 10px; font-weight: 500; transition: all 0.3s ease; border-radius: 50px; padding: 8px 20px; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .footer-links .btn-outline-primary { border-color: var(--primary-color); color: var(--primary-color); border-width: 2px; }
-        .footer-links .btn-outline-primary:hover { background-color: var(--primary-color); color: var(--white); transform: translateY(-3px); box-shadow: var(--button-shadow); }
-        /* Enhanced Footer */
-        .footer { background-color: var(--footer-bg); color: var(--footer-text); padding: 50px 0; font-size: 0.95rem; border-top: 6px solid; border-image-slice: 1; border-image-source: linear-gradient(to right, var(--primary-color), var(--secondary-color)); width: 100%; margin-top: auto; }
-        .footer a { color: var(--footer-link); text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; margin: 0 15px; display: inline-flex; align-items: center; }
-        .footer a i { margin-right: 8px; font-size: 1.2em; position: relative; top: -1px; }
-        .footer a:hover { color: var(--secondary-color); text-decoration: none; transform: translateY(-2px); }
-        .footer .footer-contact-links { margin-bottom: 25px; }
-        .footer p { margin-top: 25px; font-size: 0.9rem; color: #95a5a6; }
-        /* Responsive Adjustments */
-        @media (max-width: 991.98px) {
-             .page-title { font-size: 2.4rem; }
-             .phone-number-header { position: relative; display: block; text-align: center; transform: none; margin: 15px auto 0; width: fit-content; top: auto; right: auto; }
-             .title-container { margin-bottom: 10px; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: #f8fafc;
+            line-height: 1.6;
         }
-        @media (max-width: 767.98px) {
-             .page-title { font-size: 2rem; }
-             .page-header { padding-bottom: 20px; margin-bottom: 30px; }
-             .title-container { padding-right: 0; }
-             .subtitle-container { flex-direction: column; text-align: center; gap: 20px; }
-             .page-subtitle { text-align: center; }
-             .directions-container { text-align: center; }
-             .footer-links .btn { display: block; width: 90%; margin: 12px auto; }
-             .footer .footer-contact-links a { margin: 10px 10px; font-size: 0.9rem; }
-             .footer { padding: 40px 15px; }
+
+        .home-logo-button {
+            position: fixed;
+            top: 25px;
+            left: 30px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
-         @media (max-width: 575.98px) {
-             .page-title { font-size: 1.8rem; }
-             .policy-content h2 { font-size: 1.4rem; }
-             .policy-content h3 { font-size: 1.2rem; }
-             .footer { padding: 30px 15px; }
-             .footer .footer-contact-links { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-             .footer .footer-contact-links a { margin: 0; font-size: 0.95rem; }
-             .footer p { font-size: 0.85rem; }
+
+        .home-logo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .page-header {
+            margin: 80px 0 40px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .page-title span {
+            color: var(--primary-color);
+        }
+
+        .phone-number-header {
+            background: #eef6ff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .policy-content {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .policy-section {
+            margin: 30px 0;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .policy-section:last-child {
+            border-bottom: none;
+        }
+
+        .policy-section h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .policy-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 20px 0;
+        }
+
+        .policy-section li {
+            padding: 12px 0;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .policy-section li::before {
+            content: "\F26A";
+            font-family: "bootstrap-icons";
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .home-logo-button {
+                left: 15px;
+                padding: 8px 15px;
+            }
+            
+            .policy-content {
+                padding: 30px 20px;
+            }
+            
+            .policy-section h2 {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
 
-<body class="container-fluid pt-4 pb-4">
-<a href="https://ksdigitalservice.pw/" class="home-logo-button">
-    <i class="bi bi-house-door-fill"></i> <span>KS Digital</span> </a>
+<body>
+    <a href="/" class="home-logo-button">
+        <i class="bi bi-house-door-fill"></i> KS Digital
+    </a>
 
-    <div class="content-wrapper">
+    <div class="container">
+        <header class="page-header">
+        
+        <h1 class="page-title"><span>KS DIGITAL SERVICES</span></h1>
+        	
+            <h2>Privacy Policy</h2>
+            <p class="text-muted mb-4">How we collect, use, and protect your information</p>
+            
+        </header>
 
-        <div class="page-header">
-            <div class="title-container">
-                <h1 class="page-title">Privacy <span>Policy</span></h1>
-                 <div class="phone-number-header">
-                     <a href="https://wa.me/7893845696" target="_blank">
-                         <i class="bi bi-whatsapp"></i>
-                         <span>7893845696</span>
-                     </a>
-                 </div>
-            </div>
-            <div class="subtitle-container">
-                <p class="page-subtitle">How we collect, use, and protect your information.</p>
-                <div class="directions-container">
-                    <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-directions btn-sm"> <i class="bi bi-geo-alt-fill"></i>Directions
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="container policy-content"> <section>
+        <main class="policy-content">
+            <div class="policy-section">
                 <h2>1. Introduction</h2>
-                <p>This Privacy Policy explains how <b>KS Digital services</b> ("we", "us", or "our") collects, uses, and protects your personal information when you use our website and services, including the self-print service.</p>
-            </section>
-
-            <section>
-                <h2>2. Information We Collect</h2>
-                <p>We may collect the following types of information:</p>
-                <ul>
-                    <li><strong>Personal Identification Information:</strong> Name, email address, phone number, address (if required for a specific service).</li>
-                    <li><strong>Service-Specific Information:</strong> Documents uploaded for printing, details needed for online applications (e.g., Aadhar, PAN details for related services), transaction details for bill payments or ticket bookings.</li>
-                     <li><strong>Payment Information:</strong> Details required to process payments via our payment gateway partners (we typically do not store full card details ourselves).</li>
-                    <li><strong>Usage Data:</strong> Information about how you interact with our website and services, including IP address, browser type, pages visited, and timestamps.</li>
-                    <li><strong>Cookies:</strong> We may use cookies and similar tracking technologies to enhance user experience and analyze website traffic.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>3. How We Use Your Information</h2>
-                <p>We use the information we collect for the following purposes:</p>
-                <ul>
-                    <li>To provide, operate, and maintain our services (e.g., process print jobs, submit applications, pay bills).</li>
-                    <li>To process transactions and send confirmations or receipts.</li>
-                    <li>To communicate with you regarding your service requests, support needs, or important updates.</li>
-                    <li>To improve our website, services, and customer experience based on usage patterns and feedback.</li>
-                    <li>To prevent fraud and ensure the security of our platform and users.</li>
-                    <li>To comply with applicable legal and regulatory obligations.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>4. Data Sharing and Disclosure</h2>
-                <p>We value your privacy and do not sell or rent your personal information. We may share your information only in the following limited circumstances:</p>
-                <ul>
-                    <li><strong>With Service Providers:</strong> We share information with third-party vendors and partners who help us operate our services (e.g., payment processors, hosting providers), but only to the extent necessary for them to perform their functions.</li>
-                    <li><strong>For Legal Reasons:</strong> We may disclose information if required by law, regulation, legal process, or governmental request, or to protect the rights, property, or safety of KS Digital Services, our users, or others.</li>
-                     <li><strong>For Service Fulfillment:</strong> Information required for specific services (like application details) may be submitted to the relevant government portals or service providers as part of the service you requested.</li>
-                    <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets, user information may be transferred as part of the transaction, subject to confidentiality agreements.</li>
-                </ul>
-            </section>
-
-             <section>
-                 <h2>5. Data Security</h2>
-                <p>We implement reasonable administrative, technical, and physical security measures to protect your personal information from unauthorized access, use, alteration, or destruction. This includes secure handling of uploaded documents for printing, which are typically processed and deleted promptly after service completion where feasible. However, no internet transmission or electronic storage is 100% secure, so we cannot guarantee absolute security.</p>
-            </section>
-
-             <section>
-                 <h2>6. Data Retention</h2>
-                <p>We retain personal information only for as long as necessary to fulfill the purposes outlined in this policy, provide our services, resolve disputes, enforce agreements, and comply with legal obligations. Uploaded documents for printing are generally retained only for the duration needed to complete the print job.</p>
-            </section>
-
-            <section>
-                <h2>7. Your Rights</h2>
-                <p>Depending on your jurisdiction, you may have rights regarding your personal information, such as:</p>
-                <ul>
-                    <li>The right to access the information we hold about you.</li>
-                    <li>The right to request correction of inaccurate data.</li>
-                    <li>The right to request deletion of your data (subject to legal and contractual restrictions).</li>
-                    <li>The right to object to or restrict certain processing.</li>
-                 </ul>
-                 <p>To exercise these rights, please contact us using the details provided on our Contact page.</p>
-             </section>
-
-            <section>
-                <h2>8. Changes to This Privacy Policy</h2>
-                <p>We may update this Privacy Policy periodically. We will notify you of significant changes by posting the updated policy on our website and indicating the effective date. Your continued use of our services after changes signifies your acceptance of the revised policy.</p>
-            </section>
-
-             <div class="text-center mt-5">
-                 <a href="/" class="btn btn-primary"><i class="bi bi-house-door-fill me-2"></i>Back to Home</a>
-             </div>
-
-        </div> <div class="footer-links">
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/terms">Terms & Conditions</a>
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/privacy">Privacy Policy</a>
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/cancellation">No Refund Policy</a>
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/contact">Contact Us</a>
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/shipping">Shipping & Delivery</a>
-        </div>
-
-    </div> <footer class="footer">
-        <div class="container text-center">
-            <div class="footer-contact-links">
-                <a href="tel:7893845696"><i class="bi bi-telephone-fill"></i> 7893845696</a>
-                <a href="mailto:ksdigital2025@gmail.com"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
-                <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" rel="noopener noreferrer"><i class="bi bi-geo-alt-fill"></i> Find Us On Map</a>
+                <p>This Privacy Policy explains how <strong>KS Digital Services</strong> ("we", "us", or "our") collects, uses, and protects your personal information when you use our website and services.</p>
             </div>
-            <p>© <script>document.write(new Date().getFullYear())</script> KS Digital Services. All Rights Reserved. Designed with <i class="bi bi-heart-fill" style="color: #e63946;"></i></p>
+
+            <div class="policy-section">
+                <h2>2. Information We Collect</h2>
+                <ul>
+                    <li><strong>Personal Identification:</strong> Name, email, phone number, address</li>
+                    <li><strong>Service Data:</strong> Documents for printing, application details</li>
+                    <li><strong>Payment Information:</strong> Processed through secure gateways</li>
+                    <li><strong>Usage Data:</strong> IP address, browser type, pages visited</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>3. How We Use Information</h2>
+                <ul>
+                    <li>Provide and maintain our services</li>
+                    <li>Process transactions and communicate</li>
+                    <li>Improve user experience</li>
+                    <li>Prevent fraud and ensure security</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. Data Sharing</h2>
+                <ul>
+                    <li>With trusted service providers</li>
+                    <li>For legal compliance</li>
+                    <li>Business transfers</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. Data Security</h2>
+                <p>We implement industry-standard security measures to protect your information, though no system can be 100% secure.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. Your Rights</h2>
+                <ul>
+                    <li>Access your information</li>
+                    <li>Request corrections</li>
+                    <li>Request deletion</li>
+                    <li>Object to processing</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
+                <a href="/terms">Terms</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/contact">Contact</a>
+                <a href="/cancellation">Cancellation</a>
+                <a href="/shipping">Shipping</a>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
+                <a href="tel:7893845696">
+                    <i class="bi bi-telephone"></i> 7893845696
+                </a>
+                <a href="mailto:ksdigital2025@gmail.com">
+                    <i class="bi bi-envelope"></i> ksdigital2025@gmail.com
+                </a>
+            </div>
+            <p class="mb-0 text-secondary">© 2025 KS Digital Services. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="js/disable-right-click.js"></script>
 </body>
 </html>

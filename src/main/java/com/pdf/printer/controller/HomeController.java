@@ -19,11 +19,28 @@ public class HomeController {
 	
 	@GetMapping("/print/{id}")
     public String getItem(@PathVariable("id") Long id, Model model) {
+        
+        String printerId=String.valueOf(id);
+        Printer.PrinterDetails details = Printer.getDetailsById(printerId);
         model.addAttribute("id", id);
-        model.addAttribute("name", Printer.getNameById(String.valueOf(id)));
+        model.addAttribute("name", details.getName());
+		model.addAttribute("range1", details.getRange1());
+		model.addAttribute("range2", details.getRange2());
+		model.addAttribute("b_cost_range1", details.getB_cost_range1());
+		model.addAttribute("b_cost_range2", details.getB_cost_range2());
+		model.addAttribute("b_cost_range3", details.getB_cost_range3());
+		model.addAttribute("c_cost_range1", details.getC_cost_range1());
+		model.addAttribute("c_cost_range2", details.getC_cost_range2());
+		model.addAttribute("c_cost_range3", details.getC_cost_range3());
+		
+        log.info("model"+model.toString());
         return "index"; 
     } 
-	
+	@GetMapping("/google0062e0de736cb797.html")
+	public String crawl()
+	{
+		return "google0062e0de736cb797";
+	}
 	
 	@GetMapping("/myDashboard")
 	public String dashboard() {
@@ -35,6 +52,12 @@ public class HomeController {
 	  public String print() 
 	  {
 		  return "index"; 
+	  }
+	  
+	  @GetMapping("/robots.txt")
+	  public String page()
+	  {
+		  return "robots.txt";
 	  }
 	 
 	

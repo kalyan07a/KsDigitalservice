@@ -1,701 +1,160 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KS Digital Service - Vibrant</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>KS Digital Services - Comprehensive Online Solutions in Your Area</title>
+    <meta name="description" content="Welcome to KS Digital Services, your trusted local partner for essential online services. Fast, reliable, and convenient solutions for all your digital needs.">
+
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-    <style>
-        :root {
-            /* --- Enhanced Color Palette --- */
-            --primary-color: #4a90e2; /* Slightly softer, modern blue */
-            --secondary-color: #50e3c2; /* Vibrant Teal/Turquoise accent */
-            --accent-color: #f5a623; /* Warm Orange accent */
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --dark-text: #343a40; /* Keep dark text for readability */
-            --medium-text: #555;
-            --light-text: #777;
-            --success-color: #28a745; /* Standard success green */
-            --danger-color: #e63946; /* Slightly different red */
-            --footer-bg: #2c3e50; /* Dark blue-grey for footer */
-            --footer-text: #bdc3c7;
-            --footer-link: #ecf0f1;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-            /* --- Category Specific Colors (Adjusted for vibrancy) --- */
-            --cat-general: #4a90e2; /* Blue (Matches Primary) */
-            --cat-licenses: #e63946; /* Red (Matches Danger) */
-            --cat-webservices: #50e3c2; /* Teal (Matches Secondary) */
-            --cat-exams: #9b59b6; /* Purple */
-            --cat-other: #f39c12; /* Orange/Yellow */
-
-            /* --- Shadows & Effects --- */
-            --card-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-            --card-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-            --button-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-
-            /* --- Fonts --- */
-            --heading-font: 'Poppins', sans-serif;
-            --body-font: 'Poppins', sans-serif;
-        }
-
-        body {
-            /* --- More engaging gradient background --- */
-            background: linear-gradient(135deg, #f4f7f9 0%, #e8eff5 100%);
-            /* padding: 20px 0;  Removed - handled by container-fluid now */
-            padding: 0; /* Reset body padding */
-            font-family: var(--body-font);
-            color: var(--dark-text);
-            line-height: 1.7;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            min-height: 100vh; /* Ensure body takes at least full height */
-            display: flex; /* Added for footer sticking */
-            flex-direction: column; /* Added for footer sticking */
-        }
-
-        /* REMOVED .main-container styles as requested */
-        /* .main-container { ... } */
-
-        /* Ensure content takes available space for footer sticking */
-        .content-wrapper {
-            flex-grow: 1;
-             /* Add padding here if not using container-fluid on body */
-             /* padding: 30px 15px;  Example if needed */
-        }
-
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 50px; /* Increased margin */
-            padding-bottom: 25px;
-            border-bottom: 1px solid #e0e0e0;
-             margin-top: 30px; /* Added some top margin */
-        }
-
-        .title-container {
-            position: relative;
-            width: 100%;
-            margin-bottom: 20px; /* Added margin below title/whatsapp link container */
-        }
-
-        .phone-number-header {
-            position: absolute;
-            right: 0;
-            top: 50%; /* Center vertically relative to title */
-            transform: translateY(-50%); /* Adjust vertical centering */
-            font-size: 0.95rem; /* Slightly larger */
-            color: var(--dark-text);
-            white-space: nowrap;
-            background-color: #e9f5ff; /* Lighter blue background */
-            padding: 8px 15px; /* More padding */
-            border-radius: 50px; /* Full pill shape */
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            z-index: 10; /* Ensure it's above other content */
-        }
-        .phone-number-header:hover {
-            background-color: #d0eaff;
-            color: var(--primary-color);
-            transform: translateY(-50%) scale(1.03); /* Slight scale on hover */
-             box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-        }
-        .phone-number-header a {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            align-items: center;
-        }
-         .phone-number-header i {
-             font-size: 1.2rem; /* Slightly larger icon */
-             color: #25D366; /* WhatsApp green */
-             margin-right: 8px;
-        }
-
-
-        .page-title {
-            margin-bottom: 0; /* Removed margin handled by container */
-            color: var(--dark-text);
-            font-family: var(--heading-font);
-            font-weight: 300;
-            font-size: 2.8rem; /* Larger title */
-            letter-spacing: -1px;
-        }
-
-        .page-title span {
-            font-weight: 700; /* Bolder accent */
-            color: var(--primary-color);
-            /* Optional: Add a subtle text gradient */
-            /* background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; */
-        }
-
-        .subtitle-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px; /* Increased gap */
-            width: 100%;
-            margin-top: 15px; /* Keep margin */
-        }
-
-        .page-subtitle {
-            font-size: 1.15rem; /* Slightly larger */
-            color: var(--light-text); /* Lighter subtitle */
-            font-weight: 400;
-            margin: 0;
-            flex-grow: 1;
-            text-align: center; /* Keep centered */
-        }
-
-        .directions-container {
-            font-size: 0.9rem;
-            white-space: nowrap;
-            margin: 0;
-            text-align: right;
-        }
-
-        /* --- Enhanced Directions Button --- */
-        .btn-directions {
-            background-color: var(--success-color);
-            border: none; /* Remove border */
-            color: var(--white);
-            font-weight: 600; /* Bolder */
-            padding: 10px 20px; /* More padding */
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            border-radius: 50px; /* Pill shape */
-            box-shadow: var(--button-shadow);
-        }
-
-        .btn-directions:hover {
-            background-color: #218838; /* Darker green */
-            border-color: #1e7e34;
-            transform: translateY(-3px) scale(1.03); /* More lift */
-             box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
-        }
-         .btn-directions i {
-             margin-right: 6px;
-        }
-
-        /* --- Restyled External Service Link Area --- */
-        .external-service-link-container {
-            margin-bottom: 50px; /* More space */
-            text-align: center;
-            background: linear-gradient(135deg, #e6f4ff, #ffffff); /* Subtle gradient */
-            padding: 25px; /* More padding */
-            border-radius: 12px; /* Rounded */
-            border: 1px solid #cce0ff;
-            border-left: 5px solid var(--accent-color); /* Use Accent color border */
-             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-             /* Added max-width and margin auto for larger screens */
-             max-width: 900px;
-             margin-left: auto;
-             margin-right: auto;
-        }
-
-        .external-service-link-container p {
-            margin: 0;
-            font-size: 1.1rem;
-            color: var(--dark-text);
-            display: flex; /* Align items */
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        /* --- Replaced Blinking Text with Highlight --- */
-        .highlight-text {
-            color: var(--accent-color); /* Use accent color */
-            font-weight: 700; /* Bolder */
-            font-size: 1.15rem; /* Slightly larger */
-             display: inline-flex;
-             align-items: center;
-        }
-        .highlight-text i { /* Optional: Add an icon */
-            margin-right: 8px;
-             font-size: 1.3em;
-        }
-
-        /* --- Enhanced External Link Button --- */
-        .external-service-link {
-            display: inline-flex; /* Align icon and text */
-            align-items: center;
-            color: var(--white);
-            /* --- Button Gradient --- */
-            background: linear-gradient(45deg, var(--primary-color), #3a7bd5);
-            border: none;
-            border-radius: 50px; /* Pill shape */
-            padding: 12px 25px; /* More padding */
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-            text-decoration: none;
-            box-shadow: var(--button-shadow);
-        }
-
-        .external-service-link:hover {
-            background: linear-gradient(45deg, #3a7bd5, var(--primary-color)); /* Shift gradient */
-            color: var(--white);
-             transform: translateY(-3px) scale(1.03); /* Lift effect */
-             box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
-        }
-         .external-service-link i {
-             margin-right: 8px;
-             font-size: 1.1em;
-        }
-
-        /* --- More Stylish Section Heading --- */
-        .online-services-heading {
-            font-family: var(--heading-font);
-            color: var(--dark-text);
-            font-weight: 700; /* Bolder */
-            margin: 0 auto 40px auto; /* Center and adjust margins */
-            text-transform: uppercase;
-            letter-spacing: 2px; /* Wider spacing */
-            /* --- Gradient Underline --- */
-            padding-bottom: 15px;
-            position: relative;
-            display: inline-block; /* Needed for centering pseudo-element */
-            left: 50%;
-            transform: translateX(-50%);
-             font-size: 1.7rem; /* Larger */
-        }
-        .online-services-heading::after {
-             content: '';
-             position: absolute;
-             left: 0;
-             bottom: 0;
-             width: 100%;
-             height: 4px; /* Thicker underline */
-             background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); /* Gradient */
-             border-radius: 2px;
-        }
-
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Wider minmax */
-            gap: 30px; /* More gap */
-            margin-top: 30px;
-             /* Added max-width and margin auto for larger screens */
-             max-width: 1400px; /* Or adjust as needed */
-             margin-left: auto;
-             margin-right: auto;
-        }
-
-        /* --- Enhanced Category Cards --- */
-        .category {
-            background-color: var(--white);
-            border-radius: 12px; /* More rounded */
-            box-shadow: var(--card-shadow);
-            padding: 30px; /* More padding */
-            text-align: left;
-            border: 1px solid #e9ecef;
-            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease; /* Smoother transition */
-            position: relative;
-            overflow: hidden;
-            border-left: 6px solid; /* Use left border for accent */
-             /* Remove top border: border-top: 4px solid; */
-             will-change: transform, box-shadow; /* Performance hint */
-        }
-
-        .category:hover {
-            transform: translateY(-8px) scale(1.02); /* Enhanced lift effect */
-            box-shadow: var(--card-hover-shadow);
-            border-color: transparent; /* Hide side border color slightly on hover if needed */
-            border-left-color: inherit; /* Make sure it still inherits */
-        }
-
-        /* --- Assign Category Border Colors --- */
-        .category-general { border-left-color: var(--cat-general); }
-        .category-licenses { border-left-color: var(--cat-licenses); }
-        .category-webservices { border-left-color: var(--cat-webservices); }
-        .category-exams { border-left-color: var(--cat-exams); }
-        .category-other { border-left-color: var(--cat-other); }
-
-        .category h2 {
-            margin-top: 0;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            font-size: 1.3rem; /* Slightly larger heading */
-            font-weight: 700; /* Bolder */
-            font-family: var(--heading-font);
-            color: var(--dark-text);
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-
-        .category h2 i {
-             font-size: 1.6rem; /* Larger icons */
-             margin-right: 12px;
-             /* Match icon color to border color */
-        }
-        .category-general h2 i { color: var(--cat-general); }
-        .category-licenses h2 i { color: var(--cat-licenses); }
-        .category-webservices h2 i { color: var(--cat-webservices); }
-        .category-exams h2 i { color: var(--cat-exams); }
-        .category-other h2 i { color: var(--cat-other); }
-
-
-        .category ul {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 0;
-        }
-
-        .category ul li {
-            margin-bottom: 12px; /* More space */
-            font-size: 0.98rem; /* Slightly larger list item text */
-            color: var(--medium-text);
-            position: relative;
-            padding-left: 25px; /* More space for icon */
-            transition: color 0.3s ease;
-        }
-        .category ul li:hover {
-             color: var(--dark-text); /* Darken text on hover */
-        }
-
-        .category ul li::before {
-            content: '\F285'; /* Bootstrap Icons chevron-right */
-            font-family: 'bootstrap-icons';
-            position: absolute;
-            left: 0;
-            top: 5px; /* Adjust vertical alignment */
-             /* Match check color to category border color */
-             font-size: 0.9rem;
-             transition: color 0.3s ease;
-        }
-         /* Assign Pseudo-element colors */
-        .category-general ul li::before { color: var(--cat-general); }
-        .category-licenses ul li::before { color: var(--cat-licenses); }
-        .category-webservices ul li::before { color: var(--cat-webservices); }
-        .category-exams ul li::before { color: var(--cat-exams); }
-        .category-other ul li::before { color: var(--cat-other); }
-
-         .category ul li strong {
-             font-weight: 600; /* Make bold items stand out more */
-             color: var(--dark-text);
-        }
-
-        /* --- Footer Links Section --- */
-        .footer-links {
-             text-align: center;
-             margin: 60px 0 40px; /* More top margin */
-             padding-top: 40px;
-             border-top: 1px solid #dee2e6;
-             /* Added max-width and margin auto for larger screens */
-             max-width: 1000px;
-             margin-left: auto;
-             margin-right: auto;
-        }
-
-        /* --- Restyled Footer Buttons --- */
-        .footer-links .btn {
-             margin: 8px 10px; /* Spacing */
-             font-weight: 500;
-             transition: all 0.3s ease;
-             border-radius: 50px; /* Pill shape */
-             padding: 8px 20px; /* Adjust padding */
-             font-size: 0.9rem;
-             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .footer-links .btn-outline-primary {
-             border-color: var(--primary-color);
-             color: var(--primary-color);
-             border-width: 2px; /* Slightly thicker border */
-        }
-        .footer-links .btn-outline-primary:hover {
-             background-color: var(--primary-color);
-             color: var(--white);
-              transform: translateY(-3px);
-              box-shadow: var(--button-shadow);
-        }
-
-
-        /* --- Enhanced Footer --- */
-        .footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
-            padding: 50px 0; /* More padding */
-            /* margin-top: 80px; Removed, handled by flexbox */
-            font-size: 0.95rem; /* Slightly larger footer text */
-            /* --- Gradient Top Border --- */
-             border-top: 6px solid;
-             border-image-slice: 1;
-             border-image-source: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-             width: 100%; /* Ensure footer takes full width */
-             margin-top: auto; /* Push footer to bottom */
-        }
-
-        .footer a {
-            color: var(--footer-link);
-            text-decoration: none;
-            transition: color 0.3s ease, transform 0.2s ease;
-             margin: 0 15px; /* More spacing */
-             display: inline-flex;
-             align-items: center;
-        }
-         .footer a i {
-             margin-right: 8px; /* More space */
-             font-size: 1.2em; /* Larger icons */
-             position: relative;
-             top: -1px;
-        }
-
-        .footer a:hover {
-            color: var(--secondary-color); /* Hover color */
-            text-decoration: none;
-            transform: translateY(-2px); /* Slight lift on hover */
-        }
-
-        .footer .footer-contact-links {
-             margin-bottom: 25px; /* More space */
-        }
-
-        .footer p {
-            margin-top: 25px; /* More space */
-            font-size: 0.9rem; /* Slightly larger */
-            color: #95a5a6; /* Lighter copyright */
-        }
-
-        /* Removed blink animation */
-        /* @keyframes blink { ... } */
-        /* .blink-text { animation: none; } */
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 991.98px) {
-             .categories {
-                 grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                 /* max-width: 95%; Keep categories within screen */
-             }
-             .page-title {
-                 font-size: 2.4rem;
-             }
-             .phone-number-header {
-                position: relative; /* Change positioning earlier */
-                display: block; /* Make it block to center */
-                text-align: center;
-                transform: none;
-                margin: 15px auto 0; /* Center horizontally */
-                width: fit-content; /* Adjust width */
-                top: auto;
-                right: auto;
-             }
-             .title-container {
-                 margin-bottom: 10px; /* Adjust spacing */
-             }
-        }
-
-        @media (max-width: 767.98px) {
-             .page-title {
-                 font-size: 2rem;
-             }
-             /* REMOVED .main-container styles */
-             .page-header {
-                 padding-bottom: 20px;
-                 margin-bottom: 30px;
-             }
-            /* Phone number already adjusted above */
-             .title-container {
-                 padding-right: 0; /* Reset padding if any */
-             }
-             .subtitle-container {
-                 flex-direction: column;
-                 text-align: center;
-                 gap: 20px; /* Increased gap */
-             }
-             .page-subtitle { text-align: center; }
-             .directions-container { text-align: center; }
-
-              .categories {
-                 grid-template-columns: 1fr; /* Single column */
-                 gap: 25px;
-             }
-             .online-services-heading {
-                 font-size: 1.5rem;
-                 letter-spacing: 1.5px;
-             }
-
-             .footer-links .btn {
-                 display: block;
-                 width: 90%; /* Wider buttons */
-                 margin: 12px auto;
-             }
-              .footer .footer-contact-links a {
-                   margin: 10px 10px; /* Adjust spacing */
-                   font-size: 0.9rem;
-              }
-              .footer {
-                 padding: 40px 15px; /* Add side padding */
-              }
-        }
-
-         @media (max-width: 575.98px) {
-             .page-title {
-                 font-size: 1.8rem;
-             }
-             /* REMOVED .main-container styles */
-             .external-service-link-container {
-                 padding: 20px;
-                 max-width: 95%; /* Ensure it fits */
-             }
-             .external-service-link-container p {
-                 font-size: 1rem;
-                 flex-direction: column; /* Stack on smallest screens */
-                 gap: 10px;
-             }
-              .highlight-text {
-                 font-size: 1.1rem;
-              }
-             .external-service-link { padding: 10px 20px; font-size: 1rem;}
-             .category {
-                 padding: 20px;
-             }
-             .category h2 {
-                 font-size: 1.2rem;
-             }
-             .category h2 i {
-                 font-size: 1.4rem;
-             }
-             .footer { padding: 30px 15px; } /* Add side padding */
-             .footer .footer-contact-links {
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  gap: 15px;
-             }
-              .footer .footer-contact-links a { margin: 0; font-size: 0.95rem; }
-              .footer p { font-size: 0.85rem; }
-        }
-
-    </style>
+	 <link rel="stylesheet" href="css/home.css">
 </head>
 
-<body class="container-fluid pt-4 pb-4">
-
-    <div class="content-wrapper">
-
-        <div class="page-header">
-            <div class="title-container">
-                <h1 class="page-title">welcome to <span>KS Digital</span> services</h1>
-                 <div class="phone-number-header">
-                     <a href="https://wa.me/7893845696" target="_blank">
-                         <i class="bi bi-whatsapp"></i>
-                         <span>7893845696</span>
-                     </a>
-                 </div>
-            </div>
-
-            <div class="subtitle-container">
-                <p class="page-subtitle">Your one-stop solution for essential online services</p>
-                <div class="directions-container">
-                    <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-directions btn-sm"> <i class="bi bi-geo-alt-fill"></i>Directions
-                    </a>
-                </div>
-            </div>
+<body>
+    <div class="container-lg py-4">
+    
+		<header class="header">
+    <div class="d-flex flex-column align-items-center">
+        <div class="text-center mb-3">
+            <h1 class="h2 mb-2" style="color: blue;"><strong>KS DIGITAL SERVICES</strong></h1>
+            <p class="lead mb-0">Your Trusted Partner for Essential Online Services</p>
         </div>
-
-        <marquee behavior="scroll" direction="left" scrollamount="6" style="background-color: var(--accent-color); color: var(--white); padding: 8px 5px; margin-bottom: 25px; font-weight: 600; font-size: 0.95rem; border-radius: 4px;">
-             TG TET 2025 ONLINE APPLICATIONS ARE APPLIED AT KS DIGITAL SERVICES      ***    UGC NET 2025 ONLINE APPLICATIONS ARE APPLIED AT KS DIGITAL SERVICES 
-        </marquee>
-
-        <div class="external-service-link-container">
-            <p>
-                <span class="highlight-text"><i class="bi bi-printer"></i> SELF PRINT 👉</span>
-                <a href="https://ksdigitalservice.pw/print" class="external-service-link">
-                    <i class="bi bi-box-arrow-up-right"></i> Go to Printer Services
-                </a>
-             </p>
+        <div class="d-flex flex-row gap-3 align-items-center">
+            <a href="tel:7893845696" class="contact-badge text-nowrap">
+                <i class="bi bi-telephone"></i> 7893845696
+            </a>
+            <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" 
+               target="_blank" 
+               class="btn btn-directions btn-sm">
+                <i class="bi bi-geo-alt"></i> Get Directions
+            </a>
         </div>
-
-        <h4 class="online-services-heading">Online Services</h4>
-
-        <div class="categories">
-            <div class="category category-general">
-                 <h2><i class="bi bi-person-badge-fill"></i> General</h2> <ul>
-                     <li><strong>Aadhar</strong> Services</li> <li><strong>Voter ID</strong> Services</li>
-                     <li><strong>PAN Card</strong> Application/Correction</li>
-                     <li><strong>Instant E-PAN</strong></li>
-                     <li><strong>PASSPORT</strong> Application</li>
-                     <li><strong>FSC Search</strong> (Food Security Card)</li>
-                 </ul>
-            </div>
-             <div class="category category-licenses">
-                 <h2><i class="bi bi-award-fill"></i> Licenses</h2> <ul>
-                      <li><strong>FSSAI</strong> Food License</li>
-                      <li><strong>Trade</strong> License</li>
-                      <li><strong>Labour</strong> License</li>
-                  </ul>
-            </div>
-              <div class="category category-webservices">
-                 <h2><i class="bi bi-globe-americas"></i> Web Services</h2> <ul>
-                      <li><strong>IRCTC</strong> Train Tickets</li>
-                      <li><strong>BUS TICKET</strong> Booking</li>
-                      <li><strong>FLIGHT TICKET</strong> Booking</li>
-                      <li><strong>Electricity Bill</strong> Payment</li>
-                      <li><strong>Property Tax</strong> Payment</li>
-                  </ul>
-            </div>
-              <div class="category category-exams">
-                 <h2><i class="bi bi-mortarboard-fill"></i> Entrance Exams</h2> <ul>
-						<li><strong>TG TET </strong> Application</li>
-						<li><strong>UGC NET</strong> Application</li>
-                      <li><strong>EAMCET</strong> Application</li>
-                      <li><strong>Polycet </strong> Application</li>
-                      <li><strong>ECET</strong> Application</li>
-                      <li><strong>ICET</strong> Application</li>
-                      <li><strong>PECET</strong> Application</li>
-                      <li><strong>EDCET</strong> Application</li>
-                  </ul>
-            </div>
-              <div class="category category-other">
-                 <h2><i class="bi bi-tools"></i> Other Services</h2> <ul>
-                      <li><strong>Scholarships</strong> Applications</li>
-                      <li><strong>Driving License</strong> Slot/Application</li>
-                      <li><strong>Vehicle Insurance</strong> Renewal</li>
-                      <li><strong>PF (EPFO)</strong> Services</li>
-                      <li><strong>GST</strong> Registration/Returns</li>
-                      <li><strong>ITR Filing</strong> (Income Tax)</li>
-                  </ul>
-            </div>
-        </div>
-
-        <div class="footer-links">
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/terms">Terms & Conditions</a>
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/privacy">Privacy Policy</a>
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/cancellation">No Refund Policy</a>
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/contact">Contact Us</a>
-            <a class="btn btn-outline-primary mx-2 my-1" href="https://ksdigitalservice.pw/shipping">Shipping & Delivery</a>
-        </div>
-
     </div>
+</header>
 
-    <footer class="footer">
-        <div class="container text-center">
-            <div class="footer-contact-links">
-                <a href="tel:7893845696"><i class="bi bi-telephone-fill"></i> 7893845696</a>
-                <a href="mailto:ksdigital2025@gmail.com"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
-                <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" rel="noopener noreferrer"><i class="bi bi-geo-alt-fill"></i> Find Us On Map</a>
-            </div>
-            <p>© <script>document.write(new Date().getFullYear())</script> KS Digital Services. All Rights Reserved. Designed with <i class="bi bi-heart-fill" style="color: #e63946;"></i></p>
+        <div class="announcement-bar text-center">
+            <i class="bi bi-info-circle"></i> Current Updates: TG TET 2025 & UGC NET 2025 Applications Now Open!
         </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+        <section class="mb-5">
+    <div class="row g-4">
+        <!-- General Services Card -->
+        <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+                <div class="card-header">
+                    <i class="bi bi-person-badge"></i> <strong> General Services</strong>
+                </div>
+                <ul class="list-group list-group-flush service-list">
+                    <li class="list-group-item">Aadhar Enrollment & Updates</li>
+                    <li class="list-group-item">PAN Card Applications</li>
+                    <li class="list-group-item">Passport Assistance</li>
+                    <li class="list-group-item">Voter ID Services</li>
+                    <li class="list-group-item">FSC Search & Download</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Licenses & Registrations -->
+        <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+                <div class="card-header">
+                    <i class="bi bi-file-earmark-check"></i><strong>  Licenses & Registrations</strong>
+                </div>
+                <ul class="list-group list-group-flush service-list">
+                    <li class="list-group-item">FSSAI Food License</li>
+                    <li class="list-group-item">Trade License</li>
+                    <li class="list-group-item">GST Registration</li>
+                    <li class="list-group-item">ITR Filing Assistance</li>
+                    <li class="list-group-item">Labour License</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Web & Utility Services -->
+        <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+                <div class="card-header">
+                    <i class="bi bi-globe"></i> <strong>  Web & Utility Services </strong>
+                </div>
+                <ul class="list-group list-group-flush service-list">
+                    <li class="list-group-item">IRCTC Ticket Booking</li>
+                    <li class="list-group-item">Flight & Bus Tickets</li>
+                    <li class="list-group-item">Electricity Bill Payment</li>
+                    <li class="list-group-item">Property Tax Payment</li>
+                    <li class="list-group-item">EPFO Services</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Entrance Exam Applications -->
+        <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+                <div class="card-header">
+                    <i class="bi bi-journal-bookmark"></i> <strong>  Exam Applications </strong>
+                </div>
+                <ul class="list-group list-group-flush service-list">
+                    <li class="list-group-item">TG TET 2025</li>
+                    <li class="list-group-item">UGC NET 2025</li>
+                    <li class="list-group-item">EAMCET/Polycet</li>
+                    <li class="list-group-item">ECET/ICET</li>
+                    <li class="list-group-item">PECET/EDCET</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Other Important Services -->
+        <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+                <div class="card-header">
+                    <i class="bi bi-tools"></i> <strong>  Other Services </strong>
+                </div>
+                <ul class="list-group list-group-flush service-list">
+                    <li class="list-group-item">Scholarship Applications</li>
+                    <li class="list-group-item">Driving License Assistance</li>
+                    <li class="list-group-item">Vehicle Insurance Renewal</li>
+                    <li class="list-group-item">Resume Preparation</li>
+                    <li class="list-group-item">Online Form Filling</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contact Card -->
+        <div class="col-lg-4 col-md-6">
+            <div class="service-card h-100 d-flex flex-column justify-content-center text-center p-4">
+                <i class="bi bi-question-circle display-4 text-primary mb-3"></i>
+                <h5>Need Something Else?</h5>
+                <p>Contact us for any special requests</p>
+                <a href="https://wa.me/7893845696" target="_blank" class="btn btn-primary">
+                    <i class="bi bi-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <footer class="footer">
+            <div class="container text-center">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
+                    <a href="/terms">Terms</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/cancellation">cancellation</a>
+                    <a href="/shipping">shipping</a>
+                </div>
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
+                      <a href="tel:7893845696"> 7893845696 </a>
+     <a href="mailto:ksdigital2025@gmail.com"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
+                </div>
+                <p class="mb-0 text-secondary">© 2025 KS Digital Services. All rights reserved.</p>
+            </div>
+        </footer>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="js/disable-right-click.js"></script>
 </body>
 </html>

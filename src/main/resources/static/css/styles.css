@@ -132,16 +132,44 @@
         .options-group { width: 100%; display: flex; flex-direction: column; gap: 6px; }
         .options-group h3 { margin: 0 0 6px 0; color: var(--secondary-color); font-weight: 500; text-align: left; font-size: 0.9em; padding-bottom: 4px; border-bottom: 1px solid var(--medium-gray); }
 
-        /* Radio Buttons Container */
-        .radio-options-container { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
-        .radio-option { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--medium-gray); transition: background-color var(--transition-speed), border-color var(--transition-speed); flex-grow: 1; justify-content: center; background-color: var(--white); min-width: 100px; box-sizing: border-box; position: relative; }
-        .radio-option:hover:not(.selected) { background-color: var(--light-gray); }
-        .radio-option input[type="radio"] { margin: 0; accent-color: var(--primary-color); transform: scale(0.9); cursor: pointer; }
-        .radio-option input[type="radio"]:disabled { cursor: not-allowed; }
-        .radio-option span { font-size: 0.85em; }
-        .radio-option.selected { background-color: #e7f3ff; border-color: var(--primary-color); }
-        .radio-option.selected span { color: var(--primary-color); font-weight: 600; }
+        /* Print Type Section - Heading and Radio Buttons in Line */
+	/* Print Type Container */
+.options-group.print-type {
+    flex-direction: row !important; /* ← CRITICAL CHANGE */
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 6px; /* Replace original gap */
+}
 
+
+/* Print Type Label */
+.options-group.print-type h3 {
+    margin: 0;
+    flex-shrink: 0;
+    white-space: nowrap;
+    /* Remove original h3 styles */
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+}
+
+/* Radio Buttons Container */
+.radio-options-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+/* Radio Option Items */
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+}
         /* Custom Page Inputs */
         .custom-page-inputs { display: none; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 10px; margin-top: 8px; background-color: #f0f8ff; border-radius: 6px; border: 1px solid var(--primary-color); }
         .custom-page-inputs.visible { display: flex; }
@@ -374,4 +402,4 @@
             left: 20px;
             top: 20px;
         }
-  
+   

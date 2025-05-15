@@ -1,5 +1,4 @@
 
-// Show modal on page load
         document.addEventListener('DOMContentLoaded', function() {
             const stepsModal = document.getElementById('stepsModal');
             const closeBtn = document.getElementById('closeStepsModal');
@@ -54,6 +53,7 @@
         const modalPreviewContent = document.getElementById('modalPreviewContent');
         const modalPreviewTitle = document.getElementById('previewModalTitle');
         const closePreviewModal = document.getElementById('closePreviewModal');
+        const printerId = document.querySelector('p span').textContent.trim();
 
         // --- Event Listeners ---
         addFileButtonLabel.addEventListener('click', (e) => {
@@ -667,7 +667,8 @@
                  fileName: (item.printType === 1) ? item.fileInfo.fileName : item.fileInfo.bwFileName,
                  pageCount: item.fileInfo.pageCount,
                  printType: item.printType, // Send selected print type
-                 numberOfCopies: item.numberOfCopies
+                 numberOfCopies: item.numberOfCopies,
+                 printerId: printerId
             }));
             const payload = { items: payloadItems }; console.log('Initiating payment with payload:', JSON.stringify(payload));
             fetch('/print/api/payments/initiate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
@@ -1020,4 +1021,4 @@ function openRazorpayCheckout(orderData, description) {
         // --- Run Initialization ---
         initializeApp();
 
-    }); // <-- End of DOMContentLoaded listener
+    });
