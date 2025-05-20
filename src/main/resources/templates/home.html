@@ -22,41 +22,48 @@
 <!--  <link rel="stylesheet" href="css/home.css"> -->
 <style>
 :root {
-	/* New Color Palette: Modern Purple & Vibrant Pink Accent */
-	--color-primary: #7C3AED;
-	/* Rich Purple (Tailwind Violet 600) - Main brand color */
-	--color-primary-dark: #6D28D9;
-	/* Darker Purple (Tailwind Violet 700) */
-	--color-primary-light: #EDE9FE;
-	/* Very Light Lavender/Purple (Tailwind Violet 100) - for subtle backgrounds/accents */
-	--color-secondary: #EC4899;
-	/* Vibrant Pink (Tailwind Pink 500) - Complementary accent color */
-	--color-secondary-dark: #DB2777; /* Darker Pink (Tailwind Pink 600) */
-	--color-secondary-light: #FCE7F3; /* Light Pink (Tailwind Pink 100) */
-	--color-text-dark: #1F2937;
-	/* Dark Gray for headings (Tailwind Gray 800) */
-	--color-text-medium: #374151;
-	/* Medium Gray for body text (Tailwind Gray 700) */
-	--color-text-light: #6B7280;
-	/* Light Gray for less important text (Tailwind Gray 500) */
-	--color-bg-body: #F8FAFC;
-	/* Very Light Gray/Off-white (Tailwind Slate 50) for page background */
-	--color-bg-card: #FFFFFF; /* White for cards and distinct sections */
-	--color-border: #E5E7EB;
-	/* Subtle light gray border color (Tailwind Gray 200) */
-	/* Standard Semantic Colors (kept consistent for UI clarity) */
-	--color-success: #10B981; /* Green (Tailwind Green 500) */
-	--color-warning: #F59E0B; /* Amber (Tailwind Amber 500) */
-	--color-danger: #EF4444; /* Red (Tailwind Red 500) */
-	--font-family-base: 'Inter', sans-serif;
-	--border-radius-sm: 0.375rem; /* 6px */
-	--border-radius-md: 0.5rem; /* 8px */
-	--border-radius-lg: 0.75rem; /* 12px */
-	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px
-		rgba(0, 0, 0, 0.06);
-	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px
-		rgba(0, 0, 0, 0.05);
+    /* Color Palette: Modern Blue & Vibrant Orange */
+    --color-primary: #0056b3; /* Deep Blue - Main brand color */
+    --color-primary-dark: #003f8a; /* Darker Blue */
+    --color-primary-light: #e3f2fd; /* Light Blue for subtle backgrounds */
+    --color-secondary: #ff5722; /* Vibrant Orange - Accent color */
+    --color-secondary-dark: #e64a19; /* Darker Orange */
+    --color-secondary-light: #ffe0b2; /* Light Orange for accents */
+    --color-text-dark: #212121; /* Dark Gray for headings */
+    --color-text-medium: #424242; /* Medium Gray for body text */
+    --color-text-light: #757575; /* Light Gray for less important text */
+    --color-bg-body: #f9f9f9; /* Light Gray/Off-white for page background */
+    --color-bg-card: #ffffff; /* White for cards and distinct sections */
+    --color-border: #e0e0e0; /* Subtle light gray border color */
+
+    /* Semantic Colors */
+    --color-success: #4caf50; /* Green for success */
+    --color-warning: #ff9800; /* Amber for warnings */
+    --color-danger: #f44336; /* Red for errors */
+
+    /* Typography */
+    --font-family-base: 'Roboto', sans-serif; /* Modern sans-serif font */
+    --font-size-base: 16px; /* Base font size */
+    --font-size-sm: 14px; /* Small font size */
+    --font-size-lg: 18px; /* Large font size */
+    --line-height-base: 1.6; /* Default line height */
+
+    /* Border Radius */
+    --border-radius-sm: 0.25rem; /* 4px */
+    --border-radius-md: 0.5rem; /* 8px */
+    --border-radius-lg: 1rem; /* 16px */
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+    /* Spacing */
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem; /* 8px */
+    --spacing-md: 1rem; /* 16px */
+    --spacing-lg: 1.5rem; /* 24px */
+    --spacing-xl: 2rem; /* 32px */
 }
 
 body {
@@ -71,6 +78,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+    padding: 20px;
 }
 
 main {
@@ -156,6 +164,7 @@ main {
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .service-card:hover {
@@ -255,6 +264,12 @@ main {
 	margin-top: auto;
 }
 
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .footer-nav a {
 	color: #cbd5e1;
 	text-decoration: none;
@@ -313,11 +328,11 @@ main {
 		font-size: 1rem;
 	}
 	.service-list .list-group-item {
-		font-size: 0.9rem;
-		padding: 0.75rem 1rem;
+		font-size: 0.85rem;
+		padding: 0.5rem;
+		white-space: normal;
 	}
 	.footer-nav {
-		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
 	}
@@ -378,10 +393,10 @@ main {
 
 @media ( max-width : 767.98px) {
 	.service-card .card-header {
-		font-size: 0.9rem;
+		font-size: 1rem;
 	}
 	.service-list .list-group-item {
-		font-size: 0.8rem;
+		font-size: 0.85rem;
 		padding: 0.5rem;
 		white-space: normal;
 	}
@@ -392,319 +407,241 @@ main {
 		display: none;
 	}
 }
+.category-border {
+  border: 2px solid var(--color-primary-dark);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: border-color 0.3s;
+}
+.category-border:hover {
+  border-color: var(--color-secondary);
+}
+.service-outline {
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  padding: 10px 5px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 8px;
+}
+.service-outline:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
 </style>
 </head>
-<body>
-	<div class="page-wrapper">
-		<header class="site-header">
-			<div class="container-lg">
-				<div class="d-flex flex-column text-center">
-					<!-- Title Section -->
-					<div class="mb-2">
-						<h1 class="site-title">
-							<strong><span style="color: blue;">KS DIGITAL
-									SERVICES</span></strong>
-						</h1>
-
-					</div>
-
-					<!-- Tagline Section -->
-					<div class="mb-3">
-						<p class="site-tagline lead mb-0">Your Trusted Partner for
-							Essential Online Services</p>
-					</div>
-
-					<!-- Contact Info Section -->
-					<div
-						class="contact-info d-flex justify-content-center gap-2 gap-md-3">
-						<a href="tel:7893845696" class="contact-badge text-nowrap"> <i
-							class="bi bi-telephone-fill"></i> Call
-						</a> <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A"
-							target="_blank" class="btn btn-directions btn-sm"
-							style="border-color: #28a745; color: #28a745;"> <i
-							class="bi bi-geo-alt-fill"></i> Maps
-						</a>
-					</div>
-				</div>
-			</div>
-		</header>
-
-
-		<main class="container-lg py-4">
-
-			<!-- <div class="announcement-bar text-center shadow-sm">
-                <i class="bi bi-megaphone-fill"></i> <strong>Current Updates:</strong> We are now open on Sundays from 10 AM to 2 PM!
-            </div> -->
-
-			
-					<div class="row mb-4">
-    <div class="col-12 text-center">
-        <a href="https://ksdigitalservice.pw/print/1" target="_blank"
-           class="btn btn-warning custom-red btn-lg"> <i class="bi"></i> <strong>SELF PRINTER</strong> 
-        </a>
+<body><body style="background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%); min-height: 100vh;">
+  <!-- Hero Section -->
+  <section class="text-center" style="background: #0056b3; color: #fff; padding-top: 1.5rem; padding-bottom: 1.5rem;">      <h1 class="display-4 fw-bold mb-3">KS DIGITAL SERVICES</h1>
+      <p class="lead mb-4">Your Trusted Partner for Essential Online Services</p>
+	  <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-lg shadow">
+		<i class="bi bi-whatsapp"></i> WhatsApp
+	  </a>
+	  <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-danger btn-lg shadow">
+		<i class="bi bi-geo-alt-fill"></i> Maps
+	  </a>
+	  <a href="https://ksdigitalservice.pw/print/1" target="_blank" class="btn btn-warning btn-lg shadow">
+		<i class="bi bi-printer"></i> Self Printer
+	  </a>
     </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="container py-5">
+    <div class="row text-center mb-4">
+      <div class="col">
+        <h2 class="fw-bold">What We Offer</h2>
+        <p class="text-muted">Fast, reliable, and convenient solutions for all your digital needs.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+	
+     
+		<div class="col-md-4">
+			<div class="card h-100 shadow-sm hover-shadow category-border">
+			  <div class="card-body text-center">
+				<h5 class="card-title fw-bold mb-4" style="color: #0056b3;">General Services</h5>
+				<div class="row g-3">
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/aadhar.jpeg" alt="Aadhar Card" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">Aadhar Address Update</div>
+				  </div>
+				  </div>
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/pan-sample.jpg" alt="PAN Card" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">PAN Card New/Correction</div>
+				  </div>
+				  </div>
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/passport-sample.jpg" alt="Passport" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">Passport New/Renewal</div>
+				  </div>
+				  </div>
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/voter_id.jpg" alt="Voter ID" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">Voter ID New/Correction</div>
+				  </div>
+				  </div>
+				<!--  <div class="col-6">
+					<img src="/FSC.jpg" alt="FSC" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">FSC Download</div>
+				  </div> -->
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+
+
+
+
+
+		  <div class="col-md-4">
+			<div class="card h-100 shadow-sm hover-shadow category-border">			  <div class="card-body text-center">
+				<h5 class="card-title fw-bold mb-4" style="color: #ff5722;">Licenses & Registrations</h5>
+					<div class="row g-3">
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/labour.jpg" alt="Labour License" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">Labour License</div>
+				  </div>
+				  </div>
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/food_license.jpg" alt="food License" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold"> Food License</div>
+				  </div>
+				  </div>
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/trade.jpg" alt="Trade License" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">Trade License</div>
+				  </div>
+				  </div>
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/Driving_license.jpg" alt="Driving License" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">Driving License </div>
+				  </div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+
+
+		  <div class="col-md-4">
+			<div class="card h-100 shadow-sm hover-shadow category-border">			  <div class="card-body text-center">
+				<h5 class="card-title fw-bold mb-4" style="color: #009688;">Utility Services</h5>
+				<div class="row g-3">
+					<div class="col-6">
+						<div class="service-outline">
+						<img src="/bus.jpg" alt="Bus Ticket" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+						<div class="fw-semibold">Bus Ticket Booking</div>
+						</div>
+					  </div>
+					  <div class="col-6">
+						<div class="service-outline">
+						<img src="/flight.jpg" alt="Flight Ticket" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+						<div class="fw-semibold">Flight Tickets</div>
+					  </div>
+				  </div>
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/train.jpg" alt="IRCTC" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">Train Ticket Booking</div>
+				  </div>
+				  </div>
+
+				  <div class="col-6">
+					<div class="service-outline">
+					<img src="/epf.jpg" alt="EPFO" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">PF Advance ,<br> Full Amount</div>
+				  </div>
+				  </div>
+				  
+				<!--  <div class="col-6">
+					<img src="/power.jpg" alt="Electricity Bill" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+					<div class="fw-semibold">Electricity Bill Payment</div>
+				  </div> -->
+				  
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+
+
+<!-- Other Services -->
+<div class="col-md-4">
+  <div class="card h-100 shadow-sm hover-shadow category-border">
+    <div class="card-body text-center">
+      <h5 class="card-title fw-bold mb-4" style="color: #6d28d9;">Other Services</h5>
+      <ul class="list-group list-group-flush">
+       <li class="list-group-item">GST </li>
+        <li class="list-group-item"> ITR filing</li>
+         <li class="list-group-item">Online Form Filling</li>
+        <li class="list-group-item">Scholarship Applications</li>
+       
+      </ul>
+    </div>
+  </div>
 </div>
 
-				<section class="services-section py-0">
-				<div class="row g-4 g-xl-5">
+<!-- Exam Applications -->
+<div class="col-md-4">
+  <div class="card h-100 shadow-sm hover-shadow category-border">
+    <div class="card-body text-center">
+      <h5 class="card-title fw-bold mb-4" style="color: #e64a19;">Exam Applications</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">TG TET / UGC NET</li>
+        <li class="list-group-item">EAMCET / Polycet</li>
+        <li class="list-group-item">ECET / ICET</li>
+        <li class="list-group-item">PECET / EDCET</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Need Something Else -->
+<div class="col-md-4">
+  <div class="card h-100 shadow-sm hover-shadow category-border">
+    <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+      <h5 class="card-title fw-bold mb-3" style="color: #ff5722;">Need Something Else?</h5>
+      <p class="mb-3 text-muted">Don't see what you're looking for? Contact us for any special requests or inquiries.</p>
+      <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-lg">
+        <i class="bi bi-whatsapp"></i> WhatsApp Us
+      </a>
+    </div>
+  </div>
+</div>
 
 
+    </div>
+  </section>
 
-					<div class="col-lg-4 col-md-6">
-						<div class="service-card h-100">
-							<div class="card-header">
-								<i class="bi bi-person-badge"></i><strong>General
-									Services</strong>
-							</div>
-							<div class="row g-2 p-2">
-								<!-- Reduced gutter and padding -->
-								<!-- Service List Column -->
-								<div class="col-8">
-									<ul class="list-group list-group-flush service-list">
-										<li class="list-group-item">Aadhar Address Update , <br>
-											Aadhar Download
-										</li>
-										<li class="list-group-item">PAN Card <br>
-											Fresh/Correction Application
-										</li>
-										<li class="list-group-item">Passport<br> Fresh
-											Application<br> Renewal Applications
-										</li>
-										<li class="list-group-item">Voter ID Fresh Correction
-											Application</li>
-										<li class="list-group-item">FSC Search and Download</li>
-									</ul>
-								</div>
-
-								<!-- Document Images Column -->
-								<div class="col-4">
-									<div class="d-flex flex-column gap-1">
-										<!-- Reduced gap -->
-										<div class="document-preview">
-											<img src="aadhar-sample.jpeg" alt="Aadhar sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-										<div class="document-preview">
-											<img src="pan-sample.jpg" alt="PAN card sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-										<div class="document-preview">
-											<img src="passport-sample.jpg" alt="Passport sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-										<div class="document-preview">
-											<img src="voter_id.jpg" alt="Voter ID sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-										<div class="document-preview">
-											<img src="FSC.jpg" alt="FSC sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
-
-
-					<div class="col-lg-4 col-md-6">
-						<div class="service-card h-100">
-							<div class="card-header">
-								<i class="bi bi-file-earmark-check-fill"></i><strong>Licenses/Registrations</strong>
-							</div>
-							<div class="row g-2 p-2">
-								<!-- Service List Column -->
-								<div class="col-8">
-									<ul class="list-group list-group-flush service-list">
-
-										<li class="list-group-item">Labour License <br> New
-											<br> and Renewal
-										</li>
-										<li class="list-group-item">FSSAI Food License <br>
-											New and Renewal
-										</li>
-										<li class="list-group-item">Trade License <br> New
-											and Renewal
-										</li>
-										<li class="list-group-item">Driving License <br>
-											Slot Booking
-										</li>
-									</ul>
-								</div>
-
-								<!-- Document Images Column -->
-								<div class="col-4">
-									<div class="d-flex flex-column gap-1">
-
-										<div class="document-preview">
-											<img src="labour.jpg" alt="Labour License sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-
-
-
-										<div class="document-preview">
-											<img src="food_license.jpg" alt="FSSAI License sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-										<div class="document-preview">
-											<img src="trade.jpg" alt="Trade License sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-
-										<div class="document-preview">
-											<img src="Driving_license.jpg" alt="Driving License sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
-
-
-
-					<div class="col-lg-4 col-md-6">
-						<div class="service-card h-100">
-							<div class="card-header">
-								<i class="bi bi-globe2"></i><strong>Utility Services</strong>
-							</div>
-							<div class="row g-2 p-2">
-								<!-- Service List Column -->
-								<div class="col-8">
-									<ul class="list-group list-group-flush service-list">
-										<li class="list-group-item">Flight Tickets</li>
-										<li class="list-group-item">Bus Tickets <br> AC and
-											<br> Non-AC
-										</li>
-										<li class="list-group-item">EPFO Services Advance Amount
-											,<br> Full Amount , Transfer
-										</li>
-										<li class="list-group-item">IRCTC Ticket Booking ,<br>
-											General and <br> Taktal
-										</li>
-										<li class="list-group-item">Electricity Bill Payment</li>
-									</ul>
-								</div>
-
-								<!-- Document Images Column -->
-								<div class="col-4">
-									<div class="d-flex flex-column gap-1">
-
-										<div class="document-preview">
-											<img src="flight.jpg" alt="flight ticket sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-
-										<div class="document-preview">
-											<img src="bus.jpg" alt="bus ticket sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-
-
-
-										<div class="document-preview">
-											<img src="epf.jpg" alt="epf  wothdraw"
-												class="img-fluid rounded shadow-sm">
-										</div>
-										<div class="document-preview">
-											<img src="train.png" alt="IRCTC ticket sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-
-										<div class="document-preview">
-											<img src="power.jpg" alt="Electricity bill sample"
-												class="img-fluid rounded shadow-sm">
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
-
-
-
-					<div class="col-lg-4 col-md-6">
-						<div class="service-card h-100">
-							<div class="card-header">
-								<i class="bi bi-tools"></i><strong>Other Services</strong>
-							</div>
-							<ul class="list-group list-group-flush service-list">
-								<li class="list-group-item">Scholarship Applications</li>
-								<li class="list-group-item">Vehicle Insurance Renewal</li>
-								<li class="list-group-item">Resume Preparation</li>
-								<li class="list-group-item">Online Form Filling</li>
-							</ul>
-						</div>
-					</div>
-
-
-
-					<div class="col-lg-4 col-md-6">
-						<div class="service-card h-100">
-							<div class="card-header">
-								<i class="bi bi-journal-bookmark-fill"></i><strong>Exam
-									Applications</strong>
-							</div>
-							<ul class="list-group list-group-flush service-list">
-								<li class="list-group-item">TG TET /UGC NET</li>
-								<li class="list-group-item">EAMCET/Polycet</li>
-								<li class="list-group-item">ECET/ICET</li>
-								<li class="list-group-item">PECET/EDCET</li>
-							</ul>
-						</div>
-					</div>
-
-
-
-					<div class="col-lg-4 col-md-6">
-						<div
-							class="service-card special-contact-card h-100 d-flex flex-column justify-content-center text-center p-4">
-							<i class="bi bi-question-circle-fill display-3 text-primary mb-3"></i>
-							<h5 class="mb-2">Need Something Else?</h5>
-							<p class="mb-3 text-muted small">Don't see what you're
-								looking for? Contact us for any special requests or inquiries.</p>
-							<a href="https://wa.me/7893845696" target="_blank"
-								class="btn btn-primary btn-lg"> <i class="bi bi-whatsapp"></i>
-								WhatsApp Us
-							</a>
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
-
-		<footer class="site-footer">
-			<div class="container-lg text-center">
-				<nav class="footer-nav mb-4">
-					<a href="/terms">Terms</a> <a href="/privacy">Privacy</a> <a
-						href="/contact">Contact</a> <a href="/cancellation">Cancellation</a>
-					<a href="/shipping">Shipping</a>
-				</nav>
-				<div class="footer-contact-details mb-4">
-					<a href="tel:7893845696" class="me-3"><i
-						class="bi bi-telephone-fill"></i> 7893845696</a> <a
-						href="mailto:ksdigital2025@gmail.com"><i
-						class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
-				</div>
-				<p class="copyright mb-0">&copy; 2025 KS Digital Services. All
-					rights reserved.</p>
-			</div>
-		</footer>
-	</div>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="js/disable-right-click.js"></script>
-</body>
+  <!-- Footer -->
+  <footer class="py-4 bg-dark text-light text-center">
+    <div class="container">
+      <nav class="mb-2">
+        <a href="/terms" class="text-light mx-2">Terms</a>
+        <a href="/privacy" class="text-light mx-2">Privacy</a>
+        <a href="/contact" class="text-light mx-2">Contact</a>
+        <a href="/cancellation" class="text-light mx-2">Cancellation</a>
+        <a href="/shipping" class="text-light mx-2">Shipping</a>
+      </nav>
+      <div class="mb-2">
+        <a href="tel:7893845696" class="text-light mx-2"><i class="bi bi-telephone-fill"></i> 7893845696</a>
+        <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
+      </div>
+      <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
+    </div>
+  </footer>
+  </body>
 </html>
