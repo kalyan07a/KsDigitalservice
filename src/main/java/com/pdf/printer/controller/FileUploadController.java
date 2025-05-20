@@ -36,11 +36,10 @@ public class FileUploadController implements WebMvcConfigurer { // Implement Web
         this.fileStorageService = fileStorageService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        log.info("Serving index page.");
-        return "index";
-    }
+	/*
+	 * @GetMapping("/") public String index() { log.info("Serving index page.");
+	 * return "index"; }
+	 */
 
     @PostMapping("/upload")
     @ResponseBody

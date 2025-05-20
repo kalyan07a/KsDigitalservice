@@ -2,159 +2,709 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KS Digital Services - Comprehensive Online Solutions in Your Area</title>
-    <meta name="description" content="Welcome to KS Digital Services, your trusted local partner for essential online services. Fast, reliable, and convenient solutions for all your digital needs.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS Digital Services - Comprehensive Online Solutions in
+	Your Area</title>
+<meta name="description"
+	content="Welcome to KS Digital Services, your trusted local partner for essential online services. Fast, reliable, and convenient solutions for all your digital needs.">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+	rel="stylesheet">
 
-	 <link rel="stylesheet" href="css/home.css">
+<!--  <link rel="stylesheet" href="css/home.css"> -->
+<style>
+:root {
+	/* New Color Palette: Modern Purple & Vibrant Pink Accent */
+	--color-primary: #7C3AED;
+	/* Rich Purple (Tailwind Violet 600) - Main brand color */
+	--color-primary-dark: #6D28D9;
+	/* Darker Purple (Tailwind Violet 700) */
+	--color-primary-light: #EDE9FE;
+	/* Very Light Lavender/Purple (Tailwind Violet 100) - for subtle backgrounds/accents */
+	--color-secondary: #EC4899;
+	/* Vibrant Pink (Tailwind Pink 500) - Complementary accent color */
+	--color-secondary-dark: #DB2777; /* Darker Pink (Tailwind Pink 600) */
+	--color-secondary-light: #FCE7F3; /* Light Pink (Tailwind Pink 100) */
+	--color-text-dark: #1F2937;
+	/* Dark Gray for headings (Tailwind Gray 800) */
+	--color-text-medium: #374151;
+	/* Medium Gray for body text (Tailwind Gray 700) */
+	--color-text-light: #6B7280;
+	/* Light Gray for less important text (Tailwind Gray 500) */
+	--color-bg-body: #F8FAFC;
+	/* Very Light Gray/Off-white (Tailwind Slate 50) for page background */
+	--color-bg-card: #FFFFFF; /* White for cards and distinct sections */
+	--color-border: #E5E7EB;
+	/* Subtle light gray border color (Tailwind Gray 200) */
+	/* Standard Semantic Colors (kept consistent for UI clarity) */
+	--color-success: #10B981; /* Green (Tailwind Green 500) */
+	--color-warning: #F59E0B; /* Amber (Tailwind Amber 500) */
+	--color-danger: #EF4444; /* Red (Tailwind Red 500) */
+	--font-family-base: 'Inter', sans-serif;
+	--border-radius-sm: 0.375rem; /* 6px */
+	--border-radius-md: 0.5rem; /* 8px */
+	--border-radius-lg: 0.75rem; /* 12px */
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px
+		rgba(0, 0, 0, 0.06);
+	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px
+		rgba(0, 0, 0, 0.05);
+}
+
+body {
+	font-family: var(--font-family-base);
+	color: var(--color-text-medium);
+	background-color: var(--color-bg-body);
+	line-height: 1.6;
+	font-weight: 400;
+}
+
+.page-wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+main {
+	flex-grow: 1;
+}
+
+/* Header Styles */
+.site-header {
+	background-color: var(--color-bg-card);
+	padding: 1.5rem 0;
+	border-bottom: 1px solid var(--color-border);
+	box-shadow: var(--shadow-sm);
+}
+
+.site-title {
+	color: #0284c7;
+	font-weight: 800;
+	font-size: 3.0rem; /* Increased from 1.75rem */
+	margin-bottom: 0.25rem;
+	line-height: 1.2; /* Better spacing for larger text */
+}
+
+.site-tagline {
+	color: var(--color-text-light);
+	font-size: 1rem;
+}
+
+.contact-info .contact-badge {
+	background-color: var(--color-primary-light); /* Updated */
+	color: var(--color-primary-dark); /* Updated */
+	padding: 0.6rem 1rem;
+	border-radius: var(--border-radius-md);
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-weight: 500;
+	text-decoration: none;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-info .contact-badge:hover {
+	background-color: var(--color-primary); /* Updated */
+	color: var(--color-bg-card);
+}
+
+.btn-directions {
+	border-color: #28a745; /* Bootstrap's success green */
+	color: #28a745;
+}
+
+.btn-directions:hover {
+	background-color: green;
+	color: white;
+}
+
+/* Announcement Bar */
+.announcement-bar {
+	background-color: var(--color-secondary-light);
+	/* Using secondary (Pink) palette */
+	color: var(--color-secondary-dark);
+	/* Using secondary (Pink) palette */
+	border: 1px solid var(--color-secondary);
+	/* Using secondary (Pink) palette */
+	border-radius: var(--border-radius-md);
+	padding: 1rem 1.5rem;
+	margin: 2rem auto;
+	font-weight: 500;
+	max-width: 90%;
+}
+
+.announcement-bar i {
+	margin-right: 0.5rem;
+	color: var(--color-secondary-dark);
+	/* Using secondary (Pink) palette */
+}
+
+/* Service Card Styles */
+.service-card {
+	background: var(--color-bg-card);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius-lg);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.service-card:hover {
+	transform: translateY(-8px);
+	box-shadow: var(--shadow-lg);
+}
+
+.service-card .card-header {
+	/* Updated Gradient: Purple to Pink */
+	background: linear-gradient(135deg, var(--color-primary) 0%,
+		var(--color-secondary) 100%);
+	color: white;
+	padding: 1rem 1.25rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+}
+
+.service-card .card-header i {
+	margin-right: 0.75rem;
+	font-size: 1.3em;
+}
+
+.service-list {
+	padding: 0;
+	flex-grow: 1;
+}
+
+.service-list .list-group-item {
+	padding: 0.85rem 1.25rem;
+	border-bottom: 1px solid var(--color-border);
+	font-size: 0.95rem;
+	color: var(--color-text-medium);
+	transition: background-color 0.2s ease;
+}
+
+.service-list .list-group-item:hover {
+	background-color: #f8f9fa;
+}
+
+.service-list .list-group-item:last-child {
+	border-bottom: none;
+}
+
+/* Special Contact Card */
+.special-contact-card {
+	background-color: var(--color-primary-light); /* Updated */
+	border: 1px solid var(--color-primary); /* Updated */
+}
+
+.special-contact-card .text-primary {
+	color: var(--color-primary) !important;
+	/* Ensure icon uses the new primary purple */
+}
+
+.special-contact-card h5 {
+	color: var(--color-primary-dark); /* Updated */
+	font-weight: 700;
+}
+
+.special-contact-card p {
+	color: var(--color-text-medium);
+}
+
+/* Buttons */
+.btn {
+	border-radius: var(--border-radius-md);
+	padding: 0.65rem 1.25rem;
+	font-weight: 500;
+	transition: all 0.3s ease;
+}
+
+.btn-primary {
+	background-color: var(--color-primary); /* Updated */
+	border-color: var(--color-primary); /* Updated */
+	color: white;
+}
+
+.btn-primary:hover {
+	background-color: var(--color-primary-dark); /* Updated */
+	border-color: var(--color-primary-dark); /* Updated */
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-md);
+}
+
+.btn-lg {
+	padding: 0.8rem 1.5rem;
+	font-size: 1.1rem;
+}
+
+/* Footer Styles */
+.site-footer {
+	background-color: var(--color-text-dark);
+	color: var(--color-text-light);
+	padding: 3rem 0;
+	margin-top: auto;
+}
+
+.footer-nav a {
+	color: #cbd5e1;
+	text-decoration: none;
+	margin: 0 0.75rem;
+	font-size: 0.9rem;
+	transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+	color: var(--color-primary-light);
+	/* Using light primary purple for hover */
+}
+
+.footer-contact-details {
+	font-size: 0.9rem;
+}
+
+.footer-contact-details a {
+	color: #cbd5e1;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.footer-contact-details a:hover {
+	color: var(--color-primary-light);
+	/* Using light primary purple for hover */
+}
+
+.footer-contact-details i {
+	margin-right: 0.3rem;
+}
+
+.copyright {
+	font-size: 0.85rem;
+	color: #94a3b8;
+	margin-top: 1.5rem;
+}
+
+/* Responsive Adjustments (No changes from previous CSS, but included for completeness) */
+@media ( max-width : 767.98px) {
+	.site-title {
+		font-size: 1.5rem;
+	}
+	.site-tagline {
+		font-size: 0.9rem;
+	}
+	.contact-info {
+		margin-top: 1rem;
+	}
+	.announcement-bar {
+		margin-left: 1rem;
+		margin-right: 1rem;
+		max-width: 100%;
+	}
+	.service-card .card-header {
+		font-size: 1rem;
+	}
+	.service-list .list-group-item {
+		font-size: 0.9rem;
+		padding: 0.75rem 1rem;
+	}
+	.footer-nav {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.footer-nav a {
+		margin: 0;
+	}
+	.footer-contact-details {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.footer-contact-details a {
+		margin: 0;
+	}
+}
+
+.document-preview {
+	padding: 10px;
+	background: var(--color-bg-card);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius-md);
+	transition: transform 0.3s ease;
+	margin-bottom: 1rem;
+}
+
+.document-preview:hover {
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-md);
+}
+
+.document-preview img {
+	border: 1px solid var(--color-border);
+	transition: opacity 0.3s ease;
+}
+
+.document-preview:hover img {
+	opacity: 0.9;
+}
+
+.document-preview {
+	padding: 4px;
+	margin-bottom: 0.25rem; /* Reduced from default */
+}
+
+.document-preview img {
+	max-height: 70px; /* Slightly smaller images */
+}
+
+.document-preview small {
+	font-size: 0.7rem;
+	margin-top: 0.1rem;
+	margin-bottom: 0.1rem;
+}
+.custom-red {
+        color: red; /* Change text color to red */
+    }
+
+
+@media ( max-width : 767.98px) {
+	.service-card .card-header {
+		font-size: 0.9rem;
+	}
+	.service-list .list-group-item {
+		font-size: 0.8rem;
+		padding: 0.5rem;
+		white-space: normal;
+	}
+	.document-preview img {
+		max-height: 50px;
+	}
+	.document-preview small {
+		display: none;
+	}
+}
+</style>
 </head>
-
 <body>
-    <div class="container-lg py-4">
-    
-		<header class="header">
-    <div class="d-flex flex-column align-items-center">
-        <div class="text-center mb-3">
-            <h1 class="h2 mb-2" style="color: blue;"><strong>KS DIGITAL SERVICES</strong></h1>
-            <p class="lead mb-0">Your Trusted Partner for Essential Online Services</p>
-        </div>
-        <div class="d-flex flex-row gap-3 align-items-center">
-            <a href="tel:7893845696" class="contact-badge text-nowrap">
-                <i class="bi bi-telephone"></i> 7893845696
-            </a>
-            <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" 
-               target="_blank" 
-               class="btn btn-directions btn-sm">
-                <i class="bi bi-geo-alt"></i> Get Directions
-            </a>
-        </div>
+	<div class="page-wrapper">
+		<header class="site-header">
+			<div class="container-lg">
+				<div class="d-flex flex-column text-center">
+					<!-- Title Section -->
+					<div class="mb-2">
+						<h1 class="site-title">
+							<strong><span style="color: blue;">KS DIGITAL
+									SERVICES</span></strong>
+						</h1>
+
+					</div>
+
+					<!-- Tagline Section -->
+					<div class="mb-3">
+						<p class="site-tagline lead mb-0">Your Trusted Partner for
+							Essential Online Services</p>
+					</div>
+
+					<!-- Contact Info Section -->
+					<div
+						class="contact-info d-flex justify-content-center gap-2 gap-md-3">
+						<a href="tel:7893845696" class="contact-badge text-nowrap"> <i
+							class="bi bi-telephone-fill"></i> Call
+						</a> <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A"
+							target="_blank" class="btn btn-directions btn-sm"
+							style="border-color: #28a745; color: #28a745;"> <i
+							class="bi bi-geo-alt-fill"></i> Maps
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+		<main class="container-lg py-4">
+
+			<!-- <div class="announcement-bar text-center shadow-sm">
+                <i class="bi bi-megaphone-fill"></i> <strong>Current Updates:</strong> We are now open on Sundays from 10 AM to 2 PM!
+            </div> -->
+
+			
+					<div class="row mb-4">
+    <div class="col-12 text-center">
+        <a href="https://ksdigitalservice.pw/print/1" target="_blank"
+           class="btn btn-warning custom-red btn-lg"> <i class="bi"></i> <strong>SELF PRINTER</strong> 
+        </a>
     </div>
-</header>
-
-        <div class="announcement-bar text-center">
-            <i class="bi bi-info-circle"></i> Current Updates: TG TET 2025 & UGC NET 2025 Applications Now Open!
-        </div>
-
-        <section class="mb-5">
-    <div class="row g-4">
-        <!-- General Services Card -->
-        <div class="col-lg-4 col-md-6">
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="bi bi-person-badge"></i> <strong> General Services</strong>
-                </div>
-                <ul class="list-group list-group-flush service-list">
-                    <li class="list-group-item">Aadhar Enrollment & Updates</li>
-                    <li class="list-group-item">PAN Card Applications</li>
-                    <li class="list-group-item">Passport Assistance</li>
-                    <li class="list-group-item">Voter ID Services</li>
-                    <li class="list-group-item">FSC Search & Download</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Licenses & Registrations -->
-        <div class="col-lg-4 col-md-6">
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="bi bi-file-earmark-check"></i><strong>  Licenses & Registrations</strong>
-                </div>
-                <ul class="list-group list-group-flush service-list">
-                    <li class="list-group-item">FSSAI Food License</li>
-                    <li class="list-group-item">Trade License</li>
-                    <li class="list-group-item">GST Registration</li>
-                    <li class="list-group-item">ITR Filing Assistance</li>
-                    <li class="list-group-item">Labour License</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Web & Utility Services -->
-        <div class="col-lg-4 col-md-6">
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="bi bi-globe"></i> <strong>  Web & Utility Services </strong>
-                </div>
-                <ul class="list-group list-group-flush service-list">
-                    <li class="list-group-item">IRCTC Ticket Booking</li>
-                    <li class="list-group-item">Flight & Bus Tickets</li>
-                    <li class="list-group-item">Electricity Bill Payment</li>
-                    <li class="list-group-item">Property Tax Payment</li>
-                    <li class="list-group-item">EPFO Services</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Entrance Exam Applications -->
-        <div class="col-lg-4 col-md-6">
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="bi bi-journal-bookmark"></i> <strong>  Exam Applications </strong>
-                </div>
-                <ul class="list-group list-group-flush service-list">
-                    <li class="list-group-item">TG TET 2025</li>
-                    <li class="list-group-item">UGC NET 2025</li>
-                    <li class="list-group-item">EAMCET/Polycet</li>
-                    <li class="list-group-item">ECET/ICET</li>
-                    <li class="list-group-item">PECET/EDCET</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Other Important Services -->
-        <div class="col-lg-4 col-md-6">
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="bi bi-tools"></i> <strong>  Other Services </strong>
-                </div>
-                <ul class="list-group list-group-flush service-list">
-                    <li class="list-group-item">Scholarship Applications</li>
-                    <li class="list-group-item">Driving License Assistance</li>
-                    <li class="list-group-item">Vehicle Insurance Renewal</li>
-                    <li class="list-group-item">Resume Preparation</li>
-                    <li class="list-group-item">Online Form Filling</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Contact Card -->
-        <div class="col-lg-4 col-md-6">
-            <div class="service-card h-100 d-flex flex-column justify-content-center text-center p-4">
-                <i class="bi bi-question-circle display-4 text-primary mb-3"></i>
-                <h5>Need Something Else?</h5>
-                <p>Contact us for any special requests</p>
-                <a href="https://wa.me/7893845696" target="_blank" class="btn btn-primary">
-                    <i class="bi bi-whatsapp"></i> WhatsApp Us
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-        <footer class="footer">
-            <div class="container text-center">
-                <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
-                    <a href="/terms">Terms</a>
-                    <a href="/privacy">Privacy</a>
-                    <a href="/contact">Contact</a>
-                    <a href="/cancellation">cancellation</a>
-                    <a href="/shipping">shipping</a>
-                </div>
-                <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
-                      <a href="tel:7893845696"> 7893845696 </a>
-     <a href="mailto:ksdigital2025@gmail.com"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
-                </div>
-                <p class="mb-0 text-secondary">© 2025 KS Digital Services. All rights reserved.</p>
-            </div>
-        </footer>
 </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-     <script src="js/disable-right-click.js"></script>
+
+				<section class="services-section py-0">
+				<div class="row g-4 g-xl-5">
+
+
+
+					<div class="col-lg-4 col-md-6">
+						<div class="service-card h-100">
+							<div class="card-header">
+								<i class="bi bi-person-badge"></i><strong>General
+									Services</strong>
+							</div>
+							<div class="row g-2 p-2">
+								<!-- Reduced gutter and padding -->
+								<!-- Service List Column -->
+								<div class="col-8">
+									<ul class="list-group list-group-flush service-list">
+										<li class="list-group-item">Aadhar Address Update , <br>
+											Aadhar Download
+										</li>
+										<li class="list-group-item">PAN Card <br>
+											Fresh/Correction Application
+										</li>
+										<li class="list-group-item">Passport<br> Fresh
+											Application<br> Renewal Applications
+										</li>
+										<li class="list-group-item">Voter ID Fresh Correction
+											Application</li>
+										<li class="list-group-item">FSC Search and Download</li>
+									</ul>
+								</div>
+
+								<!-- Document Images Column -->
+								<div class="col-4">
+									<div class="d-flex flex-column gap-1">
+										<!-- Reduced gap -->
+										<div class="document-preview">
+											<img src="aadhar-sample.jpeg" alt="Aadhar sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+										<div class="document-preview">
+											<img src="pan-sample.jpg" alt="PAN card sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+										<div class="document-preview">
+											<img src="passport-sample.jpg" alt="Passport sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+										<div class="document-preview">
+											<img src="voter_id.jpg" alt="Voter ID sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+										<div class="document-preview">
+											<img src="FSC.jpg" alt="FSC sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+					<div class="col-lg-4 col-md-6">
+						<div class="service-card h-100">
+							<div class="card-header">
+								<i class="bi bi-file-earmark-check-fill"></i><strong>Licenses/Registrations</strong>
+							</div>
+							<div class="row g-2 p-2">
+								<!-- Service List Column -->
+								<div class="col-8">
+									<ul class="list-group list-group-flush service-list">
+
+										<li class="list-group-item">Labour License <br> New
+											<br> and Renewal
+										</li>
+										<li class="list-group-item">FSSAI Food License <br>
+											New and Renewal
+										</li>
+										<li class="list-group-item">Trade License <br> New
+											and Renewal
+										</li>
+										<li class="list-group-item">Driving License <br>
+											Slot Booking
+										</li>
+									</ul>
+								</div>
+
+								<!-- Document Images Column -->
+								<div class="col-4">
+									<div class="d-flex flex-column gap-1">
+
+										<div class="document-preview">
+											<img src="labour.jpg" alt="Labour License sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+
+
+
+										<div class="document-preview">
+											<img src="food_license.jpg" alt="FSSAI License sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+										<div class="document-preview">
+											<img src="trade.jpg" alt="Trade License sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+
+										<div class="document-preview">
+											<img src="Driving_license.jpg" alt="Driving License sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+
+					<div class="col-lg-4 col-md-6">
+						<div class="service-card h-100">
+							<div class="card-header">
+								<i class="bi bi-globe2"></i><strong>Utility Services</strong>
+							</div>
+							<div class="row g-2 p-2">
+								<!-- Service List Column -->
+								<div class="col-8">
+									<ul class="list-group list-group-flush service-list">
+										<li class="list-group-item">Flight Tickets</li>
+										<li class="list-group-item">Bus Tickets <br> AC and
+											<br> Non-AC
+										</li>
+										<li class="list-group-item">EPFO Services Advance Amount
+											,<br> Full Amount , Transfer
+										</li>
+										<li class="list-group-item">IRCTC Ticket Booking ,<br>
+											General and <br> Taktal
+										</li>
+										<li class="list-group-item">Electricity Bill Payment</li>
+									</ul>
+								</div>
+
+								<!-- Document Images Column -->
+								<div class="col-4">
+									<div class="d-flex flex-column gap-1">
+
+										<div class="document-preview">
+											<img src="flight.jpg" alt="flight ticket sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+
+										<div class="document-preview">
+											<img src="bus.jpg" alt="bus ticket sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+
+
+
+										<div class="document-preview">
+											<img src="epf.jpg" alt="epf  wothdraw"
+												class="img-fluid rounded shadow-sm">
+										</div>
+										<div class="document-preview">
+											<img src="train.png" alt="IRCTC ticket sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+
+										<div class="document-preview">
+											<img src="power.jpg" alt="Electricity bill sample"
+												class="img-fluid rounded shadow-sm">
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+
+					<div class="col-lg-4 col-md-6">
+						<div class="service-card h-100">
+							<div class="card-header">
+								<i class="bi bi-tools"></i><strong>Other Services</strong>
+							</div>
+							<ul class="list-group list-group-flush service-list">
+								<li class="list-group-item">Scholarship Applications</li>
+								<li class="list-group-item">Vehicle Insurance Renewal</li>
+								<li class="list-group-item">Resume Preparation</li>
+								<li class="list-group-item">Online Form Filling</li>
+							</ul>
+						</div>
+					</div>
+
+
+
+					<div class="col-lg-4 col-md-6">
+						<div class="service-card h-100">
+							<div class="card-header">
+								<i class="bi bi-journal-bookmark-fill"></i><strong>Exam
+									Applications</strong>
+							</div>
+							<ul class="list-group list-group-flush service-list">
+								<li class="list-group-item">TG TET /UGC NET</li>
+								<li class="list-group-item">EAMCET/Polycet</li>
+								<li class="list-group-item">ECET/ICET</li>
+								<li class="list-group-item">PECET/EDCET</li>
+							</ul>
+						</div>
+					</div>
+
+
+
+					<div class="col-lg-4 col-md-6">
+						<div
+							class="service-card special-contact-card h-100 d-flex flex-column justify-content-center text-center p-4">
+							<i class="bi bi-question-circle-fill display-3 text-primary mb-3"></i>
+							<h5 class="mb-2">Need Something Else?</h5>
+							<p class="mb-3 text-muted small">Don't see what you're
+								looking for? Contact us for any special requests or inquiries.</p>
+							<a href="https://wa.me/7893845696" target="_blank"
+								class="btn btn-primary btn-lg"> <i class="bi bi-whatsapp"></i>
+								WhatsApp Us
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<div class="container-lg text-center">
+				<nav class="footer-nav mb-4">
+					<a href="/terms">Terms</a> <a href="/privacy">Privacy</a> <a
+						href="/contact">Contact</a> <a href="/cancellation">Cancellation</a>
+					<a href="/shipping">Shipping</a>
+				</nav>
+				<div class="footer-contact-details mb-4">
+					<a href="tel:7893845696" class="me-3"><i
+						class="bi bi-telephone-fill"></i> 7893845696</a> <a
+						href="mailto:ksdigital2025@gmail.com"><i
+						class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
+				</div>
+				<p class="copyright mb-0">&copy; 2025 KS Digital Services. All
+					rights reserved.</p>
+			</div>
+		</footer>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="js/disable-right-click.js"></script>
 </body>
 </html>
