@@ -19,6 +19,10 @@ public class HomeController {
 	
 	@GetMapping("/print/{id}")
     public String getItem(@PathVariable("id") Long id, Model model) {
+		log.info("id is "+id);
+		
+		if(id==null)
+			return "please scan the QR code or visit the website";
         
         String printerId=String.valueOf(id);
         Printer.PrinterDetails details = Printer.getDetailsById(printerId);
