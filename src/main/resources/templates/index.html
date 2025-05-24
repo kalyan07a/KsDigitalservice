@@ -10,6 +10,7 @@
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
     
     <!-- PDF.js Script Tags - Non-module version -->
@@ -18,6 +19,7 @@
 
     <!-- Razorpay -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
 	<style>
 	
         :root {
@@ -40,14 +42,13 @@
             padding: 20px;
         }
 
-        .main-container {
-            max-width: 650px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
+      .main-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
 
         /* Steps Modal Styles */
         .steps-modal {
@@ -96,13 +97,19 @@
         html { box-sizing: border-box; }
         *, *:before, *:after { box-sizing: inherit; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--light-gray); color: var(--text-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 25px 15px; line-height: 1.6; margin: 0; }
-        .main-container { width: 100%; max-width: 650px; background-color: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 20px; }
-        h1 { color: var(--primary-color); margin-bottom: 15px; font-weight: 600; margin-top: 0; text-align: center; font-size: 1.7em;}
+.main-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}        
+  h1 { color: var(--primary-color); margin-bottom: 15px; font-weight: 600; margin-top: 0; text-align: center; font-size: 1.7em;}
 
         /* --- File Input Area --- */
         .file-input-area { text-align: center; width: 100%; margin-bottom: 15px; }
-        #addFileButtonLabel { padding: 10px 25px; background-color: var(--primary-color); color: var(--white); border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.95em; line-height: 1.5; transition: background-color var(--transition-speed), transform var(--transition-speed), opacity var(--transition-speed); display: inline-block; box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25); }
-        #addFileButtonLabel:hover:not([style*="opacity: 0.6"]) { background-color: #0056b3; transform: translateY(-1px); }
+        #addFileButtonLabel { padding: 10px 25px; background-color: #DC3545; color: var(--white); border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.95em; line-height: 1.5; transition: background-color var(--transition-speed), transform var(--transition-speed), opacity var(--transition-speed); display: inline-block; box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25); }
+        #addFileButtonLabel:hover:not([style*="opacity: 0.6"]) { background-color: #DC3545; transform: translateY(-1px); }
         #fileInput { display: none; }
         #fileCounter { font-size: 0.85em; color: var(--secondary-color); margin-top: 5px; min-height: 1.2em; }
 
@@ -145,8 +152,8 @@
 }
 
 /* Remove hover effect */
-.remove-file-button:hover { 
-    /* No hover effect */
+.remove-file-button:hover {
+    background-color: #d32f2f !important; /* Darker red */
 }
         /* --- Options Sections --- */
         .item-options { display: none; flex-direction: column; gap: 12px; }
@@ -203,13 +210,48 @@
         .update-details-button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; box-shadow: none; opacity: 0.7; }
 
         /* Copies Input */
-        .copies-input-container { display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-top: 0; }
-        .copies-input-container button { padding: 4px 10px; font-size: 1.2em; font-weight: bold; cursor: pointer; border: 1px solid var(--medium-gray); background-color: var(--light-gray); color: var(--primary-color); border-radius: 50%; width: 28px; height: 28px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background-color var(--transition-speed), transform var(--transition-speed); }
-        .copies-input-container button:hover:not(:disabled) { background-color: var(--medium-gray); transform: scale(1.05); }
-        .copies-input-container button:disabled { background-color: var(--medium-gray); color: var(--dark-gray); cursor: not-allowed; opacity: 0.6; }
-        .copies-input-container input[type="number"] { width: 50px; text-align: center; font-size: 0.95em; font-weight: 500; padding: 5px 8px; border: 1px solid var(--medium-gray); border-radius: 4px; -moz-appearance: textfield; }
-        .copies-input-container input[type="number"]::-webkit-outer-spin-button, .copies-input-container input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .copies-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.copies-input-container input {
+  width: 50px;
+  text-align: center;
+  padding: 4px;
+  -moz-appearance: textfield;
+}
+.copies-option {
+  align-items: center;
+  gap: 12px;
+}
+.copies-input-container input::-webkit-outer-spin-button,
+.copies-input-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.copies-input-container button {
+  padding: 4px 8px;
+  min-width: 32px;
+  font-size: 16px;
+}
+/* Remove number input spinners */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+/* Firefox fix */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Ensure elements stay in line */
+.copies-container, .copies-container > div {
+  display: flex;
+  align-items: center;
+}
         /* Item Status Display */
         .item-status-display { font-size: 0.8em; text-align: left; margin-top: 5px; padding: 4px 8px; border-radius: 4px; display: none; font-weight: 500; border: 1px solid transparent; }
         .item-status-display.error { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; display: block; }
@@ -278,54 +320,7 @@
              padding: 0.375rem 0.75rem;
         }
 
-        /* --- Mobile Adjustments --- */
-        @media (max-width: 600px) {
-            body { padding: 15px 10px; }
-            .main-container, .payment-footer, .footer-links-container { /* Apply max-width to footer links too */
-                 padding: 15px; gap: 12px; max-width: 100%;
-                 margin-left: auto; margin-right: auto; /* Center containers */
-            }
-            h1 { font-size: 1.4em; margin-bottom: 10px;}
-            #addFileButtonLabel { width: 100%; font-size: 0.9em; padding: 10px 15px; }
-            .file-item-container { padding: 10px; padding-right: 35px; gap: 10px; }
-            .file-info-bar { padding-bottom: 6px; flex-wrap: wrap; }
-            .file-name-display { font-size: 0.85em; flex-basis: 100%; order: 1; }
-            .item-loader { order: 2; margin-left: 0; margin-right: auto; }
-            .preview-icon { order: 3; font-size: 1.2em; padding: 5px; gap: 0; }
-            .preview-icon span { display: none; }
-            .remove-file-button { top: 5px; right: 5px; width: 22px; height: 22px; font-size: 1.1em; }
-            .item-options { gap: 15px; }
-            .options-group { gap: 8px; }
-            .options-group h3 { font-size: 0.85em; margin-bottom: 5px; padding-bottom: 3px;}
-            .radio-options-container { gap: 6px; }
-            .radio-option { padding: 4px 8px; gap: 4px; flex-basis: calc(50% - 4px); }
-            .radio-option span { font-size: 0.8em; }
-            .custom-page-inputs { gap: 6px; row-gap: 8px; padding: 6px 8px; }
-            .custom-page-inputs label { font-size: 0.75em; }
-            .custom-page-inputs input[type="number"] { width: 45px; font-size: 0.8em; }
-            .update-details-button { width: 100%; flex-basis: 100%; margin-left: 0; margin-top: 8px; padding: 6px 10px; font-size: 0.75em; }
-            .copies-input-container { justify-content: center; }
-            .copies-input-container button { width: 30px; height: 30px; font-size: 1.1em; }
-            .copies-input-container input[type="number"] { width: 45px; font-size: 0.9em; }
-            #totalPriceDisplay { font-size: 1.1em; padding: 6px; }
-            #pay-button { width: 90%; padding: 10px 20px; font-size: 1em; }
-            #globalStatusMessage { font-size: 0.9em; }
-            .preview-modal-content { width: 95%; padding: 15px; max-height: 90vh; }
-            .preview-modal-header { padding-bottom: 8px; margin-bottom: 10px; }
-            .preview-modal-title { font-size: 1.0em; }
-            .preview-modal-close { font-size: 1.6em; }
-            .preview-modal-body { padding: 8px; }
-
-            /* Stack footer buttons on small screens */
-            .footer-links-container .btn {
-                display: block;
-                width: 90%; /* Make buttons wide */
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 0.5rem; /* Space between stacked buttons */
-                margin-top: 0.5rem;
-            }
-        }
+       
  /* Steps Modal Styles */
     .steps-modal {
         display: none;
@@ -384,19 +379,7 @@
         background-color: #0056b3;
     }
 
-    @media (max-width: 600px) {
-        .steps-modal-content {
-            padding: 15px;
-        }
-        
-        .steps-modal h2 {
-            font-size: 1.2em;
-        }
-        
-        .steps-list li {
-            font-size: 0.9em;
-        }
-    }
+
 .footer {
             background-color: #343a40;
             color: #adb5bd;
@@ -423,31 +406,331 @@
             left: 20px;
             top: 20px;
         }
-   
+       .file-info-bar {
+  width: 100%;
+}
+.file-name-display {
+  max-width: 120px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+   /* View Button Styling */
+.preview-icon {
+    background-color: #008CBA !important;
+    border: none !important;
+    color: white !important;
+    padding: 8px 16px !important;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 0 !important;
+    transition: background-color 0.3s ease;
+}
+
+.preview-icon i {
+    font-size: 0.9em;
+}
+
+.preview-icon:hover {
+    background-color: #007399 !important; /* Darker blue */
+}
+
+/* Remove Button Styling */
+.remove-file-button {
+    background-color: #f44336 !important;
+    border: none !important;
+    color: white !important;
+    padding: 8px 16px !important;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 0 !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    transition: background-color 0.3s ease;
+}
+.preview-icon i,
+.remove-file-button i {
+    font-size: 12px;
+}
+
+.remove-file-button:hover {
+    background-color: #d32f2f !important; /* Darker red */
+}
+
+/* Button Container */
+.file-actions-container {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+}
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    /* General mobile styles */
+    body { 
+        padding: 15px 10px; 
+    }
+    
+    .main-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+    h1 {
+        font-size: 1.4em;
+        margin-bottom: 10px;
+    }
+
+    /* File input area */
+    #addFileButtonLabel {
+        width: 100%;
+        font-size: 0.9em;
+        padding: 10px 15px;
+    }
+
+    /* File item container */
+    .file-item-container {
+        padding: 10px;
+        padding-right: 35px;
+        gap: 10px;
+    }
+
+    /* File info bar layout */
+    .file-info-bar {
+        flex-wrap: nowrap;
+        gap: 8px;
+        justify-content: space-between;
+    }
+
+    .file-name-display {
+        order: 0;
+        max-width: calc(100% - 120px);
+        flex-basis: auto;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-right: auto;
+    }
+
+    /* File actions container */
+    .file-actions-container {
+        order: 0;
+        display: flex;
+        gap: 6px;
+        margin-left: auto;
+    }
+
+    /* Buttons */
+    .preview-icon {
+        order: 0;
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .preview-icon span {
+        display: none;
+    }
+
+    .remove-file-button {
+        order: 0;
+        padding: 6px 12px;
+        font-size: 14px;
+        position: static;
+        width: auto;
+        height: auto;
+    }
+
+    /* Steps modal */
+    .steps-modal-content {
+        padding: 15px;
+    }
+    
+    .steps-modal h2 {
+        font-size: 1.2em;
+    }
+    
+    .steps-list li {
+        font-size: 0.9em;
+    }
+
+    /* Other components */
+    .item-loader {
+        order: 2;
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .item-options {
+        gap: 15px;
+    }
+
+    .options-group {
+        gap: 8px;
+    }
+
+    .options-group h3 {
+        font-size: 0.85em;
+        margin-bottom: 5px;
+        padding-bottom: 3px;
+    }
+
+    .radio-options-container {
+        gap: 6px;
+    }
+
+    .radio-option {
+        padding: 4px 8px;
+        gap: 4px;
+        flex-basis: calc(50% - 4px);
+    }
+
+    .radio-option span {
+        font-size: 0.8em;
+    }
+
+    .custom-page-inputs {
+        gap: 6px;
+        row-gap: 8px;
+        padding: 6px 8px;
+    }
+
+    .custom-page-inputs label {
+        font-size: 0.75em;
+    }
+
+    .custom-page-inputs input[type="number"] {
+        width: 45px;
+        font-size: 0.8em;
+    }
+
+    .update-details-button {
+        width: 100%;
+        flex-basis: 100%;
+        margin-left: 0;
+        margin-top: 8px;
+        padding: 6px 10px;
+        font-size: 0.75em;
+    }
+
+
+    #totalPriceDisplay {
+        font-size: 1.1em;
+        padding: 6px;
+    }
+
+    #pay-button {
+        width: 90%;
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    #globalStatusMessage {
+        font-size: 0.9em;
+    }
+
+    .preview-modal-content {
+        width: 95%;
+        padding: 15px;
+        max-height: 90vh;
+    }
+
+    .preview-modal-header {
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+    }
+
+    .preview-modal-title {
+        font-size: 1.0em;
+    }
+
+    .preview-modal-close {
+        font-size: 1.6em;
+    }
+
+    .preview-modal-body {
+        padding: 8px;
+    }
+
+    /* Footer buttons */
+    .footer-links-container .btn {
+        display: block;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (min-width: 576px) {
+    .file-name-display {
+        max-width: 200px;
+    }
+}
+footer {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background-color: #212121 !important;
+}
+@media (max-width: 991.98px) {
+  .main-container {
+    max-width: 100%;
+    padding: 0.5rem;
+  }
+}
+
 	</style>
+
 </head>
-<body>
+<body style="background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%); min-height: 100vh;">
+  
+  
  <div id="stepsModal" class="steps-modal">
         <div class="steps-modal-content">
             <h2>STEPS TO PRINT YOUR FILES</h2>
             <ol class="steps-list">
                 <li>Upload your files</li>
                 <li>Select print type & No. of copies</li>
-                <li>Pay and collect print out </li>
+                <li>Pay and collect print out at shop</li>
             </ol>
             <button id="closeStepsModal" class="btn-ok">OK</button>
         </div>
     </div>
-
 <div class="main-container">
+<!-- Hero Section -->
+<section class="py-4 text-center" style="background: #0056b3; color: #fff; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
+  <div class="container">
+    <h1 class="display-5 fw-bold mb-2" style="color: white;">PRINT YOUR FILES INSTANTLY</h1>
     
-    <div class="container">
+    <h5 style="color: ORANGE;">Shop Name: <span class="printer-name" th:text="${name}"></span></h5>
+  </div>
+</section>
+
+    
+   <!--  <div class="container">
         <h2 style="color: blue;"><strong>PRINTER SERVICE</strong></h2>
-    </div>
- 
-  <p style="color: red;">Shop Name: <span class="printer-name" th:text="${name}"></span></p>
-    <!-- Display Printer ID -->
-   <p style="color: red; display: none;">ID: <span class="printer-id" th:text="${id}"></span></p>
+    </div> -->
+        <p style="color: red; display: none;">ID: <span class="printer-id" th:text="${id}"></span></p>
+
    <!-- Hidden inputs for additional values -->
 <input type="hidden" class="range1" th:value="${range1}" />
 <input type="hidden" class="range2" th:value="${range2}" />
@@ -457,70 +740,110 @@
 <input type="hidden" class="c_cost_range1" th:value="${c_cost_range1}" />
 <input type="hidden" class="c_cost_range2" th:value="${c_cost_range2}" />
 <input type="hidden" class="c_cost_range3" th:value="${c_cost_range3}" />
-   
+   <br>
     
-    <div class="file-input-area">
-        <label for="fileInput" id="addFileButtonLabel"><i class="fas fa-plus"></i> Add File(s)</label>
-        <input type="file" id="fileInput" accept=".pdf, image/jpeg, image/png, image/jpg" multiple />
-        <div id="fileCounter">Max 10 files allowed. (PDF, JPG, PNG, JPEG)</div>
-    </div>
+    <div class="file-input-area text-center my-3">
+  <label for="fileInput" id="addFileButtonLabel" class="btn btn-primary btn-lg">
+    <i class="fas fa-plus"></i> Add File(s)
+  </label>
+  <input type="file" id="fileInput" accept=".pdf, image/jpeg, image/png, image/jpg" multiple style="display: none;" />
+  <div id="fileCounter" class="form-text mt-2 text-muted">
+    Max 10 files allowed. (PDF, JPG, PNG, JPEG)
+  </div>
+</div>
+
+
     <div id="fileListContainer"></div>
 </div>
 
+<br><br>
 <div class="payment-footer">
     <div id="totalPriceDisplay"></div>
     <div id="globalStatusMessage"></div>
     <div class="loader" id="paymentLoader"></div>
     <button id="pay-button" disabled><i class="fas fa-credit-card"></i> Pay Now</button>
 </div>
-
+<br>
 <!-- ADDED: Button Links Container (Copied from home.html) -->
 
 
+
 <template id="fileItemTemplate">
-    <div class="file-item-container" data-id="">
-        <div class="file-info-bar">
-            <span class="file-name-display">File name...</span>
-            <div class="loader item-loader"></div>
-            <button class="preview-icon" title="Preview File" disabled data-action="previewFile">
-                Preview <i class="fas fa-eye"></i>
-            </button>
-        </div>
-         <div class="item-status-display"></div>
-        <div class="item-options">
-            <div class="options-group print-type">
-                <h3>Print Type</h3>
-                <div class="radio-options-container">
-                    <label class="radio-option selected"><input type="radio" name="printType_" value="1" required checked data-option="printType"><span>Color</span></label>
-                    <label class="radio-option"><input type="radio" name="printType_" value="0" required data-option="printType"><span>B&W</span></label>
-                </div>
-            </div>
-            <div class="options-group page-range">
-                <h3>Page Range</h3>
-                <div class="radio-options-container">
-                    <label class="radio-option selected"><input type="radio" name="pageRangeType_" value="all" required checked data-option="pageRangeType"><span>All Pages</span></label>
-                    <label class="radio-option"><input type="radio" name="pageRangeType_" value="custom" required data-option="pageRangeType"><span>Custom</span></label>
-                </div>
-                <div class="custom-page-inputs">
-                    <label>Start:</label><input type="number" name="startPage_" min="" placeholder="1" disabled data-option="startPage">
-                    <label>End:</label><input type="number" name="endPage_" min="" placeholder="N" disabled data-option="endPage">
-                    <button class="update-details-button" disabled data-action="updateDetails">Update</button>
-                </div>
-            </div>
-            <div class="options-group copies-option">
-                <h3>Copies</h3>
-                <div class="copies-input-container">
-                    <button data-action="decrementCopies" aria-label="Decrease copies" disabled>-</button>
-                    <input type="number" name="numberOfCopies_" value="1" min="1" max="99" required data-option="numberOfCopies" aria-label="Number of copies">
-                    <button data-action="incrementCopies" aria-label="Increase copies">+</button>
-                </div>
-            </div>
-             <!-- Individual item price display removed -->
-             <!-- <div class="item-price-display">Price: -</div> -->
-        </div>
-        <button class="remove-file-button" title="Remove File" data-action="removeFile"><i class="fas fa-times"></i></button>
+<div class="file-item-container" data-id="" 
+style="border: 3px solid #050404; 
+              border-radius: 4px; 
+              padding: 8px; 
+              margin-bottom: 8px;">
+              
+<div class="file-info-bar d-flex align-items-center gap-2 flex-nowrap" style="width:100%;">
+    <span class="file-name-display text-truncate">File name...</span>
+    <div class="file-actions-container">
+        <button class="preview-icon" title="Preview File" disabled data-action="previewFile">
+            <i class="fas"></i>view
+        </button>
+        <button class="remove-file-button" title="Remove File" data-action="removeFile">
+            <i class="fas"></i> remove 
+        </button>
     </div>
-</template>
+</div>
+
+    <div class="item-status-display"></div>
+    <div class="item-options">
+      <div class="options-group print-type">
+        <h3 style="color:#05c0eb;">Print Type</h3>
+        <div class="radio-options-container">
+          <label class="radio-option selected">
+            <input type="radio" name="printType_" value="1" required checked data-option="printType">
+            <span>Color</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="printType_" value="0" required data-option="printType">
+            <span>B&W</span>
+          </label>
+        </div>
+      </div>
+      <div class="options-group page-range">
+        <h3 style="color:#05c0eb;">Page Range</h3>
+        <div class="radio-options-container">
+          <label class="radio-option selected">
+            <input type="radio" name="pageRangeType_" value="all" required checked data-option="pageRangeType">
+            <span>All Pages</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="pageRangeType_" value="custom" required data-option="pageRangeType">
+            <span>Custom</span>
+          </label>
+        </div>
+        <div class="custom-page-inputs">
+          <label>Start:</label>
+          <input type="number" name="startPage_" min="" placeholder="1" disabled data-option="startPage">
+          <label>End:</label>
+          <input type="number" name="endPage_" min="" placeholder="N" disabled data-option="endPage">
+          <button class="update-details-button" disabled data-action="updateDetails">Update</button>
+        </div>
+      </div>
+
+
+<div class="copies-container" style="display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+ <h6 style="color:#05c0eb;"> Copies</h6>
+  <div style="display: flex; align-items: center; gap: 4px;">
+    <button data-action="decrementCopies" style="padding: 2px 8px;">-</button>
+    <input type="number" 
+           name="numberOfCopies_" 
+           data-option="numberOfCopies"
+           value="1" 
+           min="1" 
+           style="width: 40px; padding: 4px; text-align: center; -moz-appearance: textfield;">
+    <button data-action="incrementCopies" style="padding: 2px 8px;">+</button>
+  </div>
+</div>
+
+
+				<!-- Individual item price display removed -->
+      <!-- <div class="item-price-display">Price: -</div> -->
+    </div>
+  </div>
+</template> 
 
 <div id="previewModal" class="preview-modal">
     <div class="preview-modal-content">
@@ -1603,30 +1926,55 @@ initializeApp();
 
 });
 </script>
+<br><br>
+<!-- Info/Help Section -->
+  <div class="container mb-4">
+    <div class="alert alert-info text-center shadow-sm" role="alert">
+      <strong>Tip:</strong> Supported formats: PDF, JPG, PNG. For best results, upload clear documents.<br>
+      Need help? <a href="https://wa.me/7893845696" class="alert-link">WhatsApp us</a>
+    </div>
+  </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<footer class="footer">
-<!-- ADDED: Button Links Container (Copied from home.html) -->
-<div class="footer-links-container"> <!-- Added specific class -->
-	<a class="btn btn-outline-primary" href="/about">About Us</a>
-    <a class="btn btn-outline-primary" href="/terms">Terms and Conditions</a>
-    <a class="btn btn-outline-primary" href="/privacy">Privacy Policy</a>
-    <a class="btn btn-outline-primary" href="/cancellation">No Refund Policy</a>
-    <a class="btn btn-outline-primary" href="/contact">Contact Us</a>
-    <a class="btn btn-outline-primary" href="/shipping">Shipping and delivery</a>
-</div>
-<!-- END OF ADDED SECTION -->
+<!-- Social Media Accounts Section -->
+  <div class="container mb-4">
+    <h5 class="text-center fw-bold mb-3">Social Media Accounts</h5>
+    <div class="d-flex justify-content-center gap-2">
+      <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
+        <i class="bi bi-whatsapp fs-5"></i>
+      </a>
+      <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-info btn-sm shadow">
+        <i class="bi bi-instagram fs-5"></i>
+      </a>
+      <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
+        <i class="bi bi-youtube fs-5"></i>
+      </a>
+      <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-dark btn-sm shadow">
+        <i class="bi bi-geo-alt-fill fs-5"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
+        <i class="bi bi-linkedin fs-5"></i>
+      </a>
+    </div>
+  </div>
 
-        <div class="container text-center">
-            <div class="mb-3">
-                <a href="tel:7893845696" class="me-3"><i class="bi bi-telephone"></i> 7893845696</a>
-                <a href="mailto:ksdigital2025@gmail.com" class="me-3"><i class="bi bi-envelope"></i> ksdigital2025@gmail.com</a>
-                <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" rel="noopener noreferrer"><i class="bi bi-geo-alt"></i> Find Us</a>
-            </div>
-            <p>© <script>document.write(new Date().getFullYear())</script> KS Digital Services. All Rights Reserved.</p>
-        </div>
-    </footer>
-    <script src="js/disable-right-click.js"></script>
+<!-- Footer -->
+  <footer class="py-4 text-light text-center" style="background-color: #000;">
+    <nav class="mb-2">
+      <a href="/terms" class="text-light mx-2">Terms</a>
+      <a href="/privacy" class="text-light mx-2">Privacy</a>
+      <a href="/contact" class="text-light mx-2">Contact</a>
+      <a href="/cancellation" class="text-light mx-2">Cancellation</a>
+      <a href="/shipping" class="text-light mx-2">Shipping</a>
+    </nav>
+    <div class="mb-2">
+      <a href="tel:7893845696" class="text-light mx-2"><i class="bi bi-telephone-fill"></i> 7893845696</a>
+      <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
+    </div>
+    <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
+  </footer>
+  <script src="js/disable-right-click.js"></script>
+
+    
    
 </body>
 </html>

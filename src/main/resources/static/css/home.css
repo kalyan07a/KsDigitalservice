@@ -1,334 +1,408 @@
-    
 :root {
-    /* New Color Palette: Modern Purple & Vibrant Pink Accent */
-    --color-primary: #7C3AED;         /* Rich Purple (Tailwind Violet 600) - Main brand color */
-    --color-primary-dark: #6D28D9;    /* Darker Purple (Tailwind Violet 700) */
-    --color-primary-light: #EDE9FE;   /* Very Light Lavender/Purple (Tailwind Violet 100) - for subtle backgrounds/accents */
-    
-    --color-secondary: #EC4899;       /* Vibrant Pink (Tailwind Pink 500) - Complementary accent color */
-    --color-secondary-dark: #DB2777;  /* Darker Pink (Tailwind Pink 600) */
-    --color-secondary-light: #FCE7F3; /* Light Pink (Tailwind Pink 100) */
-    
-    --color-text-dark: #1F2937;       /* Dark Gray for headings (Tailwind Gray 800) */
-    --color-text-medium: #374151;     /* Medium Gray for body text (Tailwind Gray 700) */
-    --color-text-light: #6B7280;      /* Light Gray for less important text (Tailwind Gray 500) */
-    
-    --color-bg-body: #F8FAFC;         /* Very Light Gray/Off-white (Tailwind Slate 50) for page background */
-    --color-bg-card: #FFFFFF;         /* White for cards and distinct sections */
-    
-    --color-border: #E5E7EB;          /* Subtle light gray border color (Tailwind Gray 200) */
-    
-    /* Standard Semantic Colors (kept consistent for UI clarity) */
-    --color-success: #10B981;         /* Green (Tailwind Green 500) */
-    --color-warning: #F59E0B;         /* Amber (Tailwind Amber 500) */
-    --color-danger: #EF4444;          /* Red (Tailwind Red 500) */
+    /* Color Palette: Modern Blue & Vibrant Orange */
+    --color-primary: #0056b3; /* Deep Blue - Main brand color */
+    --color-primary-dark: #003f8a; /* Darker Blue */
+    --color-primary-light: #e3f2fd; /* Light Blue for subtle backgrounds */
+    --color-secondary: #ff5722; /* Vibrant Orange - Accent color */
+    --color-secondary-dark: #e64a19; /* Darker Orange */
+    --color-secondary-light: #ffe0b2; /* Light Orange for accents */
+    --color-text-dark: #212121; /* Dark Gray for headings */
+    --color-text-medium: #424242; /* Medium Gray for body text */
+    --color-text-light: #757575; /* Light Gray for less important text */
+    --color-bg-body: #f9f9f9; /* Light Gray/Off-white for page background */
+    --color-bg-card: #ffffff; /* White for cards and distinct sections */
+    --color-border: #e0e0e0; /* Subtle light gray border color */
 
-    --font-family-base: 'Inter', sans-serif;
-    --border-radius-sm: 0.375rem; /* 6px */
-    --border-radius-md: 0.5rem;   /* 8px */
-    --border-radius-lg: 0.75rem;  /* 12px */
+    /* Semantic Colors */
+    --color-success: #4caf50; /* Green for success */
+    --color-warning: #ff9800; /* Amber for warnings */
+    --color-danger: #f44336; /* Red for errors */
 
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Typography */
+    --font-family-base: 'Roboto', sans-serif; /* Modern sans-serif font */
+    --font-size-base: 16px; /* Base font size */
+    --font-size-sm: 14px; /* Small font size */
+    --font-size-lg: 18px; /* Large font size */
+    --line-height-base: 1.6; /* Default line height */
+
+    /* Border Radius */
+    --border-radius-sm: 0.25rem; /* 4px */
+    --border-radius-md: 0.5rem; /* 8px */
+    --border-radius-lg: 1rem; /* 16px */
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+    /* Spacing */
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem; /* 8px */
+    --spacing-md: 1rem; /* 16px */
+    --spacing-lg: 1.5rem; /* 24px */
+    --spacing-xl: 2rem; /* 32px */
 }
 
 body {
-    font-family: var(--font-family-base);
-    color: var(--color-text-medium);
-    background-color: var(--color-bg-body);
-    line-height: 1.6;
-    font-weight: 400;
+	font-family: var(--font-family-base);
+	color: var(--color-text-medium);
+	background-color: var(--color-bg-body);
+	line-height: 1.6;
+	font-weight: 400;
 }
 
 .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+    padding: 20px;
 }
 
 main {
-    flex-grow: 1;
+	flex-grow: 1;
 }
 
 /* Header Styles */
 .site-header {
-    background-color: var(--color-bg-card);
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
+	background-color: var(--color-bg-card);
+	padding: 1.5rem 0;
+	border-bottom: 1px solid var(--color-border);
+	box-shadow: var(--shadow-sm);
 }
 
 .site-title {
-    color: var(--color-primary); /* Updated */
-    font-weight: 800;
-    font-size: 1.75rem;
-    margin-bottom: 0.25rem;
+	color: #0284c7;
+	font-weight: 800;
+	font-size: 3.0rem; /* Increased from 1.75rem */
+	margin-bottom: 0.25rem;
+	line-height: 1.2; /* Better spacing for larger text */
 }
 
 .site-tagline {
-    color: var(--color-text-light);
-    font-size: 1rem;
+	color: var(--color-text-light);
+	font-size: 1rem;
 }
 
 .contact-info .contact-badge {
-    background-color: var(--color-primary-light); /* Updated */
-    color: var(--color-primary-dark); /* Updated */
-    padding: 0.6rem 1rem;
-    border-radius: var(--border-radius-md);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
+	background-color: var(--color-primary-light); /* Updated */
+	color: var(--color-primary-dark); /* Updated */
+	padding: 0.6rem 1rem;
+	border-radius: var(--border-radius-md);
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-weight: 500;
+	text-decoration: none;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .contact-info .contact-badge:hover {
-    background-color: var(--color-primary); /* Updated */
-    color: var(--color-bg-card);
+	background-color: var(--color-primary); /* Updated */
+	color: var(--color-bg-card);
 }
 
 .btn-directions {
-    border-color: var(--color-primary); /* Updated */
-    color: var(--color-primary); /* Updated */
-    font-weight: 500;
-    padding: 0.55rem 1rem;
+	border-color: #28a745; /* Bootstrap's success green */
+	color: #28a745;
 }
 
 .btn-directions:hover {
-    background-color: var(--color-primary); /* Updated */
-    color: var(--color-bg-card);
+	background-color: green;
+	color: white;
 }
-
 
 /* Announcement Bar */
 .announcement-bar {
-    background-color: var(--color-secondary-light); /* Using secondary (Pink) palette */
-    color: var(--color-secondary-dark); /* Using secondary (Pink) palette */
-    border: 1px solid var(--color-secondary); /* Using secondary (Pink) palette */
-    border-radius: var(--border-radius-md);
-    padding: 1rem 1.5rem;
-    margin: 2rem auto;
-    font-weight: 500;
-    max-width: 90%;
+	background-color: var(--color-secondary-light);
+	/* Using secondary (Pink) palette */
+	color: var(--color-secondary-dark);
+	/* Using secondary (Pink) palette */
+	border: 1px solid var(--color-secondary);
+	/* Using secondary (Pink) palette */
+	border-radius: var(--border-radius-md);
+	padding: 1rem 1.5rem;
+	margin: 2rem auto;
+	font-weight: 500;
+	max-width: 90%;
 }
 
 .announcement-bar i {
-    margin-right: 0.5rem;
-    color: var(--color-secondary-dark); /* Using secondary (Pink) palette */
+	margin-right: 0.5rem;
+	color: var(--color-secondary-dark);
+	/* Using secondary (Pink) palette */
 }
 
 /* Service Card Styles */
 .service-card {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-lg);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+	background: var(--color-bg-card);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius-lg);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+	transform: translateY(-8px);
+	box-shadow: var(--shadow-lg);
 }
 
 .service-card .card-header {
-    /* Updated Gradient: Purple to Pink */
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); 
-    color: white;
-    padding: 1rem 1.25rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
+	/* Updated Gradient: Purple to Pink */
+	background: linear-gradient(135deg, var(--color-primary) 0%,
+		var(--color-secondary) 100%);
+	color: white;
+	padding: 1rem 1.25rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
 }
 
 .service-card .card-header i {
-    margin-right: 0.75rem;
-    font-size: 1.3em;
+	margin-right: 0.75rem;
+	font-size: 1.3em;
 }
 
 .service-list {
-    padding: 0;
-    flex-grow: 1;
+	padding: 0;
+	flex-grow: 1;
 }
 
 .service-list .list-group-item {
-    padding: 0.85rem 1.25rem;
-    border-bottom: 1px solid var(--color-border);
-    font-size: 0.95rem;
-    color: var(--color-text-medium);
-    transition: background-color 0.2s ease;
+	padding: 0.85rem 1.25rem;
+	border-bottom: 1px solid var(--color-border);
+	font-size: 0.95rem;
+	color: var(--color-text-medium);
+	transition: background-color 0.2s ease;
 }
+
 .service-list .list-group-item:hover {
-    background-color: #f8f9fa; 
+	background-color: #f8f9fa;
 }
 
 .service-list .list-group-item:last-child {
-    border-bottom: none;
+	border-bottom: none;
 }
 
 /* Special Contact Card */
 .special-contact-card {
-    background-color: var(--color-primary-light); /* Updated */
-    border: 1px solid var(--color-primary); /* Updated */
-}
-.special-contact-card .text-primary { 
-    color: var(--color-primary) !important;  /* Ensure icon uses the new primary purple */
-}
-.special-contact-card h5 {
-    color: var(--color-primary-dark); /* Updated */
-    font-weight: 700;
-}
-.special-contact-card p {
-    color: var(--color-text-medium);
+	background-color: var(--color-primary-light); /* Updated */
+	border: 1px solid var(--color-primary); /* Updated */
 }
 
+.special-contact-card .text-primary {
+	color: var(--color-primary) !important;
+	/* Ensure icon uses the new primary purple */
+}
+
+.special-contact-card h5 {
+	color: var(--color-primary-dark); /* Updated */
+	font-weight: 700;
+}
+
+.special-contact-card p {
+	color: var(--color-text-medium);
+}
 
 /* Buttons */
 .btn {
-    border-radius: var(--border-radius-md);
-    padding: 0.65rem 1.25rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
+	border-radius: var(--border-radius-md);
+	padding: 0.65rem 1.25rem;
+	font-weight: 500;
+	transition: all 0.3s ease;
 }
 
 .btn-primary {
-    background-color: var(--color-primary); /* Updated */
-    border-color: var(--color-primary); /* Updated */
-    color: white;
+	background-color: var(--color-primary); /* Updated */
+	border-color: var(--color-primary); /* Updated */
+	color: white;
 }
+
 .btn-primary:hover {
-    background-color: var(--color-primary-dark); /* Updated */
-    border-color: var(--color-primary-dark); /* Updated */
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+	background-color: var(--color-primary-dark); /* Updated */
+	border-color: var(--color-primary-dark); /* Updated */
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-md);
 }
 
 .btn-lg {
-    padding: 0.8rem 1.5rem;
-    font-size: 1.1rem;
+	padding: 0.8rem 1.5rem;
+	font-size: 1.1rem;
 }
 
 /* Footer Styles */
 .site-footer {
-    background-color: var(--color-text-dark);
-    color: var(--color-text-light); 
-    padding: 3rem 0;
-    margin-top: auto;
+	background-color: var(--color-text-dark);
+	color: var(--color-text-light);
+	padding: 3rem 0;
+	margin-top: auto;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .footer-nav a {
-    color: #cbd5e1; 
-    text-decoration: none;
-    margin: 0 0.75rem;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
+	color: #cbd5e1;
+	text-decoration: none;
+	margin: 0 0.75rem;
+	font-size: 0.9rem;
+	transition: color 0.3s ease;
 }
 
 .footer-nav a:hover {
-    color: var(--color-primary-light); /* Using light primary purple for hover */
+	color: var(--color-primary-light);
+	/* Using light primary purple for hover */
 }
 
 .footer-contact-details {
-    font-size: 0.9rem;
+	font-size: 0.9rem;
 }
+
 .footer-contact-details a {
-    color: #cbd5e1;
-    text-decoration: none;
-    transition: color 0.3s ease;
+	color: #cbd5e1;
+	text-decoration: none;
+	transition: color 0.3s ease;
 }
+
 .footer-contact-details a:hover {
-     color: var(--color-primary-light); /* Using light primary purple for hover */
+	color: var(--color-primary-light);
+	/* Using light primary purple for hover */
 }
+
 .footer-contact-details i {
-    margin-right: 0.3rem;
+	margin-right: 0.3rem;
 }
 
 .copyright {
-    font-size: 0.85rem;
-    color: #94a3b8; 
-    margin-top: 1.5rem;
+	font-size: 0.85rem;
+	color: #94a3b8;
+	margin-top: 1.5rem;
 }
 
 /* Responsive Adjustments (No changes from previous CSS, but included for completeness) */
-@media (max-width: 767.98px) {
-    .site-title {
-        font-size: 1.5rem;
-    }
-    .site-tagline {
-        font-size: 0.9rem;
-    }
-    .contact-info {
-        margin-top: 1rem;
-    }
-    .announcement-bar {
-        margin-left: 1rem;
-        margin-right: 1rem;
-        max-width: 100%;
-    }
-    .service-card .card-header {
-        font-size: 1rem;
-    }
-    .service-list .list-group-item {
-        font-size: 0.9rem;
-        padding: 0.75rem 1rem;
-    }
-    .footer-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    .footer-nav a {
-        margin: 0;
-    }
-    .footer-contact-details {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    .footer-contact-details a {
-        margin: 0;
-    }
+@media ( max-width : 767.98px) {
+	.site-title {
+		font-size: 1.5rem;
+	}
+	.site-tagline {
+		font-size: 0.9rem;
+	}
+	.contact-info {
+		margin-top: 1rem;
+	}
+	.announcement-bar {
+		margin-left: 1rem;
+		margin-right: 1rem;
+		max-width: 100%;
+	}
+	.service-card .card-header {
+		font-size: 1rem;
+	}
+	.service-list .list-group-item {
+		font-size: 0.85rem;
+		padding: 0.5rem;
+		white-space: normal;
+	}
+	.footer-nav {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.footer-nav a {
+		margin: 0;
+	}
+	.footer-contact-details {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.footer-contact-details a {
+		margin: 0;
+	}
 }
+
 .document-preview {
-    padding: 10px;
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-md);
-    transition: transform 0.3s ease;
-    margin-bottom: 1rem;
+	padding: 10px;
+	background: var(--color-bg-card);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius-md);
+	transition: transform 0.3s ease;
+	margin-bottom: 1rem;
 }
 
 .document-preview:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-md);
 }
 
 .document-preview img {
-    border: 1px solid var(--color-border);
-    transition: opacity 0.3s ease;
+	border: 1px solid var(--color-border);
+	transition: opacity 0.3s ease;
 }
 
 .document-preview:hover img {
-    opacity: 0.9;
+	opacity: 0.9;
 }
 
 .document-preview {
-    padding: 4px;
-    margin-bottom: 0.25rem;  /* Reduced from default */
+	padding: 4px;
+	margin-bottom: 0.25rem; /* Reduced from default */
 }
 
 .document-preview img {
-    max-height: 70px;  /* Slightly smaller images */
+	max-height: 70px; /* Slightly smaller images */
 }
 
 .document-preview small {
-    font-size: 0.7rem;
-    margin-top: 0.1rem;
-    margin-bottom: 0.1rem;
+	font-size: 0.7rem;
+	margin-top: 0.1rem;
+	margin-bottom: 0.1rem;
 }
+.custom-red {
+        color: red; /* Change text color to red */
+    }
 
+
+@media ( max-width : 767.98px) {
+	.service-card .card-header {
+		font-size: 1rem;
+	}
+	.service-list .list-group-item {
+		font-size: 0.85rem;
+		padding: 0.5rem;
+		white-space: normal;
+	}
+	.document-preview img {
+		max-height: 50px;
+	}
+	.document-preview small {
+		display: none;
+	}
+}
+.category-border {
+  border: 2px solid var(--color-primary-dark);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: border-color 0.3s;
+}
+.category-border:hover {
+  border-color: var(--color-secondary);
+}
+.service-outline {
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  padding: 10px 5px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 8px;
+}
+.service-outline:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}

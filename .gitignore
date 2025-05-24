@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# Ignore all properties files
+src/main/resources/*.properties
+
+logs/
