@@ -1,211 +1,488 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cancellations & Refunds - KS Digital Service</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 
     <style>
         :root {
-            --primary-color: #2563eb;
-            --text-dark: #1e293b;
-            --text-medium: #64748b;
-            --border-color: #e2e8f0;
+            --color-primary: #2563eb;
+            --color-primary-dark: #1d4ed8;
+            --color-primary-light: #93c5fd;
+            --color-secondary: #f59e0b;
+            --color-secondary-dark: #d97706;
+            --color-secondary-light: #fcd34d;
+            --color-accent: #10b981;
+            --color-accent-dark: #059669;
+            --color-danger: #ef4444;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-text-dark: #1f2937;
+            --color-text-medium: #4b5563;
+            --color-text-light: #9ca3af;
+            --color-bg-body: #f9fafb;
+            --color-bg-card: #ffffff;
+            --color-border: #e5e7eb;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text-medium);
+            background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%);
+            min-height: 100vh;
             line-height: 1.6;
         }
 
-        .home-logo-button {
-            position: fixed;
-            top: 25px;
-            left: 30px;
+        .hero-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+             padding: 1.0rem 0 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card {
+            border: none;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            background: var(--color-bg-card);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .site-footer {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .btn {
+            position: relative;
+            overflow: hidden;
+            border: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(0);
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            color: white;
+        }
+
+        .img-hover-zoom {
+            transition: transform 0.3s ease;
+        }
+
+        .img-hover-zoom:hover {
+            transform: scale(1.03);
+        }
+
+        .info-section {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        /* Increased width for desktop */
+        .policy-content {
+            max-width: 1000px; /* Increased from 800px */
+            margin: 0 auto;
             background: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 2.5rem; /* Increased padding */
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .policy-section {
+            margin: 2rem 0;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .policy-section:last-child {
+            border-bottom: none;
+        }
+
+        .policy-section h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-text-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .policy-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 1.5rem 0;
+        }
+
+        .policy-section li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .policy-section li::before {
+            content: "\F26A";
+            font-family: "bootstrap-icons";
+            color: var(--color-primary);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .home-logo-button {
+           display: inline-block;
+        margin-top: 1.5rem;
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            box-shadow: var(--shadow-md);
             text-decoration: none;
             transition: all 0.2s ease;
+            font-weight: 600;
+            z-index: 100;
         }
 
         .home-logo-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: var(--shadow-lg);
         }
 
-        .page-header {
-            margin: 80px 0 40px;
-            text-align: center;
+        .warning-section {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            border-left: 4px solid var(--color-warning);
+            margin: 1.5rem 0;
         }
 
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
+        .no-refund-icon {
+            font-size: 1.8rem; /* Increased icon size */
+            color: var(--color-danger);
+            margin-right: 0.75rem;
         }
 
-        .page-title span {
-            color: var(--primary-color);
+        .refund-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
-        .phone-number-header {
-            background: #eef6ff;
-            padding: 10px 20px;
-            border-radius: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin: 20px 0;
+        .refund-card {
+            background: #f8f9fa;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border-left: 3px solid var(--color-primary);
+            transition: all 0.3s ease;
         }
 
-        .policy-content {
-            max-width: 800px;
-            margin: 0 auto 40px;
+        .refund-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            background: white;
         }
 
-        .policy-content h2 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary-color);
-            margin: 40px 0 20px;
+        @media (max-width: 991.98px) {
+            .policy-content {
+                max-width: 800px;
+            }
         }
 
-        .policy-content p {
-            color: var(--text-medium);
-            margin-bottom: 1.2rem;
-        }
-
-        .policy-content ul {
-            list-style: none;
-            padding-left: 0;
-            margin: 20px 0;
-        }
-
-        .policy-content li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .policy-content li::before {
-            content: "•";
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.4rem;
-        }
-
-        .footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 40px 0;
-            margin-top: 80px;
-        }
-
-        .footer a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .footer a:hover {
-            color: var(--primary-color);
-        }
-
-        @media (max-width: 768px) {
-            .page-title {
-                font-size: 2rem;
+        @media (max-width: 767.98px) {
+            .policy-content {
+                padding: 1.5rem;
+                max-width: 95%;
             }
             
             .home-logo-button {
-                left: 15px;
-                padding: 8px 15px;
+            margin-top: 1rem;
+        }
+            
+            .hero-section {
+                 padding: 4rem 0 3rem;
             }
             
-            .policy-content {
-                padding: 0 20px;
-            }
-            
-            .policy-content h2 {
-                font-size: 1.4rem;
+            .refund-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
 <body>
-    <a href="/" class="home-logo-button">
-        <i class="bi bi-house-door-fill"></i> KS Digital
-    </a>
-
-    <div class="container">
-        <header class="page-header">
+    <!-- Hero Section -->
+    <section class="hero-section">
         
-        <h1 class="page-title"><span>KS DIGITAL SERVICES</span></h1>
-        	
-            <h2>Cancellations & Refunds</h2>
-        
-        </header>
+        <div class="container">
+            <h1 class="display-6 fw-bold mb-0">KS DIGITAL SERVICES</h1>
+            <h6 class="mb-1">Cancellations & Refunds</h6>
+            <a href="/" class="home-logo-button">
+            <i class="bi bi-house-door-fill me-2"></i> KS Digital Services
+        </a>
+        </div>
+    </section>
 
-        <main class="policy-content">
-            <section>
-                <h2>1. Overview</h2>
-                <p>At <strong>KS Digital Services</strong>, we strive to provide high-quality services to our customers. Please read our cancellation and refund policy carefully.</p>
-            </section>
+    <!-- Main Content -->
+    <section class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-11"> <!-- Wider column -->
+                <div class="policy-content">
+                    <div class="text-center mb-4">
+                        <h2 class="section-title">Cancellation & Refund Policy</h2>
+                        <p class="text-muted">Please review our policy regarding cancellations and refunds</p>
+                    </div>
+                    
+                    <div class="warning-section d-flex align-items-center">
+                        <i class="bi bi-exclamation-triangle-fill no-refund-icon"></i>
+                        <div>
+                            <h5 class="mb-1">Important Notice</h5>
+                            <p class="mb-0">All payments made for services rendered are final and non-refundable.</p>
+                        </div>
+                    </div>
 
-            <section>
-                <h2>2. No Refunds</h2>
-                <p>All payments made for services rendered are final. We do not offer refunds for any services, including but not limited to:</p>
-                <ul>
-                    <li>Bill payment services</li>
-                    <li>Online application assistance</li>
-                    <li>Printout services initiated via the portal</li>
-                    <li>Any other service provided</li>
-                </ul>
-                <p>By using our services, you acknowledge and agree that you will not be entitled to any refunds for any reason, including dissatisfaction with the service outcome.</p>
-            </section>
+                    <div class="refund-grid">
+                        <div class="refund-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-credit-card text-primary me-2" style="font-size: 1.8rem;"></i>
+                                <h4 class="mb-0">Payment Policy</h4>
+                            </div>
+                            <p>All services require payment upfront. Once payment is processed, it cannot be reversed or refunded.</p>
+                        </div>
+                        
+                        <div class="refund-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-x-circle text-danger me-2" style="font-size: 1.8rem;"></i>
+                                <h4 class="mb-0">No Cancellations</h4>
+                            </div>
+                            <p>Services cannot be canceled once initiated. Ensure all details are correct before confirming.</p>
+                        </div>
+                        
+                        <div class="refund-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-shield-check text-success me-2" style="font-size: 1.8rem;"></i>
+                                <h4 class="mb-0">Service Guarantee</h4>
+                            </div>
+                            <p>We guarantee service completion as described. Technical issues will be resolved at no extra cost.</p>
+                        </div>
+                    </div>
 
-            <section>
-                <h2>3. Cancellations</h2>
-                <p>Once a service has been initiated or payment has been made, it cannot be canceled. If you have any questions or concerns regarding our services, please contact us <strong>before</strong> making a payment.</p>
-            </section>
-        </main>
+                    <div class="policy-section">
+                        <h2>1. Overview</h2>
+                        <p>At <strong class="text-primary">KS Digital Services</strong>, we strive to provide high-quality services to our customers. Please read our cancellation and refund policy carefully.</p>
+                    </div>
+
+                    <div class="policy-section">
+                        <h2>2. No Refunds Policy</h2>
+                        <p>We do not offer refunds for any services, including but not limited to:</p>
+                        <ul>
+                            <li>Bill payment services</li>
+                            <li>Online application assistance</li>
+                            <li>Printout services initiated via the portal</li>
+                            <li>Document preparation services</li>
+                            <li>Digital form submissions</li>
+                            <li>Any other service provided through our platform</li>
+                        </ul>
+                        <p>By using our services, you acknowledge and agree that you will not be entitled to any refunds for any reason, including dissatisfaction with the service outcome.</p>
+                    </div>
+
+                    <div class="policy-section">
+                        <h2>3. Cancellations</h2>
+                        <p>Once a service has been initiated or payment has been made, it cannot be canceled. If you have any questions or concerns regarding our services, please contact us <strong>before</strong> making a payment.</p>
+                        
+                        <div class="alert alert-info mt-3">
+                            <i class="bi bi-info-circle me-2"></i> For any questions about our policy, please contact our support team before proceeding with any service.
+                        </div>
+                    </div>
+                    
+                    <div class="policy-section">
+                        <h2>4. Exceptions</h2>
+                        <p>In the rare event of a technical error on our part where:</p>
+                        <ul>
+                            <li>Payment was processed but service was not provided</li>
+                            <li>Duplicate payment was charged</li>
+                            <li>Service was not rendered as described</li>
+                            <li>Technical failure prevented service delivery</li>
+                        </ul>
+                        <p>Please contact our support team with proof of payment and transaction details within 24 hours. All claims will be reviewed on a case-by-case basis.</p>
+                        
+                        <div class="mt-4">
+                            <h5 class="d-flex align-items-center">
+                                <i class="bi bi-clock-history text-primary me-2"></i>
+                                Resolution Timeline
+                            </h5>
+                            <p>Valid claims will be resolved within 3-5 business days. We may provide service credit or alternative resolution at our discretion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <div class="container my-5">
+        <h5 class="text-center fw-bold mb-4" style="color: var(--color-primary);">Connect With Us</h5>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-instagram btn-sm shadow" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white;">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
+                <i class="bi bi-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-success btn-sm shadow">
+                <i class="bi bi-geo-alt-fill"></i>
+            </a>
+        </div>
     </div>
 
-    <footer class="footer">
-        <div class="container text-center">
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
-                <a href="/terms">Terms</a>
-                <a href="/privacy">Privacy</a>
-                <a href="/contact">Contact</a>
-                <a href="/cancellation">Cancellation</a>
-                <a href="/shipping">Shipping</a>
+    <!-- Footer -->
+    <footer class="site-footer py-4">
+        <div class="container">
+            <nav class="mb-3 d-flex flex-wrap justify-content-center">
+                <a href="/terms" class="text-light mx-2 mb-2">Terms</a>
+                <a href="/privacy" class="text-light mx-2 mb-2">Privacy</a>
+                <a href="/contact" class="text-light mx-2 mb-2">Contact</a>
+                <a href="/cancellation" class="text-light mx-2 mb-2">Cancellation</a>
+                <a href="/shipping" class="text-light mx-2 mb-2">Shipping</a>
+            </nav>
+            <div class="mb-3 text-center">
+                <a href="tel:7893845696" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-telephone-fill"></i> 7893845696</a>
+                <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
             </div>
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
-                <a href="tel:7893845696">
-                    <i class="bi bi-telephone"></i> 7893845696
-                </a>
-                <a href="mailto:ksdigital2025@gmail.com">
-                    <i class="bi bi-envelope"></i> ksdigital2025@gmail.com
-                </a>
+            <div class="text-center">
+                <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
             </div>
-            <p class="mb-0 text-secondary">© 2025 KS Digital Services. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/disable-right-click.js"></script>
+    <script>
+        // Add ripple effect to all buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple element
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                
+                // Position the ripple
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size/2;
+                const y = e.clientY - rect.top - size/2;
+                
+                // Style the ripple
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                // Add ripple to button
+                this.appendChild(ripple);
+                
+                // Remove ripple after animation
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+        
+        // Add animation for warning section
+        const warningSection = document.querySelector('.warning-section');
+        warningSection.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.02)';
+        });
+        warningSection.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+        
+        // Add hover effect to refund cards
+        document.querySelectorAll('.refund-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            });
+        });
+    </script>
 </body>
 </html>

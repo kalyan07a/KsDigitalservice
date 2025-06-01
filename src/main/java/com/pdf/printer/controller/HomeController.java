@@ -96,4 +96,34 @@ public class HomeController {
 		return "shipping";
 	}
 
+	@GetMapping("/foodLicense")
+	public String foodLicense()
+	{
+		return "foodLicense";
+	}
+	@GetMapping("/tradeLicense")
+	public String tradeLicense()
+	{
+		return "tradeLicense";
+	}
+	@GetMapping("/labourLicense")
+	public String labourLicense()
+	{
+		return "labourLicense";
+	}
+	@GetMapping("/msme")
+	public String msme()
+	{
+		return "msme";
+	}
+	@GetMapping("/passport")
+	public String passport()
+	{
+		return "passport";
+	}
+	@GetMapping("/pancard")
+	public String pancard()
+	{
+		return "pancard";
+	}
 }

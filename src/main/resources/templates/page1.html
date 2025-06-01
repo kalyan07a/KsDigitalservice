@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KS Digital Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+ <link   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+	rel="stylesheet">
+	
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+   :root {
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-light: #93c5fd;
+    --color-secondary: #f59e0b;
+    --color-secondary-dark: #d97706;
+    --color-secondary-light: #fcd34d;
+    --color-accent: #10b981;
+    --color-accent-dark: #059669;
+    --color-danger: #ef4444;
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-text-dark: #1f2937;
+    --color-text-medium: #4b5563;
+    --color-text-light: #9ca3af;
+    --color-bg-body: #f9fafb;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text-medium);
+    background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+        /* Modified main-container styles */
+        .main-container {
+            width: 90%; /* Occupy 90% of the viewport width */
+            max-width: 1400px; /* Set a maximum width for very large screens */
+            margin: 0 auto 40px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .title-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            padding-right: 120px;
+        }
+
+        .phone-number-header {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            color: #6c757d;
+            white-space: nowrap;
+        }
+
+        .page-title {
+            margin-bottom: 10px;
+            color: #343a40;
+            font-weight: 300;
+            font-size: 2.2rem;
+        }
+
+        .page-title span {
+            font-weight: 700;
+            color: #0d6efd;
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .external-service-link-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .external-service-link {
+            display: inline-block;
+            color: #0d6efd;
+            border: 1px solid #dee2e6;
+            border-radius: 0.3rem;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background-color: #e9ecef;
+        }
+
+        .external-service-link:hover {
+            background-color: #dde1e5;
+            border-color: #cfd4d9;
+            color: #0b5ed7;
+        }
+
+        .categories {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .category {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+            border: 1px solid #e9ecef;
+            transition: box-shadow 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .category:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Updated Category Colors */
+        .category-general h2 {
+            color: #6c9eff;
+            border-bottom: 2px solid #6c9eff;
+        }
+
+        .category-licenses h2 {
+            color: #dc3545;
+            border-bottom: 2px solid #dc3545;
+        }
+
+        .category-webservices h2 {
+            color: #20c997;
+            border-bottom: 2px solid #20c997;
+        }
+
+        .category-exams h2 {
+            color: #9d7bd9;
+            border-bottom: 2px solid #9d7bd9;
+        }
+
+        .category-other h2 {
+            color: #fd7e14;
+            border-bottom: 2px solid #fd7e14;
+        }
+
+        .category h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Modern Button Styles */
+        .category button {
+            display: block;
+            border: none;
+            color: white;
+            padding: 12px 15px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+        }
+
+        .category button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .category button:active {
+            transform: translateY(0);
+        }
+
+        .category button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .category button:hover::after {
+            transform: translateX(100%);
+        }
+
+        /* Button Gradients and Colors */
+        .category-general button {
+            background: linear-gradient(135deg, #6c9eff 0%, #4a7df5 100%);
+        }
+        .category-general button:hover {
+            background: linear-gradient(135deg, #5a8ae6 0%, #3a6ce5 100%);
+        }
+
+        .category-licenses button {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+        .category-licenses button:hover {
+            background: linear-gradient(135deg, #bb2d3b 0%, #a71d2a 100%);
+        }
+
+        .category-webservices button {
+            background: linear-gradient(135deg, #20c997 0%, #17a673 100%);
+        }
+        .category-webservices button:hover {
+            background: linear-gradient(135deg, #1aa179 0%, #138d65 100%);
+        }
+
+        .category-exams button {
+            background: linear-gradient(135deg, #9d7bd9 0%, #7e5cc4 100%);
+        }
+        .category-exams button:hover {
+            background: linear-gradient(135deg, #8b69c7 0%, #6d4ab2 100%);
+        }
+
+        .category-other button {
+            background: linear-gradient(135deg, #fd7e14 0%, #f76707 100%);
+        }
+        .category-other button:hover {
+            background: linear-gradient(135deg, #d56a0f 0%, #d35400 100%);
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #adb5bd;
+            padding: 30px 0;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            border-top: 3px solid #0d6efd;
+        }
+
+        .footer a {
+            color: #f8f9fa;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #0d6efd;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 767.98px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .categories {
+                flex-direction: column;
+            }
+
+            .phone-number-header {
+                position: static;
+                transform: none;
+                display: block;
+                margin-top: 10px;
+            }
+
+            .title-container {
+                padding-right: 0;
+            }
+        }
+
+        .subtitle-container {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+            color: #6c757d;
+            text-align: center;
+            margin: 0;
+        }
+
+        .small-right-align {
+            font-size: 12px;
+            white-space: nowrap;
+            margin: 0;
+        }
+
+        @media (max-width: 767.98px) {
+            .subtitle-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 10px;
+            }
+            .small-right-align {
+                text-align: center !important;
+            }
+        }
+        .online-services-heading {
+            font-family: 'Poppins', sans-serif;
+            color: #2d3a80;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #0d6efd;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .blink-text {
+            animation: blink 2s infinite;
+        }
+        .btn-directions {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-directions:hover {
+            background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .btn-directions:active {
+            transform: translateY(0);
+        }
+
+        /* Enhanced bottom navigation buttons */
+        .text-center .btn-outline-primary {
+            border: 2px solid #0d6efd;
+            color: #0d6efd;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .text-center .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+        }
+        .text-center .btn-outline-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+        .text-center .btn-outline-primary:hover::before {
+            left: 100%;
+        }
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.1;
+}
+/* Custom Styles */
+.display-4 {
+    font-size: 2.5rem; /* Equivalent to Bootstrap's display-4 */
+    line-height: 1.2;
+}
+
+.fw-bold {
+    font-weight: 700; /* Bold font weight */
+}
+
+.mb-3 {
+    margin-bottom: 1rem; /* Bottom margin */
+}
+
+.lead {
+    font-size: 1.25rem; /* Larger font size for lead text */
+    line-height: 1.5; /* Line height */
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem; /* Bottom margin */
+}
+
+.d-flex {
+    display: flex; /* Flexbox layout */
+}
+
+.justify-content-center {
+    justify-content: center; /* Center items horizontally */
+}
+
+.gap-3 {
+    gap: 1rem; /* Gap between flex items */
+}
+
+
+
+/* Social Media Buttons */
+.btn-sm {
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* Footer */
+.site-footer {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    padding: 2rem 0;
+    position: relative;
+}
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-secondary));
+}
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.footer-nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    margin: 0 0.75rem;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+.footer-nav a:hover {
+    color: var(--color-primary-light);
+}
+.footer-contact-details {
+    font-size: 0.9rem;
+}
+.footer-contact-details a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-contact-details a:hover {
+    color: var(--color-primary-light);
+}
+.footer-contact-details i {
+    margin-right: 0.3rem;
+}
+.copyright {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-top: 1.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .hero-section {
+        padding: 1.5rem 0;
+    }
+ 
+    .footer-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .footer-nav a {
+        margin: 0;
+    }
+    .footer-contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .footer-contact-details a {
+        margin: 0;
+    }
+}
+    </style>
+</head>
+
+<body>
+       <section class="hero-section">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-0">KS DIGITAL SERVICES</h1>
+    <p class="lead mb-0">Your Trusted Partner for Online Services</p>
+  </div>
+</section>
+
+        <h4 class="online-services-heading">ONLINE SERVICE LINKS</h4>
+        <div class="categories">
+            <div class="category category-general">
+                <h2>General</h2>
+              <button onclick="window.open('/passport_photo', '_blank')">Passport Photo</button>
+                <button onclick="window.open('https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en', '_blank')">Aadhar Download</button>
+                <button onclick="window.open('https://www.onlineservices.nsdl.com/paam/ReprintEPan.html', '_blank')">PAN REPRINT</button>
+                <button onclick="window.open('https://www.onlineservices.nsdl.com/paam/requestAndDownloadEPAN.html', '_blank')">Download E-PAN</button>
+                <button onclick="window.open('https://epds.telangana.gov.in/FoodSecurityAct/?wicket:bookmarkablePage=:nic.fsc.foodsecurity.FscSearch', '_blank')">Ration</button>
+                <button onclick="window.open('https://epds.telangana.gov.in/FoodSecurityAct/?wicket:bookmarkablePage=:nic.fsc.foodsecurity.FscApplicationSearch', '_blank')">FSC by Aadhar</button>
+                 <button onclick="window.open('https://unifiedportal-mem.epfindia.gov.in/memberinterface/', '_blank')">PF (EPFO)</button>
+            </div>
+              <div class="category category-exams">
+                <h2>Applications</h2>
+                 <button onclick="window.open('https://myaadhaar.uidai.gov.in/en_IN', '_blank')">aadhar update</button>
+                <button onclick="window.open('https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html', '_blank')">PAN</button>
+                 <button onclick="window.open('https://eportal.incometax.gov.in/iec/foservices/#/pre-login/instant-e-pan', '_blank')">Instant PAN</button>
+                <button onclick="window.open('https://voters.eci.gov.in/signup', '_blank')">Voter ID</button>
+                <button onclick="window.open('https://services2.passportindia.gov.in/forms/PreLogin', '_blank')">PASSPORT</button>
+                </div>
+            
+            <div class="category category-licenses">
+                <h2>Licenses</h2>
+                <button onclick="window.open('https://foscos.fssai.gov.in/', '_blank')">Food</button>
+                <button onclick="window.open('https://trade.ghmc.gov.in/', '_blank')">Trade</button>
+                <button onclick="window.open('https://labour.telangana.gov.in/Entrepreneur.do', '_blank')">Labour</button>
+                    <button onclick="window.open('https://services.gst.gov.in/services/quicklinks/registration', '_blank')">GST Services</button>
+                <button onclick="window.open('https://www.incometax.gov.in/iec/foportal/', '_blank')">ITR Filing</button>
+              
+            </div>
+            <div class="category category-webservices">
+                <h2>Web Services</h2>
+                <button onclick="window.open('https://www.irctc.co.in/nget/train-search', '_blank')">IRCTC</button>
+                <button onclick="window.open('https://www.makemytrip.com/bus-tickets/hyderabad-city-online-booking.html', '_blank')">BUS TICKET</button>
+                <button onclick="window.open('https://www.skyscanner.co.in/', '_blank')">FLIGHT TICKET</button>
+                <button onclick="window.open('https://www.billdesk.com/pgidsk/pgmerc/tsspdclpgi/TSSPDCLPGIDetails.jsp', '_blank')">Power Bill</button>
+                <button onclick="window.open('https://onlinepayments.ghmc.gov.in/', '_blank')">Property Tax</button>
+                <button onclick="window.open('https://www.amazon.in/amazonpay/home/', '_blank')">Amazon Payments</button>
+            </div>
+          
+            <div class="category category-other">
+                <h2>Other Services</h2>
+                <button onclick="window.open('https://telanganaepass.cgg.gov.in/epassonlinelinks.do', '_blank')">Scholarships</button>
+                <button onclick="window.open('https://www.transport.telangana.gov.in/html/driving-licencel-learners.html', '_blank')">Driving License </button>
+                <button onclick="window.open('https://www.tataaig.com/', '_blank')">Vehicle Insurance</button>
+               
+            
+                  <button onclick="window.open('https://bigpdf.11zon.com/en/compress-pdf/compress-pdf-to-300kb.php', '_blank')">pdf compress</button>
+                <button onclick="window.open('https://www.ilovepdf.com/pdf_to_jpg', '_blank')">pdf to jpg</button>
+                <button onclick="window.open('https://www.ilovepdf.com/jpg_to_pdf', '_blank')">jpg to pdf</button>
+            </div>
+
+          
+        </div>
+        <div class="container my-5">
+            <h5 class="text-center fw-bold mb-4" style="color: var(--color-primary);">Connect With Us</h5>
+            <div class="d-flex justify-content-center gap-3">
+              <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
+                <i class="bi bi-whatsapp"></i>
+              </a>
+              <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-instagram btn-sm shadow" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white;">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
+                <i class="bi bi-youtube"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
+                <i class="bi bi-linkedin"></i>
+              </a>
+              <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-success btn-sm shadow">
+                <i class="bi bi-geo-alt-fill"></i>
+              </a>
+            </div>
+          </div>
+
+          <footer class="site-footer py-4">
+            <div class="container">
+              <nav class="mb-3 d-flex flex-wrap justify-content-center">
+                <a href="/terms" class="text-light mx-2 mb-2">Terms</a>
+                <a href="/privacy" class="text-light mx-2 mb-2">Privacy</a>
+                <a href="/contact" class="text-light mx-2 mb-2">Contact</a>
+                <a href="/cancellation" class="text-light mx-2 mb-2">Cancellation</a>
+                <a href="/shipping" class="text-light mx-2 mb-2">Shipping</a>
+              </nav>
+              <div class="mb-3 text-center">
+                <a href="tel:7893845696" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-telephone-fill"></i> 7893845696</a>
+                <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
+              </div>
+              <div class="text-center">
+                <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
+              </div>
+            </div>
+          </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+    <script>
+        // Add ripple effect to buttons
+        document.querySelectorAll('.category button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple element
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                
+                // Position the ripple
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size/2;
+                const y = e.clientY - rect.top - size/2;
+                
+                // Style the ripple
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 600ms linear';
+                ripple.style.pointerEvents = 'none';
+                
+                // Add ripple to button
+                this.appendChild(ripple);
+                
+                // Remove ripple after animation
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add animation for buttons at the bottom
+        document.querySelectorAll('.text-center .btn-outline-primary').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+    <style>
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+</html>
