@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KS Digital Services - Comprehensive Online Solutions in
-	Your Area</title>
-<meta name="description"
-	content="Welcome to KS Digital Services, your trusted local partner for essential online services. Fast, reliable, and convenient solutions for all your digital needs.">
+<!-- Social Media Meta -->
+<meta property="og:title" content="KS Digital Services - Trusted Digital Partner">
+<meta property="og:description" content="Fast, reliable online services like food/trade licenses, passport, PAN, and more.">
+<meta property="og:image" content="https://example.com/banner-image.jpg"> <!-- Replace with your image URL -->
+<meta property="og:url" content="https://ksdigitalservice.pw">
+<meta name="twitter:card" content="summary_large_image">
+
 
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link
@@ -19,692 +22,789 @@
 	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
 	rel="stylesheet">
 
-<!--  <link rel="stylesheet" href="css/home.css"> -->
 <style>
 :root {
-    /* Color Palette: Modern Blue & Vibrant Orange */
-    --color-primary: #0056b3; /* Deep Blue - Main brand color */
-    --color-primary-dark: #003f8a; /* Darker Blue */
-    --color-primary-light: #e3f2fd; /* Light Blue for subtle backgrounds */
-    --color-secondary: #ff5722; /* Vibrant Orange - Accent color */
-    --color-secondary-dark: #e64a19; /* Darker Orange */
-    --color-secondary-light: #ffe0b2; /* Light Orange for accents */
-    --color-text-dark: #212121; /* Dark Gray for headings */
-    --color-text-medium: #424242; /* Medium Gray for body text */
-    --color-text-light: #757575; /* Light Gray for less important text */
-    --color-bg-body: #f9f9f9; /* Light Gray/Off-white for page background */
-    --color-bg-card: #ffffff; /* White for cards and distinct sections */
-    --color-border: #e0e0e0; /* Subtle light gray border color */
-
-    /* Semantic Colors */
-    --color-success: #4caf50; /* Green for success */
-    --color-warning: #ff9800; /* Amber for warnings */
-    --color-danger: #f44336; /* Red for errors */
-
-    /* Typography */
-    --font-family-base: 'Roboto', sans-serif; /* Modern sans-serif font */
-    --font-size-base: 16px; /* Base font size */
-    --font-size-sm: 14px; /* Small font size */
-    --font-size-lg: 18px; /* Large font size */
-    --line-height-base: 1.6; /* Default line height */
-
-    /* Border Radius */
-    --border-radius-sm: 0.25rem; /* 4px */
-    --border-radius-md: 0.5rem; /* 8px */
-    --border-radius-lg: 1rem; /* 16px */
-
+    /* Modern Color Palette */
+    --color-primary: #2563eb; /* Vibrant blue */
+    --color-primary-dark: #1d4ed8;
+    --color-primary-light: #93c5fd;
+    --color-secondary: #f59e0b; /* Amber */
+    --color-secondary-dark: #d97706;
+    --color-secondary-light: #fcd34d;
+    --color-accent: #10b981; /* Emerald */
+    --color-accent-dark: #059669;
+    --color-danger: #ef4444; /* Red */
+    --color-success: #10b981; /* Green */
+    --color-warning: #f59e0b; /* Amber */
+    
+    /* Text Colors */
+    --color-text-dark: #1f2937;
+    --color-text-medium: #4b5563;
+    --color-text-light: #9ca3af;
+    
+    /* Backgrounds */
+    --color-bg-body: #f9fafb;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    
     /* Shadows */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
-
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    
     /* Spacing */
-    --spacing-xs: 0.25rem; /* 4px */
-    --spacing-sm: 0.5rem; /* 8px */
-    --spacing-md: 1rem; /* 16px */
-    --spacing-lg: 1.5rem; /* 24px */
-    --spacing-xl: 2rem; /* 32px */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
 }
 
 body {
-	font-family: var(--font-family-base);
+	font-family: 'Inter', sans-serif;
 	color: var(--color-text-medium);
-	background-color: var(--color-bg-body);
-	line-height: 1.6;
-	font-weight: 400;
-}
-
-.page-wrapper {
-	display: flex;
-	flex-direction: column;
+	background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%);
 	min-height: 100vh;
-    padding: 20px;
+	line-height: 1.6;
 }
 
-main {
-	flex-grow: 1;
-}
-
-/* Header Styles */
-.site-header {
-	background-color: var(--color-bg-card);
-	padding: 1.5rem 0;
-	border-bottom: 1px solid var(--color-border);
-	box-shadow: var(--shadow-sm);
-}
-
-.site-title {
-	color: #0284c7;
-	font-weight: 800;
-	font-size: 3.0rem; /* Increased from 1.75rem */
-	margin-bottom: 0.25rem;
-	line-height: 1.2; /* Better spacing for larger text */
-}
-
-.site-tagline {
-	color: var(--color-text-light);
-	font-size: 1rem;
-}
-
-.contact-info .contact-badge {
-	background-color: var(--color-primary-light); /* Updated */
-	color: var(--color-primary-dark); /* Updated */
-	padding: 0.6rem 1rem;
-	border-radius: var(--border-radius-md);
-	display: inline-flex;
-	align-items: center;
-	gap: 0.5rem;
-	font-weight: 500;
-	text-decoration: none;
-	transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.contact-info .contact-badge:hover {
-	background-color: var(--color-primary); /* Updated */
-	color: var(--color-bg-card);
-}
-
-.btn-directions {
-	border-color: #28a745; /* Bootstrap's success green */
-	color: #28a745;
-}
-
-.btn-directions:hover {
-	background-color: green;
-	color: white;
-}
-
-/* Announcement Bar */
-.announcement-bar {
-	background-color: var(--color-secondary-light);
-	/* Using secondary (Pink) palette */
-	color: var(--color-secondary-dark);
-	/* Using secondary (Pink) palette */
-	border: 1px solid var(--color-secondary);
-	/* Using secondary (Pink) palette */
-	border-radius: var(--border-radius-md);
-	padding: 1rem 1.5rem;
-	margin: 2rem auto;
-	font-weight: 500;
-	max-width: 90%;
-}
-
-.announcement-bar i {
-	margin-right: 0.5rem;
-	color: var(--color-secondary-dark);
-	/* Using secondary (Pink) palette */
-}
-
-/* Service Card Styles */
-.service-card {
-	background: var(--color-bg-card);
-	border: 1px solid var(--color-border);
-	border-radius: var(--border-radius-lg);
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.service-card:hover {
-	transform: translateY(-8px);
-	box-shadow: var(--shadow-lg);
-}
-
-.service-card .card-header {
-	/* Updated Gradient: Purple to Pink */
-	background: linear-gradient(135deg, var(--color-primary) 0%,
-		var(--color-secondary) 100%);
-	color: white;
-	padding: 1rem 1.25rem;
-	font-size: 1.1rem;
-	font-weight: 600;
-	display: flex;
-	align-items: center;
-}
-
-.service-card .card-header i {
-	margin-right: 0.75rem;
-	font-size: 1.3em;
-}
-
-.service-list {
-	padding: 0;
-	flex-grow: 1;
-}
-
-.service-list .list-group-item {
-	padding: 0.85rem 1.25rem;
-	border-bottom: 1px solid var(--color-border);
-	font-size: 0.95rem;
-	color: var(--color-text-medium);
-	transition: background-color 0.2s ease;
-}
-
-.service-list .list-group-item:hover {
-	background-color: #f8f9fa;
-}
-
-.service-list .list-group-item:last-child {
-	border-bottom: none;
-}
-
-/* Special Contact Card */
-.special-contact-card {
-	background-color: var(--color-primary-light); /* Updated */
-	border: 1px solid var(--color-primary); /* Updated */
-}
-
-.special-contact-card .text-primary {
-	color: var(--color-primary) !important;
-	/* Ensure icon uses the new primary purple */
-}
-
-.special-contact-card h5 {
-	color: var(--color-primary-dark); /* Updated */
-	font-weight: 700;
-}
-
-.special-contact-card p {
-	color: var(--color-text-medium);
-}
-
-/* Buttons */
+/* Enhanced Button Styles */
 .btn {
-	border-radius: var(--border-radius-md);
-	padding: 0.65rem 1.25rem;
-	font-weight: 500;
-	transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(0);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1.5rem;
 }
 
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2), rgba(255,255,255,0));
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover::after {
+    transform: translateX(100%);
+}
+
+/* Primary Button */
 .btn-primary {
-	background-color: var(--color-primary); /* Updated */
-	border-color: var(--color-primary); /* Updated */
-	color: white;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
 }
 
 .btn-primary:hover {
-	background-color: var(--color-primary-dark); /* Updated */
-	border-color: var(--color-primary-dark); /* Updated */
-	transform: translateY(-2px);
-	box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
 }
 
-.btn-lg {
-	padding: 0.8rem 1.5rem;
-	font-size: 1.1rem;
+/* Success Button */
+.btn-success {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+    color: white;
 }
 
-/* Footer Styles */
-.site-footer {
-	background-color: var(--color-text-dark);
-	color: var(--color-text-light);
-	padding: 3rem 0;
-	margin-top: auto;
+.btn-success:hover {
+    background: linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-accent) 100%);
 }
 
-.footer-nav {
-    display: flex;
+/* Danger Button */
+.btn-danger {
+    background: linear-gradient(135deg, var(--color-danger) 0%, #dc2626 100%);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #dc2626 0%, var(--color-danger) 100%);
+}
+
+/* Warning Button */
+.btn-warning {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+    color: white;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-secondary) 100%);
+}
+
+/* Info Button */
+.btn-info {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    color: white;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+}
+
+/* Social Media Buttons */
+.btn-sm {
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 1rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
 }
 
-.footer-nav a {
-	color: #cbd5e1;
-	text-decoration: none;
-	margin: 0 0.75rem;
-	font-size: 0.9rem;
-	transition: color 0.3s ease;
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: 1.0rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.footer-nav a:hover {
-	color: var(--color-primary-light);
-	/* Using light primary purple for hover */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.1;
 }
 
-.footer-contact-details {
-	font-size: 0.9rem;
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    background: var(--color-bg-card);
 }
 
-.footer-contact-details a {
-	color: #cbd5e1;
-	text-decoration: none;
-	transition: color 0.3s ease;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
 }
 
-.footer-contact-details a:hover {
-	color: var(--color-primary-light);
-	/* Using light primary purple for hover */
-}
-
-.footer-contact-details i {
-	margin-right: 0.3rem;
-}
-
-.copyright {
-	font-size: 0.85rem;
-	color: #94a3b8;
-	margin-top: 1.5rem;
-}
-
-/* Responsive Adjustments (No changes from previous CSS, but included for completeness) */
-@media ( max-width : 767.98px) {
-	.site-title {
-		font-size: 1.5rem;
-	}
-	.site-tagline {
-		font-size: 0.9rem;
-	}
-	.contact-info {
-		margin-top: 1rem;
-	}
-	.announcement-bar {
-		margin-left: 1rem;
-		margin-right: 1rem;
-		max-width: 100%;
-	}
-	.service-card .card-header {
-		font-size: 1rem;
-	}
-	.service-list .list-group-item {
-		font-size: 0.85rem;
-		padding: 0.5rem;
-		white-space: normal;
-	}
-	.footer-nav {
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-	.footer-nav a {
-		margin: 0;
-	}
-	.footer-contact-details {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-	.footer-contact-details a {
-		margin: 0;
-	}
-}
-
-.document-preview {
-	padding: 10px;
-	background: var(--color-bg-card);
-	border: 1px solid var(--color-border);
-	border-radius: var(--border-radius-md);
-	transition: transform 0.3s ease;
-	margin-bottom: 1rem;
-}
-
-.document-preview:hover {
-	transform: translateY(-3px);
-	box-shadow: var(--shadow-md);
-}
-
-.document-preview img {
-	border: 1px solid var(--color-border);
-	transition: opacity 0.3s ease;
-}
-
-.document-preview:hover img {
-	opacity: 0.9;
-}
-
-.document-preview {
-	padding: 4px;
-	margin-bottom: 0.25rem; /* Reduced from default */
-}
-
-.document-preview img {
-	max-height: 70px; /* Slightly smaller images */
-}
-
-.document-preview small {
-	font-size: 0.7rem;
-	margin-top: 0.1rem;
-	margin-bottom: 0.1rem;
-}
-.custom-red {
-        color: red; /* Change text color to red */
-    }
-
-
-@media ( max-width : 767.98px) {
-	.service-card .card-header {
-		font-size: 1rem;
-	}
-	.service-list .list-group-item {
-		font-size: 0.85rem;
-		padding: 0.5rem;
-		white-space: normal;
-	}
-	.document-preview img {
-		max-height: 50px;
-	}
-	.document-preview small {
-		display: none;
-	}
-}
 .category-border {
-  border: 2px solid var(--color-primary-dark);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-md);
-  transition: border-color 0.3s;
+    border: 2px solid var(--color-primary-light);
+    transition: all 0.3s ease;
 }
+
 .category-border:hover {
-  border-color: var(--color-secondary);
+    border-color: var(--color-primary);
 }
+
 .service-outline {
-  border: 2px solid var(--color-border);
-  border-radius: var(--border-radius-md);
-  padding: 10px 5px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-  transition: border-color 0.3s, box-shadow 0.3s;
-  margin-bottom: 8px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    background: white;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
 }
+
 .service-outline:hover {
-  border-color: var(--color-primary);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
+
+/* Footer */
+.site-footer {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    padding: 2rem 0;
+    position: relative;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-secondary));
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .hero-section {
+        padding: 1.5rem 0;
+    }
+    
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Ripple Effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Custom Styles */
+.custom-red {
+    color: #ef4444;
+}
+
+.img-hover-zoom {
+    transition: transform 0.3s ease;
+}
+
+.img-hover-zoom:hover {
+    transform: scale(1.03);
+}
+
+/* Special Button for Self Printer */
+.btn-self-printer {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-self-printer:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+}
+
+.btn-self-printer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 0.5) 48%,
+        rgba(255, 255, 255, 0) 52%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -50%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+/* Typography Enhancements */
+ h2, h5 {
+    color: var(--color-text-dark);
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* Uniform Card Height */
+.card.h-100 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Footer Links Hover */
+.site-footer a:hover {
+    text-decoration: underline;
+    color: var(--color-accent);
+}
+
+/* Hero Section Improvement */
+.hero-section h1 {
+    font-size: 2.5rem;
+    animation: fadeInDown 1s ease;
+}
+
+.hero-section h6 {
+    font-weight: 400;
+    color: #e0e7ff;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.scroll-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    .btn-details {
+            background: linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+        .button-container {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 10px; /* Space between buttons */
+}
+        
 </style>
 </head>
-<body style="background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%); min-height: 100vh;">
+<body>
   <!-- Hero Section -->
-	<section class="text-center" style="background: #0056b3; color: #fff; padding-top: 0.5rem; padding-bottom: 0.5rem;">  
-      <h1 class="display-4 fw-bold mb-3">KS DIGITAL SERVICES</h1>
-      <p class="lead mb-4">Your Trusted Partner for Online Services</p>
-       <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
-      <i class="bi bi-whatsapp fs-6"></i> Call
-    </a>
-      <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-danger btn-sm shadow">
-      <i class="bi bi-geo-alt-fill fs-6"></i> Maps
-    </a>
+  <section class="hero-section">
+      <div class="container">
+          <h1 class="display-6 fw-bold mb-0">KS DIGITAL SERVICES</h1>
+          <h6 class=" mb-1">Your Trusted Partner for Online Services</h6>
+          <div class="d-flex justify-content-center gap-3">
+              <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success shadow pulse">
+                  <i class="bi bi-whatsapp"></i> Phone
+              </a>
+              <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-danger shadow pulse">
+                  <i class="bi bi-geo-alt-fill"></i> Maps
+              </a>
+          </div>
+      </div>
   </section>
   
-  <!-- Self Printer Button Centered Below Hero -->
-<div class="container my-3">
-  <div class="row">
-    <div class="col text-center">
-      <a href="/print/1" target="_blank" class="btn btn-warning btn-lg shadow">
-        <i class="bi bi-printer"></i> Self Printer
-      </a>
-    </div>
-  </div>
-</div>
- 
-
+<br>
   <!-- Features Section -->
   <section class="container py-2">
-    <div class="row text-center mb-4">
-      <div class="col">
-        <h2 class="fw-bold">What We Offer</h2>
-        <p class="text-muted">Fast and convenient solutions to your digital needs.</p>
+      <div class="row text-center mb-4">
+          <div class="col">
+              <h2 class="fw-bold" style="color: var(--color-primary);">What We Offer</h2>
+              <p class="text-muted">Fast and convenient solutions to your digital needs.</p>
+          </div>
       </div>
+      
+      <div class="row g-4">
+          <!-- License Applications Container -->
+         <div class="col-md-4">
+    <div class="card h-100 shadow-sm category-border text-center">
+        <div class="card-body">
+            <img src="/FOOD.jpeg" alt="Food License" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
+            <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">Food License Registration</h5>
+            <div class="mb-3 fw-semibold">Amount: <span class="text-success">Rs 1500</span></div>
+            <div class="button-container d-flex justify-content-center">
+                <a href="/foodLicense" class="btn btn-details me-2">
+                    <i class="bi bi-info-circle me-2"></i> Details
+                </a>
+                <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20food%20license" target="_blank" class="btn btn-success">
+                    <i class="bi bi-whatsapp"></i> Apply Now
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="row g-4">
-	
-	<!-- License Applications Container -->
-<div class="col-md-4">
-  <div class="card h-100 shadow-sm category-border text-center mb-4">
-    <div class="card-body">
-      <img src="/FOOD.jpeg" alt="Food License" class="img-fluid rounded shadow-sm mb-3" style="max-height:260px; max-width:260px">
-      <h5 class="fw-bold mb-2" style="color:#ff5722;">Food License Registration</h5>
-      <div class="mb-2 fw-semibold">Amount: <span style="color:#388e3c;">Rs 1500</span></div>
-      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20food%20license" target="_blank" class="btn btn-success btn-sm">
-        <i class="bi bi-whatsapp"></i> Enquire on WhatsApp
-      </a>
-    </div>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="card h-100 shadow-sm category-border text-center mb-4">
-    <div class="card-body">
-      <img src="/TRADE.jpeg" alt="Trade License" class="img-fluid rounded shadow-sm mb-3" style="max-height:260px; max-width:260px">
-      <h5 class="fw-bold mb-2" style="color:#ff5722;">Trade License</h5>
-      <div class="mb-2 fw-semibold">Amount: <span style="color:#388e3c;">Min Rs 1500<br> <span style="color: red;">( Exact Amount Depends on SQ.Feet )</span></span></div>
-      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20trade%20license" target="_blank" class="btn btn-success btn-sm">
-        <i class="bi bi-whatsapp"></i> Enquire on WhatsApp
-      </a>
-    </div>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="card h-100 shadow-sm category-border text-center mb-4">
-    <div class="card-body">
-      <img src="/LABOR.jpeg" alt="Labour License" class="img-fluid rounded shadow-sm mb-3" style="max-height:260px; max-width:260px">
-      <h5 class="fw-bold mb-2" style="color:#ff5722;">Labour License</h5>
-      <div class="mb-2 fw-semibold">Amount: <span style="color:#388e3c;">Rs 1500</span></div>
-      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20labour%20license" target="_blank" class="btn btn-success btn-sm">
-        <i class="bi bi-whatsapp"></i> Enquire on WhatsApp
-      </a>
-    </div>
-  </div>
 </div>
 
-<div class="col-md-4">
-  <div class="card h-100 shadow-sm category-border text-center mb-4">
-    <div class="card-body">
-      <img src="/MSME.jpeg" alt="MSME" class="img-fluid rounded shadow-sm mb-3" style="max-height:260px; max-width:260px">
-      <h5 class="fw-bold mb-2" style="color:#ff5722;">UDYAM/MSME Certificate</h5>
-      <div class="mb-2 fw-semibold">Amount: <span style="color:#388e3c;">Rs 500</span></div>
-      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20UDYAM/MSME%20CERTIFICATE" target="_blank" class="btn btn-success btn-sm">
-        <i class="bi bi-whatsapp"></i> Enquire on WhatsApp
-      </a>
-    </div>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="card h-100 shadow-sm category-border text-center mb-4">
-    <div class="card-body">
-      <img src="/passport-sample.jpg" alt="MSME" class="img-fluid rounded shadow-sm mb-3" style="max-height:300px; max-width:300px">
-      <h5 class="fw-bold mb-2" style="color:#ff5722;">PASSPORT Application</h5>
-      <div class="mb-2 fw-semibold">Amount: <span style="color:#388e3c;">Rs 2000</span></div>
-      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20Apply%20passport" target="_blank" class="btn btn-success btn-sm">
-        <i class="bi bi-whatsapp"></i> Enquire on WhatsApp
-      </a>
-    </div>
-  </div>
-</div>
-	
-<div class="col-md-4">
-  <div class="card h-100 shadow-sm category-border text-center mb-4">
-    <div class="card-body">
-      <img src="/pan-sample.jpg" alt="pan" class="img-fluid rounded shadow-sm mb-3" style="max-height:300px; max-width:300px">
-      <h5 class="fw-bold mb-2" style="color:#ff5722;">PAN CARD </h5>
-      <div class="mb-2 fw-semibold">Amount: <span style="color:#388e3c;">Rs 200</span></div>
-      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20Apply%20pan card" target="_blank" class="btn btn-success btn-sm">
-        <i class="bi bi-whatsapp"></i> Enquire on WhatsApp
-      </a>
-    </div>
-  </div>
-</div>
-	
-	
-	
-     
-		<div class="col-md-4">
-			<div class="card h-100 shadow-sm hover-shadow category-border">
-			  <div class="card-body text-center">
-				<h5 class="card-title fw-bold mb-4" style="color: #0056b3;">General Services</h5>
-				<div class="row g-3">
-				  <div class="col-6">
-					<div class="service-outline">
-					<img src="/aadhar.jpeg" alt="Aadhar Card" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-					<div class="fw-semibold">Aadhar Address Update</div>
-				  </div>
-				  </div>
-
-
-				  <div class="col-6">
-					<div class="service-outline">
-					<img src="/voter_id.jpg" alt="Voter ID" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-					<div class="fw-semibold">Voter ID New/Correction</div>
-				  </div>
-				  </div>
-
-				</div>
-			  </div>
-			</div>
-		  </div>
-
-
-
-
-		  <div class="col-md-4">
-			<div class="card h-100 shadow-sm hover-shadow category-border">			  <div class="card-body text-center">
-				<h5 class="card-title fw-bold mb-4" style="color: #009688;">Utility Services</h5>
-				<div class="row g-3">
-					<div class="col-6">
-						<div class="service-outline">
-						<img src="/bus.jpg" alt="Bus Ticket" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-						<div class="fw-semibold">Bus Ticket Booking</div>
-						</div>
-					  </div>
-					 <!--  <div class="col-6">
-						<div class="service-outline">
-						<img src="/flight.jpg" alt="Flight Ticket" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-						<div class="fw-semibold">Flight Tickets</div>
-					  </div>
-				  </div>  -->
-				  <div class="col-6">
-					<div class="service-outline">
-					<img src="/train.jpg" alt="IRCTC" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-					<div class="fw-semibold">Train Ticket Booking</div>
-				  </div>
-				  </div>
-
-				<!--   <div class="col-6">
-					<div class="service-outline">
-					<img src="/epf.jpg" alt="EPFO" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-					<div class="fw-semibold">PF Advance ,<br> Full Amount</div>
-				  </div>
-				  </div>
-				  
-				 <div class="col-6">
-					<img src="/power.jpg" alt="Electricity Bill" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-					<div class="fw-semibold">Electricity Bill Payment</div>
-				  </div> -->
-				  
-				</div>
-			  </div>
-			</div>
-		  </div>
-
-
-
-<!-- Other Services -->
-<div class="col-md-4">
-  <div class="card h-100 shadow-sm hover-shadow category-border">
-    <div class="card-body text-center">
-      <h5 class="card-title fw-bold mb-4" style="color: #6d28d9;">Other Services</h5>
-      <ul class="list-group list-group-flush">
-       <li class="list-group-item">GST </li>
-        <li class="list-group-item"> ITR filing</li>
-         <li class="list-group-item">Online Form Filling</li>
-        <li class="list-group-item">Scholarship Applications</li>
-       
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Exam Applications -->
-<div class="col-md-4">
-  <div class="card h-100 shadow-sm hover-shadow category-border">
-    <div class="card-body text-center">
-      <h5 class="card-title fw-bold mb-4" style="color: #e64a19;">Exam Applications</h5>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">TG TET / UGC NET</li>
-        <li class="list-group-item">EAMCET / Polycet</li>
-        <li class="list-group-item">ECET / ICET</li>
-        <li class="list-group-item">PECET / EDCET</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Need Something Else -->
-<div class="col-md-4">
-  <div class="card h-100 shadow-sm hover-shadow category-border">
-    <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
-      <h5 class="card-title fw-bold mb-3" style="color: #ff5722;">Need Something Else?</h5>
-      <p class="mb-3 text-muted">Don't see what you're looking for? Contact us for any special requests or inquiries.</p>
-      <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-lg">
-        <i class="bi bi-whatsapp"></i> WhatsApp Us
-      </a>
-    </div>
-  </div>
-</div>
-
-
-    </div>
+          
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm category-border text-center">
+                  <div class="card-body">
+                      <img src="/TRADE.jpeg" alt="Trade License" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
+                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">Trade License</h5>
+                      <div class="mb-3 fw-semibold">Amount: <span class="custom-red">Depends on SQ.Feet</span></div>
+                      
+                      <div class="button-container d-flex justify-content-center">
+                <a href="/tradeLicense" class="btn btn-details me-2">
+                    <i class="bi bi-info-circle me-2"></i> Details
+                </a>
+                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20trade%20license" target="_blank" class="btn btn-success">
+                          <i class="bi bi-whatsapp"></i> Apply Now
+                      </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm category-border text-center">
+                  <div class="card-body">
+                      <img src="/LABOR.jpeg" alt="Labour License" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
+                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">Labour License</h5>
+                      <div class="mb-3 fw-semibold">Amount: <span class="text-success">Rs 1500</span></div>
+                      <div class="button-container d-flex justify-content-center">
+                      <a href="/labourLicense" class="btn btn-details me-2">
+                    <i class="bi bi-info-circle me-2"></i> Details
+                </a>
+                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20labour%20license" target="_blank" class="btn btn-success">
+                          <i class="bi bi-whatsapp"></i> Apply Now
+                      </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm category-border text-center">
+                  <div class="card-body">
+                      <img src="/MSME.jpeg" alt="MSME" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
+                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">UDYAM/MSME Certificate</h5>
+                      <div class="mb-3 fw-semibold">Amount: <span class="text-success">Rs 500</span></div>
+                      <div class="button-container d-flex justify-content-center">
+                <a href="/msme" class="btn btn-details me-2">
+                    <i class="bi bi-info-circle me-2"></i> Details
+                </a>
+                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20UDYAM/MSME%20CERTIFICATE" target="_blank" class="btn btn-success">
+                          <i class="bi bi-whatsapp"></i> Apply Now
+                      </a>
+                  </div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm category-border text-center floating">
+                  <div class="card-body">
+                      <img src="/passport-sample.jpg" alt="Passport" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
+                      <br><br>
+                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">PASSPORT APPLICATION</h5>
+                      <div class="mb-3 fw-semibold">Amount: <span class="text-success">Rs 2000</span></div><br>
+                      <div class="button-container d-flex justify-content-center">
+                      <a href="/passport" class="btn btn-details me-2">
+                    <i class="bi bi-info-circle me-2"></i> Details
+                </a>
+                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20Apply%20for%20passport" target="_blank" class="btn btn-success">
+                          <i class="bi bi-whatsapp"></i> Apply Now
+                      </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm category-border text-center">
+                  <div class="card-body">
+                      <img src="/pan-sample.jpg" alt="PAN Card" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:300px; max-width:300px">
+                      <br><br>
+                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">PAN CARD</h5>
+                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">NEW / CORRECTION	</h5>
+                      <div class="mb-3 fw-semibold">Amount: <span class="text-success">Rs 200</span></div><br>
+                      <div class="button-container d-flex justify-content-center">
+                      <a href="/pancard" class="btn btn-details me-2">
+                    <i class="bi bi-info-circle me-2"></i> Details
+                </a>
+                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20Apply%20for%20PAN%20card" target="_blank" class="btn btn-success">
+                          <i class="bi bi-whatsapp"></i> Apply Now
+                      </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- General Services Card -->
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm hover-shadow category-border">
+                  <div class="card-body text-center">
+                      <h5 class="card-title fw-bold mb-4" style="color: var(--color-primary);">General Services</h5>
+                      <div class="row g-3">
+                          <div class="col-6">
+                              <div class="service-outline">
+                                  <img src="/aadhar.jpeg" alt="Aadhar Card" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+                                  <div class="fw-semibold">Aadhar Address Update</div>
+                              </div>
+                          </div>
+                          <div class="col-6">
+                              <div class="service-outline">
+                                  <img src="/voter_id.jpg" alt="Voter ID" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+                                  <div class="fw-semibold">Voter ID New/Correction</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Utility Services Card -->
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm hover-shadow category-border">
+                  <div class="card-body text-center">
+                      <h5 class="card-title fw-bold mb-4" style="color: var(--color-accent);">Utility Services</h5>
+                      <div class="row g-3">
+                          <div class="col-6">
+                              <div class="service-outline">
+                                  <img src="/bus.jpg" alt="Bus Ticket" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+                                  <div class="fw-semibold">Bus Ticket Booking</div>
+                              </div>
+                          </div>
+                          <div class="col-6">
+                              <div class="service-outline">
+                                  <img src="/train.jpg" alt="IRCTC" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
+                                  <div class="fw-semibold">Train Ticket Booking</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Other Services Card -->
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm hover-shadow category-border">
+                  <div class="card-body text-center">
+                      <h5 class="card-title fw-bold mb-4" style="color: #6d28d9;">Other Services</h5>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">GST Registration</li>
+                          <li class="list-group-item">ITR Filing</li>
+                          <li class="list-group-item">Online Form Filling</li>
+                          <li class="list-group-item">Scholarship Applications</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Exam Applications Card -->
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm hover-shadow category-border">
+                  <div class="card-body text-center">
+                      <h5 class="card-title fw-bold mb-4" style="color: var(--color-danger);">Exam Applications</h5>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">TG TET / UGC NET</li>
+                          <li class="list-group-item">EAMCET / Polycet</li>
+                          <li class="list-group-item">ECET / ICET</li>
+                          <li class="list-group-item">PECET / EDCET</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Need Something Else Card -->
+          <div class="col-md-4">
+              <div class="card h-100 shadow-sm hover-shadow category-border">
+                  <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                      <h5 class="card-title fw-bold mb-3" style="color: var(--color-secondary);">Need Something Else?</h5>
+                      <p class="mb-4 text-muted">Don't see what you're looking for? Contact us for any special requests or inquiries.</p>
+                      <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-lg pulse">
+                          <i class="bi bi-whatsapp"></i> WhatsApp Us
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
   </section>
+<!-- Add after Features section -->
+<section class="container my-5 text-center">
+    <h2 class="fw-bold mb-4" style="color: var(--color-primary-dark);">What Our Clients Say</h2>
 
+    <!-- Scrollable wrapper -->
+    <div id="testimonialScroller" class="scroll-wrapper" style="overflow-x: auto; white-space: nowrap; padding-bottom: 1rem; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none;">
+        <!-- Testimonial Cards -->
+        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
+            <p class="text-muted">"Received my UDYAM Certificate instantly."</p>
+            <h6 class="fw-bold mb-0">- murthy</h6>
+        </div>
+        
+        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
+            <p class="text-muted">"Got my Aadhar Address updated in 3 days."</p>
+            <h6 class="fw-bold mb-0">- Raju Yadav</h6>
+        </div>
 
-<!-- Social Media Accounts Section -->
-<div class="container my-4">
-  <h5 class="text-center fw-bold mb-3">Social Media Accounts</h5>
-  <div class="d-flex justify-content-center gap-2">
-    <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
-      <i class="bi bi-whatsapp fs-6"></i>
-    </a>
-    <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-info btn-sm shadow">
-      <i class="bi bi-instagram fs-6"></i>
-    </a>
-    <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
-      <i class="bi bi-youtube fs-6"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
-      <i class="bi bi-linkedin fs-6"></i>
-    </a>
-    <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-success btn-sm shadow">
-      <i class="bi bi-geo-alt-fill fs-6"></i>
-    </a>
+        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
+            <p class="text-muted">"Received my trade license within 24 hours."</p>
+            <h6 class="fw-bold mb-0">- Vishnu</h6>
+        </div>
+
+        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
+            <p class="text-muted">"Quick service and very helpful, got my PAN in 1 day."</p>
+            <h6 class="fw-bold mb-0">- Jyothi</h6>
+        </div>
+
+        
+        
+        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
+            <p class="text-muted">"Saved me a lot of time, excellent experience."</p>
+            <h6 class="fw-bold mb-0">- Renuka</h6>
+        </div>
+        
+        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
+            <p class="text-muted">"Highly recommend for anyone needing quick document services."</p>
+            <h6 class="fw-bold mb-0">- Shiva</h6>
+        </div>
+        
+        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
+            <p class="text-muted">"Excellent service!"</p>
+            <h6 class="fw-bold mb-0">- Anil</h6>
+        </div>
+        
+        
+    </div>
+</section>
+
+  
+
+  <!-- Social Media Section -->
+  <div class="container my-5">
+      <h5 class="text-center fw-bold mb-4" style="color: var(--color-primary);">Connect With Us</h5>
+      <div class="d-flex justify-content-center gap-3">
+      
     
+      
+          <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
+              <i class="bi bi-whatsapp"></i>
+          </a>
+          <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-instagram btn-sm shadow" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white;">
+              <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
+              <i class="bi bi-youtube"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
+              <i class="bi bi-linkedin"></i>
+          </a>
+          <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-success btn-sm shadow">
+              <i class="bi bi-geo-alt-fill"></i>
+          </a>
+      </div>
   </div>
-</div>
 
   <!-- Footer -->
-  <footer class="py-4 bg-dark text-light text-center">
-    <div class="container">
-      <nav class="mb-2">
-        <a href="/terms" class="text-light mx-2">Terms</a>
-        <a href="/privacy" class="text-light mx-2">Privacy</a>
-        <a href="/contact" class="text-light mx-2">Contact</a>
-        <a href="/cancellation" class="text-light mx-2">Cancellation</a>
-        <a href="/shipping" class="text-light mx-2">Shipping</a>
-      </nav>
-      <div class="mb-2">
-        <a href="tel:7893845696" class="text-light mx-2"><i class="bi bi-telephone-fill"></i> 7893845696</a>
-        <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
+  <footer class="site-footer py-4">
+      <div class="container">
+          <nav class="mb-3 d-flex flex-wrap justify-content-center">
+              <a href="/terms" class="text-light mx-2 mb-2">Terms</a>
+              <a href="/privacy" class="text-light mx-2 mb-2">Privacy</a>
+              <a href="/contact" class="text-light mx-2 mb-2">Contact</a>
+              <a href="/cancellation" class="text-light mx-2 mb-2">Cancellation</a>
+              <a href="/shipping" class="text-light mx-2 mb-2">Shipping</a>
+          </nav>
+          <div class="mb-3 text-center">
+              <a href="tel:7893845696" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-telephone-fill"></i> 7893845696</a>
+              <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
+          </div>
+          <div class="text-center">
+              <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
+          </div>
       </div>
-      <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
-    </div>
   </footer>
-   <script src="js/disable-right-click.js"></script>
-  </body>
+
+  <!-- Ripple Effect JavaScript -->
+  <script>
+  
+  const scroller = document.getElementById('testimonialScroller');
+  const cardWidth = 260; // Adjust if needed (card width + margin)
+  let scrollPosition = 0;
+
+  setInterval(() => {
+      scrollPosition += cardWidth;
+      if (scrollPosition >= scroller.scrollWidth - scroller.clientWidth) {
+          scrollPosition = 0; // Reset to start
+      }
+      scroller.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+  }, 2000); // 2 seconds
+  
+  
+  
+      // Add ripple effect to all buttons
+      document.querySelectorAll('.btn').forEach(button => {
+          button.addEventListener('click', function(e) {
+              // Create ripple element
+              const ripple = document.createElement('span');
+              ripple.classList.add('ripple');
+              
+              // Position the ripple
+              const rect = this.getBoundingClientRect();
+              const size = Math.max(rect.width, rect.height);
+              const x = e.clientX - rect.left - size/2;
+              const y = e.clientY - rect.top - size/2;
+              
+              // Style the ripple
+              ripple.style.width = ripple.style.height = `${size}px`;
+              ripple.style.left = `${x}px`;
+              ripple.style.top = `${y}px`;
+              ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+              ripple.style.position = 'absolute';
+              ripple.style.borderRadius = '50%';
+              ripple.style.transform = 'scale(0)';
+              ripple.style.animation = 'ripple 0.6s linear';
+              ripple.style.pointerEvents = 'none';
+              
+              // Add ripple to button
+              this.appendChild(ripple);
+              
+              // Remove ripple after animation
+              setTimeout(() => {
+                  ripple.remove();
+              }, 600);
+          });
+      });
+  </script>
+</body>
 </html>

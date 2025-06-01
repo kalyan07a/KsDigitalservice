@@ -1,189 +1,493 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shipping & Delivery - KS Digital Service</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 
     <style>
         :root {
-            --primary-color: #2563eb;
-            --text-dark: #1e293b;
-            --text-medium: #64748b;
-            --border-color: #e2e8f0;
+            --color-primary: #2563eb;
+            --color-primary-dark: #1d4ed8;
+            --color-primary-light: #93c5fd;
+            --color-secondary: #f59e0b;
+            --color-secondary-dark: #d97706;
+            --color-secondary-light: #fcd34d;
+            --color-accent: #10b981;
+            --color-accent-dark: #059669;
+            --color-danger: #ef4444;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-text-dark: #1f2937;
+            --color-text-medium: #4b5563;
+            --color-text-light: #9ca3af;
+            --color-bg-body: #f9fafb;
+            --color-bg-card: #ffffff;
+            --color-border: #e5e7eb;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text-medium);
+            background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%);
+            min-height: 100vh;
             line-height: 1.6;
         }
 
-        .home-logo-button {
-            position: fixed;
-            top: 25px;
-            left: 30px;
+        .hero-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            padding: 1.0rem 0 3rem; /* Increased bottom padding */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card {
+            border: none;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            background: var(--color-bg-card);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .site-footer {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .btn {
+            position: relative;
+            overflow: hidden;
+            border: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(0);
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            color: white;
+        }
+
+        .img-hover-zoom {
+            transition: transform 0.3s ease;
+        }
+
+        .img-hover-zoom:hover {
+            transform: scale(1.03);
+        }
+
+        .info-section {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        /* Increased width for desktop */
+        .policy-content {
+            max-width: 1000px; /* Increased from 800px */
+            margin: 0 auto;
             background: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 2.5rem; /* Increased padding */
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .policy-section {
+            margin: 2rem 0;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .policy-section:last-child {
+            border-bottom: none;
+        }
+
+        .policy-section h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-text-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .policy-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 1.5rem 0;
+        }
+
+        .policy-section li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .policy-section li::before {
+            content: "\F26A";
+            font-family: "bootstrap-icons";
+            color: var(--color-primary);
+            font-size: 1rem; /* Slightly larger */
+            margin-top: 0.25rem;
+        }
+
+        /* Home button styling */
+        .home-logo-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            box-shadow: var(--shadow-md);
             text-decoration: none;
             transition: all 0.2s ease;
+            font-weight: 600;
+            z-index: 100;
+            color: var(--color-primary);
         }
 
         .home-logo-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: var(--shadow-lg);
+            color: var(--color-primary-dark);
         }
 
-        .page-header {
-            margin: 80px 0 40px;
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border-top: 3px solid var(--color-primary);
+            transition: all 0.3s ease;
             text-align: center;
         }
 
-        .page-title {
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            background: white;
+        }
+
+        .service-icon {
             font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
+            color: var(--color-primary);
             margin-bottom: 1rem;
         }
 
-        .page-title span {
-            color: var(--primary-color);
-        }
-
-        .policy-content {
-            max-width: 800px;
-            margin: 0 auto 40px;
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        .no-shipping-banner {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f7ff 100%);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            border-left: 4px solid var(--color-primary);
+            margin: 1.5rem 0;
             text-align: center;
         }
 
-        .policy-icon {
-            font-size: 4rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
+        .no-shipping-icon {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
         }
 
-        .footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 40px 0;
-            margin-top: 80px;
+        @media (max-width: 991.98px) {
+            .policy-content {
+                max-width: 800px;
+            }
         }
 
-        .footer a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .footer a:hover {
-            color: var(--primary-color);
-        }
-
-        @media (max-width: 768px) {
-            .page-title {
-                font-size: 2rem;
+        @media (max-width: 767.98px) {
+            .policy-content {
+                padding: 1.5rem;
+                max-width: 95%;
             }
             
             .home-logo-button {
-                left: 15px;
-                padding: 8px 15px;
+                margin-top: 1rem;
             }
             
-            .policy-content {
-                padding: 30px 20px;
+            .hero-section {
+                padding: 4rem 0 3rem; /* Adjusted for mobile */
             }
             
-            .policy-icon {
-                font-size: 3rem;
+            .service-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
 <body>
-    <a href="/" class="home-logo-button">
-        <i class="bi bi-house-door-fill"></i> KS Digital
-    </a>
-
-    <div class="container">
-        <header class="page-header">
-        <h1 class="page-title"><span>KS DIGITAL SERVICES</span></h1>
-        	
-            <h2>Shipping & Delivery</h2>
-        
-            <p class="text-muted mb-4">Information about physical product delivery</p>
-
-        </header>
-
-        <main class="policy-content">
-            <div class="policy-icon">
-                <i class="bi bi-box-seam"></i>
-            </div>
-            <h2>No Shipping Services</h2>
-            <p class="lead text-muted">
-                KS Digital Services focuses on digital solutions and in-person assistance
-            </p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-6 fw-bold mb-0">KS DIGITAL SERVICES</h1>
+            <h6 class="mb-1">Shipping & Delivery</h6>
             
-            <div class="text-start mt-4">
-                <div class="alert alert-info">
-                    <h5 class="alert-heading">Our Services Include:</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">
-                            <i class="bi bi-printer me-2 text-primary"></i>
-                            Self-service printing (collect in-store)
-                        </li>
-                        <li class="mb-3">
-                            <i class="bi bi-file-earmark-text me-2 text-primary"></i>
-                            Online application assistance
-                        </li>
-                        <li class="mb-3">
-                            <i class="bi bi-credit-card me-2 text-primary"></i>
-                            Bill payments and ticket bookings
-                        </li>
-                    </ul>
-                    <hr>
-                    <p class="mb-0">
-                        All services are either digital or require in-person collection at our location.
-                    </p>
+            <!-- Home button centered below the heading -->
+            <a href="/" class="home-logo-button">
+                <i class="bi bi-house-door-fill me-2"></i> HOME PAGE
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-11"> <!-- Wider column -->
+                <div class="policy-content">
+                    <div class="text-center mb-4">
+                        <h2 class="section-title">Shipping & Delivery Policy</h2>
+                        <p class="text-muted">Information about our services and collection process</p>
+                    </div>
+                    
+                    <div class="no-shipping-banner">
+                        <i class="bi bi-truck no-shipping-icon"></i>
+                        <h3>No Shipping Services</h3>
+                        <p class="lead mb-0">KS Digital Services focuses on digital solutions and in-person assistance</p>
+                    </div>
+                    
+                    <div class="service-grid">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="bi bi-printer"></i>
+                            </div>
+                            <h4>Self-Service Printing</h4>
+                            <p>Print your documents using our self-service stations. All print jobs must be collected in-store.</p>
+                            <div class="mt-3">
+                                <a href="/contact" class="btn btn-outline-primary">
+                                    <i class="bi bi-geo-alt me-2"></i> Visit Us
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </div>
+                            <h4>Application Assistance</h4>
+                            <p>Get help with online applications, form filling, and document submissions - all done digitally.</p>
+                            <div class="mt-3">
+                                <a href="/contact" class="btn btn-outline-primary">
+                                    <i class="bi bi-calendar-check me-2"></i> Book Appointment
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="bi bi-credit-card"></i>
+                            </div>
+                            <h4>Bill Payments & Bookings</h4>
+                            <p>Pay bills, book tickets, and handle financial transactions - all processed digitally with instant confirmation.</p>
+                            <div class="mt-3">
+                                <a href="/" class="btn btn-outline-primary">
+                                    <i class="bi bi-wallet2 me-2"></i> View Services
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="policy-section">
+                        <h2>Service Collection Process</h2>
+                        <p>For services that require in-person collection (like printed documents), please follow this process:</p>
+                        <ul>
+                            <li><strong>Place your order:</strong> Submit your documents through our online portal or in-person</li>
+                            <li><strong>Processing time:</strong> Most orders are ready within 1-2 business hours</li>
+                            <li><strong>Notification:</strong> You'll receive a notification when your order is ready for pickup</li>
+                            <li><strong>Collection window:</strong> Orders must be collected within 3 business days</li>
+                            <li><strong>ID required:</strong> Bring valid photo ID to collect your order</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-section">
+                        <h2>Digital Service Delivery</h2>
+                        <p>For our digital services, here's what you can expect:</p>
+                        <ul>
+                            <li><strong>Instant processing:</strong> Most digital services are completed immediately</li>
+                            <li><strong>Email confirmation:</strong> You'll receive confirmation of service completion</li>
+                            <li><strong>Secure document handling:</strong> All digital documents are handled with strict confidentiality</li>
+                            <li><strong>Online tracking:</strong> Track the status of your application through our portal</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="policy-section">
+                        <h2>Why No Shipping?</h2>
+                        <div class="alert alert-info">
+                            <p>As a digital services center, we focus on:</p>
+                            <ul>
+                                <li>Providing immediate, in-person assistance</li>
+                                <li>Ensuring document security and confidentiality</li>
+                                <li>Offering personalized service for each customer</li>
+                                <li>Maintaining quality control through direct interaction</li>
+                            </ul>
+                            <p class="mb-0">This approach allows us to provide the highest quality service with immediate resolution.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-        </main>
+    <!-- Social Media Section -->
+    <div class="container my-5">
+        <h5 class="text-center fw-bold mb-4" style="color: var(--color-primary);">Connect With Us</h5>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-instagram btn-sm shadow" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white;">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
+                <i class="bi bi-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-success btn-sm shadow">
+                <i class="bi bi-geo-alt-fill"></i>
+            </a>
+        </div>
     </div>
 
-    <footer class="footer">
-        <div class="container text-center">
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
-                <a href="/terms">Terms</a>
-                <a href="/privacy">Privacy</a>
-                <a href="/contact">Contact</a>
-                <a href="/cancellation">Cancellation</a>
-                <a href="/shipping">Shipping</a>
+    <!-- Footer -->
+    <footer class="site-footer py-4">
+        <div class="container">
+            <nav class="mb-3 d-flex flex-wrap justify-content-center">
+                <a href="/terms" class="text-light mx-2 mb-2">Terms</a>
+                <a href="/privacy" class="text-light mx-2 mb-2">Privacy</a>
+                <a href="/contact" class="text-light mx-2 mb-2">Contact</a>
+                <a href="/cancellation" class="text-light mx-2 mb-2">Cancellation</a>
+                <a href="/shipping" class="text-light mx-2 mb-2">Shipping</a>
+            </nav>
+            <div class="mb-3 text-center">
+                <a href="tel:7893845696" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-telephone-fill"></i> 7893845696</a>
+                <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
             </div>
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
-                <a href="tel:7893845696">
-                    <i class="bi bi-telephone"></i> 7893845696
-                </a>
-                <a href="mailto:ksdigital2025@gmail.com">
-                    <i class="bi bi-envelope"></i> ksdigital2025@gmail.com
-                </a>
+            <div class="text-center">
+                <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
             </div>
-            <p class="mb-0 text-secondary">© 2025 KS Digital Services. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/disable-right-click.js"></script>
+    <script>
+        // Add ripple effect to all buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple element
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                
+                // Position the ripple
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size/2;
+                const y = e.clientY - rect.top - size/2;
+                
+                // Style the ripple
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                // Add ripple to button
+                this.appendChild(ripple);
+                
+                // Remove ripple after animation
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+        
+        // Add hover effect to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            });
+        });
+    </script>
 </body>
 </html>
