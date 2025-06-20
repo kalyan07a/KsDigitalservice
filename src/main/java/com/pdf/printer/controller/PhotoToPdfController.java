@@ -31,6 +31,11 @@ public class PhotoToPdfController {
     public String index(Model model) {
         return "photo";
     }
+    @GetMapping("/autofill")
+    public String autofill() {
+        return "autofill";
+    }
+    
 
     @PostMapping("/generate-pdf")
     public void generatePdf(
