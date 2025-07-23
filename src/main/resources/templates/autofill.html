@@ -1,562 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAN Card Services Online | Apply for PAN Card</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #1a3a5f, #2c5282);
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 0 0 10px 10px;
-            margin-bottom: 30px;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo h1 {
-            font-size: 1.8rem;
-            margin-left: 15px;
-            font-weight: 600;
-        }
-        
-        .logo-icon {
-            font-size: 2.5rem;
-            background: white;
-            color: #2c5282;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 20px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        
-        nav ul li a:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .page-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .page-title h2 {
-            font-size: 2.2rem;
-            color: #2c5282;
-            margin-bottom: 15px;
-        }
-        
-        .page-title p {
-            font-size: 1.1rem;
-            color: #4a5568;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .card-header {
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .card-header h3 {
-            font-size: 1.5rem;
-            color: #2c5282;
-            display: flex;
-            align-items: center;
-        }
-        
-        .card-header h3 i {
-            margin-right: 10px;
-            color: #4299e1;
-        }
-        
-        .text-input-section {
-            text-align: center;
-            padding: 30px;
-            background: #f8fafc;
-            border: 2px dashed #cbd5e0;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            transition: all 0.3s;
-        }
-        
-        .text-input-section:hover {
-            border-color: #4299e1;
-            background: #edf2f7;
-        }
-        
-        .text-input-icon {
-            font-size: 3rem;
-            color: #4299e1;
-            margin-bottom: 15px;
-        }
-        
-        .text-input-section h4 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #2d3748;
-        }
-        
-        .text-input-section p {
-            color: #718096;
-            margin-bottom: 20px;
-        }
-        
-        .details-textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border 0.3s;
-            min-height: 120px;
-            resize: vertical;
-            margin: 15px 0;
-        }
-        
-        .details-textarea:focus {
-            outline: none;
-            border-color: #4299e1;
-            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
-        }
-        
-        .form-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #4a5568;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border 0.3s;
-        }
-        
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #4299e1;
-            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
-        }
-        
-        .required::after {
-            content: " *";
-            color: #e53e3e;
-        }
-        
-        .form-actions {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary {
-            background: #4299e1;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #3182ce;
-        }
-        
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #4a5568;
-        }
-        
-        .btn-secondary:hover {
-            background: #cbd5e0;
-        }
-        
-        .instructions {
-            background: #ebf8ff;
-            border-left: 4px solid #4299e1;
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin: 30px 0;
-        }
-        
-        .instructions h4 {
-            margin-bottom: 15px;
-            color: #2c5282;
-        }
-        
-        .instructions ul {
-            padding-left: 20px;
-        }
-        
-        .instructions li {
-            margin-bottom: 10px;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-            color: #718096;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        .autofill-notice {
-            background: #e6fffa;
-            border: 1px solid #81e6d9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .autofill-notice i {
-            font-size: 1.5rem;
-            color: #319795;
-            margin-right: 15px;
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .logo {
-                margin-bottom: 20px;
-            }
-            
-            nav ul {
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0 10px;
-            }
-            
-            .form-actions {
-                flex-direction: column;
-            }
-        }
-
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PAN Card Services Online | Apply for PAN Card</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .form-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .btn-success {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .details-textarea {
+      min-height: 80px;
+      font-size: 16px;
+    }
+    .counter {
+      text-align: right;
+      font-size: 14px;
+      color: #666;
+    }
+    #inputStatus {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
 </head>
 <body>
 
-
-    <div class="container">
-   
-
-        <div class="card">
-      
-            
-            <div class="text-input-section">
-                <div class="text-input-icon">
-                </div>
-                <h4>Enter User Details</h4>
-                <textarea 
-                    id="userDetailsInput" 
-                    class="details-textarea" 
-                    placeholder="Example: Sharma, Raj, Kumar, 15/05/1990, raj.sharma@example.com, 9876543210, 9978, Aasd, Asdf, Asdfg, 222, Road No 1, Tirumala, Hyderabad, 500045, 99000000, 998877665544"
-                ></textarea>
-                <p id="inputStatus" style="margin-top: 5px; font-style: italic; color: #4a5568;"></p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h3><i class="fas fa-user-edit"></i> Applicant Information</h3>
-            </div>
-            
-            <form id="panApplicationForm" >
-
-   <div class="form-actions">
-                    <button type="button" id="fillBtn" class="btn btn-primary">
-                        <i class="fas fa-magic"></i> Fill Form from Text
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Submit Application
-                    </button>
-                    
-                </div>
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-                <div class="form-section">
-                    <div class="form-group">
-                        <label for="lastName" class="required">Last Name / Surname</label>
-                        <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="firstName" class="required">First Name</label>
-                        <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="middleName">Middle Name</label>
-                        <input type="text" id="middleName" name="middleName" autocomplete="additional-name">
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <div class="form-group">
-                        <label for="dob" class="required">Date of Birth (DD/MM/YYYY)</label>
-                        <input type="text" id="dob" name="dateOfBirth" placeholder="DD/MM/YYYY" autocomplete="bday" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email" class="required">Email ID</label>
-                        <input type="email" id="email" name="emailId" autocomplete="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone" class="required">Mobile Number</label>
-                        <input type="tel" id="phone" name="rvContactNo" autocomplete="tel" required>
-                    </div>
-                </div>
-
-                <div class="form-section">
-                    <div class="form-group">
-                        <label for="aadhaarNo_2">Aadhaar Last Four Digits</label>
-                        <input id="aadhaarNo_2" name="rvAadhaarNum_sec" style="border-left-width: 0px; outline: none; padding: 5px 5px 5px 0px; -webkit-box-shadow: none; box-shadow: none; width: 78px;" class="form-control" type="text" maxlength="4" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rvNameAadhaar_id">Name as per Aadhaar</label>
-                        <input id="rvNameAadhaar_id" name="rvNameAadhaar" class="form-control" type="text" maxlength="100" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fal_name">Father's Last Name</label>
-                        <input id="fal_name" name="rvFatherLastname" class="form-control" type="text" maxlength="25" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="faf_name">Father's First Name</label>
-                        <input id="faf_name" name="rvFatherFirstname" class="form-control" type="text" maxlength="25" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rFlat">House Number</label>
-                        <input id="rFlat" name="rvResaddFlat" class="form-control" type="text" maxlength="25" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rName">Road/Street/Lane/Post Office</label>
-                        <input id="rName" name="rvResaddBuilding" class="form-control" type="text" maxlength="25" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rRoad">VTC (Village/Town/City)</label>
-                        <input id="rRoad" name="rvResaddPostoffice" class="form-control" type="text" maxlength="25" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rArea">Area/Locality/Taluka/Sub-Division</label>
-                        <input id="rArea" name="rvResaddLocality" class="form-control" type="text" maxlength="25" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rCountry">District</label>
-                        <input id="rCountry" name="rvResaddCity" class="form-control" type="text" maxlength="25" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="res_pin_code">Pincode</label>
-                        <input id="res_pin_code" name="rvResaddPin" class="form-control" onchange="fetchAOCodesFields();" type="text" maxlength="6" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="aadhaarNo_1">First Eight Digits of Aadhaar Number</label>
-                        <input id="aadhaarNo_1" name="rvAadhaarNum_first" style="border-right-width: 0px; padding: 5px 0px 5px 5px; width: 78px; margin-right:15px;" class="form-control" type="text" maxlength="8" autocomplete="on">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="aadhaarNofull">Full Aadhaar Card Number</label>
-                        <input id="aadhaarNofull" name="rvAadhaarNum_full" style="border-right-width: 0px; padding: 5px 0px 5px 5px; width: 78px; margin-right:15px;" class="form-control" type="text" maxlength="12" autocomplete="on">
-                    </div>
-                </div>
-                
-                
-             
-            </form>
-        </div>
+  <div class="container">
+    <!-- Textarea Input Card -->
+    <div class="card">
+      <div>
+        <label for="userDetailsInput"><strong>Paste Your Details (CSV Format):</strong></label>
+        <textarea id="userDetailsInput" class="details-textarea" placeholder="e.g. LastName,FirstName,DOB,Phone,..."></textarea>
+        <div class="counter">Characters: <span id="charCount">0</span></div>
+        <div id="inputStatus"></div>
+      </div>
     </div>
 
+    <!-- Form Card -->
+    <div class="card">
+      <form id="panApplicationForm" autocomplete="on">
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const userDetailsInput = document.getElementById('userDetailsInput');
-            const fillBtn = document.getElementById('fillBtn');
-            const inputStatus = document.getElementById('inputStatus');
-            
-            // Fill button click event
-            fillBtn.addEventListener('click', function() {
-                const inputText = userDetailsInput.value.trim();
-                
-                if (!inputText) {
-                    inputStatus.textContent = "Please enter user details in the specified format";
-                    inputStatus.style.color = "#e53e3e";
-                    return;
-                }
-                
-                const lines = inputText.split('\n');
-                const firstLine = lines[0].trim();
-                const values = firstLine.split(',');
-                
-                if (values.length !== 18) {
-                    inputStatus.textContent = "Invalid format. Please provide all required values";
-                    inputStatus.style.color = "#e53e3e";
-                    return;
-                }
-                
-                document.getElementById('lastName').value = values[0].trim();
-                document.getElementById('firstName').value = values[1].trim();
-                document.getElementById('middleName').value = values[2].trim();
-                document.getElementById('dob').value = values[3].trim();
-                document.getElementById('email').value = values[4].trim();
-                document.getElementById('phone').value = values[5].trim();
-                document.getElementById('aadhaarNo_2').value = values[6].trim();
-                document.getElementById('rvNameAadhaar_id').value = values[7].trim();
-                document.getElementById('fal_name').value = values[8].trim();
-                document.getElementById('faf_name').value = values[9].trim();
-                document.getElementById('rFlat').value = values[10].trim();
-                document.getElementById('rName').value = values[11].trim();
-                document.getElementById('rRoad').value = values[12].trim();
-                document.getElementById('rArea').value = values[13].trim();
-                document.getElementById('rCountry').value = values[14].trim();
-                document.getElementById('res_pin_code').value = values[15].trim();
-                document.getElementById('aadhaarNo_1').value = values[16].trim();
-                document.getElementById('aadhaarNofull').value = values[17].trim();
-                
-                storeInAutofill(values);
-                
-                inputStatus.textContent = "Form filled successfully! Data stored in autofill system.";
-                inputStatus.style.color = "#319795";
-            });
-            
-            document.getElementById('panApplicationForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Application submitted successfully!');
-                this.reset();
-                userDetailsInput.value = "";
-                inputStatus.textContent = "";
-            });
-            
-            document.querySelector('button[type="reset"]').addEventListener('click', function() {
-                userDetailsInput.value = "";
-                inputStatus.textContent = "";
-                alert("To clear browser data, please navigate to chrome://settings/clearBrowserData in your browser.");
-            });
-            
-            function storeInAutofill(values) {
-                console.log('Storing in autofill system:', {
-                    lastName: values[0],
-                    firstName: values[1],
-                    middleName: values[2],
-                    dob: values[3],
-                    email: values[4],
-                    phone: values[5],
-                    aadhaarLastFour: values[6],
-                    nameAadhaar: values[7],
-                    fatherLastName: values[8],
-                    fatherFirstName: values[9],
-                    houseNumber: values[10],
-                    road: values[11],
-                    vtc: values[12],
-                    area: values[13],
-                    district: values[14],
-                    pincode: values[15],
-                    aadhaarFirstEight: values[16],
-                    aadhaarFull: values[17]
-                });
-            }
-        });
-    </script>
+        <!-- 🟢 Buttons moved to top -->
+        <div class="form-actions">
+          <button type="button" class="btn btn-primary" id="fillBtn"><i class="fas fa-magic"></i> Fill Form</button>
+          <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Submit</button>
+        </div>
+
+       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <!-- Other Inputs -->
+        <div class="form-section">
+          <div class="form-group">
+            <label for="lastName">Last Name / Surname</label>
+            <input type="text" id="lastName" name="lastName" autocomplete="family-name">
+          </div>
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" autocomplete="given-name">
+          </div>
+			 <!-- Date of Birth Field -->
+        <div class="form-group">
+          <label for="date_of_birth_reg">Date of Birth</label>
+          <input id="date_of_birth_reg" name="dateOfBirth" type="text" class="form-control" onkeypress="return event.keyCode !== 13;" autocomplete="on" />
+        </div>
+          <div class="form-group">
+            <label for="phone">Mobile Number</label>
+            <input type="tel" id="phone" name="rvContactNo" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="aadhaarNo_1">Aadhaar First 8 Digits</label>
+            <input type="text" id="aadhaarNo_1" name="rvAadhaarNum_first" maxlength="8">
+          </div>
+          <div class="form-group">
+            <label for="aadhaarNo_2">Aadhaar Last 4 Digits</label>
+            <input type="text" id="aadhaarNo_2" name="rvAadhaarNum_sec" maxlength="4">
+          </div>
+          <div class="form-group">
+            <label for="rvNameAadhaar_id">Name as per Aadhaar</label>
+            <input type="text" id="rvNameAadhaar_id" name="rvNameAadhaar">
+          </div>
+          <div class="form-group">
+            <label for="fal_name">Father's Last Name</label>
+            <input type="text" id="fal_name" name="rvFatherLastname">
+          </div>
+          <div class="form-group">
+            <label for="faf_name">Father's First Name</label>
+            <input type="text" id="faf_name" name="rvFatherFirstname">
+          </div>
+          <div class="form-group">
+            <label for="rCountry">District</label>
+            <input type="text" id="rCountry" name="rvResaddCity">
+          </div>
+          <div class="form-group">
+            <label for="res_pin_code">Pincode</label>
+            <input type="text" id="res_pin_code" name="rvResaddPin" maxlength="6">
+          </div>
+          <div class="form-group">
+            <label for="rFlat">House Number</label>
+            <input type="text" id="rFlat" name="rvResaddFlat">
+          </div>
+          <div class="form-group">
+            <label for="rName">Street</label>
+            <input type="text" id="rName" name="rvResaddBuilding">
+          </div>
+          <div class="form-group">
+            <label for="rRoad">VTC</label>
+            <input type="text" id="rRoad" name="rvResaddPostoffice">
+          </div>
+          <div class="form-group">
+            <label for="rArea">Locality</label>
+            <input type="text" id="rArea" name="rvResaddLocality">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="text-align:center; padding:20px; margin-top:20px; font-size:14px; color:#666;">
+    &copy; 2025 PAN Card Services. All rights reserved.
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const userDetailsInput = document.getElementById('userDetailsInput');
+      const charCount = document.getElementById('charCount');
+      const inputStatus = document.getElementById('inputStatus');
+      const fillBtn = document.getElementById('fillBtn');
+      const form = document.getElementById('panApplicationForm');
+
+      userDetailsInput.addEventListener('input', function () {
+        charCount.textContent = userDetailsInput.value.length;
+      });
+
+      function showStatus(message, type) {
+        inputStatus.textContent = message;
+        inputStatus.className = type;
+        setTimeout(() => {
+          inputStatus.textContent = '';
+          inputStatus.className = '';
+        }, 5000);
+      }
+
+      fillBtn.addEventListener('click', function () {
+        const inputText = userDetailsInput.value.trim();
+        if (!inputText) {
+          showStatus('Please enter user details.', 'error');
+          return;
+        }
+
+        const values = inputText.split(',').map(val => val.trim());
+        if (values.length !== 15) {
+          showStatus('Expected 15 comma-separated values.', 'error');
+          return;
+        }
+
+        document.getElementById('lastName').value = values[0];
+        document.getElementById('firstName').value = values[1];
+        document.getElementById('date_of_birth_reg').value = values[2];
+        document.getElementById('phone').value = values[3];
+        document.getElementById('aadhaarNo_1').value = values[4];
+        document.getElementById('aadhaarNo_2').value = values[5];
+        document.getElementById('rvNameAadhaar_id').value = values[6];
+        document.getElementById('fal_name').value = values[7];
+        document.getElementById('faf_name').value = values[8];
+        document.getElementById('rCountry').value = values[9];
+        document.getElementById('res_pin_code').value = values[10];
+        document.getElementById('rFlat').value = values[11];
+        document.getElementById('rName').value = values[12];
+        document.getElementById('rRoad').value = values[13];
+        document.getElementById('rArea').value = values[14];
+
+        showStatus('Form filled successfully.', 'success');
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        showStatus('Form submitted successfully!', 'success');
+        // Submit logic or data handling here
+      });
+    });
+  </script>
 </body>
 </html>

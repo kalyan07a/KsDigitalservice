@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Task Manager | KS Digital</title>
+
+<!-- Bootstrap + Icons + Fonts -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+	rel="stylesheet" />
+
+<style>
+:root {
+	--color-primary: #4361ee;
+	--color-primary-dark: #3a0ca3;
+	--color-primary-light: #4cc9f0;
+	--color-bg-card: rgba(30, 41, 59, 0.75);
+	--color-border: rgba(148, 163, 184, 0.3);
+	--color-text-light: #f8fafc;
+	--color-text-medium: #cbd5e1;
+	--color-bg-dark: #0f172a;
+	--gradient-primary: linear-gradient(135deg, var(--color-primary),
+		var(--color-primary-dark));
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background-color: var(--color-bg-dark);
+	color: var(--color-text-medium);
+	min-height: 100vh;
+}
+
+.navbar {
+	background-color: rgba(15, 23, 42, 0.85);
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-brand {
+	font-weight: 700;
+	font-size: 1.6rem;
+	background: var(--gradient-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.main-container {
+	background: var(--color-bg-card);
+	padding: 2rem;
+	border-radius: 1rem;
+	margin: 4rem auto;
+	max-width: 1300px;
+	border-top: 5px solid var(--color-primary);
+}
+
+h2 {
+	color: var(--color-text-light);
+	font-weight: 600;
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+label {
+	font-weight: 500;
+	color: var(--color-text-light);
+}
+
+input, textarea {
+	background: #ffffff12;
+	border: 1px solid var(--color-border);
+	color: var(--color-text-light);
+	border-radius: 0.5rem;
+	padding: 0.6rem;
+	font-size: 1rem;
+}
+
+textarea {
+	resize: vertical;
+	min-height: 80px;
+}
+
+.form-row {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+	margin-bottom: 1rem;
+}
+
+.form-actions {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.form-actions button {
+	font-size: 1.1rem;
+	padding: 12px 30px;
+	margin: 0 10px;
+	border-radius: 10px;
+	font-weight: 600;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	background: var(--gradient-primary);
+	transition: all 0.3s ease;
+}
+
+.form-actions button[type="button"] {
+	background: #f72585;
+}
+
+.form-actions button:hover {
+	transform: translateY(-2px);
+	opacity: 0.9;
+}
+
+table {
+	margin-top: 2rem;
+	width: 100%;
+	background-color: #fff;
+	border-collapse: collapse;
+	font-size: 1rem;
+}
+
+th, td {
+	padding: 12px;
+	border: 1px solid #ddd;
+}
+
+th {
+	background: var(--color-primary-dark);
+	color: white;
+}
+
+.btn-action {
+	padding: 6px 12px;
+	font-size: 0.9rem;
+	border-radius: 6px;
+	border: none;
+	margin: 2px;
+	cursor: pointer;
+	font-weight: 500;
+}
+
+.btn-edit {
+	background: var(--color-primary-light);
+	color: #0f172a;
+}
+
+.btn-delete {
+	background: #f72585;
+	color: white;
+}
+
+.btn-complete {
+	background: #28a745;
+	color: white;
+}
+
+.btn-pending {
+	background: #ffc107;
+	color: black;
+}
+
+.btn-action:hover {
+	opacity: 0.85;
+}
+
+@media ( max-width : 768px) {
+	.form-row {
+		flex-direction: column;
+	}
+	.form-actions {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+}
+</style>
+</head>
+
+<body>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark px-4">
+		<a class="navbar-brand" href="/">KS DIGITAL SERVICES</a>
+	</nav>
+
+	<!-- Main Container -->
+	<div class="main-container">
+		<h2 id="formTitle">Create New Task</h2>
+
+		<form id="todoForm" autocomplete="off">
+			<input type="hidden" id="todoId" />
+
+			<!-- ✅ Row 1: Name + Phone + Date -->
+			<div class="row g-3">
+				<div class="col-md-4">
+					<label for="name">Name</label> <input type="text" id="name"
+						class="form-control" required />
+				</div>
+				<div class="col-md-4">
+					<label for="phone">Phone Number</label> <input type="text"
+						id="phone" class="form-control" required maxlength="10"
+						pattern="\d{10}" />
+				</div>
+				<div class="col-md-4">
+					<label for="date">Date</label> <input type="date" id="date"
+						class="form-control" required />
+				</div>
+			</div>
+
+			<!-- ✅ Row 2: Message -->
+			<div class="row g-3 mt-3">
+				<div class="col-12">
+					<label for="message">Message</label>
+					<textarea id="message" class="form-control" rows="3" required></textarea>
+				</div>
+			</div>
+
+			<!-- ✅ Row 3: Buttons -->
+			<div class="form-actions">
+				<button type="submit">Submit</button>
+				<button type="button" onclick="resetForm()">Cancel</button>
+			</div>
+		</form>
+
+
+
+		<!-- Pending Todos -->
+		<h2 class="mt-5">🕓 Pending Task</h2>
+		<table class="table table-bordered mt-3">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Date</th>
+					<th>Name</th>
+					<th>Phone</th>
+					<th>Message</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody id="todoList"></tbody>
+		</table>
+
+		<!-- Completed Todos -->
+		<h2 class="mt-5">✅ Completed Tasks</h2>
+		<table class="table table-bordered mt-3">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Date</th>
+					<th>Name</th>
+					<th>Phone</th>
+					<th>Message</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody id="completedTodoList"></tbody>
+		</table>
+	</div>
+
+	<!-- JavaScript -->
+	<script>
+    const apiUrl = '/api/todos';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("date").value = new Date().toISOString().split("T")[0];
+      loadTodos();
+
+      document.getElementById("todoForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const id = document.getElementById("todoId").value;
+        const payload = {
+          name: document.getElementById("name").value,
+          phoneNumber: document.getElementById("phone").value,
+          message: document.getElementById("message").value,
+          currentDate: document.getElementById("date").value,
+          completed: false
+        };
+
+        if (id) {
+          updateTodo(id, payload);
+        } else {
+          createTodo(payload);
+        }
+      });
+    });
+
+    function loadTodos() {
+      fetch(apiUrl)
+        .then(res => res.json())
+        .then(data => {
+          const todoList = document.getElementById("todoList");
+          const completedList = document.getElementById("completedTodoList");
+
+          todoList.innerHTML = "";
+          completedList.innerHTML = "";
+
+          data.forEach(todo => {
+            const row = `
+              <tr>
+                <td>${todo.id}</td>
+                <td>${todo.currentDate}</td>
+                <td>${todo.name}</td>
+                <td>${todo.phoneNumber}</td>
+                <td>${todo.message}</td>
+                <td>
+                  <button class="btn-action btn-edit" onclick="editTodo(${todo.id})">Edit</button>
+                  <button class="btn-action btn-delete" onclick="deleteTodo(${todo.id})">Delete</button>
+                  ${todo.completed
+                    ? `<button class="btn-action btn-pending" onclick="markAsPending(${todo.id})">Move To Pending</button>`
+                    : `<button class="btn-action btn-complete" onclick="completeTodo(${todo.id})">Mark Completed</button>`
+                  }
+                </td>
+              </tr>`;
+            todo.completed ? completedList.innerHTML += row : todoList.innerHTML += row;
+          });
+        });
+    }
+
+    function createTodo(todo) {
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(todo)
+      }).then(() => {
+        resetForm();
+        loadTodos();
+      });
+    }
+
+    function updateTodo(id, todo) {
+      fetch(`${apiUrl}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(todo)
+      }).then(() => {
+        resetForm();
+        loadTodos();
+      });
+    }
+
+    function deleteTodo(id) {
+      if (confirm("Are you sure you want to delete this task?")) {
+        fetch(`${apiUrl}/${id}`, {
+          method: 'DELETE'
+        }).then(loadTodos);
+      }
+    }
+
+    function editTodo(id) {
+      fetch(`${apiUrl}/${id}`)
+        .then(res => res.json())
+        .then(todo => {
+          document.getElementById("todoId").value = todo.id;
+          document.getElementById("name").value = todo.name;
+          document.getElementById("phone").value = todo.phoneNumber;
+          document.getElementById("message").value = todo.message;
+          document.getElementById("date").value = todo.currentDate;
+          document.getElementById("formTitle").innerText = "Edit Todo";
+        });
+    }
+
+    function completeTodo(id) {
+      fetch(`${apiUrl}/${id}`)
+        .then(res => res.json())
+        .then(todo => {
+          todo.completed = true;
+          updateTodo(id, todo);
+        });
+    }
+
+    function markAsPending(id) {
+      fetch(`${apiUrl}/${id}`)
+        .then(res => res.json())
+        .then(todo => {
+          todo.completed = false;
+          updateTodo(id, todo);
+        });
+    }
+
+    function resetForm() {
+      document.getElementById("todoForm").reset();
+      document.getElementById("todoId").value = "";
+      document.getElementById("date").value = new Date().toISOString().split("T")[0];
+      document.getElementById("formTitle").innerText = "Create New Todo";
+    }
+  </script>
+</body>
+</html>

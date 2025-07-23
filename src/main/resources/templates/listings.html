@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>KS Digital Services - Real Estate</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --color-primary: #4361ee;
+      --color-primary-dark: #3a0ca3;
+      --color-primary-light: #4cc9f0;
+      --color-secondary: #f72585;
+      --color-text-light: #ffffff;
+      --color-text-medium: #cbd5e1;
+      --color-bg-dark: #0f172a;
+      --shadow-xl: 0 25px 50px -12px rgba(0,0,0,.5);
+      --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--color-bg-dark);
+      color: var(--color-text-light);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* Header Styles */
+    .site-header {
+      padding: 1.5rem 0;
+      position: relative;
+      z-index: 10;
+      background: rgba(15,23,42,0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .header-logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #f72585, #4361ee, #4cc9f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -.5px;
+      animation: gradientShift 8s infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .header-subtitle {
+      font-size: 1.8rem;
+      color: var(--color-text-light);
+      margin-top: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .header-subtitle::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+
+    /* Floating elements */
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(76,201,240,.1);
+      backdrop-filter: blur(5px);
+      z-index: 1;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    .floating-element:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 20%;
+      right: 10%;
+      animation-delay: 2s;
+      background: rgba(247,37,133,.1);
+    }
+
+    .floating-element:nth-child(3) {
+      width: 120px;
+      height: 120px;
+      bottom: 20%;
+      left: 15%;
+      animation-delay: 4s;
+      background: rgba(67,97,238,.1);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-40px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0); }
+    }
+
+    /* Listings Styles */
+    .container {
+      position: relative;
+      z-index: 10;
+      padding: 2rem 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .nav-tabs {
+      border-bottom: 1px solid rgba(148,163,184,.3);
+    }
+
+    .nav-tabs .nav-link {
+      cursor: pointer;
+      color: var(--color-text-medium);
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 0.8rem 1.5rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-tabs .nav-link.active {
+      color: var(--color-primary-light);
+      border-bottom: 3px solid var(--color-primary);
+    }
+
+    .nav-tabs .nav-link:hover:not(.active) {
+      color: var(--color-text-light);
+    }
+
+    .card {
+      border-radius: 1rem;
+      overflow: hidden;
+      position: relative;
+      transition: transform .3s, box-shadow .3s;
+      background: rgba(30,41,59,.7);
+      border: 1px solid rgba(148,163,184,.1);
+      backdrop-filter: blur(10px);
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--color-primary);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      color: var(--color-text-light);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .image-container {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.1);
+      border-radius: 1rem 1rem 0 0;
+      cursor: pointer;
+    }
+
+    .property-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform .3s;
+    }
+
+    .view-images-btn {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      z-index: 2;
+      backdrop-filter: blur(5px);
+    }
+
+    .image-count-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      z-index: 2;
+      backdrop-filter: blur(5px);
+    }
+
+    .additional-info {
+      margin-top: .75rem;
+      font-size: .9rem;
+      color: var(--color-text-light);
+    }
+
+    .sold-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(220,53,69,.9);
+      color: #fff;
+      padding: .5rem 1rem;
+      font-weight: bold;
+      border-radius: .5rem;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .property-id {
+      background: rgba(67,97,238,.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      color: var(--color-text-light);
+    }
+
+    .property-price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--color-text-light);
+      margin: 0.5rem 0;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .btn-whatsapp:hover {
+      background: #128C7E;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Property details styling */
+    .property-details p {
+      color: var(--color-text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .property-details strong {
+      color: var(--color-primary-light);
+    }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 65px;
+      height: 65px;
+      bottom: 30px;
+      right: 30px;
+      background: var(--gradient-primary);
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 2rem;
+      box-shadow: 0 10px 30px rgba(67,97,238,.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-8px) rotate(10deg);
+      box-shadow: 0 15px 40px rgba(67,97,238,.6);
+      background: var(--gradient-primary);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(67,97,238,.7); }
+      70% { box-shadow: 0 0 0 15px rgba(67,97,238,0); }
+      100% { box-shadow: 0 0 0 0 rgba(67,97,238,0); }
+    }
+
+    /* Gallery modal */
+    .gallery-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      overflow: auto;
+      backdrop-filter: blur(10px);
+    }
+
+    .gallery-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-slide {
+      display: none;
+      text-align: center;
+    }
+
+    .gallery-slide.active {
+      display: block;
+    }
+
+    .gallery-image {
+      max-width: 90%;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+
+    .gallery-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .gallery-close:hover {
+      color: var(--color-primary-light);
+    }
+
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .gallery-btn {
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 30px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .gallery-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+
+    .gallery-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 1rem;
+    }
+
+    /* Loading spinner */
+    .loading-spinner {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2001;
+      color: var(--color-primary-light);
+      font-size: 3rem;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .header-logo {
+        font-size: 2rem;
+      }
+
+      .header-subtitle {
+        font-size: 1.4rem;
+      }
+
+      .gallery-image {
+        max-width: 95%;
+        max-height: 70vh;
+      }
+
+      .gallery-close {
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+      }
+
+      .image-container {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header-logo {
+        font-size: 1.8rem;
+      }
+
+      .header-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .gallery-btn {
+        padding: .6rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .nav-tabs .nav-link {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .gallery-close {
+        top: 10px;
+        right: 15px;
+        font-size: 25px;
+      }
+
+      .image-container {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Floating Elements -->
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-logo">KS DIGITAL SERVICES</div>
+      <div class="header-subtitle">REAL ESTATE</div>
+    </div>
+  </header>
+
+  <!-- Gallery Modal -->
+  <div id="galleryModal" class="gallery-modal">
+    <span class="gallery-close">&times;</span>
+    <div class="gallery-content">
+      <div class="gallery-slide active">
+        <img id="galleryImage" class="gallery-image" src="" alt="Property image">
+      </div>
+    </div>
+    <div class="gallery-nav">
+      <button class="gallery-btn" id="galleryPrevBtn">&#10094;</button>
+      <button class="gallery-btn" id="galleryNextBtn">&#10095;</button>
+    </div>
+    <div class="gallery-counter" id="galleryCounter">1/3</div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner">
+    <i class="fas fa-spinner fa-spin"></i>
+  </div>
+
+  <!-- Listings -->
+  <div class="container">
+    <ul class="nav nav-tabs mb-4" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#onSale">
+          On Sale (<span th:text="${onSale.size()}">0</span>)
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#sold">
+          Sold (<span th:text="${sold.size()}">0</span>)
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- On Sale -->
+      <div class="tab-pane fade show active" id="onSale">
+        <div th:if="${onSale.isEmpty()}" class="text-center text-muted py-5">
+          <p>No properties currently on sale.</p>
+        </div>
+        <div th:if="${!onSale.isEmpty()}" class="row g-4">
+          <div class="col-md-4" th:each="prop : ${onSale}">
+            <div class="card h-100">
+              <div class="image-container" 
+                   th:attr="data-images=${#strings.listJoin(prop.imageList, ',')}"
+                   onclick="openGallery(this)">
+                <img th:if="${prop.imageList.size() > 0}" 
+                     th:src="@{'/uploads/' + ${prop.imageList[0]}}" 
+                     class="property-image"/>
+                <div th:if="${prop.imageList.size() > 1}" class="view-images-btn">
+                  <i class="fas fa-images"></i> View Images
+                </div>
+                <div th:if="${prop.imageList.size() > 1}" class="image-count-badge">
+                  [[${prop.imageList.size()}]] images
+                </div>
+              </div>
+              <div class="card-body property-details">
+                <h5 class="card-title" th:text="${prop.title}">Title</h5>
+                <p><strong>ID:</strong> <span th:text="${prop.productId}"/></p>
+                <p><strong>Location:</strong> <span th:text="${prop.location}"/></p>
+                <p><strong>Area:</strong> <span th:text="${prop.carpetArea}"/> sq ft</p>
+                <p><strong>Price:</strong> ₹<span th:text="${#numbers.formatInteger(prop.amount,0,'COMMA')}"/></p>
+                <p class="additional-info" th:text="${prop.additionalInfo}"></p>
+                <a th:href="@{|https://wa.me/7893845696?text=Hi%20I%20want%20to%20discuss%20property%20ID%20${prop.productId}|}"
+                   class="btn btn-whatsapp mt-2" target="_blank">
+                  <i class="fab fa-whatsapp"></i> Get Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sold -->
+      <div class="tab-pane fade" id="sold">
+        <div th:if="${sold.isEmpty()}" class="text-center text-muted py-5">
+          <p>No properties sold yet.</p>
+        </div>
+        <div th:if="${!sold.isEmpty()}" class="row g-4">
+          <div class="col-md-4" th:each="prop : ${sold}">
+            <div class="card h-100">
+              <div class="image-container" 
+                   th:attr="data-images=${#strings.listJoin(prop.imageList, ',')}"
+                   onclick="openGallery(this)">
+                <img th:if="${prop.imageList.size() > 0}" 
+                     th:src="@{'/uploads/' + ${prop.imageList[0]}}" 
+                     class="property-image"
+                     style="filter: grayscale(100%)"/>
+                <div th:if="${prop.imageList.size() > 1}" class="view-images-btn">
+                  <i class="fas fa-images"></i> View Images
+                </div>
+                <div th:if="${prop.imageList.size() > 1}" class="image-count-badge">
+                  [[${prop.imageList.size()}]] images
+                </div>
+                <div class="sold-badge">SOLD</div>
+              </div>
+              <div class="card-body property-details">
+                <h5 class="card-title" th:text="${prop.title}">Title</h5>
+                <p><strong>ID:</strong> <span th:text="${prop.productId}"/></p>
+                <p><strong>Location:</strong> <span th:text="${prop.location}"/></p>
+                <p><strong>Area:</strong> <span th:text="${prop.carpetArea}"/> sq ft</p>
+                <p><strong>Sold For:</strong> ₹<span th:text="${#numbers.formatInteger(prop.amount,0,'COMMA')}"/></p>
+                <p class="additional-info" th:text="${prop.additionalInfo}"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/7893845696" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Initialize particles.js
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof particlesJS === 'function') {
+        particlesJS("particles-js", {
+          particles: {
+            number: { value: 50, density: { enable: true, value_area: 800 } },
+            color: { value: "#4cc9f0" },
+            shape: { type: "circle" },
+            opacity: { value: 0.4, random: true },
+            size: { value: 2.5, random: true },
+            line_linked: {
+              enable: true,
+              distance: 120,
+              color: "#4361ee",
+              opacity: 0.15,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 0.8,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" },
+              resize: true
+            },
+            modes: {
+              grab: { distance: 120, line_linked: { opacity: 0.3 } },
+              push: { particles_nb: 3 }
+            }
+          },
+          retina_detect: true
+        });
+      }
+
+      // Gallery functionality
+      let currentGallery = {
+        images: [],
+        currentIndex: 0
+      };
+
+      // Function to open gallery
+      window.openGallery = function(element) {
+        const imagesString = element.getAttribute('data-images');
+        if (!imagesString) return;
+        
+        const images = imagesString.split(',');
+        if (images.length === 0) return;
+        
+        currentGallery = {
+          images: images,
+          currentIndex: 0
+        };
+        
+        showGalleryImage(0);
+        document.getElementById('galleryModal').style.display = "block";
+        
+        // Add touch events for swipe navigation
+        const galleryContent = document.querySelector('.gallery-content');
+        galleryContent.addEventListener('touchstart', handleTouchStart, false);
+        galleryContent.addEventListener('touchmove', handleTouchMove, false);
+      };
+
+      // Function to show gallery image
+      function showGalleryImage(index) {
+        if (index < 0 || index >= currentGallery.images.length) return;
+        
+        currentGallery.currentIndex = index;
+        const imageUrl = '/uploads/' + currentGallery.images[index];
+        document.getElementById('galleryImage').src = imageUrl;
+        document.getElementById('galleryCounter').textContent = 
+          `${index + 1}/${currentGallery.images.length}`;
+      }
+
+      // Navigation functions
+      document.getElementById('galleryPrevBtn').addEventListener('click', function() {
+        const newIndex = (currentGallery.currentIndex - 1 + currentGallery.images.length) % 
+                         currentGallery.images.length;
+        showGalleryImage(newIndex);
+      });
+
+      document.getElementById('galleryNextBtn').addEventListener('click', function() {
+        const newIndex = (currentGallery.currentIndex + 1) % currentGallery.images.length;
+        showGalleryImage(newIndex);
+      });
+
+      // Close gallery
+      document.querySelector('.gallery-close').addEventListener('click', function() {
+        document.getElementById('galleryModal').style.display = "none";
+        
+        // Remove touch events
+        const galleryContent = document.querySelector('.gallery-content');
+        galleryContent.removeEventListener('touchstart', handleTouchStart, false);
+        galleryContent.removeEventListener('touchmove', handleTouchMove, false);
+      });
+
+      // Close gallery if clicked outside image
+      window.addEventListener('click', function(event) {
+        const modal = document.getElementById('galleryModal');
+        if (event.target === modal) {
+          modal.style.display = "none";
+          
+          // Remove touch events
+          const galleryContent = document.querySelector('.gallery-content');
+          galleryContent.removeEventListener('touchstart', handleTouchStart, false);
+          galleryContent.removeEventListener('touchmove', handleTouchMove, false);
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', function(event) {
+        const modal = document.getElementById('galleryModal');
+        if (modal.style.display === "block") {
+          if (event.key === 'ArrowLeft') {
+            const newIndex = (currentGallery.currentIndex - 1 + currentGallery.images.length) % 
+                             currentGallery.images.length;
+            showGalleryImage(newIndex);
+          } else if (event.key === 'ArrowRight') {
+            const newIndex = (currentGallery.currentIndex + 1) % currentGallery.images.length;
+            showGalleryImage(newIndex);
+          } else if (event.key === 'Escape') {
+            modal.style.display = "none";
+            
+            // Remove touch events
+            const galleryContent = document.querySelector('.gallery-content');
+            galleryContent.removeEventListener('touchstart', handleTouchStart, false);
+            galleryContent.removeEventListener('touchmove', handleTouchMove, false);
+          }
+        }
+      });
+
+      // Touch events for swipe navigation
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      function handleTouchStart(event) {
+        touchStartX = event.changedTouches[0].screenX;
+      }
+      
+      function handleTouchMove(event) {
+        if (!touchStartX) return;
+        touchEndX = event.changedTouches[0].screenX;
+        handleSwipe();
+      }
+      
+      function handleSwipe() {
+        const diff = touchStartX - touchEndX;
+        const threshold = 50; // Minimum swipe distance
+        
+        if (diff > threshold) {
+          // Left swipe - next image
+          const newIndex = (currentGallery.currentIndex + 1) % currentGallery.images.length;
+          showGalleryImage(newIndex);
+        } else if (diff < -threshold) {
+          // Right swipe - previous image
+          const newIndex = (currentGallery.currentIndex - 1 + currentGallery.images.length) % 
+                           currentGallery.images.length;
+          showGalleryImage(newIndex);
+        }
+        
+        // Reset values
+        touchStartX = 0;
+        touchEndX = 0;
+      }
+    });
+  </script>
+</body>
+</html>

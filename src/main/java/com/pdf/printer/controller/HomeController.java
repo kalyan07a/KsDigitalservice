@@ -19,8 +19,8 @@ public class HomeController {
 	
 	@GetMapping("/print/{id}")
     public String getItem(@PathVariable("id") Long id, Model model) {
-		log.info("id is "+id);
-		
+	log.info("id is "+id);
+		 
 		if(id==null)
 			return "please scan the QR code or visit the website";
         
@@ -126,4 +126,38 @@ public class HomeController {
 	{
 		return "pancard";
 	}
+	@GetMapping("/marriage")
+	public String marriage()
+	{
+		return "marriage";
+	}
+	@GetMapping("/birth")
+	public String birth()
+	{
+		return "birth";
+	}
+	@GetMapping("/details")
+	public String details()
+	{
+		return "multipleLinks";
+	}
+	 
+	@GetMapping("/autofillMarriage")
+	public String autofillMarriage()
+	{
+		return "autofillMarriage";
+	}
+	@GetMapping("/autofillAadhar")
+	public String autofillAadhar()
+	{
+		return "autofillAadhar";
+	}
+	
+	@GetMapping("/myTask")
+	public String todo() {
+		return "todo";
+	}
+	
+	
+	
 }

@@ -1,197 +1,664 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Print Service - KS Digital Service</title>
+    <title>Self Print Service - KS Digital Service</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-<style>
-    :root {
-        --primary-color: #2563eb;
-        --secondary-color: #3b82f6;
-        --text-dark: #1e293b;
-        --text-medium: #64748b;
-        --border-color: #e2e8f0;
-    }
 
-    .container {
-        max-width: 100%;
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-
-    @media (min-width: 1400px) {
-        .container {
-            max-width: 1400px;
+    <style>
+        :root {
+            /* Modern Color Palette */
+            --color-primary: #4361ee;
+            --color-primary-dark: #3a0ca3;
+            --color-primary-light: #4cc9f0;
+            --color-secondary: #f72585;
+            --color-secondary-dark: #b5179e;
+            --color-accent: #4ade80;
+            --color-accent-dark: #16a34a;
+            --color-text-light: #f8fafc;
+            --color-text-medium: #cbd5e1;
+            --color-text-dark: #0f172a;
+            --color-bg-dark: #0f172a;
+            --color-bg-card: rgba(30, 41, 59, 0.7);
+            --color-border: rgba(148, 163, 184, 0.3);
+            --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            --radius-xl: 1.5rem;
+            --radius-lg: 1rem;
         }
-    }
 
-    @media (min-width: 1600px) {
-        .container {
-            max-width: 1600px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    }
 
-    body {
-        font-family: 'Poppins', sans-serif;
-        color: var(--text-dark);
-        background-color: #f8fafc;
-        line-height: 1.6;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--color-bg-dark);
+            color: var(--color-text-medium);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-    .home-logo-button {
-        position: fixed;
-        top: 25px;
-        left: 30px;
-        background: white;
-        padding: 10px 20px;
-        border-radius: 30px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
 
-    .home-logo-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(76, 201, 240, 0.1);
+            backdrop-filter: blur(5px);
+            z-index: 1;
+            animation: float 15s infinite ease-in-out;
+        }
 
-    .page-header {
-        margin: 80px 0 40px;
-        text-align: center;
-    }
+        .floating-element:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
 
-    .page-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--text-dark);
-        margin-bottom: 1rem;
-    }
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+            background: rgba(247, 37, 133, 0.1);
+        }
 
-    .page-title span {
-        color: var(--primary-color);
-    }
+        .floating-element:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+            background: rgba(67, 97, 238, 0.1);
+        }
 
-    .phone-number-header {
-        background: #eef6ff;
-        padding: 10px 20px;
-        border-radius: 30px;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        margin: 20px 0;
-    }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
 
-    .steps-list {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 0;
-    }
+        /* Header & Navigation */
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
 
-    .step-item {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        transition: transform 0.2s ease;
-    }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
 
-    .step-item:hover {
-        transform: translateX(10px);
-    }
+        .nav-link {
+            color: var(--color-text-medium);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-    .step-icon {
-        width: 40px;
-        height: 40px;
-        background: var(--primary-color);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-    }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
 
-    .info-alert {
-        background: #eef6ff;
-        border: 2px solid var(--primary-color);
-        border-radius: 12px;
-        max-width: 800px;
-        margin: 40px auto;
-    }
+        .nav-link:hover {
+            color: var(--color-text-light);
+        }
 
-    .footer {
-        background: var(--text-dark);
-        color: white;
-        padding: 40px 0;
-        margin-top: 80px;
-    }
+        .nav-link:hover::after {
+            width: 100%;
+        }
 
-    .footer a {
-        color: #94a3b8;
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
+        /* Hero Section */
+        .hero-section {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: 3rem;
+        }
 
-    .footer a:hover {
-        color: var(--primary-color);
-    }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+            color: white;
+        }
 
-    @media (max-width: 768px) {
-        .page-title {
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            border: 1px solid var(--color-border);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Floating WhatsApp button */
+        .whatsapp-float {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 40px;
+            right: 40px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
             font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            animation: pulse 2s infinite;
+            transform: translateY(0);
         }
-        
-        .home-logo-button {
-            left: 15px;
-            padding: 8px 15px;
-        }
-        
-        .step-item {
-            padding: 15px;
-        }
-    }
-</style>
-</head>
 
+        .whatsapp-float:hover {
+            transform: translateY(-10px) rotate(10deg);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.6);
+            background: var(--gradient-secondary);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+        }
+
+        /* Footer */
+        .site-footer {
+            background: rgba(2, 6, 23, 0.9);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-about {
+            margin-bottom: 1.5rem;
+            max-width: 400px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 41, 59, 0.7);
+            color: var(--color-text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            background: var(--gradient-primary);
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-medium);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text-light);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover i {
+            transform: translateX(3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            color: var(--color-text-medium);
+            font-size: 0.9rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Print Service specific styles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .steps-list {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0;
+        }
+
+        .step-item {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--color-border);
+        }
+
+        .step-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-primary-light);
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h5 {
+            color: var(--color-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--color-text-medium);
+            margin-bottom: 0;
+        }
+
+        .info-alert {
+            background: rgba(30, 41, 59, 0.7);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-lg);
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .info-alert h5 {
+            color: var(--color-text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-alert p {
+            color: var(--color-text-medium);
+            margin-bottom: 0;
+        }
+
+        .home-logo-button {
+            position: fixed;
+            top: 25px;
+            left: 30px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            z-index: 1000;
+            color: var(--color-primary-dark);
+        }
+
+        .home-logo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--color-primary);
+        }
+
+        .pricing-card {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 1rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .pricing-card h4 {
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary-light);
+            margin: 1.5rem 0;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .pricing-card ul li {
+            padding: 0.5rem 0;
+            color: var(--color-text-medium);
+        }
+
+        .pricing-card .btn {
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card .btn:hover {
+            background: var(--gradient-secondary);
+            transform: translateY(-3px);
+        }
+
+        .social-media-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                bottom: 30px;
+                right: 30px;
+            }
+            .hero-section {
+                min-height: 40vh;
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            }
+            .step-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            .step-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            .home-logo-button {
+                left: 15px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
 <body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+
+    <!-- Home Button -->
     <a href="/" class="home-logo-button">
         <i class="bi bi-house-door-fill"></i> KS Digital
     </a>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">KS DIGITAL SERVICES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  
+   
 
-    <div class="container">
-        <header class="page-header">
-        	<h1 class="page-title"><span>KS DIGITAL SERVICES</span></h1>
-        	
-            <h2>About Our Self Print Service</h2>
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="content-section">
+            <div class="text-center mb-4">
+                <div class="section-title">
+                    <h2>Self Print Service</h2>
+                </div>
+                <p class="text-muted">Print your documents remotely with our automated service</p>
+            </div>
 
-        </header>
-
-        <main class="about-content">
             <div class="steps-list">
                 <div class="step-item">
                     <div class="step-icon">
-                        <i class="bi bi-phone"></i>
+                        <i class="bi bi-upload"></i>
                     </div>
-                    <div>
+                    <div class="step-content">
                         <h5>Upload Your Files</h5>
-                        <p class="text-muted mb-0">Use our secure portal to upload documents directly from your device</p>
+                        <p>Use our secure portal to upload documents directly from your device</p>
                     </div>
                 </div>
 
                 <div class="step-item">
                     <div class="step-icon">
-                        <i class="bi bi-printer"></i>
+                        <i class="bi bi-gear"></i>
                     </div>
-                    <div>
+                    <div class="step-content">
                         <h5>Select Print Options</h5>
-                        <p class="text-muted mb-0">Choose between color/BW, and quantity</p>
+                        <p>Choose between color/BW, paper size, and quantity</p>
                     </div>
                 </div>
 
@@ -199,56 +666,187 @@
                     <div class="step-icon">
                         <i class="bi bi-credit-card"></i>
                     </div>
-                    <div>
+                    <div class="step-content">
                         <h5>Secure Payment</h5>
-                        <p class="text-muted mb-0">Complete payment through our protected gateway</p>
+                        <p>Complete payment through our protected gateway</p>
                     </div>
                 </div>
 
                 <div class="step-item">
                     <div class="step-icon">
-                        <i class="bi bi-printer-fill"></i>
+                        <i class="bi bi-printer"></i>
                     </div>
-                    <div>
+                    <div class="step-content">
                         <h5>Automatic Printing</h5>
-                        <p class="text-muted mb-0">Your documents print automatically at our shop</p>
+                        <p>Your documents print automatically at our shop</p>
                     </div>
                 </div>
             </div>
 
-            <div class="info-alert p-4 text-center">
-                <i class="bi bi-info-circle-fill h4 text-primary"></i>
-                <h5 class="mt-2 mb-3">Collection Instructions</h5>
-                <p class="text-muted mb-0">
+            <div class="info-alert">
+                <h5><i class="bi bi-info-circle-fill text-primary"></i> Collection Instructions</h5>
+                <p>
                     Printed documents will be available for pickup during business hours.<br>
                     Please bring your payment confirmation when collecting.
                 </p>
             </div>
-        </main>
+            
+            <div class="section-title mt-5">
+                <h2>Printing Pricing</h2>
+            </div>
+            
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h4>Standard Black & White</h4>
+                        <div class="price">₹5.0 / page</div>
+                        <ul>
+                            <li>A4 Size Paper</li>
+                            <li>Single or Double Sided</li>
+                            <li>Standard Quality</li>
+                        </ul>
+                        <a href="https://wa.me/7893845696" class="btn">Order Now</a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h4>Color Printing</h4>
+                        <div class="price">₹10.0 / page</div>
+                        <ul>
+                            <li>A4 Size Paper</li>
+                            <li>Premium Color Quality</li>
+                            <li>Photo Quality Available</li>
+                        </ul>
+                        <a href="https://wa.me/7893845696" class="btn">Order Now</a>
+                    </div>
+                </div>
+                
+          
+            </div>
+        </div>
     </div>
 
-    <footer class="footer">
-        <div class="container text-center">
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
-                <a href="/terms">Terms</a>
-                <a href="/privacy">Privacy</a>
-                <a href="/contact">Contact</a>
-                <a href="/cancellation">Cancellation</a>
-                <a href="/shipping">Shipping</a>
+
+    <!-- Footer -->
+    <footer id="contact" class="site-footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">KS DIGITAL</div>
+                <p class="footer-about">Your trusted partner for all digital documentation and printing needs. Fast, reliable, and professional services.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/7893845696" target="_blank" class="social-link">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="social-link">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="social-link">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="social-link">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                </div>
             </div>
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
-                <a href="tel:7893845696">
-                    <i class="bi bi-telephone"></i> 7893845696
-                </a>
-                <a href="mailto:ksdigital2025@gmail.com">
-                    <i class="bi bi-envelope"></i> ksdigital2025@gmail.com
-                </a>
+            
+            <div>
+                <h3 class="footer-heading">Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="/foodLicense"><i class="bi bi-arrow-right"></i>Food License Registration</a></li>
+                    <li><a href="/tradeLicense"><i class="bi bi-arrow-right"></i>Trade License</a></li>
+                    <li><a href="/labourLicense"><i class="bi bi-arrow-right"></i>Labour License</a></li>
+                    <li><a href="/msme"><i class="bi bi-arrow-right"></i>MSME Certificate</a></li>
+                    <li><a href="/passport"><i class="bi bi-arrow-right"></i>Passport Application</a></li>
+                </ul>
             </div>
-            <p class="mb-0 text-secondary">© 2025 KS Digital Services. All rights reserved.</p>
+            
+            <div>
+                <h3 class="footer-heading">Contact Us</h3>
+                <ul class="footer-links">
+                    <li><a href="tel:7893845696"><i class="bi bi-telephone"></i>+91 7893845696</a></li>
+                    <li><a href="mailto:ksdigital2025@gmail.com"><i class="bi bi-envelope"></i>ksdigital2025@gmail.com</a></li>
+                    <li><a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank"><i class="bi bi-geo-alt"></i>Hyderabad, Telangana</a></li>
+                    <li><a href="#"><i class="bi bi-clock"></i>Mon-Sat: 7:00 AM - 9:30 PM</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 KS Digital Services. All rights reserved.</p>
         </div>
     </footer>
-
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/7893845696" target="_blank" class="whatsapp-float">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    
+    <!-- Bootstrap & Particles JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-   <script src="js/disable-right-click.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles background
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#4cc9f0" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4361ee",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Fade in animation for sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.content-section, .step-item, .pricing-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(30px)";
+                element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>

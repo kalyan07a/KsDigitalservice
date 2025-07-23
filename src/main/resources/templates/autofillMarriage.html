@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Marriage Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa, #e2e8f0);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a3a5f, #2c5282);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            background: white;
+            color: #2c5282;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+        
+        .page-title h2 {
+            font-size: 2.2rem;
+            color: #2c5282;
+            margin-bottom: 15px;
+        }
+        
+        .card {
+            padding: 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-header {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-header h3 {
+            font-size: 1.5rem;
+            color: #2c5282;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-header h3 i {
+            color: #4299e1;
+        }
+        
+        .csv-input-section {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+        
+        .csv-input-section:hover {
+            border-color: #4299e1;
+            background: #edf2f7;
+        }
+        
+        .csv-input-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .csv-input-header i {
+            font-size: 3rem;
+            color: #4299e1;
+            margin-bottom: 15px;
+        }
+        
+        .csv-input-header h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .csv-input-header p {
+            color: #718096;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .csv-input-box {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s;
+            min-height: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .csv-input-box:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+        }
+        
+        .instructions {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .instructions h4 {
+            margin-bottom: 15px;
+            color: #2c5282;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .instructions li i {
+            color: #4299e1;
+            margin-top: 3px;
+        }
+        
+        .form-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+            position: relative;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+        }
+        
+        .required::after {
+            content: " *";
+            color: #e53e3e;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px 0;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn i {
+            font-size: 1.1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #4299e1, #3182ce);
+            color: white;
+            box-shadow: 0 4px 6px rgba(66, 153, 225, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to right, #3182ce, #2b6cb0);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(66, 153, 225, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(to right, #48bb78, #38a169);
+            color: white;
+            box-shadow: 0 4px 6px rgba(72, 187, 120, 0.3);
+        }
+        
+        .btn-success:hover {
+            background: linear-gradient(to right, #38a169, #2f855a);
+            transform: translateY(-2px);
+        }
+        
+        .autofill-notice {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .autofill-notice i {
+            font-size: 1.5rem;
+            color: #319795;
+        }
+        
+        .status-message {
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .success {
+            background-color: #e6fffa;
+            color: #319795;
+            border: 1px solid #81e6d9;
+        }
+        
+        .error {
+            background-color: #fff5f5;
+            color: #e53e3e;
+            border: 1px solid #fc8181;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 20px;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .witness-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #4299e1;
+        }
+        
+        .section-title {
+            margin-bottom: 20px;
+            color: #2c5288;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #cbd5e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+  
+ 
+        <div class="card">
+            <div class="csv-input-section">
+              
+        
+                <div class="form-group">
+                    <label for="csv1" class="required">Groom Details</label>
+                    <input type="text" id="csv1" class="csv-input-box" >
+                </div>
+                
+                <div class="form-group">
+                    <label for="csv2" class="required">Bride Details</label>
+                    <input type="text" id="csv2" class="csv-input-box" >
+                </div>
+                
+                <div class="form-group">
+                    <label for="csv3" class="required">Witness 1 Details</label>
+                    <input type="text" id="csv3" class="csv-input-box" >
+                </div>
+                
+                <div class="form-group">
+                    <label for="csv4" class="required">Witness 2 Details</label>
+                    <input type="text" id="csv4" class="csv-input-box" >
+                </div>
+                
+                <div class="form-group">
+                    <label for="csv5" class="required">Witness 3 Details</label>
+                    <input type="text" id="csv5" class="csv-input-box" >
+                </div>
+                
+             
+                
+                <div class="form-actions">
+                    <button type="button" id="fillBtn" class="btn btn-primary">
+                        <i class="fas fa-magic"></i> Fill Form from Text
+                    </button>
+                    <button type="button" id="clearBtn" class="btn">
+                        <i class="fas fa-broom"></i> Clear All
+                    </button>
+                      </div>
+                
+
+                <div id="inputStatus" class="status-message"></div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+               
+            </div>
+            
+            <form id="marriageForm" autocomplete="on" method="post" action="/submit">
+    <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                
+                </div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+                <!-- Hidden honeypot field for Chrome autofill detection -->
+                <input type="text" name="chrome_autofill_honeypot" style="display: none;">
+                
+                <!-- Bridegroom Section -->
+                <div class="witness-section">
+                    <h4 class="section-title">
+                        <i class="fas fa-user"></i> Bridegroom Details
+                    </h4>
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="gname" class="required">Full Name</label>
+                            <input type="text" id="gname" name="gname" autocomplete="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gaddress1" class="required">Permanent Address</label>
+                            <input type="text" id="gaddress1" name="gaddress1" autocomplete="address-line1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="gbirthdate" class="required">Date of Birth</label>
+                            <input type="text" id="gbirthdate" name="gbirthdate" autocomplete="bday" placeholder="DD-MM-YYYY" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gmobileno" class="required">Mobile Number</label>
+                            <input type="tel" id="gmobileno" name="gmobileno" autocomplete="tel" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="gaadharno">Aadhar Number</label>
+                            <input type="text" id="gaadharno" name="gaadharno" autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gfathername" class="required">Father's Name</label>
+                            <input type="text" id="gfathername" name="gfathername" autocomplete="additional-name" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bride Section -->
+                <div class="witness-section">
+                    <h4 class="section-title">
+                        <i class="fas fa-user"></i> Bride Details
+                    </h4>
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="bbeforename" class="required">Full Name</label>
+                            <input type="text" id="bbeforename" name="bbeforename" autocomplete="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="baddress1" class="required">Permanent Address</label>
+                            <input type="text" id="baddress1" name="baddress1" autocomplete="address-line1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="bbirthdate" class="required">Date of Birth</label>
+                            <input type="text" id="bbirthdate" name="bbirthdate" autocomplete="bday" placeholder="DD-MM-YYYY" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bmobileno" class="required">Mobile Number</label>
+                            <input type="tel" id="bmobileno" name="bmobileno" autocomplete="tel" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="baadharno">Aadhar Number</label>
+                            <input type="text" id="baadharno" name="baadharno" autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bfathername" class="required">Father's Name</label>
+                            <input type="text" id="bfathername" name="bfathername" autocomplete="additional-name" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Witness 1 Section -->
+                <div class="witness-section">
+                    <h4 class="section-title">
+                        <i class="fas fa-user-friends"></i> Witness 1 Details
+                    </h4>
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="name1" class="required">Witness Name</label>
+                            <input type="text" id="name1" name="name1" autocomplete="name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="aadhar1">Aadhar Number</label>
+                            <input type="text" id="aadhar1" name="aadhar1" autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="relative1">Father's Name</label>
+                            <input type="text" id="relative1" name="relative1" autocomplete="additional-name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="house1">House Number</label>
+                            <input type="text" id="house1" name="house1" autocomplete="address-line1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="street1">Street Name</label>
+                            <input type="text" id="street1" name="street1" autocomplete="address-line2">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="village1">Village/Town Name</label>
+                            <input type="text" id="village1" name="village1" autocomplete="address-level2">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="mandal1">Mandal Name</label>
+                            <input type="text" id="mandal1" name="mandal1" autocomplete="address-level1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="district1">District Name</label>
+                            <input type="text" id="district1" name="district1" autocomplete="address-level1">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Witness 2 Section -->
+                <div class="witness-section">
+                    <h4 class="section-title">
+                        <i class="fas fa-user-friends"></i> Witness 2 Details
+                    </h4>
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="name2" class="required">Witness Name</label>
+                            <input type="text" id="name2" name="name2" autocomplete="name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="aadhar2">Aadhar Number</label>
+                            <input type="text" id="aadhar2" name="aadhar2" autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="relative2">Father's Name</label>
+                            <input type="text" id="relative2" name="relative2" autocomplete="additional-name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="house2">House Number</label>
+                            <input type="text" id="house2" name="house2" autocomplete="address-line1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="street2">Street Name</label>
+                            <input type="text" id="street2" name="street2" autocomplete="address-line2">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="village2">Village/Town Name</label>
+                            <input type="text" id="village2" name="village2" autocomplete="address-level2">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="mandal2">Mandal Name</label>
+                            <input type="text" id="mandal2" name="mandal2" autocomplete="address-level1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="district2">District Name</label>
+                            <input type="text" id="district2" name="district2" autocomplete="address-level1">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Witness 3 Section -->
+                <div class="witness-section">
+                    <h4 class="section-title">
+                        <i class="fas fa-user-friends"></i> Witness 3 Details
+                    </h4>
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="name3" class="required">Witness Name</label>
+                            <input type="text" id="name3" name="name3" autocomplete="name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="aadhar3">Aadhar Number</label>
+                            <input type="text" id="aadhar3" name="aadhar3" autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="relative3">Father's Name</label>
+                            <input type="text" id="relative3" name="relative3" autocomplete="additional-name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="house3">House Number</label>
+                            <input type="text" id="house3" name="house3" autocomplete="address-line1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="street3">Street Name</label>
+                            <input type="text" id="street3" name="street3" autocomplete="address-line2">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="village3">Village/Town Name</label>
+                            <input type="text" id="village3" name="village3" autocomplete="address-level2">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="mandal3">Mandal Name</label>
+                            <input type="text" id="mandal3" name="mandal3" autocomplete="address-level1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="district3">District Name</label>
+                            <input type="text" id="district3" name="district3" autocomplete="address-level1">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                    <button type="button" id="saveBtn" class="btn btn-success">
+                        <i class="fas fa-save"></i> Save for Autofill
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 Marriage Registration Services. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Complete solution with Chrome autofill fix</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const csvInputs = [
+                document.getElementById('csv1'),
+                document.getElementById('csv2'),
+                document.getElementById('csv3'),
+                document.getElementById('csv4'),
+                document.getElementById('csv5')
+            ];
+            
+            const fillBtn = document.getElementById('fillBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const inputStatus = document.getElementById('inputStatus');
+            const form = document.getElementById('marriageForm');
+            
+            // Fill button click event
+            fillBtn.addEventListener('click', function() {
+                // Clear previous status
+                inputStatus.textContent = "";
+                inputStatus.className = "";
+                
+                try {
+                    // Process groom details (CSV 1)
+                    const groomFields = csvInputs[0].value.split(',').map(field => field.trim());
+                    if (groomFields.length >= 6) {
+                        document.getElementById('gname').value = groomFields[0];
+                        document.getElementById('gaddress1').value = groomFields[1];
+                        document.getElementById('gbirthdate').value = groomFields[2];
+                        document.getElementById('gmobileno').value = groomFields[3];
+                        document.getElementById('gaadharno').value = groomFields[4];
+                        document.getElementById('gfathername').value = groomFields[5];
+                    } else if (csvInputs[0].value) {
+                        throw new Error("Groom details require 6 fields");
+                    }
+                    
+                    // Process bride details (CSV 2)
+                    const brideFields = csvInputs[1].value.split(',').map(field => field.trim());
+                    if (brideFields.length >= 6) {
+                        document.getElementById('bbeforename').value = brideFields[0];
+                        document.getElementById('baddress1').value = brideFields[1];
+                        document.getElementById('bbirthdate').value = brideFields[2];
+                        document.getElementById('bmobileno').value = brideFields[3];
+                        document.getElementById('baadharno').value = brideFields[4];
+                        document.getElementById('bfathername').value = brideFields[5];
+                    } else if (csvInputs[1].value) {
+                        throw new Error("Bride details require 6 fields");
+                    }
+                    
+                    // Process witness 1 details (CSV 3)
+                    const wit1Fields = csvInputs[2].value.split(',').map(field => field.trim());
+                    if (wit1Fields.length >= 8) {
+                        document.getElementById('name1').value = wit1Fields[0];
+                        document.getElementById('aadhar1').value = wit1Fields[1];
+                        document.getElementById('relative1').value = wit1Fields[2];
+                        document.getElementById('house1').value = wit1Fields[3];
+                        document.getElementById('street1').value = wit1Fields[4];
+                        document.getElementById('village1').value = wit1Fields[5];
+                        document.getElementById('mandal1').value = wit1Fields[6];
+                        document.getElementById('district1').value = wit1Fields[7];
+                    } else if (csvInputs[2].value) {
+                        throw new Error("Witness 1 details require 8 fields");
+                    }
+                    
+                    // Process witness 2 details (CSV 4)
+                    const wit2Fields = csvInputs[3].value.split(',').map(field => field.trim());
+                    if (wit2Fields.length >= 8) {
+                        document.getElementById('name2').value = wit2Fields[0];
+                        document.getElementById('aadhar2').value = wit2Fields[1];
+                        document.getElementById('relative2').value = wit2Fields[2];
+                        document.getElementById('house2').value = wit2Fields[3];
+                        document.getElementById('street2').value = wit2Fields[4];
+                        document.getElementById('village2').value = wit2Fields[5];
+                        document.getElementById('mandal2').value = wit2Fields[6];
+                        document.getElementById('district2').value = wit2Fields[7];
+                    } else if (csvInputs[3].value) {
+                        throw new Error("Witness 2 details require 8 fields");
+                    }
+                    
+                    // Process witness 3 details (CSV 5)
+                    const wit3Fields = csvInputs[4].value.split(',').map(field => field.trim());
+                    if (wit3Fields.length >= 8) {
+                        document.getElementById('name3').value = wit3Fields[0];
+                        document.getElementById('aadhar3').value = wit3Fields[1];
+                        document.getElementById('relative3').value = wit3Fields[2];
+                        document.getElementById('house3').value = wit3Fields[3];
+                        document.getElementById('street3').value = wit3Fields[4];
+                        document.getElementById('village3').value = wit3Fields[5];
+                        document.getElementById('mandal3').value = wit3Fields[6];
+                        document.getElementById('district3').value = wit3Fields[7];
+                    } else if (csvInputs[4].value) {
+                        throw new Error("Witness 3 details require 8 fields");
+                    }
+                    
+                    showStatus("All form fields filled successfully!", "success");
+                } catch (error) {
+                    showStatus(error.message, "error");
+                }
+            });
+            
+            // Clear all button
+            clearBtn.addEventListener('click', function() {
+                // Clear CSV inputs
+                csvInputs.forEach(input => input.value = "");
+                
+                // Clear form fields
+                const formElements = form.elements;
+                for (let i = 0; i < formElements.length; i++) {
+                    if (formElements[i].type !== "button" && formElements[i].type !== "submit") {
+                        formElements[i].value = "";
+                    }
+                }
+                
+                showStatus("All fields cleared successfully.", "success");
+            });
+            
+            // Save for Autofill button
+            saveBtn.addEventListener('click', function() {
+                // Save form data to localStorage
+                saveFormData();
+                
+                // Create a temporary form to trigger Chrome autofill save
+                triggerAutofillSave();
+                
+                showStatus("Data saved for autofill! Chrome should prompt to save your details.", "success");
+            });
+            
+            // Form submit event
+            form.addEventListener('submit', function(e) {
+                // For demo purposes, prevent actual submission
+                e.preventDefault();
+                
+                // Save form data to localStorage
+                saveFormData();
+                
+                showStatus("Application submitted successfully! Data saved for next time.", "success");
+            });
+            
+            // Save form data to localStorage
+            function saveFormData() {
+                const formData = {};
+                const elements = form.elements;
+                for (let i = 0; i < elements.length; i++) {
+                    const element = elements[i];
+                    if (element.name && element.value) {
+                        formData[element.name] = element.value;
+                    }
+                }
+                
+                localStorage.setItem('marriageFormData', JSON.stringify(formData));
+            }
+            
+            // Trigger Chrome autofill save prompt
+            function triggerAutofillSave() {
+                // Create a temporary form
+                const tempForm = document.createElement('form');
+                tempForm.method = 'post';
+                tempForm.action = 'https://httpbin.org/post'; // Dummy endpoint
+                tempForm.style.display = 'none';
+                
+                // Add all form data as hidden inputs
+                const elements = form.elements;
+                for (let i = 0; i < elements.length; i++) {
+                    const element = elements[i];
+                    if (element.name && element.value) {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = element.name;
+                        input.value = element.value;
+                        tempForm.appendChild(input);
+                    }
+                }
+                
+                // Add to document and submit
+                document.body.appendChild(tempForm);
+                tempForm.submit();
+                
+                // Remove after submission
+                setTimeout(() => {
+                    document.body.removeChild(tempForm);
+                }, 1000);
+            }
+            
+            // Show status messages
+            function showStatus(message, type) {
+                inputStatus.textContent = message;
+                inputStatus.className = type;
+                
+                // Clear status after 5 seconds
+                setTimeout(() => {
+                    inputStatus.textContent = "";
+                    inputStatus.className = "";
+                }, 5000);
+            }
+            
+            // Load cached data when page loads
+            const cachedData = localStorage.getItem('marriageFormData');
+            if (cachedData) {
+                try {
+                    const formData = JSON.parse(cachedData);
+                    Object.keys(formData).forEach(key => {
+                        const element = document.querySelector(`[name="${key}"]`);
+                        if (element) {
+                            element.value = formData[key];
+                        }
+                    });
+                    showStatus("Previous data loaded from cache.", "success");
+                } catch (e) {
+                    console.error("Error loading cached data:", e);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,810 +1,1471 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Social Media Meta -->
-<meta property="og:title" content="KS Digital Services - Trusted Digital Partner">
-<meta property="og:description" content="Fast, reliable online services like food/trade licenses, passport, PAN, and more.">
-<meta property="og:image" content="https://example.com/banner-image.jpg"> <!-- Replace with your image URL -->
-<meta property="og:url" content="https://ksdigitalservice.pw">
-<meta name="twitter:card" content="summary_large_image">
-
-
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link
-	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-	rel="stylesheet">
-
-<style>
-:root {
-    /* Modern Color Palette */
-    --color-primary: #2563eb; /* Vibrant blue */
-    --color-primary-dark: #1d4ed8;
-    --color-primary-light: #93c5fd;
-    --color-secondary: #f59e0b; /* Amber */
-    --color-secondary-dark: #d97706;
-    --color-secondary-light: #fcd34d;
-    --color-accent: #10b981; /* Emerald */
-    --color-accent-dark: #059669;
-    --color-danger: #ef4444; /* Red */
-    --color-success: #10b981; /* Green */
-    --color-warning: #f59e0b; /* Amber */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KS Digital Services | Premium Digital Solutions</title>
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    /* Text Colors */
-    --color-text-dark: #1f2937;
-    --color-text-medium: #4b5563;
-    --color-text-light: #9ca3af;
+    <!-- Load CSS with media="print" and swap on load -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     
-    /* Backgrounds */
-    --color-bg-body: #f9fafb;
-    --color-bg-card: #ffffff;
-    --color-border: #e5e7eb;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    /* Shadows */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-    
-    /* Border Radius */
-    --radius-sm: 0.25rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.5rem;
-    
-    /* Spacing */
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-}
-
-body {
-	font-family: 'Inter', sans-serif;
-	color: var(--color-text-medium);
-	background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%);
-	min-height: 100vh;
-	line-height: 1.6;
-}
-
-/* Enhanced Button Styles */
-.btn {
-    position: relative;
-    overflow: hidden;
-    border: none;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: var(--shadow-sm);
-    transform: translateY(0);
-    border-radius: var(--radius-md);
-    padding: 0.75rem 1.5rem;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
-}
-
-.btn:active {
-    transform: translateY(1px);
-    box-shadow: var(--shadow-sm);
-}
-
-.btn::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2), rgba(255,255,255,0));
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-}
-
-.btn:hover::after {
-    transform: translateX(100%);
-}
-
-/* Primary Button */
-.btn-primary {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-}
-
-/* Success Button */
-.btn-success {
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
-    color: white;
-}
-
-.btn-success:hover {
-    background: linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-accent) 100%);
-}
-
-/* Danger Button */
-.btn-danger {
-    background: linear-gradient(135deg, var(--color-danger) 0%, #dc2626 100%);
-    color: white;
-}
-
-.btn-danger:hover {
-    background: linear-gradient(135deg, #dc2626 0%, var(--color-danger) 100%);
-}
-
-/* Warning Button */
-.btn-warning {
-    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
-    color: white;
-}
-
-.btn-warning:hover {
-    background: linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-secondary) 100%);
-}
-
-/* Info Button */
-.btn-info {
-    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-    color: white;
-}
-
-.btn-info:hover {
-    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-}
-
-/* Social Media Buttons */
-.btn-sm {
-    padding: 0.5rem;
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-/* Hero Section */
-.hero-section {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    color: white;
-    padding: 1.0rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-    opacity: 0.1;
-}
-
-/* Card Styles */
-.card {
-    border: none;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-md);
-    background: var(--color-bg-card);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-}
-
-.category-border {
-    border: 2px solid var(--color-primary-light);
-    transition: all 0.3s ease;
-}
-
-.category-border:hover {
-    border-color: var(--color-primary);
-}
-
-.service-outline {
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 10px;
-    background: white;
-    transition: all 0.3s ease;
-    margin-bottom: 10px;
-    box-shadow: var(--shadow-sm);
-}
-
-.service-outline:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-/* Footer */
-.site-footer {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    color: white;
-    padding: 2rem 0;
-    position: relative;
-}
-
-.site-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-secondary));
-}
-
-/* Animations */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-.floating {
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.pulse {
-    animation: pulse 2s infinite;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 767.98px) {
-    .hero-section {
-        padding: 1.5rem 0;
-    }
-    
-    .btn {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .card {
-        margin-bottom: 1.5rem;
-    }
-}
-
-/* Ripple Effect */
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.4);
-    transform: scale(0);
-    animation: ripple 0.6s linear;
-    pointer-events: none;
-}
-
-@keyframes ripple {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-/* Custom Styles */
-.custom-red {
-    color: #ef4444;
-}
-
-.img-hover-zoom {
-    transition: transform 0.3s ease;
-}
-
-.img-hover-zoom:hover {
-    transform: scale(1.03);
-}
-
-/* Special Button for Self Printer */
-.btn-self-printer {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    color: white;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 1rem 2rem;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-self-printer:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
-    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-}
-
-.btn-self-printer::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0) 45%,
-        rgba(255, 255, 255, 0.5) 48%,
-        rgba(255, 255, 255, 0) 52%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    transform: rotate(30deg);
-    animation: shine 3s infinite;
-}
-
-@keyframes shine {
-    0% { left: -50%; }
-    20% { left: 100%; }
-    100% { left: 100%; }
-}
-/* Typography Enhancements */
- h2, h5 {
-    color: var(--color-text-dark);
-}
-
-.card-title {
-    font-size: 1.25rem;
-}
-
-/* Uniform Card Height */
-.card.h-100 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Footer Links Hover */
-.site-footer a:hover {
-    text-decoration: underline;
-    color: var(--color-accent);
-}
-
-/* Hero Section Improvement */
-.hero-section h1 {
-    font-size: 2.5rem;
-    animation: fadeInDown 1s ease;
-}
-
-.hero-section h6 {
-    font-weight: 400;
-    color: #e0e7ff;
-    margin-bottom: 1rem;
-    animation: fadeInUp 1s ease;
-}
-
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.scroll-wrapper::-webkit-scrollbar {
-        display: none;
-    }
-    .btn-details {
-            background: linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%);
-            color: white;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
+       <!-- Minified CSS -->
+    <style>
+        :root {
+            --color-primary: #4361ee;
+            --color-primary-dark: #3a0ca3;
+            --color-primary-light: #4cc9f0;
+            --color-secondary: #f72585;
+            --color-secondary-dark: #b5179e;
+            --color-accent: #4ade80;
+            --color-accent-dark: #16a34a;
+            --color-text-light: #f8fafc;
+            --color-text-medium: #cbd5e1;
+            --color-text-dark: #0f172a;
+            --color-bg-dark: #0f172a;
+            --color-bg-card: rgba(30,41,59,.7);
+            --color-border: rgba(148,163,184,.3);
+            --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+            --shadow-xl: 0 25px 50px -12px rgba(0,0,0,.5);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,.3);
+            --radius-xl: 1.5rem;
+            --radius-lg: 1rem
         }
-        .button-container {
-    display: flex;
-    justify-content: center; /* Center the buttons horizontally */
-    gap: 10px; /* Space between buttons */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+        body {
+            font-family: Poppins, sans-serif;
+            background: var(--color-bg-dark);
+            color: var(--color-text-medium);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1
+        }
+        .navbar {
+            background: rgba(15,23,42,.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000
+        }
+        .navbar-brand {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto;
+            display: block;
+            background: linear-gradient(to right, #f72585, #4361ee, #4cc9f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -.5px;
+            width: 100%;
+            text-align: center;
+        }
+        .nav-link {
+            color: var(--color-text-medium);
+            font-weight: 500;
+            transition: all .3s ease;
+            position: relative
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width .3s ease
+        }
+        .nav-link:hover {
+            color: var(--color-text-light)
+        }
+        .nav-link:hover::after {
+            width: 100%
+        }
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1.5rem
+        }
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #f72585, #4361ee, #4cc9f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            animation: gradientShift 8s infinite alternate
+        }
+        @keyframes gradientShift {
+            0% {
+                background-position: 0 50%
+            }
+            100% {
+                background-position: 100% 50%
+            }
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: var(--color-text-light);
+            opacity: .9;
+            max-width: 700px;
+            margin: 0 auto
+        }
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(76,201,240,.1);
+            backdrop-filter: blur(5px);
+            z-index: 1;
+            animation: float 15s infinite ease-in-out
+        }
+        .floating-element:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s
+        }
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+            background: rgba(247,37,133,.1)
+        }
+        .floating-element:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+            background: rgba(67,97,238,.1)
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0)
+            }
+            50% {
+                transform: translateY(-40px) rotate(10deg)
+            }
+            100% {
+                transform: translateY(0) rotate(0)
+            }
+        }
+        .services-section {
+            padding: 3rem 0;
+            position: relative
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem
+        }
+        .service-card {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px)
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,.4);
+            border-color: rgba(76,201,240,.5)
+        }
+        .card-img {
+            height: 450px;
+            overflow: hidden;
+            position: relative
+        }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease;
+            background: linear-gradient(135deg, #3a0ca3, #4cc9f0);
+            display: block;
+        }
+        .service-card:hover .card-img img {
+            transform: scale(1.08)
+        }
+        .card-content {
+            padding: 1.5rem
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-text-light);
+            margin-bottom: 1rem
+        }
+        .card-text {
+            margin-bottom: 1.5rem;
+            min-height: auto
+        }
+        .card-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: .7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all .3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            border: none;
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: #fff
+        }
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: #fff
+        }
+        .card-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,.3), rgba(255,255,255,.2), rgba(255,255,255,0));
+            transform: translateX(-100%);
+            transition: transform .4s ease
+        }
+        .card-btn:hover::after {
+            transform: translateX(100%)
+        }
+        .card-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,.2)
+        }
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background: var(--gradient-primary);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(67,97,238,.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s ease;
+            animation: pulse 2s infinite
+        }
+        .whatsapp-float:hover {
+            transform: translateY(-8px) rotate(10deg);
+            box-shadow: 0 15px 40px rgba(67,97,238,.6);
+            background: var(--gradient-secondary)
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(67,97,238,.7)
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(67,97,238,0)
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(67,97,238,0)
+            }
+        }
+        .testimonials-section {
+            padding: 4rem 0;
+            background: linear-gradient(to bottom, rgba(15,23,42,.9), rgba(15,23,42,1));
+            position: relative
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem
+        }
+        .testimonial-card {
+            background: rgba(30,41,59,.7);
+            border-radius: var(--radius-xl);
+            padding: 1.8rem;
+            border: 1px solid var(--color-border);
+            transition: all .3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden
+        }
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary)
+        }
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg)
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+        .testimonial-text::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: -20px;
+            font-size: 4rem;
+            color: rgba(76,201,240,.2);
+            font-family: Georgia, serif
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-text-light);
+            display: flex;
+            align-items: center;
+            gap: .8rem
+        }
+        .testimonial-author::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--gradient-primary)
+        }
+        
+        /* SERVICES NAVIGATION BAR - HIGHLIGHTED */
+        .services-nav-container {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            margin: 0 auto 1.5rem;
+            max-width: 1400px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services-nav-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .services-nav-container:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .services-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: rgba(30, 41, 59, 0.7);
+            color: var(--color-text-light);
+            border-radius: 50px;
+            text-decoration: none;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1rem;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .service-link:hover {
+            color: #fff;
+            border-color: transparent;
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .service-link:hover::before {
+            width: 100%;
+        }
+        
+        .service-link i {
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-link:hover i {
+            transform: rotate(10deg) scale(1.2);
+        }
+        
+        /* ACTIVE STATE */
+        .service-link.active {
+            background: var(--gradient-primary);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        }
+        
+        .service-link.active i {
+            transform: scale(1.1);
+        }
+        
+        /* FOOTER ENHANCEMENTS */
+        .site-footer {
+            background: linear-gradient(135deg, rgba(2,6,23,0.95) 0%, rgba(15,23,42,0.95) 100%);
+            padding: 3rem 0 0;
+            border-top: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            animation: gradientShift 8s infinite alternate;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        
+        .footer-about {
+            margin-bottom: 1.5rem;
+            max-width: 400px;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30,41,59,.7);
+            color: var(--color-text-light);
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--gradient-primary);
+            transition: height 0.3s ease;
+            z-index: -1;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(67,97,238,.3);
+            color: #fff;
+            border-color: transparent;
+        }
+        
+        .social-link:hover::before {
+            height: 100%;
+        }
+        
+        .footer-heading {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: .8rem;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--color-text-medium);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            padding: 0.5rem 0;
+            position: relative;
+            width: fit-content;
+            font-size: 0.95rem;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--color-text-light);
+            transform: translateX(5px);
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        .footer-links a i {
+            transition: transform .3s ease;
+            color: var(--color-primary-light);
+        }
+        
+        .footer-links a:hover i {
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 1.8rem 1.5rem;
+            color: var(--color-text-medium);
+            font-size: .9rem;
+            background: rgba(2,6,23,0.8);
+            position: relative;
+        }
+        
+        .copyright::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: var(--gradient-primary);
+        }
+        
+        .footer-nav {
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-nav .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-nav a {
+            color: var(--color-text-medium);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-nav a:hover {
+            color: var(--color-text-light);
+        }
+        
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0
+        }
+        .service-list li {
+            padding: .5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        .service-list li:last-child {
+            border-bottom: none
+        }
+        .service-list li i {
+            margin-right: .75rem;
+            color: var(--color-primary-light)
+        }
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%
+        }
+        .contact-card p {
+            margin-bottom: 1.5rem
+        }
+        
+        /* Performance Optimizations */
+        .lazy {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .lazy.loaded {
+            opacity: 1;
+        }
+        
+        .skeleton {
+            background: linear-gradient(90deg, rgba(30,41,59,0.5) 25%, rgba(67,97,238,0.1) 50%, rgba(30,41,59,0.5) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 8px;
+        }
+        
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+        
+        /* Mobile Menu Toggle */
+        .navbar-toggler {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            z-index: 1001;
+            background: rgba(67,97,238,0.3);
+            border: 1px solid rgba(76,201,240,0.5);
+        }
+        
+        .navbar-collapse {
+            background: rgba(15,23,42,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 15px 15px;
+            padding: 1rem;
+            border: 1px solid rgba(76,201,240,0.2);
+        }
+        
+        /* Media Queries */
+        @media (min-width: 576px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            .testimonial-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            .whatsapp-float {
+                width: 65px;
+                height: 65px;
+                font-size: 2rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .navbar-brand {
+                font-size: 3rem;
+            }
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            .card-grid {
+                gap: 2rem;
+                padding: 0 1.5rem;
+            }
+            .testimonial-grid {
+                gap: 2rem;
+                padding: 0 1.5rem;
+            }
+            .hero-btns {
+                flex-direction: row;
+            }
+            .whatsapp-float {
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            .whatsapp-float {
+                width: 70px;
+                height: 70px;
+                font-size: 2.2rem;
+                bottom: 40px;
+                right: 40px;
+            }
+        }
+        
+        /* Special adjustments for very small screens */
+        @media (max-width: 350px) {
+            .navbar-brand {
+                font-size: 2rem;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            .card-btn {
+                padding: .6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        
+        
+ 
+
+.custom-btn {
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+    animation: blink 2s infinite;  /* 2s interval with infinite repetition */
+    transition: all 0.3s ease;     /* Smooth transition for color change on hover */
+}
+
+/* Hover effect to change color */
+.custom-btn:hover {
+    background-color: red;
+    color: white;
+    border: 1px solid white;
 }
         
-</style>
+    </style>
+    
+    
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="hero-section">
-      <div class="container">
-          <h1 class="display-6 fw-bold mb-0">KS DIGITAL SERVICES</h1>
-          <h6 class=" mb-1">Your Trusted Partner for Online Services</h6>
-          <div class="d-flex justify-content-center gap-3">
-              <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success shadow pulse">
-                  <i class="bi bi-whatsapp"></i> Phone
-              </a>
-              <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-danger shadow pulse">
-                  <i class="bi bi-geo-alt-fill"></i> Maps
-              </a>
-          </div>
-      </div>
-  </section>
-  
-<br>
-  <!-- Features Section -->
-  <section class="container py-2">
-      <div class="row text-center mb-4">
-          <div class="col">
-              <h2 class="fw-bold" style="color: var(--color-primary);">What We Offer</h2>
-              <p class="text-muted">Fast and convenient solutions to your digital needs.</p>
-          </div>
-      </div>
-      
-      <div class="row g-4">
-          <!-- License Applications Container -->
-         <div class="col-md-4">
-    <div class="card h-100 shadow-sm category-border text-center">
-        <div class="card-body">
-            <img src="/FOOD.jpeg" alt="Food License" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
-            <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">Food License Registration</h5>
-            <div class="mb-3 fw-semibold">Actual Amount + <span class="text-success">Service Charge Rs 300 </span></div>
-            <div class="button-container d-flex justify-content-center">
-                <a href="/foodLicense" class="btn btn-details me-2">
-                    <i class="bi bi-info-circle me-2"></i> Details
-                </a>
-                <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20food%20license" target="_blank" class="btn btn-success">
-                    <i class="bi bi-whatsapp"></i> Apply Now
-                </a>
-            </div>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+ 
+       <div class="container">
+            <a class="navbar-brand text-center" href="#">KS DIGITAL SERVICES</a> 
         </div>
-    </div>
+    <h6 style="text-align:center">Complete online Services from your comfort space and Professional solutions for all your Digital needs</h6><p></p>
+    <hr style="width:100%; border:2px solid #007BFF; margin:auto;">
+    <p></p>
+  
+<div class="d-flex justify-content-center align-items-center">
+    <span class="ms-2 me-3">Click Here</span>  <!-- Added margin-right for spacing -->
+    <a href="/properties" class="card-btn btn custom-btn">
+        <i class="bi me-2"></i>REAL ESTATE PROPERTIES
+    </a>
 </div>
 
-          
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm category-border text-center">
-                  <div class="card-body">
-                      <img src="/TRADE.jpeg" alt="Trade License" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
-                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">Trade License</h5>
-                      <div class="mb-3 fw-semibold">Actual Amount + <span class="text-success">Service Charge Rs 300</span></div>
-                      
-                      <div class="button-container d-flex justify-content-center">
-                <a href="/tradeLicense" class="btn btn-details me-2">
-                    <i class="bi bi-info-circle me-2"></i> Details
-                </a>
-                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20trade%20license" target="_blank" class="btn btn-success">
-                          <i class="bi bi-whatsapp"></i> Apply Now
-                      </a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm category-border text-center">
-                  <div class="card-body">
-                      <img src="/LABOR.jpeg" alt="Labour License" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
-                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">Labour License</h5>
-                      <div class="mb-3 fw-semibold">Actual Amount + <span class="text-success">Service Charge Rs 300</span></div>
-                      <div class="button-container d-flex justify-content-center">
-                      <a href="/labourLicense" class="btn btn-details me-2">
-                    <i class="bi bi-info-circle me-2"></i> Details
-                </a>
-                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20labour%20license" target="_blank" class="btn btn-success">
-                          <i class="bi bi-whatsapp"></i> Apply Now
-                      </a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm category-border text-center">
-                  <div class="card-body">
-                      <img src="/MSME.jpeg" alt="MSME" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
-                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">UDYAM/MSME Certificate</h5>
-                      <div class="mb-3 fw-semibold">Amount: <span class="text-success">Rs 200</span></div>
-                      <div class="button-container d-flex justify-content-center">
-                <a href="/msme" class="btn btn-details me-2">
-                    <i class="bi bi-info-circle me-2"></i> Details
-                </a>
-                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20UDYAM/MSME%20CERTIFICATE" target="_blank" class="btn btn-success">
-                          <i class="bi bi-whatsapp"></i> Apply Now
-                      </a>
-                  </div>
-                  </div>
-              </div>
-          </div>
-          
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm category-border text-center floating">
-                  <div class="card-body">
-                      <img src="/passport-sample.jpg" alt="Passport" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:260px; max-width:260px">
-                      <br><br>
-                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">PASSPORT APPLICATION</h5>
-                      <div class="mb-3 fw-semibold">Amount: <span class="text-success">Rs 1700</span></div><br>
-                      <div class="button-container d-flex justify-content-center">
-                      <a href="/passport" class="btn btn-details me-2">
-                    <i class="bi bi-info-circle me-2"></i> Details
-                </a>
-                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20Apply%20for%20passport" target="_blank" class="btn btn-success">
-                          <i class="bi bi-whatsapp"></i> Apply Now
-                      </a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm category-border text-center">
-                  <div class="card-body">
-                      <img src="/pan-sample.jpg" alt="PAN Card" class="img-fluid rounded shadow-sm mb-3 img-hover-zoom" style="max-height:300px; max-width:300px">
-                      <br><br>
-                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">PAN CARD</h5>
-                      <h5 class="fw-bold mb-2" style="color: var(--color-secondary);">NEW / CORRECTION	</h5>
-                      <div class="mb-3 fw-semibold">Amount: <span class="text-success">Rs 150</span></div><br>
-                      <div class="button-container d-flex justify-content-center">
-                      <a href="/pancard" class="btn btn-details me-2">
-                    <i class="bi bi-info-circle me-2"></i> Details
-                </a>
-                      <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20Apply%20for%20PAN%20card" target="_blank" class="btn btn-success">
-                          <i class="bi bi-whatsapp"></i> Apply Now
-                      </a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-          <!-- General Services Card -->
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm hover-shadow category-border">
-                  <div class="card-body text-center">
-                      <h5 class="card-title fw-bold mb-4" style="color: var(--color-primary);">General Services</h5>
-                      <div class="row g-3">
-                          <div class="col-6">
-                              <div class="service-outline">
-                                  <img src="/aadhar.jpeg" alt="Aadhar Card" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-                                  <div class="fw-semibold">Aadhar Address Update Rs:100/-</div>
-                              </div>
-                          </div>
-                          <div class="col-6">
-                              <div class="service-outline">
-                                  <img src="/voter_id.jpg" alt="Voter ID" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-                                  <div class="fw-semibold">Voter ID Rs:100/-</div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-          <!-- Utility Services Card -->
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm hover-shadow category-border">
-                  <div class="card-body text-center">
-                      <h5 class="card-title fw-bold mb-4" style="color: var(--color-accent);">Utility Services</h5>
-                      <div class="row g-3">
-                          <div class="col-6">
-                              <div class="service-outline">
-                                  <img src="/bus.jpg" alt="Bus Ticket" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-                                  <div class="fw-semibold">Bus Ticket Booking</div>
-                              </div>
-                          </div>
-                          <div class="col-6">
-                              <div class="service-outline">
-                                  <img src="/train.jpg" alt="IRCTC" class="img-fluid rounded shadow-sm mb-2" style="max-height:90px;">
-                                  <div class="fw-semibold">Train Ticket Booking</div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-          <!-- Other Services Card -->
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm hover-shadow category-border">
-                  <div class="card-body text-center">
-                      <h5 class="card-title fw-bold mb-4" style="color: #6d28d9;">Other Services</h5>
-                      <ul class="list-group list-group-flush">
-                          <li class="list-group-item">GST Registration</li>
-                          <li class="list-group-item">ITR Filing</li>
-                          <li class="list-group-item">Online Form Filling</li>
-                          <li class="list-group-item">Scholarship Applications</li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          
-          <!-- Exam Applications Card -->
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm hover-shadow category-border">
-                  <div class="card-body text-center">
-                      <h5 class="card-title fw-bold mb-4" style="color: var(--color-danger);">Exam Applications</h5>
-                      <ul class="list-group list-group-flush">
-                          <li class="list-group-item">TG TET / UGC NET</li>
-                          <li class="list-group-item">EAMCET / Polycet</li>
-                          <li class="list-group-item">ECET / ICET</li>
-                          <li class="list-group-item">PECET / EDCET</li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          
-          <!-- Need Something Else Card -->
-          <div class="col-md-4">
-              <div class="card h-100 shadow-sm hover-shadow category-border">
-                  <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
-                      <h5 class="card-title fw-bold mb-3" style="color: var(--color-secondary);">Need Something Else?</h5>
-                      <p class="mb-4 text-muted">Don't see what you're looking for? Contact us for any special requests or inquiries.</p>
-                      <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-lg pulse">
-                          <i class="bi bi-whatsapp"></i> WhatsApp Us
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-<!-- Add after Features section -->
-<section class="container my-5 text-center">
-    <h2 class="fw-bold mb-4" style="color: var(--color-primary-dark);">What Our Clients Say</h2>
 
-    <!-- Scrollable wrapper -->
-    <div id="testimonialScroller" class="scroll-wrapper" style="overflow-x: auto; white-space: nowrap; padding-bottom: 1rem; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none;">
-        <!-- Testimonial Cards -->
-        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
-            <p class="text-muted">"Received my UDYAM Certificate instantly."</p>
-            <h6 class="fw-bold mb-0">- murthy</h6>
-        </div>
-        
-        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
-            <p class="text-muted">"Got my Aadhar Address updated in 3 days."</p>
-            <h6 class="fw-bold mb-0">- Raju Yadav</h6>
-        </div>
 
-        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
-            <p class="text-muted">"Received my trade license within 24 hours."</p>
-            <h6 class="fw-bold mb-0">- Vishnu</h6>
-        </div>
 
-        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
-            <p class="text-muted">"Quick service and very helpful, got my PAN in 1 day."</p>
-            <h6 class="fw-bold mb-0">- Jyothi</h6>
-        </div>
 
-        
-        
-        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
-            <p class="text-muted">"Saved me a lot of time, excellent experience."</p>
-            <h6 class="fw-bold mb-0">- Renuka</h6>
-        </div>
-        
-        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
-            <p class="text-muted">"Highly recommend for anyone needing quick document services."</p>
-            <h6 class="fw-bold mb-0">- Shiva</h6>
-        </div>
-        
-        <div class="card d-inline-block mx-2 shadow-sm p-3" style="min-width: 250px;">
-            <p class="text-muted">"Excellent service!"</p>
-            <h6 class="fw-bold mb-0">- Anil</h6>
-        </div>
-        
-        
-    </div>
-</section>
+   
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+                        
+            <div class="section-title">
+               <p class="text-center" style="
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #f7f2f2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #007BFF;
+">
+    List of Services We Provide
+</p>
 
-  
+            </div>
+            
+            <div class="card-grid">
+                <!-- Passport Application -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="passport.webp" alt="Passport" loading="lazy">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">PASSPORT APPLICATION</h3>
+                        <div class="d-flex gap-2">
+                            <a href="/passport" class="card-btn btn btn-primary">
+                                <i class="bi bi-info-circle me-2"></i>Details
+                            </a>
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20Apply%20for%20passport" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Marriage Certificate -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="marriage-certificate.webp" alt="Marriage Certificate" loading="lazy">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">MARRIAGE CERTIFICATE</h3>
+                        <div class="d-flex gap-2">
+                            <a href="/marriage" class="card-btn btn btn-primary">
+                                <i class="bi bi-info-circle me-2"></i>Details
+                            </a>
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20MARRIAGE%20CERTIFICATE" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- Social Media Section -->
-  <div class="container my-5">
-      <h5 class="text-center fw-bold mb-4" style="color: var(--color-primary);">Connect With Us</h5>
-      <div class="d-flex justify-content-center gap-3">
-      
+                <!-- Birth Certificate -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="birth-certificate.webp" alt="Birth Certificate" loading="lazy">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">BIRTH CERTIFICATE</h3>
+                        <div class="d-flex gap-2">
+                            <a href="/birth" class="card-btn btn btn-primary">
+                                <i class="bi bi-info-circle me-2"></i>Details
+                            </a>
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20BIRTH%20CERTIFICATE" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Food License -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="food-license.jpeg" alt="Food License" loading="lazy">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">FOOD LICENSE</h3>
+                      <div class="d-flex gap-2">
+                            <a href="/foodLicense" class="card-btn btn btn-primary">
+                                <i class="bi bi-info-circle me-2"></i>Details
+                            </a>
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20food%20license" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trade License -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="trade-license.webp" alt="Trade License" loading="lazy">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">TRADE LICENSE</h3>
+                        <div class="d-flex gap-2">
+                            <a href="/tradeLicense" class="card-btn btn btn-primary">
+                                <i class="bi bi-info-circle me-2"></i>Details
+                            </a>
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20trade%20license" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Labour License -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="labour-license.webp" alt="Labour License" loading="lazy">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">LABOUR LICENSE</h3>
+                        <div class="d-flex gap-2">
+                            <a href="/labourLicense" class="card-btn btn btn-primary">
+                                <i class="bi bi-info-circle me-2"></i>Details
+                            </a>
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20labour%20license" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MSME Certificate -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="msme-certificate.webp" alt="MSME Certificate" loading="lazy">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">UDYAM Certificate</h3>
+                        <div class="d-flex gap-2">
+                            <a href="/msme" class="card-btn btn btn-primary">
+                                <i class="bi bi-info-circle me-2"></i>Details
+                            </a>
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20UDYAM/MSME%20CERTIFICATE" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voter id Card -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="voter-id.webp" alt="Voter ID">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">VOTER ID CARD</h3>
+                        <div class="d-flex gap-2">
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20Apply%20for%20Voter%20ID" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAN Card -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="pan-card.webp" alt="PAN Card" loading="lazy">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">PAN CARD</h3>
+                        <div class="d-flex gap-2">
+                            <a href="/pancard" class="card-btn btn btn-primary">
+                                <i class="bi bi-info-circle me-2"></i>Details
+                            </a>
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20Apply%20for%20PAN%20card" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Aadhar Card -->
+                <div class="service-card">
+                    <div class="card-img">
+                        <img class="lazy" data-src="aadhar-card.jpg" alt="Aadhar Card">
+                        <div class="skeleton" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">AADHAR ADDRESS UPDATE</h3>
+                        <div class="d-flex gap-2">
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20Update%20My%20Aadhar%20Address" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Utility Services -->
+                <div class="service-card">
+                    <div class="card-content">
+                        <h3 class="card-title">Utility Services</h3>
+                        <ul class="service-list">
+                            <li><i class="bi bi-bus-front"></i> Bus Ticket Booking</li>
+                            <li><i class="bi bi-train-front"></i> Train Ticket Booking</li>
+                            <li><i class="bi bi-bus-front"></i> TTD  Bookings</li>
+                        </ul>
+                        <div class="d-flex gap-2">
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20book%20travel%20tickets" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exam Applications -->
+                <div class="service-card">
+                    <div class="card-content">
+                        <h3 class="card-title">Exam Applications</h3>
+                        <ul class="service-list">
+                            <li><i class="bi bi-journal-check"></i> TG TET / UGC NET</li>
+                            <li><i class="bi bi-journal-check"></i> EAMCET / Polycet</li>
+                            <li><i class="bi bi-journal-check"></i> ECET / ICET</li>
+                            <li><i class="bi bi-journal-check"></i> PECET / EDCET</li>
+                        </ul>
+                        <div class="d-flex gap-2">
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20to%20apply%20for%20exam" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Other Services -->
+                <div class="service-card">
+                    <div class="card-content">
+                        <h3 class="card-title">Other Services</h3>
+                        <ul class="service-list">
+                            <li><i class="bi bi-building"></i> GST Registration</li>
+                            <li><i class="bi bi-file-earmark-text"></i> ITR Filing</li>
+                            <li><i class="bi bi-pen"></i> Online Form Filling</li>
+                            <li><i class="bi bi-mortarboard"></i> Scholarship Applications</li>
+                        </ul>
+                        <div class="d-flex gap-2">
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20need%20other%20services" target="_blank" class="card-btn btn btn-secondary">
+                                <i class="bi bi-whatsapp me-2"></i>Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Need Something Else -->
+                <div class="service-card">
+                    <div class="card-content contact-card">
+                        <h3 class="card-title">Need Something Else?</h3>
+                        <p>Don't see what you're looking for? Contact us for any special requests or inquiries.</p>
+                        <a href="https://wa.me/7893845696" target="_blank" class="card-btn btn btn-secondary">
+                            <i class="bi bi-whatsapp me-2"></i>WhatsApp Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
-      
-          <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
-              <i class="bi bi-whatsapp"></i>
-          </a>
-          <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-instagram btn-sm shadow" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white;">
-              <i class="bi bi-instagram"></i>
-          </a>
-          <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
-              <i class="bi bi-youtube"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
-              <i class="bi bi-linkedin"></i>
-          </a>
-          <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-success btn-sm shadow">
-              <i class="bi bi-geo-alt-fill"></i>
-          </a>
-      </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="site-footer py-4">
-      <div class="container">
-          <nav class="mb-3 d-flex flex-wrap justify-content-center">
-              <a href="/terms" class="text-light mx-2 mb-2">Terms</a>
-              <a href="/privacy" class="text-light mx-2 mb-2">Privacy</a>
-              <a href="/contact" class="text-light mx-2 mb-2">Contact</a>
-              <a href="/cancellation" class="text-light mx-2 mb-2">Cancellation</a>
-              <a href="/shipping" class="text-light mx-2 mb-2">Shipping</a>
-          </nav>
-          <div class="mb-3 text-center">
-              <a href="tel:7893845696" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-telephone-fill"></i> 7893845696</a>
-              <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
-          </div>
-          <div class="text-center">
-              <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
-          </div>
-      </div>
-  </footer>
-
-  <!-- Ripple Effect JavaScript -->
-  <script>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <p class="text-center">Hear from our satisfied customers</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Received my UDYAM Certificate instantly. KS Digital Services made the process so simple and quick!"</p>
+                    <div class="testimonial-author">- Murthy</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Got my Aadhar Address updated in just 3 days. Their service is efficient and reliable."</p>
+                    <div class="testimonial-author">- Raju Yadav</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Received my trade license within 24 hours. Amazing speed and professionalism!"</p>
+                    <div class="testimonial-author">- Vishnu</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Quick service and very helpful, got my PAN in just 1 day. Highly recommended!"</p>
+                    <div class="testimonial-author">- Jyothi</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Saved me a lot of time, excellent experience. Will use their services again for sure."</p>
+                    <div class="testimonial-author">- Renuka</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Highly recommend for anyone needing quick document services. Professional and reliable."</p>
+                    <div class="testimonial-author">- Shiva</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
   
-  const scroller = document.getElementById('testimonialScroller');
-  const cardWidth = 260; // Adjust if needed (card width + margin)
-  let scrollPosition = 0;
-
-  setInterval(() => {
-      scrollPosition += cardWidth;
-      if (scrollPosition >= scroller.scrollWidth - scroller.clientWidth) {
-          scrollPosition = 0; // Reset to start
-      }
-      scroller.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-  }, 2000); // 2 seconds
-  
-  
-  
-      // Add ripple effect to all buttons
-      document.querySelectorAll('.btn').forEach(button => {
-          button.addEventListener('click', function(e) {
-              // Create ripple element
-              const ripple = document.createElement('span');
-              ripple.classList.add('ripple');
-              
-              // Position the ripple
-              const rect = this.getBoundingClientRect();
-              const size = Math.max(rect.width, rect.height);
-              const x = e.clientX - rect.left - size/2;
-              const y = e.clientY - rect.top - size/2;
-              
-              // Style the ripple
-              ripple.style.width = ripple.style.height = `${size}px`;
-              ripple.style.left = `${x}px`;
-              ripple.style.top = `${y}px`;
-              ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-              ripple.style.position = 'absolute';
-              ripple.style.borderRadius = '50%';
-              ripple.style.transform = 'scale(0)';
-              ripple.style.animation = 'ripple 0.6s linear';
-              ripple.style.pointerEvents = 'none';
-              
-              // Add ripple to button
-              this.appendChild(ripple);
-              
-              // Remove ripple after animation
-              setTimeout(() => {
-                  ripple.remove();
-              }, 600);
-          });
-      });
-  </script>
+    
+    
+    <!-- Footer -->
+    <footer id="contact" class="site-footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">KS DIGITAL SERVICES</div>
+                <p class="footer-about">Your trusted partner for all digital documentation and certification needs. Fast, reliable, and professional services.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/7893845696" target="_blank" class="social-link">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="social-link">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="social-link">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="social-link">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="footer-heading">PAGES</h3>
+                <ul class="footer-links">
+                    <li><a href="/terms"><i class="bi bi-arrow-right"></i>Terms</a></li>
+                    <li><a href="/privacy"><i class="bi bi-arrow-right"></i>Privacy</a></li>
+                    <li><a href="/contact"><i class="bi bi-arrow-right"></i>Contact</a></li>
+                    <li><a href=/cancellation><i class="bi bi-arrow-right"></i>Cancellation</a></li>
+                    <li><a href="/shipping"><i class="bi bi-arrow-right"></i>Shipping</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="footer-heading">Contact Us</h3>
+                <ul class="footer-links">
+                    <li><a href="tel:7893845696"><i class="bi bi-telephone"></i>+91 7893845696</a></li>
+                    <li><a href="mailto:ksdigital2025@gmail.com"><i class="bi bi-envelope"></i>ksdigital2025@gmail.com</a></li>
+                    <li><a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank"><i class="bi bi-geo-alt"></i>Hyderabad, Telangana</a></li>
+                    <li><a href="#"><i class="bi bi-clock"></i>Mon-Sat: 7:00 AM - 9:30 PM</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 KS Digital Services. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/7893845696" target="_blank" class="whatsapp-float">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    
+    <!-- Bootstrap & Particles JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    
+    <script>
+        // Lazy loading for images
+        document.addEventListener("DOMContentLoaded", function() {
+            const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+            let lazyImageObserver;
+            
+            if ("IntersectionObserver" in window) {
+                lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            const lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImage.classList.add("loaded");
+                            lazyImageObserver.unobserve(lazyImage);
+                            
+                            // Remove skeleton after image loads
+                            const skeleton = lazyImage.nextElementSibling;
+                            if (skeleton && skeleton.classList.contains("skeleton")) {
+                                setTimeout(() => {
+                                    skeleton.style.opacity = "0";
+                                    setTimeout(() => {
+                                        skeleton.remove();
+                                    }, 400);
+                                }, 300);
+                            }
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImage.src = lazyImage.dataset.src;
+                    lazyImage.classList.add("loaded");
+                    
+                    // Remove skeleton
+                    const skeleton = lazyImage.nextElementSibling;
+                    if (skeleton && skeleton.classList.contains("skeleton")) {
+                        skeleton.remove();
+                    }
+                });
+            }
+            
+            // Load particles only when needed
+            if (typeof particlesJS === 'function') {
+                particlesJS("particles-js", {
+                    particles: {
+                        number: { value: 50, density: { enable: true, value_area: 800 } },
+                        color: { value: "#4cc9f0" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.4, random: true },
+                        size: { value: 2.5, random: true },
+                        line_linked: {
+                            enable: true,
+                            distance: 120,
+                            color: "#4361ee",
+                            opacity: 0.15,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 0.8,
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false
+                        }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: { enable: true, mode: "grab" },
+                            onclick: { enable: true, mode: "push" },
+                            resize: true
+                        },
+                        modes: {
+                            grab: { distance: 120, line_linked: { opacity: 0.3 } },
+                            push: { particles_nb: 3 }
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+            
+            // Fade in animation for sections
+            const fadeElements = document.querySelectorAll('.service-card, .testimonial-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(20px)";
+                element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                observer.observe(element);
+            });
+            
+            // Highlight active service in navigation bar
+            const serviceLinks = document.querySelectorAll('.service-link');
+            serviceLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    serviceLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,144 +1,268 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KS Digital Service</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>KS Digital Service - Automated Clipboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
- <link   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link
-	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-	rel="stylesheet">
-	
-	
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-   :root {
-    --color-primary: #2563eb;
-    --color-primary-dark: #1d4ed8;
-    --color-primary-light: #93c5fd;
-    --color-secondary: #f59e0b;
-    --color-secondary-dark: #d97706;
-    --color-secondary-light: #fcd34d;
-    --color-accent: #10b981;
-    --color-accent-dark: #059669;
-    --color-danger: #ef4444;
-    --color-success: #10b981;
-    --color-warning: #f59e0b;
-    --color-text-dark: #1f2937;
-    --color-text-medium: #4b5563;
-    --color-text-light: #9ca3af;
-    --color-bg-body: #f9fafb;
-    --color-bg-card: #ffffff;
-    --color-border: #e5e7eb;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-    --radius-sm: 0.25rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.5rem;
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    color: var(--color-text-medium);
-    background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%);
-    min-height: 100vh;
-    line-height: 1.6;
-}
-
-        /* Modified main-container styles */
-        .main-container {
-            width: 90%; /* Occupy 90% of the viewport width */
-            max-width: 1400px; /* Set a maximum width for very large screens */
-            margin: 0 auto 40px;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        :root {
+            --color-primary: #4361ee;
+            --color-primary-dark: #3a0ca3;
+            --color-primary-light: #4cc9f0;
+            --color-secondary: #f72585;
+            --color-secondary-dark: #b5179e;
+            --color-accent: #4ade80;
+            --color-accent-dark: #16a34a;
+            --color-text-light: #f8fafc;
+            --color-text-medium: #cbd5e1;
+            --color-text-dark: #0f172a;
+            --color-bg-dark: #0f172a;
+            --color-bg-card: rgba(30, 41, 59, 0.7);
+            --color-border: rgba(148, 163, 184, 0.3);
+            --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            --radius-xl: 1.5rem;
+            --radius-lg: 1rem;
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--color-bg-dark);
+            color: var(--color-text-medium);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--color-accent-dark);
+            color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            z-index: 2000;
+            transform: translateX(120%);
+            transition: transform 0.4s ease;
+            max-width: 400px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.error {
+            background: var(--color-secondary);
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(76, 201, 240, 0.1);
+            backdrop-filter: blur(5px);
+            z-index: 1;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+            background: rgba(247, 37, 133, 0.1);
+        }
+
+        .floating-element:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: var(--color-text-medium);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 25vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        /* Content Sections */
+        .main-container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto 40px;
+            background: var(--color-bg-card);
+            padding: 30px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            position: relative;
+            z-index: 10;
+        }
+
+        .main-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
 
         .page-header {
             text-align: center;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .title-container {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            padding-right: 120px;
-        }
-
-        .phone-number-header {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.9rem;
-            color: #6c757d;
-            white-space: nowrap;
+            border-bottom: 1px solid var(--color-border);
         }
 
         .page-title {
             margin-bottom: 10px;
-            color: #343a40;
+            color: var(--color-text-light);
             font-weight: 300;
             font-size: 2.2rem;
         }
 
         .page-title span {
             font-weight: 700;
-            color: #0d6efd;
+            color: var(--color-primary-light);
         }
 
         .page-subtitle {
             font-size: 1rem;
-            color: #6c757d;
-        }
-
-        .external-service-link-container {
-            margin-bottom: 30px;
-            text-align: center;
+            color: var(--color-text-medium);
         }
 
         .external-service-link {
             display: inline-block;
-            color: #0d6efd;
-            border: 1px solid #dee2e6;
+            color: var(--color-primary-light);
+            border: 1px solid var(--color-border);
             border-radius: 0.3rem;
             padding: 0.6rem 1.2rem;
             font-weight: 600;
             transition: all 0.2s ease;
             font-size: 0.95rem;
             text-decoration: none;
-            background-color: #e9ecef;
+            background-color: rgba(30, 41, 59, 0.5);
         }
 
         .external-service-link:hover {
-            background-color: #dde1e5;
-            border-color: #cfd4d9;
-            color: #0b5ed7;
+            background-color: rgba(30, 41, 59, 0.7);
+            border-color: var(--color-primary-light);
+            color: var(--color-text-light);
         }
 
         .categories {
@@ -150,31 +274,33 @@ body {
         }
 
         .category {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: var(--radius-lg);
             padding: 20px;
             text-align: left;
-            border: 1px solid #e9ecef;
-            transition: box-shadow 0.2s ease-in-out;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
             position: relative;
             overflow: hidden;
             flex: 1;
         }
 
         .category:hover {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-primary-light);
         }
 
-        /* Updated Category Colors */
+        /* Category Colors */
         .category-general h2 {
             color: #6c9eff;
             border-bottom: 2px solid #6c9eff;
         }
 
         .category-licenses h2 {
-            color: #dc3545;
-            border-bottom: 2px solid #dc3545;
+            color: #ff6b6b;
+            border-bottom: 2px solid #ff6b6b;
         }
 
         .category-webservices h2 {
@@ -200,7 +326,7 @@ body {
             font-weight: 600;
         }
 
-        /* Modern Button Styles */
+        /* Button Styles */
         .category button {
             display: block;
             border: none;
@@ -218,17 +344,15 @@ body {
             overflow: hidden;
             font-weight: 600;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
             transform: translateY(0);
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid var(--color-border);
         }
 
         .category button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .category button:active {
-            transform: translateY(0);
+            box-shadow: var(--shadow-xl);
         }
 
         .category button::after {
@@ -238,7 +362,7 @@ body {
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(120deg, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
+            background: linear-gradient(120deg, rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0));
             transform: translateX(-100%);
             transition: transform 0.6s ease;
         }
@@ -247,368 +371,395 @@ body {
             transform: translateX(100%);
         }
 
-        /* Button Gradients and Colors */
+        /* Button Category Colors */
         .category-general button {
-            background: linear-gradient(135deg, #6c9eff 0%, #4a7df5 100%);
-        }
-        .category-general button:hover {
-            background: linear-gradient(135deg, #5a8ae6 0%, #3a6ce5 100%);
+            background: linear-gradient(135deg, rgba(108, 158, 255, 0.7) 0%, rgba(74, 125, 245, 0.7) 100%);
         }
 
         .category-licenses button {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-        }
-        .category-licenses button:hover {
-            background: linear-gradient(135deg, #bb2d3b 0%, #a71d2a 100%);
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.7) 0%, rgba(200, 35, 51, 0.7) 100%);
         }
 
         .category-webservices button {
-            background: linear-gradient(135deg, #20c997 0%, #17a673 100%);
-        }
-        .category-webservices button:hover {
-            background: linear-gradient(135deg, #1aa179 0%, #138d65 100%);
+            background: linear-gradient(135deg, rgba(32, 201, 151, 0.7) 0%, rgba(23, 166, 115, 0.7) 100%);
         }
 
         .category-exams button {
-            background: linear-gradient(135deg, #9d7bd9 0%, #7e5cc4 100%);
-        }
-        .category-exams button:hover {
-            background: linear-gradient(135deg, #8b69c7 0%, #6d4ab2 100%);
+            background: linear-gradient(135deg, rgba(157, 123, 217, 0.7) 0%, rgba(126, 92, 196, 0.7) 100%);
         }
 
         .category-other button {
-            background: linear-gradient(135deg, #fd7e14 0%, #f76707 100%);
-        }
-        .category-other button:hover {
-            background: linear-gradient(135deg, #d56a0f 0%, #d35400 100%);
+            background: linear-gradient(135deg, rgba(253, 126, 20, 0.7) 0%, rgba(247, 103, 7, 0.7) 100%);
         }
 
-        .footer {
-            background-color: #343a40;
-            color: #adb5bd;
-            padding: 30px 0;
-            margin-top: 40px;
-            font-size: 0.9rem;
-            border-top: 3px solid #0d6efd;
-        }
-
-        .footer a {
-            color: #f8f9fa;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            color: #0d6efd;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 767.98px) {
-            .page-title {
-                font-size: 1.8rem;
-            }
-
-            .categories {
-                flex-direction: column;
-            }
-
-            .phone-number-header {
-                position: static;
-                transform: none;
-                display: block;
-                margin-top: 10px;
-            }
-
-            .title-container {
-                padding-right: 0;
-            }
-        }
-
-        .subtitle-container {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-            gap: 20px;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .page-subtitle {
-            font-size: 1rem;
-            color: #6c757d;
+        /* Floating WhatsApp button */
+        .whatsapp-float {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 40px;
+            right: 40px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
             text-align: center;
-            margin: 0;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            animation: pulse 2s infinite;
+            transform: translateY(0);
         }
 
-        .small-right-align {
-            font-size: 12px;
-            white-space: nowrap;
-            margin: 0;
+        .whatsapp-float:hover {
+            transform: translateY(-10px) rotate(10deg);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.6);
+            background: var(--gradient-secondary);
         }
 
-        @media (max-width: 767.98px) {
-            .subtitle-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 10px;
-            }
-            .small-right-align {
-                text-align: center !important;
-            }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
         }
+
+        /* Home Button */
+        .home-logo-button {
+            position: fixed;
+            top: 25px;
+            left: 30px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            z-index: 1000;
+            color: var(--color-primary-dark);
+        }
+
+        .home-logo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--color-primary);
+        }
+
+        /* Social Media Section */
+        .social-media-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
         .online-services-heading {
             font-family: 'Poppins', sans-serif;
-            color: #2d3a80;
+            color: var(--color-primary-light);
             font-weight: 700;
             margin: 1.5rem 0;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-bottom: 2px solid #0d6efd;
+            border-bottom: 2px solid var(--color-primary-light);
             padding-bottom: 0.5rem;
             text-align: center;
         }
+
         @keyframes blink {
             0% { opacity: 1; }
-            50% { opacity: 0; }
+            50% { opacity: 0.5; }
             100% { opacity: 1; }
         }
+
         .blink-text {
             animation: blink 2s infinite;
         }
-        .btn-directions {
-            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
-            border: none;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .btn-directions:hover {
-            background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        .btn-directions:active {
-            transform: translateY(0);
+
+        /* Footer */
+        .site-footer {
+            background: rgba(2, 6, 23, 0.9);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: 4rem;
         }
 
-        /* Enhanced bottom navigation buttons */
-        .text-center .btn-outline-primary {
-            border: 2px solid #0d6efd;
-            color: #0d6efd;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 8px;
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-about {
+            margin-bottom: 1.5rem;
+            max-width: 400px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 41, 59, 0.7);
+            color: var(--color-text-light);
+            font-size: 1.2rem;
             transition: all 0.3s ease;
-            margin: 5px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            background: var(--gradient-primary);
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
             position: relative;
-            overflow: hidden;
+            padding-bottom: 0.5rem;
         }
-        .text-center .btn-outline-primary:hover {
-            background-color: #0d6efd;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
-        }
-        .text-center .btn-outline-primary::before {
+
+        .footer-heading::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: 0.5s;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-primary);
         }
-        .text-center .btn-outline-primary:hover::before {
-            left: 100%;
+
+        .footer-links {
+            list-style: none;
         }
-/* Hero Section */
-.hero-section {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    color: white;
-    padding: 2rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-    opacity: 0.1;
-}
-/* Custom Styles */
-.display-4 {
-    font-size: 2.5rem; /* Equivalent to Bootstrap's display-4 */
-    line-height: 1.2;
-}
 
-.fw-bold {
-    font-weight: 700; /* Bold font weight */
-}
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
 
-.mb-3 {
-    margin-bottom: 1rem; /* Bottom margin */
-}
+        .footer-links a {
+            color: var(--color-text-medium);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-.lead {
-    font-size: 1.25rem; /* Larger font size for lead text */
-    line-height: 1.5; /* Line height */
-}
+        .footer-links a:hover {
+            color: var(--color-text-light);
+            transform: translateX(5px);
+        }
 
-.mb-4 {
-    margin-bottom: 1.5rem; /* Bottom margin */
-}
+        .footer-links a i {
+            transition: transform 0.3s ease;
+        }
 
-.d-flex {
-    display: flex; /* Flexbox layout */
-}
+        .footer-links a:hover i {
+            transform: translateX(3px);
+        }
 
-.justify-content-center {
-    justify-content: center; /* Center items horizontally */
-}
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            color: var(--color-text-medium);
+            font-size: 0.9rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem 0;
+            border-top: 1px solid var(--color-border);
+        }
 
-.gap-3 {
-    gap: 1rem; /* Gap between flex items */
-}
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .categories {
+                flex-wrap: wrap;
+            }
+            .category {
+                flex-basis: 48%;
+            }
+        }
 
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                bottom: 30px;
+                right: 30px;
+            }
+            .hero-section {
+                min-height: 25vh;
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            }
+            .category {
+                flex-basis: 100%;
+            }
+            .home-logo-button {
+                left: 15px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
 
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .main-container {
+                padding: 15px;
+            }
+        }
 
-/* Social Media Buttons */
-.btn-sm {
-    padding: 0.5rem;
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-/* Footer */
-.site-footer {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    color: white;
-    padding: 2rem 0;
-    position: relative;
-}
-.site-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-secondary));
-}
-.footer-nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-.footer-nav a {
-    color: #cbd5e1;
-    text-decoration: none;
-    margin: 0 0.75rem;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-}
-.footer-nav a:hover {
-    color: var(--color-primary-light);
-}
-.footer-contact-details {
-    font-size: 0.9rem;
-}
-.footer-contact-details a {
-    color: #cbd5e1;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-.footer-contact-details a:hover {
-    color: var(--color-primary-light);
-}
-.footer-contact-details i {
-    margin-right: 0.3rem;
-}
-.copyright {
-    font-size: 0.85rem;
-    color: #94a3b8;
-    margin-top: 1.5rem;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 767.98px) {
-    .hero-section {
-        padding: 1.5rem 0;
-    }
- 
-    .footer-nav {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    .footer-nav a {
-        margin: 0;
-    }
-    .footer-contact-details {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    .footer-contact-details a {
-        margin: 0;
-    }
-}
+        .instruction-panel {
+            background: #1e293b;
+            border-left: 4px solid #4361ee;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .instruction-panel h4 {
+            color: #4cc9f0;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .instruction-panel code {
+            background: rgba(0,0,0,0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 3px 0;
+            font-family: monospace;
+        }
+        
+        .instruction-panel .icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .service-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
-
 <body>
-       <section class="hero-section">
-  <div class="container">
-    <h1 class="display-4 fw-bold mb-0">KS DIGITAL SERVICES</h1>
-    <p class="lead mb-0">Your Trusted Partner for Online Services</p>
-  </div>
-</section>
-
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Notification -->
+    <div class="notification" id="clipboardNotification">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-clipboard-check fs-3 me-3"></i>
+            <div>
+                <h5 class="mb-1">Clipboard Ready</h5>
+                <p class="mb-0">Extraction instructions copied automatically</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">KS DIGITAL SERVICES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-container">
         <h4 class="online-services-heading">ONLINE SERVICE LINKS</h4>
         <div class="categories">
             <div class="category category-general">
                 <h2>General</h2>
-              <button onclick="window.open('/passport_photo', '_blank')">Passport Photo</button>
-               <button onclick="window.open('/autofill', '_blank')">Auto fill</button>
+                <button onclick="window.open('/passport_photo', '_blank')">Passport Photo</button>
                 <button onclick="window.open('https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en', '_blank')">Aadhar Download</button>
                 <button onclick="window.open('https://www.onlineservices.nsdl.com/paam/ReprintEPan.html', '_blank')">PAN REPRINT</button>
                 <button onclick="window.open('https://www.onlineservices.nsdl.com/paam/requestAndDownloadEPAN.html', '_blank')">Download E-PAN</button>
                 <button onclick="window.open('https://epds.telangana.gov.in/FoodSecurityAct/?wicket:bookmarkablePage=:nic.fsc.foodsecurity.FscSearch', '_blank')">Ration</button>
                 <button onclick="window.open('https://epds.telangana.gov.in/FoodSecurityAct/?wicket:bookmarkablePage=:nic.fsc.foodsecurity.FscApplicationSearch', '_blank')">FSC by Aadhar</button>
-                 <button onclick="window.open('https://unifiedportal-mem.epfindia.gov.in/memberinterface/', '_blank')">PF (EPFO)</button>
+                <button onclick="window.open('https://unifiedportal-mem.epfindia.gov.in/memberinterface/', '_blank')">PF (EPFO)</button>
             </div>
-              <div class="category category-exams">
+            <div class="category category-exams">
                 <h2>Applications</h2>
-                 <button onclick="window.open('https://myaadhaar.uidai.gov.in/en_IN', '_blank')">aadhar update</button>
-                <button onclick="window.open('https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html', '_blank')">PAN</button>
-                 <button onclick="window.open('https://eportal.incometax.gov.in/iec/foservices/#/pre-login/instant-e-pan', '_blank')">Instant PAN</button>
+                <button onclick="window.open('https://myaadhaar.uidai.gov.in/en_IN', '_blank')">Aadhar Update</button>
+                <button onclick="window.open('https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html', '_blank')">NSDL PAN</button>
+                <button id="extractDetailsBtn">PAN CARD</button>
+                <button onclick="window.open('https://eportal.incometax.gov.in/iec/foservices/#/pre-login/instant-e-pan', '_blank')">Instant PAN</button>
                 <button onclick="window.open('https://voters.eci.gov.in/signup', '_blank')">Voter ID</button>
                 <button onclick="window.open('https://services2.passportindia.gov.in/forms/PreLogin', '_blank')">PASSPORT</button>
-                </div>
+                <button id="extractDetailsBtnMarriage">Marriage</button>
+                <button onclick="window.open('https://swavlambancard.gov.in/Applyforudid', '_blank')">UDID</button>
+                 <button onclick="window.open('https://udyamregistration.gov.in/Government-India/Ministry-MSME-registration.htm', '_blank')">UDYAM</button>
+                
+                
+                
+                
+            </div>
             
             <div class="category category-licenses">
                 <h2>Licenses</h2>
                 <button onclick="window.open('https://foscos.fssai.gov.in/', '_blank')">Food</button>
                 <button onclick="window.open('https://trade.ghmc.gov.in/', '_blank')">Trade</button>
                 <button onclick="window.open('https://labour.telangana.gov.in/Entrepreneur.do', '_blank')">Labour</button>
-                    <button onclick="window.open('https://services.gst.gov.in/services/quicklinks/registration', '_blank')">GST Services</button>
+                <button onclick="window.open('https://services.gst.gov.in/services/quicklinks/registration', '_blank')">GST Services</button>
                 <button onclick="window.open('https://www.incometax.gov.in/iec/foportal/', '_blank')">ITR Filing</button>
-              
             </div>
             <div class="category category-webservices">
                 <h2>Web Services</h2>
+                <button onclick="window.open('/admin/properties', '_blank')">Real Estate</button>
+                <button onclick="window.open('/myTask', '_blank')">Task</button>
                 <button onclick="window.open('https://www.irctc.co.in/nget/train-search', '_blank')">IRCTC</button>
                 <button onclick="window.open('https://www.makemytrip.com/bus-tickets/hyderabad-city-online-booking.html', '_blank')">BUS TICKET</button>
                 <button onclick="window.open('https://www.skyscanner.co.in/', '_blank')">FLIGHT TICKET</button>
@@ -622,110 +773,281 @@ body {
                 <button onclick="window.open('https://telanganaepass.cgg.gov.in/epassonlinelinks.do', '_blank')">Scholarships</button>
                 <button onclick="window.open('https://www.transport.telangana.gov.in/html/driving-licencel-learners.html', '_blank')">Driving License </button>
                 <button onclick="window.open('https://www.tataaig.com/', '_blank')">Vehicle Insurance</button>
-               
-            
-                  <button onclick="window.open('https://bigpdf.11zon.com/en/compress-pdf/compress-pdf-to-300kb.php', '_blank')">pdf compress</button>
+                <button onclick="window.open('https://www.ilovepdf.com/compress_pdf', '_blank')">pdf compress</button>
                 <button onclick="window.open('https://www.ilovepdf.com/pdf_to_jpg', '_blank')">pdf to jpg</button>
                 <button onclick="window.open('https://www.ilovepdf.com/jpg_to_pdf', '_blank')">jpg to pdf</button>
+                <button onclick="window.open('https://www.sejda.com/pdf-editor', '_blank')">pdf editor</button>
+                
             </div>
+        </div>      
+     
+    </div>
 
-          
+    <!-- Footer -->
+    <footer id="contact" class="site-footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">KS DIGITAL</div>
+                <p class="footer-about">Your trusted partner for all digital documentation and printing needs. Fast, reliable, and professional services.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/7893845696" target="_blank" class="social-link">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="social-link">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="social-link">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="social-link">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="footer-heading">Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="/foodLicense"><i class="bi bi-arrow-right"></i>Food License Registration</a></li>
+                    <li><a href="/tradeLicense"><i class="bi bi-arrow-right"></i>Trade License</a></li>
+                    <li><a href="/labourLicense"><i class="bi bi-arrow-right"></i>Labour License</a></li>
+                    <li><a href="/msme"><i class="bi bi-arrow-right"></i>MSME Certificate</a></li>
+                    <li><a href="/passport"><i class="bi bi-arrow-right"></i>Passport Application</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="footer-heading">Contact Us</h3>
+                <ul class="footer-links">
+                    <li><a href="tel:7893845696"><i class="bi bi-telephone"></i>+91 7893845696</a></li>
+                    <li><a href="mailto:ksdigital2025@gmail.com"><i class="bi bi-envelope"></i>ksdigital2025@gmail.com</a></li>
+                    <li><a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank"><i class="bi bi-geo-alt"></i>Hyderabad, Telangana</a></li>
+                    <li><a href="#"><i class="bi bi-clock"></i>Mon-Sat: 7:00 AM - 9:30 PM</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="container my-5">
-            <h5 class="text-center fw-bold mb-4" style="color: var(--color-primary);">Connect With Us</h5>
-            <div class="d-flex justify-content-center gap-3">
-              <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
-                <i class="bi bi-whatsapp"></i>
-              </a>
-              <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-instagram btn-sm shadow" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white;">
-                <i class="bi bi-instagram"></i>
-              </a>
-              <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
-                <i class="bi bi-youtube"></i>
-              </a>
-              <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
-                <i class="bi bi-linkedin"></i>
-              </a>
-              <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-success btn-sm shadow">
-                <i class="bi bi-geo-alt-fill"></i>
-              </a>
-            </div>
-          </div>
-
-          <footer class="site-footer py-4">
-            <div class="container">
-              <nav class="mb-3 d-flex flex-wrap justify-content-center">
-                <a href="/terms" class="text-light mx-2 mb-2">Terms</a>
-                <a href="/privacy" class="text-light mx-2 mb-2">Privacy</a>
-                <a href="/contact" class="text-light mx-2 mb-2">Contact</a>
-                <a href="/cancellation" class="text-light mx-2 mb-2">Cancellation</a>
-                <a href="/shipping" class="text-light mx-2 mb-2">Shipping</a>
-              </nav>
-              <div class="mb-3 text-center">
-                <a href="tel:7893845696" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-telephone-fill"></i> 7893845696</a>
-                <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
-              </div>
-              <div class="text-center">
-                <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
-              </div>
-            </div>
-          </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+        
+        <div class="copyright">
+            <p>&copy; 2025 KS Digital Services. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/7893845696" target="_blank" class="whatsapp-float">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    
+    <!-- Bootstrap & Particles JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Add ripple effect to buttons
-        document.querySelectorAll('.category button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Create ripple element
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple');
-                
-                // Position the ripple
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size/2;
-                const y = e.clientY - rect.top - size/2;
-                
-                // Style the ripple
-                ripple.style.width = ripple.style.height = `${size}px`;
-                ripple.style.left = `${x}px`;
-                ripple.style.top = `${y}px`;
-                ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.transform = 'scale(0)';
-                ripple.style.animation = 'ripple 600ms linear';
-                ripple.style.pointerEvents = 'none';
-                
-                // Add ripple to button
-                this.appendChild(ripple);
-                
-                // Remove ripple after animation
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
+        // Initialize particles background
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#4cc9f0" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4361ee",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
         });
+        
+        // Define instructions text
+        const marriageInstructionsText = `**DOCUMENT PROCESSING INSTRUCTIONS**
 
-        // Add animation for buttons at the bottom
-        document.querySelectorAll('.text-center .btn-outline-primary').forEach(button => {
-            button.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
+        	I will provide 5 PDFs or image files named 1.pdf to 5.pdf.  or 1.jpeg to 5.jpeg Process them in TWO FORMATS based on their number:
+
+        	---
+
+        	**1. FOR 1.pdf AND 2.pdf (GROOM/BRIDE DETAILS):**
+        	Extract EXACTLY these 6 comma-separated fields:
+        	\`fullname, permanent address (HOUSE NO  street village  city postoffice  district state pincode), date of birth, mobile number, aadhar number, father name\`
+
+        	→ FORMAT RULES:
+        	- Strict field order shown above
+        	- Date format: DD-MM-YYYY
+        	- Mobile: 10 digits only (no spaces/dashes)
+        	- Aadhar: 12 digits only
+        	- If field missing: leave empty but keep comma placeholder
+        	- NO headers or additional text
+        	- Example: \`Raj Kumar, 25 Gandhi Road Mumbai, 15-08-1990, 9876543210, 123456789012, Suresh Kumar\`
+
+        	---
+
+        	**2. FOR 3.pdf, 4.pdf AND 5.pdf (WITNESS DETAILS):**
+        	Extract EXACTLY these 8 comma-separated fields:
+        	\`fullname, aadhar number, father name, h.no, streetname, village name, mandal name, district\`
+
+        	→ FORMAT RULES:
+        	- Strict field order shown above
+        	- Aadhar: 12 digits only
+        	- Address components: Keep concise but complete
+        	- If field missing: leave empty but keep comma placeholder
+        	- NO headers or additional text
+        	- Example: \`Priya Sharma, 234567890123, Ramesh Sharma, 45-B, Oak Street, Shivaji Nagar, Ranga Reddy, Hyderabad\`
+
+        	---
+
+        	**GENERAL RULES FOR ALL FILES:**
+        	1. OUTPUT ONLY RAW CSV - no explanations, titles or markdown
+        	2. Handle missing data: Preserve comma positions (e.g., \`Name,,,123 Street\` if 2 fields missing)
+        	3. Sanitize data: Remove line breaks, extra spaces within fields
+        	4. Dates: Normalize to DD-MM-YYYY format
+        	5. Numbers: Remove any non-digit characters
+        	6. Process each file independently 
+
+        	give me the  output in serial order with serial number 1 to 5`;
+        
+        
+        // Generic function to copy text to clipboard
+        function copyTextToClipboard(text, serviceName = "instructions") {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            textArea.style.padding = 0;
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            textArea.style.background = 'transparent';
+            
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showNotification(`${serviceName} copied to clipboard!`);
+                } else {
+                   // showNotification('', true);
+                }
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+              //  showNotification('', true);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        // Show notification
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('clipboardNotification');
+            notification.querySelector('p').textContent = message;
+            
+            if (isError) {
+                notification.classList.add('error');
+                notification.querySelector('h5').textContent = 'Error';
+                notification.querySelector('i').className = 'bi bi-exclamation-triangle fs-3 me-3';
+            } else {
+                notification.classList.remove('error');
+                notification.querySelector('h5').textContent = 'Clipboard Ready';
+                notification.querySelector('i').className = 'bi bi-clipboard-check fs-3 me-3';
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+        // Copy to clipboard on page load (for PAN)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Copy PAN instructions on page load
+            setTimeout(() => {
+                const panText = `automatically extract the information that should be in the below csv format:    
+                	the parsing format should be the parsing format should be 1. Surname (surname is common for both parents and their children )
+                	2.Name of the applicant
+                	3.Date of Birth
+                	4.Mobile Number 
+                	5.First Eight Digits of Aadhaar Number (note: aadhar number will have 12 digits with a space after every 4 digits, dont consider enrollment number or VID as aadhar number , give the output of first 8 digits without space)
+                	6.Last Four Digits of Aadhar Number (note: aadhar number will have 12 digits with a space after every 4 digits, dont consider enrollment number or VID as aadhar number , give the output of last 4 digits without space)
+                	7.Name as per Aadhaar (full name of applicant)  
+                	8.Fathers Last Name/Surname (surname is same for both applicant and applicant father) 
+                	9.Fathers Name 
+                	10.District
+                	11.Pincode
+                	12.House Number 
+                	13.Name of Premises/Building/Village
+                	14.Road/Street/Lane/Post Office (PO)
+                	15.Area/Locality/Taluka/Sub-Division(VTC)
+
+                	give me only the csv of details without headings`;
+                
+                copyTextToClipboard(panText, "PAN instructions");
+            }, 1000);
+            
+            // Attach event listener for PAN button
+            document.getElementById('extractDetailsBtn').addEventListener('click', function() {
+                const panText = `automatically extract the information that should be in the below csv format:    
+                	the parsing format should be the parsing format should be 1. Surname (surname is common for both parents and their children )
+                	2.Name of the applicant
+                	3.Date of Birth
+                	4.Mobile Number
+                	5.First Eight Digits of Aadhaar Number (note: aadhar number will have 12 digits with a space after every 4 digits, dont consider enrollment number or VID as aadhar number , give the output of first 8 digits without space)
+                	6.Last Four Digits of Aadhar Number (note: aadhar number will have 12 digits with a space after every 4 digits, dont consider enrollment number or VID as aadhar number , give the output of last 4 digits without space)
+                	7.Name as per Aadhaar (full name of applicant)  
+                	8.Fathers Last Name /Surname (surname is same for both applicant and applicant father) 
+                	9.Fathers Name 
+                	10.District
+                	11.Pincode
+                	12.House Number 
+                	13.Name of Premises/Building/Village
+                	14.Road/Street/Lane/Post Office (PO)
+                	15.Area/Locality/Taluka/Sub-Division(VTC)
+
+                	give me only the csv of details without headings`;
+                
+                copyTextToClipboard(panText, "PAN instructions");
+                
+                window.open('https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html', '_blank');
+                window.open('https://ksdigitalservice.pw/autofill', '_blank');
+                window.open('https://www.blackbox.ai/', '_blank');
+                window.open('https://www.ilovepdf.com/compress_pdf', '_blank');
+                window.open('https://myaadhaar.uidai.gov.in/en_IN', '_blank');
             });
-            button.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+            
+            // Attach event listener for Marriage button
+            document.getElementById('extractDetailsBtnMarriage').addEventListener('click', function() {
+                copyTextToClipboard(marriageInstructionsText, "Marriage instructions");
+                window.open('https://registration.telangana.gov.in/', '_blank');
+                window.open('https://ksdigitalservice.pw/autofillMarriage', '_blank');
+                window.open('https://www.blackbox.ai/', '_blank');
             });
+            
+         
         });
     </script>
-    <style>
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-    </style>
 </body>
 </html>

@@ -15,86 +15,302 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
     /* Modern Color Palette */
-    --color-primary: #2563eb; /* Vibrant blue */
-    --color-primary-dark: #1d4ed8;
-    --color-primary-light: #93c5fd;
-    --color-secondary: #f59e0b; /* Amber */
-    --color-secondary-dark: #d97706;
-    --color-secondary-light: #fcd34d;
-    --color-accent: #10b981; /* Emerald */
-    --color-accent-dark: #059669;
-    --color-danger: #ef4444; /* Red */
-    --color-success: #10b981; /* Green */
-    --color-warning: #f59e0b; /* Amber */
-    
-    /* Text Colors */
-    --color-text-dark: #1f2937;
-    --color-text-medium: #4b5563;
-    --color-text-light: #9ca3af;
-    
-    /* Backgrounds */
-    --color-bg-body: #f9fafb;
-    --color-bg-card: #ffffff;
-    --color-border: #e5e7eb;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-    
-    /* Border Radius */
-    --radius-sm: 0.25rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 1rem;
+    --color-primary: #4361ee;
+    --color-primary-dark: #3a0ca3;
+    --color-primary-light: #4cc9f0;
+    --color-secondary: #f72585;
+    --color-secondary-dark: #b5179e;
+    --color-accent: #4ade80;
+    --color-accent-dark: #16a34a;
+    --color-text-light: #f8fafc;
+    --color-text-medium: #cbd5e1;
+    --color-text-dark: #0f172a;
+    --color-bg-dark: #0f172a;
+    --color-bg-card: rgba(30, 41, 59, 0.7);
+    --color-border: rgba(148, 163, 184, 0.3);
+    --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+    --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
     --radius-xl: 1.5rem;
-    
-    /* Spacing */
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
+    --radius-lg: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-	font-family: 'Inter', sans-serif;
-	color: var(--color-text-medium);
-	background: linear-gradient(135deg, #e3f2fd 0%, #fffde4 100%);
-	min-height: 100vh;
-	line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+    background: var(--color-bg-dark);
+    color: var(--color-text-medium);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* Enhanced Button Styles */
-.btn {
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Header & Navigation */
+.navbar {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.8rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    color: var(--color-text-medium);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-text-light);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
     position: relative;
     overflow: hidden;
-    border: none;
+    padding-top: 80px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    margin-bottom: 3rem;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem;
+    color: white;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Floating elements */
+.floating-element {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(76, 201, 240, 0.1);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+    animation: float 15s infinite ease-in-out;
+}
+
+.floating-element:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.floating-element:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: 20%;
+    right: 10%;
+    animation-delay: 2s;
+    background: rgba(247, 37, 133, 0.1);
+}
+
+.floating-element:nth-child(3) {
+    width: 120px;
+    height: 120px;
+    bottom: 20%;
+    left: 15%;
+    animation-delay: 4s;
+    background: rgba(67, 97, 238, 0.1);
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(10deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Service Cards */
+.services-section {
+    padding: 3rem 0;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.service-card {
+    background: var(--color-bg-card);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+.service-card:hover {
+    transform: translateY(-15px) rotateY(5deg);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    border-color: rgba(76, 201, 240, 0.5);
+}
+
+.card-img {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.service-card:hover .card-img img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 1.8rem;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    margin-bottom: 1.5rem;
+    min-height: 80px;
+}
+
+.card-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: var(--shadow-sm);
-    transform: translateY(0);
-    border-radius: var(--radius-md);
-    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    border: none;
 }
 
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
 }
 
-.btn:active {
-    transform: translateY(1px);
-    box-shadow: var(--shadow-sm);
+.btn-secondary {
+    background: var(--gradient-secondary);
+    color: white;
 }
 
-.btn::after {
+.card-btn::after {
     content: '';
     position: absolute;
     top: 0;
@@ -106,143 +322,241 @@ body {
     transition: transform 0.6s ease;
 }
 
-.btn:hover::after {
+.card-btn:hover::after {
     transform: translateX(100%);
 }
 
-/* Primary Button */
-.btn-primary {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+.card-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating WhatsApp button */
+.whatsapp-float {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 40px;
+    right: 40px;
+    background: var(--gradient-primary);
     color: white;
-}
-
-.btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-}
-
-/* Success Button */
-.btn-success {
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
-    color: white;
-}
-
-.btn-success:hover {
-    background: linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-accent) 100%);
-}
-
-/* Hero Section */
-.hero-section {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    color: white;
-    padding: 1rem 0 3rem;
+    border-radius: 50%;
     text-align: center;
+    font-size: 2rem;
+    box-shadow: 0 10px 30px rgba(67, 97, 238, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    animation: pulse 2s infinite;
+    transform: translateY(0);
+}
+
+.whatsapp-float:hover {
+    transform: translateY(-10px) rotate(10deg);
+    box-shadow: 0 15px 40px rgba(67, 97, 238, 0.6);
+    background: var(--gradient-secondary);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+}
+
+/* Content Sections */
+.content-section {
+    background: var(--color-bg-card);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    border: 1px solid var(--color-border);
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-lg);
 }
 
-
-
-/* Card Styles */
-.card {
-    border: none;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-md);
-    background: var(--color-bg-card);
-    margin-bottom: 1.5rem;
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-primary);
 }
 
-.card:hover {
+.content-section:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
 }
 
 /* Footer */
 .site-footer {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    color: white;
-    padding: 2rem 0;
-    position: relative;
-    margin-top: 3rem;
+    background: rgba(2, 6, 23, 0.9);
+    padding: 4rem 0 2rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: 4rem;
 }
 
-.site-footer::before {
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.footer-about {
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(30, 41, 59, 0.7);
+    color: var(--color-text-light);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+    background: var(--gradient-primary);
+}
+
+.footer-heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-heading::after {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-secondary));
+    width: 50px;
+    height: 2px;
+    background: var(--gradient-primary);
 }
 
-/* Animations */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+.footer-links {
+    list-style: none;
 }
 
-.floating {
-    animation: float 6s ease-in-out infinite;
+.footer-links li {
+    margin-bottom: 0.8rem;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+.footer-links a {
+    color: var(--color-text-medium);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.pulse {
-    animation: pulse 2s infinite;
+.footer-links a:hover {
+    color: var(--color-text-light);
+    transform: translateX(5px);
+}
+
+.footer-links a i {
+    transition: transform 0.3s ease;
+}
+
+.footer-links a:hover i {
+    transform: translateX(3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 3rem;
+    color: var(--color-text-medium);
+    font-size: 0.9rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem 0;
+    border-top: 1px solid var(--color-border);
 }
 
 /* Custom Styles for this page */
-.page-header {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    padding: 1.5rem;
-    border-radius: var(--radius-lg);
-    color: white;
-    margin-bottom: 2rem;
-}
-
 .info-section {
-    background-color: white;
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    box-shadow: var(--shadow-md);
     margin-bottom: 2rem;
 }
 
 .info-icon {
     font-size: 2.5rem;
-    color: var(--color-primary);
+    color: var(--color-primary-light);
     margin-bottom: 1rem;
 }
 
+.importance-card, .process-card, .penalty-card {
+    background: rgba(30, 41, 59, 0.7);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    backdrop-filter: blur(5px);
+}
+
+.importance-card:hover, .process-card:hover, .penalty-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
 .importance-card {
-    border-left: 4px solid var(--color-accent);
+    border-left-color: var(--color-accent);
 }
 
 .process-card {
-    border-left: 4px solid var(--color-primary);
+    border-left-color: var(--color-primary);
 }
 
 .penalty-card {
-    border-left: 4px solid var(--color-danger);
+    border-left-color: var(--color-secondary);
 }
 
 .benefit-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .benefit-icon {
-    background: var(--color-accent-light);
-    color: var(--color-accent-dark);
+    background: var(--color-accent);
+    color: white;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -258,6 +572,8 @@ body {
     align-items: center;
     margin-bottom: 1.5rem;
     counter-increment: step-counter;
+    position: relative;
+    padding-left: 3rem;
 }
 
 .process-step::before {
@@ -270,448 +586,568 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 1rem;
-    flex-shrink: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
 }
 
 .food-license-img {
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
     margin-bottom: 1.5rem;
     max-height: 400px;
     object-fit: cover;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 767.98px) {
-    .hero-section {
-            padding: 4rem 0 3rem; /* Adjusted for mobile */
-        }
-     .home-logo-button {
-            margin-top: 1rem;
-        }
-    
-    .btn {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .card {
-        margin-bottom: 1.5rem;
-    }
+.food-license-img:hover {
+    transform: scale(1.02);
 }
 
-/* Typography Enhancements */
- h2, h3, h4, h5 {
-    color: var(--color-text-dark);
-}
-
-h2.section-title {
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    text-align: center;
+    margin: 3rem 0;
     position: relative;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
 }
 
-h2.section-title::after {
+.cta-section::before {
     content: '';
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    width: 60px;
-    height: 4px;
-    background: var(--color-primary);
-    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.1;
 }
-.home-logo-button {
-            display: inline-block;
-        	margin-top: 1.5rem;
-            background: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 2rem;
-            box-shadow: var(--shadow-md);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            font-weight: 600;
-            z-index: 100;
-        }
 
-        .home-logo-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
+.home-logo-button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    z-index: 100;
+    color: var(--color-primary-dark);
+}
+
+.home-logo-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--color-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    .section-title h2 {
+        font-size: 1.8rem;
+    }
+    .whatsapp-float {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+        bottom: 30px;
+        right: 30px;
+    }
+    .hero-section {
+        min-height: 60vh;
+        clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    .section-title h2 {
+        font-size: 1.6rem;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 </head>
 <body>
-  <!-- Header with Navigation -->
-  <header class="hero-section">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">KS DIGITAL SERVICES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#types">Types</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#process">Process</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+   <br>	
 
-      <div class="container">
-          <h1 class="display-6 fw-bold mb-0">KS DIGITAL SERVICES</h1>
-          <h6 class="mb-0">Your Trusted Partner for Food License Registration</h6>
-          <a href="/" class="home-logo-button">
-            <i class="bi bi-house-door-fill me-2"></i> HOME PAGE
-        </a>
-      </div>
-     
-  </header>
-
-  <!-- Main Content Container -->
-  <div class="container">
-     
-      
-          <!-- Food License Card with "Get Details" Button -->
-    <section class="container py-0">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-sm category-border">
-                    <div class="card-body text-center">
-                       
-                        <h1 class="fw-bold mb-1" style="color: var(--color-secondary);">Apply Food License Registration</h1>
-                        
-                        <div class="d-flex justify-content-center align-items-center gap-3 mb-2">
-                            <div class="fw-bold fs-5">Amount: <span class="text-success">Rs 1500</span></div>
+    <!-- Main Content Container -->
+    <div class="container">
+        <!-- Food License Card with "Get Details" Button -->
+        <section class="container py-0">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="service-card">
+                        <div class="card-body text-center">
+                            <h1 class="fw-bold mb-1" style="color: var(--color-accent);">Apply Food License Registration</h1>
+                            <p class="mb-4">
+                                Get your FSSAI food license quickly and hassle-free with our professional assistance.
+                            </p>
+                            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20food%20license" 
+                               target="_blank" 
+                               class="card-btn btn-secondary">
+                                <i class="bi bi-whatsapp"></i> Apply Now
+                             
+                            </a>
+                           <p></p>
                         </div>
-                        <p class="text-muted mb-2">
-                            Get your FSSAI food license quickly and hassle-free with our professional assistance.
-                        </p>
-                        
-                        <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20food%20license" 
-                           target="_blank" 
-                           class="btn btn-success pulse">
-                            <i class="bi bi-whatsapp"></i> Apply Now
-                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Sections -->
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="content-section">
+                    <h2 class="section-title">What is a Food License?</h2>
+                    <p>A Food License, officially known as FSSAI Registration or License, is a mandatory certification issued by the <strong>Food Safety and Standards Authority of India (FSSAI)</strong> for all food business operators in India.</p>
+                    <p>It ensures that food businesses comply with the hygiene and safety standards set by the government to protect consumer health.</p>
+                    <p>Whether you run a restaurant, food manufacturing unit, packaging business, or even a small home-based food business, you need this license to operate legally.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="food-license.jpeg" alt="Food License Importance" class="food-license-img">
+            </div>
+        </div>
+
+        <!-- Importance Section -->
+        <div class="content-section">
+            <h2 class="section-title">Why is a Food License Important?</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="importance-card">
+                        <h5 class="card-title"><i class="bi bi-shield-check text-success me-2"></i> Legal Requirement</h5>
+                        <p class="card-text">Mandatory for all food businesses under the Food Safety and Standards Act, 2006.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="importance-card">
+                        <h5 class="card-title"><i class="bi bi-people text-primary me-2"></i> Consumer Trust</h5>
+                        <p class="card-text">Builds credibility and trust with customers by showing compliance with food safety standards.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="importance-card">
+                        <h5 class="card-title"><i class="bi bi-graph-up text-warning me-2"></i> Business Expansion</h5>
+                        <p class="card-text">Essential for selling through e-commerce platforms, supermarkets, and exports.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-      <!-- Introduction Section -->
-      <div class="row mb-5">
-          <div class="col-md-6">
-              <div class="info-section">
-                 
-                  <h2 class="section-title">What is a Food License?</h2>
-                  <p>A Food License, officially known as FSSAI Registration or License, is a mandatory certification issued by the <strong>Food Safety and Standards Authority of India (FSSAI)</strong> for all food business operators in India.</p>
-                  <p>It ensures that food businesses comply with the hygiene and safety standards set by the government to protect consumer health.</p>
-                  <p>Whether you run a restaurant, food manufacturing unit, packaging business, or even a small home-based food business, you need this license to operate legally.</p>
-              </div>
-          </div>
-          <div class="col-md-6">
-              <img src="/foodSample.jpg" alt="Food License Importance" class="img-fluid food-license-img">
-          </div>
-      </div>
+        <!-- Benefits Section -->
+        <div class="content-section">
+            <h2 class="section-title">Benefits of Food License Registration</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="bi bi-check2-circle"></i>
+                        </div>
+                        <div>
+                            <h5>Legal Protection</h5>
+                            <p>Protects your business from legal penalties and fines for non-compliance.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+                        <div>
+                            <h5>Product Packaging</h5>
+                            <p>Allows you to print the FSSAI logo and license number on your product packaging.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="bi bi-cash-coin"></i>
+                        </div>
+                        <div>
+                            <h5>Business Opportunities</h5>
+                            <p>Enables participation in government tenders and contracts related to food.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="bi bi-bank"></i>
+                        </div>
+                        <div>
+                            <h5>Bank Loans</h5>
+                            <p>Makes it easier to obtain business loans and financial assistance.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="bi bi-globe2"></i>
+                        </div>
+                        <div>
+                            <h5>Online Sales</h5>
+                            <p>Required for selling food products on e-commerce platforms like Amazon, Flipkart, etc.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="bi bi-shop"></i>
+                        </div>
+                        <div>
+                            <h5>Retail Placement</h5>
+                            <p>Necessary for getting shelf space in supermarkets and retail chains.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      <!-- Importance Section -->
-      <div class="info-section">
-          <h2 class="section-title">Why is a Food License Important?</h2>
-          <div class="row">
-              <div class="col-md-4">
-                  <div class="card importance-card h-100">
-                      <div class="card-body">
-                          <h5 class="card-title"><i class="bi bi-shield-check text-success me-2"></i> Legal Requirement</h5>
-                          <p class="card-text">Mandatory for all food businesses under the Food Safety and Standards Act, 2006.</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="card importance-card h-100">
-                      <div class="card-body">
-                          <h5 class="card-title"><i class="bi bi-people text-primary me-2"></i> Consumer Trust</h5>
-                          <p class="card-text">Builds credibility and trust with customers by showing compliance with food safety standards.</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="card importance-card h-100">
-                      <div class="card-body">
-                          <h5 class="card-title"><i class="bi bi-graph-up text-warning me-2"></i> Business Expansion</h5>
-                          <p class="card-text">Essential for selling through e-commerce platforms, supermarkets, and exports.</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <!-- Types of Licenses -->
+        <div class="content-section" id="types">
+            <h2 class="section-title">Types of Food Licenses</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="process-card">
+                        <h4 class="card-title text-center">Basic Registration</h4>
+                        <p class="text-center"><strong>For small businesses</strong></p>
+                        <ul>
+                            <li>Annual turnover less than ₹12 lakh</li>
+                            <li>Petty retailers, hawkers, small-scale manufacturers</li>
+                            <li>Valid for 1-5 years</li>
+                            <li>14-digit registration number</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="process-card">
+                        <h4 class="card-title text-center">State License</h4>
+                        <p class="text-center"><strong>For medium businesses</strong></p>
+                        <ul>
+                            <li>Annual turnover between ₹12 lakh - ₹20 crore</li>
+                            <li>Manufacturers, storage units, transporters</li>
+                            <li>Valid for 1-5 years</li>
+                            <li>Starts with State code (ex: 1000)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="process-card">
+                        <h4 class="card-title text-center">Central License</h4>
+                        <p class="text-center"><strong>For large businesses</strong></p>
+                        <ul>
+                            <li>Annual turnover above ₹20 crore</li>
+                            <li>Importers, exporters, large manufacturers</li>
+                            <li>Valid for 1-5 years</li>
+                            <li>Starts with Central code (ex: 1000)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      <!-- Benefits Section -->
-      <div class="info-section">
-          <h2 class="section-title">Benefits of Food License Registration</h2>
-          <div class="row">
-              <div class="col-md-6">
-                  <div class="benefit-item">
-                      <div class="benefit-icon">
-                          <i class="bi bi-check2-circle"></i>
-                      </div>
-                      <div>
-                          <h5>Legal Protection</h5>
-                          <p>Protects your business from legal penalties and fines for non-compliance.</p>
-                      </div>
-                  </div>
-                  <div class="benefit-item">
-                      <div class="benefit-icon">
-                          <i class="bi bi-box-seam"></i>
-                      </div>
-                      <div>
-                          <h5>Product Packaging</h5>
-                          <p>Allows you to print the FSSAI logo and license number on your product packaging.</p>
-                      </div>
-                  </div>
-                  <div class="benefit-item">
-                      <div class="benefit-icon">
-                          <i class="bi bi-cash-coin"></i>
-                      </div>
-                      <div>
-                          <h5>Business Opportunities</h5>
-                          <p>Enables participation in government tenders and contracts related to food.</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="benefit-item">
-                      <div class="benefit-icon">
-                          <i class="bi bi-bank"></i>
-                      </div>
-                      <div>
-                          <h5>Bank Loans</h5>
-                          <p>Makes it easier to obtain business loans and financial assistance.</p>
-                      </div>
-                  </div>
-                  <div class="benefit-item">
-                      <div class="benefit-icon">
-                          <i class="bi bi-globe2"></i>
-                      </div>
-                      <div>
-                          <h5>Online Sales</h5>
-                          <p>Required for selling food products on e-commerce platforms like Amazon, Flipkart, etc.</p>
-                      </div>
-                  </div>
-                  <div class="benefit-item">
-                      <div class="benefit-icon">
-                          <i class="bi bi-shop"></i>
-                      </div>
-                      <div>
-                          <h5>Retail Placement</h5>
-                          <p>Necessary for getting shelf space in supermarkets and retail chains.</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <!-- Application Process -->
+        <div class="content-section" id="process">
+            <h2 class="section-title">Application Process</h2>
+            <div class="process-steps">
+                <ol style="counter-reset: step-counter; padding-left: 0;">
+                    <li class="process-step">
+                        <div>
+                            <h5>Determine License Type</h5>
+                            <p>Identify which license category applies to your business based on turnover and activities.</p>
+                        </div>
+                    </li>
+                    <li class="process-step">
+                        <div>
+                            <h5>Prepare Documents</h5>
+                            <p>Collect all required documents including ID proof, address proof, and business details.</p>
+                        </div>
+                    </li>
+                    <li class="process-step">
+                        <div>
+                            <h5>Submit Application</h5>
+                            <p>Complete Form A or Form B on the FSSAI portal with accurate details.</p>
+                        </div>
+                    </li>
+                    <li class="process-step">
+                        <div>
+                            <h5>Inspection</h5>
+                            <p>FSSAI officials may inspect your premises to verify details.</p>
+                        </div>
+                    </li>
+                    <li class="process-step">
+                        <div>
+                            <h5>License Issuance</h5>
+                            <p>Receive your FSSAI registration certificate within 30-60 days.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
 
-      <!-- Types of Licenses -->
-      <div class="info-section">
-          <h2 class="section-title">Types of Food Licenses</h2>
-          <div class="row">
-              <div class="col-md-4">
-                  <div class="card process-card h-100">
-                      <div class="card-body">
-                          <h4 class="card-title text-center">Basic Registration</h4>
-                          <p class="text-center"><strong>For small businesses</strong></p>
-                          <ul>
-                              <li>Annual turnover less than ₹12 lakh</li>
-                              <li>Petty retailers, hawkers, small-scale manufacturers</li>
-                              <li>Valid for 1-5 years</li>
-                              <li>14-digit registration number</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="card process-card h-100">
-                      <div class="card-body">
-                          <h4 class="card-title text-center">State License</h4>
-                          <p class="text-center"><strong>For medium businesses</strong></p>
-                          <ul>
-                              <li>Annual turnover between ₹12 lakh - ₹20 crore</li>
-                              <li>Manufacturers, storage units, transporters</li>
-                              <li>Valid for 1-5 years</li>
-                              <li>Starts with State code (ex: 1000)</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="card process-card h-100">
-                      <div class="card-body">
-                          <h4 class="card-title text-center">Central License</h4>
-                          <p class="text-center"><strong>For large businesses</strong></p>
-                          <ul>
-                              <li>Annual turnover above ₹20 crore</li>
-                              <li>Importers, exporters, large manufacturers</li>
-                              <li>Valid for 1-5 years</li>
-                              <li>Starts with Central code (ex: 1000)</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <!-- Documents Required -->
+        <div class="content-section">
+            <h2 class="section-title">Documents Required</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">For All Applicants</h5>
+                            <ul>
+                                <li>Photo ID proof (Aadhaar, PAN, Voter ID, etc.)</li>
+                                <li>Proof of business address</li>
+                                <li>Passport-size photographs</li>
+                                <li>List of food products to be manufactured/sold</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Additional for Manufacturers</h5>
+                            <ul>
+                                <li>Blueprint of the processing unit</li>
+                                <li>List of machinery and equipment</li>
+                                <li>Water test report</li>
+                                <li>NOC from Municipality or Panchayat</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      <!-- Application Process -->
-      <div class="info-section">
-          <h2 class="section-title">Application Process</h2>
-          <div class="process-steps">
-              <ol style="counter-reset: step-counter; padding-left: 0;">
-                  <li class="process-step">
-                      <div>
-                          <h5>Determine License Type</h5>
-                          <p>Identify which license category applies to your business based on turnover and activities.</p>
-                      </div>
-                  </li>
-                  <li class="process-step">
-                      <div>
-                          <h5>Prepare Documents</h5>
-                          <p>Collect all required documents including ID proof, address proof, and business details.</p>
-                      </div>
-                  </li>
-                  <li class="process-step">
-                      <div>
-                          <h5>Submit Application</h5>
-                          <p>Complete Form A or Form B on the FSSAI portal with accurate details.</p>
-                      </div>
-                  </li>
-                  <li class="process-step">
-                      <div>
-                          <h5>Inspection</h5>
-                          <p>FSSAI officials may inspect your premises to verify details.</p>
-                      </div>
-                  </li>
-                  <li class="process-step">
-                      <div>
-                          <h5>License Issuance</h5>
-                          <p>Receive your FSSAI registration certificate within 30-60 days.</p>
-                      </div>
-                  </li>
-              </ol>
-          </div>
-      </div>
+        <!-- Penalties Section -->
+        <div class="content-section">
+            <h2 class="section-title">Penalties for Non-Compliance</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="penalty-card">
+                        <h5 class="card-title">Operating Without License</h5>
+                        <p class="card-text"><strong>Penalty:</strong> Up to ₹5 lakh and imprisonment up to 6 months</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="penalty-card">
+                        <h5 class="card-title">Substandard Food</h5>
+                        <p class="card-text"><strong>Penalty:</strong> Up to ₹5 lakh</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="penalty-card">
+                        <h5 class="card-title">Misleading Advertisement</h5>
+                        <p class="card-text"><strong>Penalty:</strong> Up to ₹10 lakh</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      <!-- Documents Required -->
-      <div class="info-section">
-          <h2 class="section-title">Documents Required</h2>
-          <div class="row">
-              <div class="col-md-6">
-                  <div class="card">
-                      <div class="card-body">
-                          <h5 class="card-title">For All Applicants</h5>
-                          <ul>
-                              <li>Photo ID proof (Aadhaar, PAN, Voter ID, etc.)</li>
-                              <li>Proof of business address</li>
-                              <li>Passport-size photographs</li>
-                              <li>List of food products to be manufactured/sold</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="card">
-                      <div class="card-body">
-                          <h5 class="card-title">Additional for Manufacturers</h5>
-                          <ul>
-                              <li>Blueprint of the processing unit</li>
-                              <li>List of machinery and equipment</li>
-                              <li>Water test report</li>
-                              <li>NOC from Municipality or Panchayat</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3 class="text-white">Get Your Food License Today!</h3>
+            <p class="lead text-white mb-4">Professional License Registration</p>
+            <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20food%20license" target="_blank" class="btn btn-light btn-lg">
+                <i class="bi bi-whatsapp"></i> Apply Now 
+            </a>
+        </div>
+    </div>
 
-      <!-- Penalties Section -->
-      <div class="info-section">
-          <h2 class="section-title">Penalties for Non-Compliance</h2>
-          <div class="row">
-              <div class="col-md-4">
-                  <div class="card penalty-card h-100">
-                      <div class="card-body">
-                          <h5 class="card-title">Operating Without License</h5>
-                          <p class="card-text"><strong>Penalty:</strong> Up to ₹5 lakh and imprisonment up to 6 months</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="card penalty-card h-100">
-                      <div class="card-body">
-                          <h5 class="card-title">Substandard Food</h5>
-                          <p class="card-text"><strong>Penalty:</strong> Up to ₹5 lakh</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="card penalty-card h-100">
-                      <div class="card-body">
-                          <h5 class="card-title">Misleading Advertisement</h5>
-                          <p class="card-text"><strong>Penalty:</strong> Up to ₹10 lakh</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+    <!-- Social Media Section -->
+    <div class="container my-5">
+        <h5 class="text-center fw-bold mb-4" style="color: var(--color-primary-light);">Connect With Us</h5>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-instagram btn-sm shadow" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white;">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
+                <i class="bi bi-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-success btn-sm shadow">
+                <i class="bi bi-geo-alt-fill"></i>
+            </a>
+        </div>
+    </div>
 
-      <!-- CTA Section -->
-      <div class="text-center my-5 py-4 bg-light rounded">
-          <h3>Get Your Food License Today!</h3>
-          <p class="lead mb-4">Professional License Registration at ₹1500</p>
-          <a href="https://wa.me/7893845696?text=Hi%20I%20want%20a%20food%20license" target="_blank" class="btn btn-success btn-lg pulse">
-              <i class="bi bi-whatsapp"></i> Apply Now 
-          </a>
-      </div>
-  </div>
-
-  <!-- Social Media Section -->
-  <div class="container my-5">
-      <h5 class="text-center fw-bold mb-4" style="color: var(--color-primary);">Connect With Us</h5>
-      <div class="d-flex justify-content-center gap-3">
-          <a href="https://wa.me/7893845696" target="_blank" class="btn btn-success btn-sm shadow">
-              <i class="bi bi-whatsapp"></i>
-          </a>
-          <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="btn btn-instagram btn-sm shadow" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white;">
-              <i class="bi bi-instagram"></i>
-          </a>
-          <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="btn btn-danger btn-sm shadow">
-              <i class="bi bi-youtube"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="btn btn-primary btn-sm shadow">
-              <i class="bi bi-linkedin"></i>
-          </a>
-          <a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank" class="btn btn-success btn-sm shadow">
-              <i class="bi bi-geo-alt-fill"></i>
-          </a>
-      </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="site-footer py-4">
-      <div class="container">
-          <nav class="mb-3 d-flex flex-wrap justify-content-center">
-              <a href="/terms" class="text-light mx-2 mb-2">Terms</a>
-              <a href="/privacy" class="text-light mx-2 mb-2">Privacy</a>
-              <a href="/contact" class="text-light mx-2 mb-2">Contact</a>
-              <a href="/cancellation" class="text-light mx-2 mb-2">Cancellation</a>
-              <a href="/shipping" class="text-light mx-2 mb-2">Shipping</a>
-          </nav>
-          <div class="mb-3 text-center">
-              <a href="tel:7893845696" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-telephone-fill"></i> 7893845696</a>
-              <a href="mailto:ksdigital2025@gmail.com" class="text-light mx-2 mb-2 d-inline-block"><i class="bi bi-envelope-fill"></i> ksdigital2025@gmail.com</a>
-          </div>
-          <div class="text-center">
-              <small>&copy; 2025 KS Digital Services. All rights reserved.</small>
-          </div>
-      </div>
-  </footer>
-
-  <!-- JavaScript -->
-  <script>
-      // Add pulse animation to CTA button on hover
-      document.querySelector('.pulse').addEventListener('mouseover', function() {
-          this.classList.add('pulse');
-      });
-      
-      document.querySelector('.pulse').addEventListener('mouseout', function() {
-          this.classList.remove('pulse');
-      });
-  </script>
+    <!-- Footer -->
+    <footer id="contact" class="site-footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">KS DIGITAL</div>
+                <p class="footer-about">Your trusted partner for all digital documentation and certification needs. Fast, reliable, and professional services.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/7893845696" target="_blank" class="social-link">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="social-link">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="social-link">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ksdigitalservices/" target="_blank" class="social-link">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="footer-heading">Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="/foodLicense"><i class="bi bi-arrow-right"></i>Food License Registration</a></li>
+                    <li><a href="/tradeLicense"><i class="bi bi-arrow-right"></i>Trade License</a></li>
+                    <li><a href="/labourLicense"><i class="bi bi-arrow-right"></i>Labour License</a></li>
+                    <li><a href="/msme"><i class="bi bi-arrow-right"></i>MSME Certificate</a></li>
+                    <li><a href="/passport"><i class="bi bi-arrow-right"></i>Passport Application</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="footer-heading">Contact Us</h3>
+                <ul class="footer-links">
+                    <li><a href="tel:7893845696"><i class="bi bi-telephone"></i>+91 7893845696</a></li>
+                    <li><a href="mailto:ksdigital2025@gmail.com"><i class="bi bi-envelope"></i>ksdigital2025@gmail.com</a></li>
+                    <li><a href="https://maps.app.goo.gl/AyuLvmf3TYjp9fH6A" target="_blank"><i class="bi bi-geo-alt"></i>Hyderabad, Telangana</a></li>
+                    <li><a href="#"><i class="bi bi-clock"></i>Mon-Sat: 7:00 AM - 9:30 PM</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 KS Digital Services. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/7893845696" target="_blank" class="whatsapp-float">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    
+    <!-- Bootstrap & Particles JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles background
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#4cc9f0" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4361ee",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Fade in animation for sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.content-section, .service-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(30px)";
+                element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>

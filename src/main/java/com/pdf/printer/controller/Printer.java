@@ -1,8 +1,8 @@
 package com.pdf.printer.controller;
 
 public enum Printer {
-    PRINTER_0("-1", "ksdigital@print.epsonconnect.com", "Sampath", "9502884420", 2, 9, 10, 10, 5, 3, 15, 9, 5),
-    PRINTER_1("1", "ksdigital@print.epsonconnect.com", "KS DIGITAL SERVICES", "7893845696", 2, 9, 10, 10, 5, 3, 15, 9, 5);
+    PRINTER_0("-1", "sampath.k@print.epsonconnect.com", "Sampath", "9502884420", 2, 9, 10, 10, 5, 3, 15, 9, 5),
+    PRINTER_1("1", "sampath.k@print.epsonconnect.com", "KS DIGITAL SERVICES", "7893845696", 2, 9, 10, 10, 5, 3, 15, 9, 5);
 
     private final String id;
     private final String email;

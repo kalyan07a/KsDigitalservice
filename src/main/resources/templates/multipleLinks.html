@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KS DIGITAL SERVICES</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+      color: #333;
+    }
+
+    /* Decorative background */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 350px;
+      background: linear-gradient(135deg, #0377fc 0%, #21d397 100%);
+      border-radius: 0 0 50% 50%;
+      z-index: -1;
+      transform: scaleX(1.5);
+      transform-origin: center top;
+    }
+
+    .header {
+      text-align: center;
+      margin: 20px 0 30px;
+      padding: 0 10px;
+      width: 100%;
+      max-width: 1200px;
+      z-index: 2;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo i {
+      font-size: 35px;
+      color: white;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
+      font-weight: 500;
+      max-width: 600px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+
+    .home-btn {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.9);
+      color: #0377fc;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 10px 0;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
+    }
+
+    .home-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+      background: white;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px 0 50px;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 24px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .icon-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+
+    .card:hover .icon-container {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .icon-3d {
+      font-size: 60px;
+      color: white;
+      filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3));
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .icon-3d {
+      transform: scale(1.15);
+    }
+
+    .icon-container::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--color1), var(--color2));
+      border-radius: 50%;
+      z-index: 1;
+      box-shadow: inset 0 -8px 15px rgba(0, 0, 0, 0.2),
+                  inset 0 8px 15px rgba(255, 255, 255, 0.4),
+                  0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-title::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(to right, var(--color1), var(--color2));
+      margin: 12px auto 0;
+      border-radius: 2px;
+    }
+
+    .action-btn {
+      display: inline-block;
+      padding: 14px 30px;
+      background: linear-gradient(to right, var(--color1), var(--color2));
+      color: white;
+      text-decoration: none;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      max-width: 220px;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #6c7a89;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 800px;
+      margin-top: auto;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+      }
+      
+      .home-btn {
+        padding: 10px 24px;
+        font-size: 0.95rem;
+      }
+      
+      .grid {
+        gap: 20px;
+        padding: 0 15px;
+      }
+      
+      .card {
+        padding: 25px;
+      }
+      
+      .icon-container {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+      }
+      
+      .icon-3d {
+        font-size: 50px;
+      }
+      
+      .card-title {
+        font-size: 1.3rem;
+      }
+      
+      .action-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+      
+      .footer {
+        font-size: 0.9rem;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 1.6rem;
+      }
+      
+      .tagline {
+        font-size: 0.9rem;
+      }
+      
+      .home-btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      .icon-container {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 15px;
+      }
+      
+      .icon-3d {
+        font-size: 40px;
+      }
+      
+      .card-title {
+        font-size: 1.2rem;
+      }
+      
+      .action-btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Desktop Enhancements */
+    @media (min-width: 1024px) {
+      .header {
+        margin: 30px 0 40px;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .tagline {
+        font-size: 1.2rem;
+      }
+      
+      .home-btn {
+        padding: 14px 32px;
+        font-size: 1.1rem;
+      }
+      
+      .grid {
+        gap: 30px;
+      }
+    }
+
+    /* Animation enhancements */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .header {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .card:nth-child(1) { animation: fadeIn 0.8s 0.1s ease-out both; }
+    .card:nth-child(2) { animation: fadeIn 0.8s 0.2s ease-out both; }
+    .card:nth-child(3) { animation: fadeIn 0.8s 0.3s ease-out both; }
+    .card:nth-child(4) { animation: fadeIn 0.8s 0.4s ease-out both; }
+    .card:nth-child(5) { animation: fadeIn 0.8s 0.5s ease-out both; }
+    .card:nth-child(6) { animation: fadeIn 0.8s 0.6s ease-out both; }
+    
+    .footer {
+      animation: fadeIn 0.8s 0.7s ease-out both;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>KS DIGITAL SERVICES</h1>
+    <p class="tagline">Your one-stop solution for all digital needs</p>
+    <a href="https://ksdigitalservice.pw/" class="home-btn">HOME PAGE</a>
+  </div>
+
+  <div class="grid">
+
+    <div class="card" style="--color1: #34A853; --color2: #0F9D58;">
+      <div class="icon-container">
+        <i class="fas fa-map-marker-alt icon-3d"></i>
+      </div>
+      <h3 class="card-title">Get Directions</h3>
+      <a href="https://maps.app.goo.gl/cDJBtTyoeH3XC3536" target="_blank" class="action-btn">Navigate</a>
+    </div>
+
+    <div class="card" style="--color1: #1E90FF; --color2: #007BFF;">
+      <div class="icon-container">
+        <i class="fas fa-phone icon-3d"></i> <!-- Changed icon from fa-phone-alt to fa-phone -->
+      </div>
+      <h3 class="card-title">Call Us</h3>
+      <a href="tel:+917893845696" class="action-btn">Call Now</a>
+    </div>
+
+    <div class="card" style="--color1: #25D366; --color2: #075E54;">
+      <div class="icon-container">
+        <i class="fab fa-whatsapp icon-3d"></i>
+      </div>
+      <h3 class="card-title">WhatsApp</h3>
+      <a href="https://wa.me/7893845696" target="_blank" class="action-btn">Message Now</a>
+    </div>
+
+    <div class="card" style="--color1: #833AB4; --color2: #E1306C;">
+      <div class="icon-container">
+        <i class="fab fa-instagram icon-3d"></i>
+      </div>
+      <h3 class="card-title">Instagram</h3>
+      <a href="https://www.instagram.com/ksdigitalservice/" target="_blank" class="action-btn">Follow Us</a>
+    </div>
+
+    <div class="card" style="--color1: #FF0000; --color2: #C4302B;">
+      <div class="icon-container">
+        <i class="fab fa-youtube icon-3d"></i>
+      </div>
+      <h3 class="card-title">YouTube</h3>
+      <a href="https://www.youtube.com/@ksdigitalservice" target="_blank" class="action-btn">Subscribe</a>
+    </div>
+
+    <div class="card" style="--color1: #3b82f6; --color2: #1D4ED8;">
+      <div class="icon-container">
+        <i class="fas fa-print icon-3d"></i>
+      </div>
+      <h3 class="card-title">Self Printer</h3>
+      <a href="https://ksdigitalservice.pw/print/1" target="_blank" class="action-btn">Print Now</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 KS DIGITAL SERVICES. All rights reserved.</p>
+  </div>
+</body>
+</html>
